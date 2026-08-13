@@ -246,6 +246,8 @@ ul, ol { list-style: none; }
 /* 페이지 전환 */
 .fade-enter-active, .fade-leave-active { transition: opacity .18s var(--ease); }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
+/* out-in을 쓰지 않으므로 나가는 화면을 흐름에서 빼 레이아웃이 튀지 않게 한다 */
+.fade-leave-active { position: absolute; top: 0; left: 0; right: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

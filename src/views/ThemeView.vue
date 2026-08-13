@@ -1,39 +1,44 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { useProgressStore } from '@/stores/progress.js';
 import ProgressBar from '@/components/ProgressBar.vue';
 import SpeakButton from '@/components/SpeakButton.vue';
 import TypeBadge from '@/components/TypeBadge.vue';
 
-const props = defineProps({ key: { type: String, required: true } });
+const PREVIEW_LIMIT = 30;
+
+const props = defineProps({ themeKey: { type: String, required: true } });
+const route = useRoute();
 const router = useRouter();
 const vocab = useVocabularyStore();
 const progress = useProgressStore();
 
-const theme = computed(() => vocab.getTheme(props.key));
+const theme = computed(() => vocab.getTheme(props.themeKey));
 
-/** 선택된 레슨 (없으면 테마 전체) */
-const selectedLesson = ref('');
+/** 선택된 레슨 (없으면 테마 전체) — 홈의 "최근 레슨"에서 ?lesson=으로 들어오면 미리 선택 */
+const selectedLesson = ref(String(route.query.lesson || ''));
 /** 카드 유형 필터 */
 const selectedTypes = ref([]);
 
 const currentCards = computed(() =>
   vocab.buildSet({
-    theme: props.key,
+    theme: props.themeKey,
     lessonId: selectedLesson.value || undefined,
     types: selectedTypes.value.length ? selectedTypes.value : undefined,
   })
 );
 
+const previewCards = computed(() => currentCards.value.slice(0, PREVIEW_LIMIT));
+
 /** 이 테마 안에서 유형별 개수 */
 const typeCounts = computed(() => {
-  const base = vocab.buildSet({ theme: props.key });
-  return vocab.CARD_TYPE_LIST.map(t => ({
-    ...t,
-    count: base.filter(c => c.type === t.key).length,
-  })).filter(t => t.count > 0);
+  const counts = Object.create(null);
+  for (const c of theme.value?.cards || []) counts[c.type] = (counts[c.type] || 0) + 1;
+  return vocab.CARD_TYPE_LIST
+    .map(t => ({ ...t, count: counts[t.key] || 0 }))
+    .filter(t => t.count > 0);
 });
 
 function toggleType(key) {
@@ -54,7 +59,7 @@ function startStudy(mode) {
     name: 'study',
     params: { mode },
     query: {
-      theme: props.key,
+      theme: props.themeKey,
       ...(selectedLesson.value ? { lesson: selectedLesson.value } : {}),
       ...(selectedTypes.value.length ? { types: selectedTypes.value.join(',') } : {}),
     },
@@ -77,7 +82,7 @@ function startStudy(mode) {
         </div>
       </div>
       <ProgressBar
-        :value="progress.progressOf(theme.lessons.flatMap(l => l.cards))"
+        :value="progress.progressOf(theme.cards)"
         show-label
       />
     </header>
@@ -145,12 +150,12 @@ function startStudy(mode) {
       <div class="section-head">
         <div>
           <h2 class="section-title">카드 미리보기</h2>
-          <p class="section-sub">{{ currentCards.length }}장 중 최대 30장</p>
+          <p class="section-sub">{{ currentCards.length }}장 중 최대 {{ PREVIEW_LIMIT }}장</p>
         </div>
       </div>
 
       <ul class="preview">
-        <li v-for="c in currentCards.slice(0, 30)" :key="c.uid" class="pv-row">
+        <li v-for="c in previewCards" :key="c.uid" class="pv-row">
           <div class="pv-main">
             <div class="pv-es es-text">{{ c.es }}</div>
             <div class="pv-ko">{{ c.ko }}</div>

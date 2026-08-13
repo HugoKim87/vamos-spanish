@@ -15,6 +15,8 @@ const rangeText = computed(() => {
   <AppHeader />
   <main>
     <RouterView v-slot="{ Component }">
+      <!-- 라우트 컴포넌트가 지연 로딩(async)이라 mode="out-in"을 쓰면
+           enter 훅과 마운트 타이밍이 어긋나 화면이 비는 일이 있다. -->
       <Transition name="fade">
         <component :is="Component" />
       </Transition>
@@ -29,7 +31,8 @@ const rangeText = computed(() => {
 </template>
 
 <style scoped>
-main { min-height: calc(100vh - var(--header-h) - 90px); }
+/* 전환 중 나가는 화면을 absolute로 띄우기 위한 기준점 */
+main { position: relative; min-height: calc(100vh - var(--header-h) - 90px); }
 .footer {
   margin-top: var(--sp-7);
   padding: var(--sp-6) 0;

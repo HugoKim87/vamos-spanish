@@ -62,7 +62,7 @@ function onProgress(v) { barValue.value = v; }
 function onFinish() { done.value = true; barValue.value = 100; }
 
 function goBack() {
-  if (props.theme) router.push({ name: 'theme', params: { key: props.theme } });
+  if (props.theme) router.push({ name: 'theme', params: { themeKey: props.theme } });
   else router.push({ name: 'home' });
 }
 

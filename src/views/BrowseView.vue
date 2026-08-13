@@ -1,26 +1,37 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { useProgressStore } from '@/stores/progress.js';
 import SpeakButton from '@/components/SpeakButton.vue';
 import TypeBadge from '@/components/TypeBadge.vue';
 
+const PAGE = 150; // 한 번에 그릴 카드 수 — 1,000장을 한꺼번에 그리면 첫 화면이 느리다
+
 const vocab = useVocabularyStore();
 const progress = useProgressStore();
 
 /** 검색·필터 결과 */
-const results = computed(() =>
-  vocab.buildSet({
+const results = computed(() => {
+  const base = vocab.buildSet({
     query: vocab.searchQuery,
     theme: vocab.searchTheme || undefined,
     types: vocab.searchTypes.length ? vocab.searchTypes : undefined,
-  })
-);
+  });
+  if (!vocab.searchHardOnly) return base;
+  return base.filter(c => progress.markOf(c.uid) === 'hard');
+});
+
+/** 화면에 실제로 그리는 개수 (더 보기로 늘어남) */
+const shown = ref(PAGE);
+watch(results, () => { shown.value = PAGE; }); // 조건이 바뀌면 처음부터
+
+const visible = computed(() => results.value.slice(0, shown.value));
+const hasMore = computed(() => results.value.length > shown.value);
 
 /** 레슨(Day)별로 묶어 보여주기 */
 const grouped = computed(() => {
   const map = new Map();
-  for (const c of results.value) {
+  for (const c of visible.value) {
     if (!map.has(c.lessonId)) {
       map.set(c.lessonId, { id: c.lessonId, day: c.day, title: c.lessonTitle, emoji: c.emoji, cards: [] });
     }
@@ -28,6 +39,10 @@ const grouped = computed(() => {
   }
   return [...map.values()].sort((a, b) => b.day - a.day);
 });
+
+const hasFilter = computed(() =>
+  !!vocab.searchQuery || !!vocab.searchTheme || vocab.searchTypes.length > 0 || vocab.searchHardOnly
+);
 
 function toggleType(key) {
   const i = vocab.searchTypes.indexOf(key);
@@ -39,6 +54,7 @@ function clearAll() {
   vocab.searchQuery = '';
   vocab.searchTheme = '';
   vocab.searchTypes = [];
+  vocab.searchHardOnly = false;
 }
 </script>
 
@@ -60,7 +76,7 @@ function clearAll() {
         placeholder="🔍  예: piso, 아프다, tengo…"
         aria-label="단어 검색"
       />
-      <button v-if="vocab.searchQuery || vocab.searchTheme || vocab.searchTypes.length"
+      <button v-if="hasFilter"
         class="btn btn-ghost btn-sm clear" @click="clearAll">초기화</button>
     </div>
 
@@ -83,10 +99,16 @@ function clearAll() {
           class="chip" :class="{ 'is-active': vocab.searchTypes.includes(t.key) }"
           @click="toggleType(t.key)"
         >{{ t.emoji }} {{ t.label }} <span class="chip-count">{{ t.count }}</span></button>
+        <button
+          class="chip" :class="{ 'is-active': vocab.searchHardOnly }"
+          @click="vocab.searchHardOnly = !vocab.searchHardOnly"
+        >😵 어려움만 <span class="chip-count">{{ progress.hardCards.length }}</span></button>
       </div>
     </div>
 
-    <p class="count">{{ results.length }}장</p>
+    <p class="count">
+      {{ results.length }}장<span v-if="hasMore"> 중 {{ visible.length }}장 표시</span>
+    </p>
 
     <!-- 결과 -->
     <div v-if="grouped.length" class="groups">
@@ -108,6 +130,10 @@ function clearAll() {
           </li>
         </ul>
       </section>
+
+      <button v-if="hasMore" class="btn btn-ghost more" @click="shown += PAGE">
+        더 보기 ({{ results.length - visible.length }}장 남음)
+      </button>
     </div>
 
     <p v-else class="empty">조건에 맞는 단어가 없어요. 검색어나 필터를 바꿔보세요.</p>
@@ -168,5 +194,6 @@ function clearAll() {
 }
 .r-done { background: var(--c-success-soft); color: var(--c-success); }
 .r-hard { background: var(--c-danger-soft); }
+.more { align-self: center; margin-top: var(--sp-3); }
 .empty { padding: var(--sp-7) 0; text-align: center; color: var(--c-text-mute); }
 </style>

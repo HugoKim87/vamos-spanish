@@ -8,7 +8,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
   { path: '/', name: 'home', component: () => import('@/views/HomeView.vue') },
   {
-    path: '/theme/:key',
+    // ⚠️ 'key'는 Vue의 예약 prop이라 컴포넌트로 전달되지 않는다. 반드시 다른 이름을 쓴다.
+    path: '/theme/:themeKey',
     name: 'theme',
     component: () => import('@/views/ThemeView.vue'),
     props: true,

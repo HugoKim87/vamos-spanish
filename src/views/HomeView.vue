@@ -19,6 +19,15 @@ const recentLessons = computed(() =>
 /** 어려움 표시한 카드로 바로 복습 */
 const hardCount = computed(() => progress.hardCards.length);
 
+/** 어려움 표시한 카드만 걸러 보도록 필터를 켠 뒤 이동 */
+function reviewHard() {
+  vocab.searchQuery = '';
+  vocab.searchTheme = '';
+  vocab.searchTypes = [];
+  vocab.searchHardOnly = true;
+  router.push({ name: 'browse' });
+}
+
 function startQuick(mode) {
   router.push({ name: 'study', params: { mode } });
 }
@@ -60,11 +69,11 @@ function startQuick(mode) {
           <div><dt>오늘</dt><dd>{{ progress.dailyCount }}장</dd></div>
           <div><dt>연속</dt><dd>{{ progress.streak }}일</dd></div>
         </dl>
-        <RouterLink
+        <button
           v-if="hardCount"
-          :to="{ name: 'browse' }"
           class="pc-hard"
-        >😵 어려운 카드 {{ hardCount }}장 복습하기</RouterLink>
+          @click="reviewHard"
+        >😵 어려운 카드 {{ hardCount }}장 복습하기</button>
       </aside>
     </div>
   </section>
@@ -83,7 +92,7 @@ function startQuick(mode) {
         <RouterLink
           v-for="t in vocab.themeSummaries"
           :key="t.key"
-          :to="{ name: 'theme', params: { key: t.key } }"
+          :to="{ name: 'theme', params: { themeKey: t.key } }"
           class="theme-card"
           :style="{ '--accent': t.color }"
         >
@@ -93,7 +102,7 @@ function startQuick(mode) {
           <span class="tc-meta">{{ t.lessonCount }}개 레슨 · {{ t.cardCount }}장</span>
           <ProgressBar
             class="tc-bar"
-            :value="progress.progressOf(t.lessons.flatMap(l => l.cards))"
+            :value="progress.progressOf(t.cards)"
           />
         </RouterLink>
       </div>
@@ -140,7 +149,7 @@ function startQuick(mode) {
         <RouterLink
           v-for="l in recentLessons"
           :key="l.id"
-          :to="{ name: 'theme', params: { key: l.theme }, query: { lesson: l.id } }"
+          :to="{ name: 'theme', params: { themeKey: l.theme }, query: { lesson: l.id } }"
           class="recent-card card"
         >
           <div class="rc-top">
@@ -199,10 +208,11 @@ h1 em {
 .pc-stats dt { font-size: 11.5px; color: var(--c-text-mute); }
 .pc-stats dd { font-size: 17px; font-weight: 800; margin-top: 2px; }
 .pc-hard {
-  display: block; margin-top: var(--sp-4);
+  display: block; width: 100%; margin-top: var(--sp-4);
   padding: 9px 12px; border-radius: var(--r-sm);
   background: var(--c-danger-soft); color: var(--c-danger-ink);
   font-size: 13px; font-weight: 700; text-align: center;
+  border: none; cursor: pointer;
 }
 
 /* 테마 그리드 */

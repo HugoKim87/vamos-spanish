@@ -52,25 +52,28 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   });
 
   /** 테마별 요약 (레슨 수 · 카드 수) — 홈 화면 카드용 */
+  // cards를 여기서 한 번만 펼쳐 둔다. 템플릿에서 flatMap을 돌리면
+  // 렌더링마다 9개 테마 × 수백 장의 배열이 새로 만들어진다.
   const themeSummaries = computed(() =>
     THEME_LIST.map(theme => {
       const inTheme = lessons.value.filter(l => l.theme === theme.key);
+      const cards = inTheme.flatMap(l => l.cards);
       return {
         ...theme,
         lessonCount: inTheme.length,
-        cardCount: inTheme.reduce((s, l) => s + l.cards.length, 0),
+        cardCount: cards.length,
         lessons: inTheme,
+        cards,
       };
     }).filter(t => t.lessonCount > 0)
   );
 
-  /** 카드 유형별 개수 */
-  const typeSummaries = computed(() =>
-    CARD_TYPE_LIST.map(t => ({
-      ...t,
-      count: allCards.value.filter(c => c.type === t.key).length,
-    }))
-  );
+  /** 카드 유형별 개수 — allCards를 한 번만 훑는다 */
+  const typeSummaries = computed(() => {
+    const counts = Object.create(null);
+    for (const c of allCards.value) counts[c.type] = (counts[c.type] || 0) + 1;
+    return CARD_TYPE_LIST.map(t => ({ ...t, count: counts[t.key] || 0 }));
+  });
 
   /* ---------- 조회 헬퍼 ---------- */
   const getLesson = id => lessons.value.find(l => l.id === id);
@@ -78,15 +81,19 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
 
   /**
    * 조건에 맞는 카드 묶음 반환 — 학습 세트 구성의 단일 진입점.
-   * @param {{theme?:string, lessonId?:string, types?:string[], query?:string, limit?:number}} opts
+   * @param {{theme?:string, lessonId?:string, types?:string[], uids?:string[], query?:string, limit?:number}} opts
    */
   function buildSet(opts = {}) {
-    const { theme, lessonId, types, query, limit } = opts;
+    const { theme, lessonId, types, uids, query, limit } = opts;
     let cards = allCards.value;
 
     if (lessonId) cards = cards.filter(c => c.lessonId === lessonId);
     if (theme) cards = cards.filter(c => c.theme === theme);
     if (types?.length) cards = cards.filter(c => types.includes(c.type));
+    if (uids?.length) {
+      const set = new Set(uids); // 배열 includes로 돌면 O(n×m)이 된다
+      cards = cards.filter(c => set.has(c.uid));
+    }
 
     if (query) {
       const q = query.trim().toLowerCase();
@@ -103,6 +110,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const searchQuery = ref('');
   const searchTypes = ref([]);
   const searchTheme = ref('');
+  const searchHardOnly = ref(false); // 홈의 "어려운 카드 복습" 진입용
 
   return {
     // 정의
@@ -114,6 +122,6 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     // 조회
     getLesson, getTheme, buildSet,
     // 검색 상태
-    searchQuery, searchTypes, searchTheme,
+    searchQuery, searchTypes, searchTheme, searchHardOnly,
   };
 });

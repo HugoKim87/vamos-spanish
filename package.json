@@ -10,6 +10,7 @@
     "validate": "node scripts/validate-data.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
     "pinia": "^2.2.6",
     "vue": "^3.5.13",
     "vue-router": "^4.6.4"
