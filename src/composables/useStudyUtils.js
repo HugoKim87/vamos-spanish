@@ -26,8 +26,21 @@ export function isCorrect(a, b) {
   return normalize(a) === normalize(b);
 }
 
-/** 정답 + 무작위 오답들로 보기 만들기 */
+/**
+ * 정답 + 무작위 오답들로 보기 만들기.
+ * ⚠️ 데이터에 뜻이 같은 카드가 여럿 있어(예: '운동하다' 3개) 그대로 뽑으면
+ *    같은 보기가 두 번 나오고, v-for의 key도 중복된다. 텍스트 기준으로 걸러낸다.
+ */
 export function makeOptions(correct, pool, key, distractors = 3) {
-  const others = shuffle(pool.filter(c => c[key] !== correct)).slice(0, distractors);
-  return shuffle([correct, ...others.map(c => c[key])]);
+  const seen = new Set([correct]);
+  const others = [];
+
+  for (const c of shuffle(pool)) {
+    const text = c[key];
+    if (seen.has(text)) continue;
+    seen.add(text);
+    others.push(text);
+    if (others.length === distractors) break;
+  }
+  return shuffle([correct, ...others]);
 }

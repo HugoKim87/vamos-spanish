@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect, makeOptions } from '@/composables/useStudyUtils.js';
 
@@ -21,10 +21,17 @@ function buildQuestions() {
     qs.push({ type: 'choice', tag: '선택형', q: c.es, a: c.ko, options: makeOptions(c.ko, pool, 'ko'), card: c })
   );
   take(SECTIONS.tf).forEach(c => {
-    const truthy = Math.random() > 0.5;
-    const others = pool.filter(x => x.es !== c.es && x.ko !== c.ko);
-    const fake = (others.length ? shuffle(others)[0] : pool.find(x => x.es !== c.es))?.ko ?? c.ko;
-    qs.push({ type: 'tf', tag: '진위형', q: `"${c.es}" = "${truthy ? c.ko : fake}"`, a: truthy ? 'O' : 'X', card: c });
+    // 다른 뜻을 못 찾으면 가짜 문장을 만들 수 없으므로 '맞다' 문제로 낸다.
+    // (이 처리가 없으면 "A = A"인데 정답이 X인 풀 수 없는 문제가 나온다)
+    const others = pool.filter(x => x.ko !== c.ko);
+    const fake = others.length ? shuffle(others)[0].ko : null;
+    const truthy = !fake || Math.random() > 0.5;
+    qs.push({
+      type: 'tf', tag: '진위형',
+      q: `"${c.es}" = "${truthy ? c.ko : fake}"`,
+      a: truthy ? 'O' : 'X',
+      card: c,
+    });
   });
   take(SECTIONS.fill).forEach(c =>
     qs.push({ type: 'fill', tag: '단답형', q: c.ko, a: c.es, hint: '(스페인어로)', card: c })
@@ -40,6 +47,17 @@ const answers = ref({});
 const result = ref(null);
 
 const canSubmit = computed(() => questions.value.length > 0);
+
+/** 답을 채운 만큼 상단 진행바에 반영 (제출 전까지 0%로 멈춰 있으면 답답하다) */
+const answeredCount = computed(() =>
+  questions.value.reduce((n, _q, i) => n + (String(answers.value[i] ?? '').trim() ? 1 : 0), 0)
+);
+
+watch(answeredCount, n => {
+  if (!result.value && questions.value.length) {
+    emit('progress', (n / questions.value.length) * 100);
+  }
+});
 
 function grade() {
   let correct = 0;

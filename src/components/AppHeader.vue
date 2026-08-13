@@ -19,6 +19,7 @@ const streakText = computed(() =>
 
       <nav class="nav">
         <RouterLink to="/" class="nav-link">테마</RouterLink>
+        <RouterLink to="/tutorials" class="nav-link">튜토리얼</RouterLink>
         <RouterLink to="/browse" class="nav-link">모든 단어</RouterLink>
       </nav>
 
@@ -43,7 +44,7 @@ const streakText = computed(() =>
               .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
               0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
           </svg>
-          GitHub 로그인
+          <span class="label">GitHub 로그인</span>
         </button>
 
         <button
@@ -111,8 +112,8 @@ const streakText = computed(() =>
   .inner { gap: var(--sp-3); }
   .nav-link { padding: 6px 10px; font-size: 13px; }
   .streak b { display: none; }
-  .auth-btn .uname { display: none; }
-  .auth-btn.login { padding: 7px 9px; }
-  .auth-btn.login span:not(.uname) { display: none; }
+  /* 좁은 화면에선 아이콘·아바타만 남긴다 */
+  .auth-btn .uname, .auth-btn .label { display: none; }
+  .auth-btn { padding: 7px 9px; }
 }
 </style>

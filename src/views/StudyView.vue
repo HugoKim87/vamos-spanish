@@ -57,6 +57,8 @@ const setLabel = computed(() => {
 
 const barValue = ref(0);
 const done = ref(false);
+// key를 바꿔 모드 컴포넌트를 새로 마운트하기 위한 카운터
+const runId = ref(0);
 
 function onProgress(v) { barValue.value = v; }
 function onFinish() { done.value = true; barValue.value = 100; }
@@ -69,10 +71,8 @@ function goBack() {
 function restart() {
   done.value = false;
   barValue.value = 0;
-  // key 변경으로 모드 컴포넌트를 완전히 새로 마운트
   runId.value += 1;
 }
-const runId = ref(0);
 </script>
 
 <template>

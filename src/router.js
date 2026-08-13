@@ -20,6 +20,17 @@ const routes = [
     component: () => import('@/views/BrowseView.vue'),
   },
   {
+    path: '/tutorials',
+    name: 'tutorials',
+    component: () => import('@/views/TutorialsView.vue'),
+  },
+  {
+    path: '/tutorial/:tutorialId',
+    name: 'tutorial',
+    component: () => import('@/views/TutorialView.vue'),
+    props: true,
+  },
+  {
     path: '/study/:mode',
     name: 'study',
     component: () => import('@/views/StudyView.vue'),

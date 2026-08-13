@@ -3,6 +3,7 @@ import { computed, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { useProgressStore } from '@/stores/progress.js';
+import { tutorials } from '@/data/tutorials.js';
 import ProgressBar from '@/components/ProgressBar.vue';
 
 const router = useRouter();
@@ -119,6 +120,31 @@ function startQuick(mode) {
           </div>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- 튜토리얼 -->
+  <section class="section tutorial-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">먼저 읽어보면 좋아요</h2>
+          <p class="section-sub">단어를 외우기 전에, 발음·문법 개념부터 가볍게 짚고 가세요</p>
+        </div>
+        <RouterLink to="/tutorials" class="section-link">전체 보기 →</RouterLink>
+      </div>
+
+      <div class="tutorial-row">
+        <RouterLink
+          v-for="t in tutorials" :key="t.id"
+          :to="{ name: 'tutorial', params: { tutorialId: t.id } }"
+          class="tutorial-card"
+        >
+          <span class="tu-emoji">{{ t.emoji }}</span>
+          <span class="tu-title">{{ t.title }}</span>
+          <span class="tu-summary">{{ t.summary }}</span>
+        </RouterLink>
+      </div>
     </div>
   </section>
 
@@ -280,6 +306,24 @@ h1 em {
 .rc-msg { font-size: 12px; color: var(--c-danger-ink); line-height: 1.45; }
 .rc-actions { display: flex; gap: var(--sp-2); justify-content: center; margin-top: var(--sp-2); }
 .rc-yes { background: var(--c-danger); color: #fff; }
+
+/* 튜토리얼 */
+.section-link { font-size: 13px; font-weight: 800; color: var(--c-primary); flex-shrink: 0; }
+.tutorial-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-3);
+}
+.tutorial-card {
+  display: flex; flex-direction: column;
+  padding: var(--sp-4);
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  transition: border-color .18s var(--ease), transform .18s var(--ease);
+}
+.tutorial-card:hover { border-color: var(--c-primary); transform: translateY(-2px); }
+.tu-emoji { font-size: 24px; }
+.tu-title { margin-top: 6px; font-weight: 800; font-size: 15px; }
+.tu-summary { margin-top: 4px; font-size: 12px; color: var(--c-text-mute); line-height: 1.5; }
 
 /* 테마 그리드 */
 .theme-grid {
