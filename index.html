@@ -10,6 +10,17 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Ctext x='16' y='23' font-size='20' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%23fff'%3E%C2%A1V%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9YFFMZXS6L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    // 해시 라우터라 URL이 안 바뀌어도 페이지가 바뀐 걸로 보이므로,
+    // GA 기본 자동 pageview는 끄고 router.js에서 라우트 이동마다 직접 보낸다.
+    gtag('config', 'G-9YFFMZXS6L', { send_page_view: false });
+  </script>
 </head>
 <body>
   <div id="app"></div>

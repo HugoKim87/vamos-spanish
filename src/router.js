@@ -49,3 +49,20 @@ export const router = createRouter({
   routes,
   scrollBehavior: () => ({ top: 0 }),
 });
+
+/**
+ * GA4 페이지뷰 — 해시 라우터라 실제 URL(location.href)이 안 바뀌므로
+ * index.html에서 자동 pageview를 끄고 여기서 라우트 전환마다 직접 보낸다.
+ *
+ * failure를 확인하는 이유: 이미 보고 있는 메뉴를 또 누르면 vue-router가
+ * "중복 이동"으로 처리하는데, 그대로 두면 화면은 그대로인데 방문수만 부풀려진다.
+ */
+router.afterEach((to, _from, failure) => {
+  if (failure) return;
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', 'page_view', {
+    page_path: to.fullPath,          // 예: /browse, /theme/food
+    page_title: document.title,
+    page_location: window.location.href,
+  });
+});
