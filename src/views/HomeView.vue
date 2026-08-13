@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { useProgressStore } from '@/stores/progress.js';
@@ -18,6 +18,30 @@ const recentLessons = computed(() =>
 
 /** 어려움 표시한 카드로 바로 복습 */
 const hardCount = computed(() => progress.hardCards.length);
+
+/** 초기화는 되돌릴 수 없어 한 번 더 확인받는다 */
+const confirmingReset = ref(false);
+let confirmTimer = null;
+
+function askReset() {
+  confirmingReset.value = true;
+  clearTimeout(confirmTimer);
+  // 확인 상태로 방치되면 오작동 위험이 있어 자동으로 되돌린다
+  confirmTimer = setTimeout(() => { confirmingReset.value = false; }, 5000);
+}
+
+function cancelReset() {
+  clearTimeout(confirmTimer);
+  confirmingReset.value = false;
+}
+
+async function doReset() {
+  clearTimeout(confirmTimer);
+  await progress.resetAll();
+  confirmingReset.value = false;
+}
+
+onUnmounted(() => clearTimeout(confirmTimer));
 
 /** 어려움 표시한 카드만 걸러 보도록 필터를 켠 뒤 이동 */
 function reviewHard() {
@@ -74,6 +98,26 @@ function startQuick(mode) {
           class="pc-hard"
           @click="reviewHard"
         >😵 어려운 카드 {{ hardCount }}장 복습하기</button>
+
+        <!-- 진도 초기화 -->
+        <div class="pc-reset">
+          <button
+            v-if="!confirmingReset"
+            class="reset-link"
+            :disabled="!progress.learnedCount && !progress.streak"
+            @click="askReset"
+          >학습 기록 초기화</button>
+
+          <div v-else class="reset-confirm">
+            <p class="rc-msg">
+              학습한 카드 · 표시 · 최고 기록이 모두 지워집니다. 되돌릴 수 없어요.
+            </p>
+            <div class="rc-actions">
+              <button class="btn btn-sm rc-yes" @click="doReset">초기화</button>
+              <button class="btn btn-ghost btn-sm" @click="cancelReset">취소</button>
+            </div>
+          </div>
+        </div>
       </aside>
     </div>
   </section>
@@ -214,6 +258,28 @@ h1 em {
   font-size: 13px; font-weight: 700; text-align: center;
   border: none; cursor: pointer;
 }
+
+/* 초기화 — 실수로 누르기 어렵도록 눈에 띄지 않게 두고, 확인 단계를 거친다 */
+.pc-reset { margin-top: var(--sp-3); text-align: center; }
+.reset-link {
+  padding: 4px 8px;
+  background: none; border: none;
+  font-size: 12px; font-weight: 600; color: var(--c-text-mute);
+  text-decoration: underline; cursor: pointer;
+  transition: color .15s var(--ease);
+}
+.reset-link:hover:not(:disabled) { color: var(--c-danger); }
+.reset-link:disabled { opacity: .4; cursor: not-allowed; text-decoration: none; }
+
+.reset-confirm {
+  padding: var(--sp-3);
+  border: 1px solid var(--c-danger);
+  border-radius: var(--r-sm);
+  background: var(--c-danger-soft);
+}
+.rc-msg { font-size: 12px; color: var(--c-danger-ink); line-height: 1.45; }
+.rc-actions { display: flex; gap: var(--sp-2); justify-content: center; margin-top: var(--sp-2); }
+.rc-yes { background: var(--c-danger); color: #fff; }
 
 /* 테마 그리드 */
 .theme-grid {

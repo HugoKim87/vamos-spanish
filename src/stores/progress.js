@@ -124,13 +124,29 @@ export const useProgressStore = defineStore('progress', () => {
     dailyCount.value += 1;
   }
 
-  function resetAll() {
+  /**
+   * 모든 학습 기록 삭제 — 되돌릴 수 없다.
+   * 로컬을 비우고, 로그인 상태면 클라우드 기록도 함께 비운다.
+   */
+  async function resetAll() {
     learned.value = new Set();
     marks.value = {};
     best.value = {};
     streak.value = 0;
     dailyCount.value = 0;
     lastStudyDate.value = null;
+
+    clearTimeout(localTimer);
+    clearTimeout(cloudTimer);
+    clearState();
+
+    const uid = auth.user?.id;
+    if (!uid) return;
+    try {
+      await supabase.from('progress').upsert(toRow(uid));
+    } catch (e) {
+      console.error('초기화 동기화 실패:', e);
+    }
   }
 
   /* ---------- 클라우드 동기화 ---------- */
