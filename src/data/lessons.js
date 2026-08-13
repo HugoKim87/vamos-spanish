@@ -1,0 +1,4698 @@
+/**
+ * 학습 데이터 (원본) — Day 단위로 누적 기록합니다.
+ * ---------------------------------------------------------------
+ * ⚠️ 새 Day 추가는 이 파일에만 하세요.
+ *    테마 분류 · 카드 유형 · 통계 · 화면 문구는 전부 자동 계산됩니다.
+ *
+ * lesson 형식:
+ *   { id, day, theme, emoji, title, subtitle, cards: [{ es, ko }] }
+ *   - theme: taxonomy.js의 THEMES 키 중 하나
+ *   - cards의 유형(단어/표현/문장/패턴)은 classifyCard()가 자동 판별
+ */
+
+export const lessons = [
+  {
+    id: 'day1',
+    day: 1,
+    theme: 'work',
+    emoji: '🏢',
+    title: '사무실',
+    subtitle: '¿Qué hago en mi oficina?',
+    cards: [
+      {
+        es: 'la oficina',
+        ko: '사무실'
+      },
+      {
+        es: 'el documento',
+        ko: '문서'
+      },
+      {
+        es: 'el informe',
+        ko: '보고서'
+      },
+      {
+        es: 'la solicitud',
+        ko: '신청서'
+      },
+      {
+        es: 'el formulario',
+        ko: '양식, 서식'
+      },
+      {
+        es: 'preparar',
+        ko: '준비하다'
+      },
+      {
+        es: 'imprimir',
+        ko: '인쇄하다'
+      },
+      {
+        es: 'firmar',
+        ko: '서명하다'
+      },
+      {
+        es: 'revisar',
+        ko: '검토하다'
+      },
+      {
+        es: 'enviar',
+        ko: '보내다'
+      },
+      {
+        es: 'archivar',
+        ko: '문서를 보관하다, 철하다'
+      },
+      {
+        es: 'rellenar',
+        ko: '(양식을) 작성하다'
+      },
+      {
+        es: 'Tengo que preparar el documento.',
+        ko: '나는 문서를 준비해야 한다.'
+      },
+      {
+        es: 'Estoy imprimiendo un informe.',
+        ko: '나는 보고서를 인쇄하고 있다.'
+      },
+      {
+        es: 'Voy a enviar el documento.',
+        ko: '나는 문서를 보낼 것이다.'
+      },
+      {
+        es: 'Puedo rellenar el formulario.',
+        ko: '나는 양식을 작성할 수 있다.'
+      }
+    ]
+  },
+  {
+    id: 'day2',
+    day: 2,
+    theme: 'food',
+    emoji: '☕',
+    title: '카페',
+    subtitle: '¿Qué hago en la cafetería?',
+    cards: [
+      {
+        es: 'la cafetería',
+        ko: '카페'
+      },
+      {
+        es: 'el café con leche',
+        ko: '카페라떼'
+      },
+      {
+        es: 'el té',
+        ko: '차'
+      },
+      {
+        es: 'el zumo',
+        ko: '주스'
+      },
+      {
+        es: 'la tarta',
+        ko: '케이크, 타르트'
+      },
+      {
+        es: 'la carta',
+        ko: '메뉴판'
+      },
+      {
+        es: 'la cuenta',
+        ko: '계산서'
+      },
+      {
+        es: 'la terraza',
+        ko: '테라스'
+      },
+      {
+        es: 'pedir un café',
+        ko: '커피를 주문하다'
+      },
+      {
+        es: 'elegir de la carta',
+        ko: '메뉴판에서 고르다'
+      },
+      {
+        es: 'tomar algo',
+        ko: '뭔가를 마시다'
+      },
+      {
+        es: 'sentarse en la terraza',
+        ko: '테라스에 앉다'
+      },
+      {
+        es: 'pagar la cuenta',
+        ko: '계산하다'
+      },
+      {
+        es: 'Voy a pedir un café con leche.',
+        ko: '나는 카페라떼를 주문할 것이다.'
+      },
+      {
+        es: 'Quiero sentarme cerca de la ventana.',
+        ko: '나는 창가에 앉고 싶다.'
+      },
+      {
+        es: '¿Me trae la carta, por favor?',
+        ko: '메뉴판 좀 가져다주시겠어요?'
+      }
+    ]
+  },
+  {
+    id: 'day3',
+    day: 3,
+    theme: 'leisure',
+    emoji: '🌳',
+    title: '공원',
+    subtitle: '¿Qué hago en el parque?',
+    cards: [
+      {
+        es: 'el parque',
+        ko: '공원'
+      },
+      {
+        es: 'el sendero',
+        ko: '산책로, 오솔길'
+      },
+      {
+        es: 'el perro',
+        ko: '개'
+      },
+      {
+        es: 'el picnic',
+        ko: '피크닉'
+      },
+      {
+        es: 'el aire libre',
+        ko: '야외, 바깥 공기'
+      },
+      {
+        es: 'caminar por el sendero',
+        ko: '산책로를 따라 걷다'
+      },
+      {
+        es: 'pasear al perro',
+        ko: '개를 산책시키다'
+      },
+      {
+        es: 'escuchar música',
+        ko: '음악을 듣다'
+      },
+      {
+        es: 'hacer ejercicio',
+        ko: '운동하다'
+      },
+      {
+        es: 'comer al aire libre',
+        ko: '야외에서 먹다'
+      },
+      {
+        es: 'hacer un picnic',
+        ko: '피크닉을 하다'
+      },
+      {
+        es: 'tomar una selfie',
+        ko: '셀카를 찍다'
+      },
+      {
+        es: 'andar',
+        ko: '걷다'
+      },
+      {
+        es: 'Voy a caminar por el sendero del parque.',
+        ko: '나는 공원 산책로를 따라 걸을 것이다.'
+      },
+      {
+        es: 'Tengo que pasear al perro en el parque.',
+        ko: '나는 공원에서 개를 산책시켜야 한다.'
+      },
+      {
+        es: 'Quiero hacer un picnic en el parque.',
+        ko: '나는 공원에서 피크닉을 하고 싶다.'
+      }
+    ]
+  },
+  {
+    id: 'day4',
+    day: 4,
+    theme: 'work',
+    emoji: '📚',
+    title: '도서관',
+    subtitle: '¿Qué hago en la biblioteca?',
+    cards: [
+      {
+        es: 'la biblioteca',
+        ko: '도서관'
+      },
+      {
+        es: 'el libro',
+        ko: '책'
+      },
+      {
+        es: 'el estante',
+        ko: '책장, 서가'
+      },
+      {
+        es: 'el carné',
+        ko: '회원증, 카드'
+      },
+      {
+        es: 'la sala de lectura',
+        ko: '열람실'
+      },
+      {
+        es: 'el silencio',
+        ko: '정숙, 조용함'
+      },
+      {
+        es: 'buscar un libro',
+        ko: '책을 찾다'
+      },
+      {
+        es: 'pedir prestado un libro',
+        ko: '책을 대출하다'
+      },
+      {
+        es: 'devolver el libro',
+        ko: '책을 반납하다'
+      },
+      {
+        es: 'leer en silencio',
+        ko: '조용히 읽다'
+      },
+      {
+        es: 'estudiar',
+        ko: '공부하다'
+      },
+      {
+        es: 'tomar apuntes',
+        ko: '필기하다'
+      },
+      {
+        es: 'guardar silencio',
+        ko: '정숙을 지키다'
+      },
+      {
+        es: 'Tengo que devolver el libro hoy.',
+        ko: '나는 오늘 책을 반납해야 한다.'
+      },
+      {
+        es: 'Voy a estudiar en la sala de lectura.',
+        ko: '나는 열람실에서 공부할 것이다.'
+      },
+      {
+        es: 'Hay que guardar silencio en la biblioteca.',
+        ko: '도서관에서는 정숙해야 한다.'
+      }
+    ]
+  },
+  {
+    id: 'day5',
+    day: 5,
+    theme: 'health',
+    emoji: '🏋️',
+    title: '헬스장',
+    subtitle: '¿Qué hago en el gimnasio?',
+    cards: [
+      {
+        es: 'la mochila',
+        ko: '가방'
+      },
+      {
+        es: 'las pesas',
+        ko: '덤벨, 웨이트'
+      },
+      {
+        es: 'la bicicleta estática',
+        ko: '실내 자전거'
+      },
+      {
+        es: 'la cinta',
+        ko: '러닝머신'
+      },
+      {
+        es: 'la ropa deportiva',
+        ko: '운동복'
+      },
+      {
+        es: 'la ducha',
+        ko: '샤워, 샤워실'
+      },
+      {
+        es: 'levantar pesas',
+        ko: '덤벨을 들다'
+      },
+      {
+        es: 'correr en la cinta',
+        ko: '러닝머신에서 달리다'
+      },
+      {
+        es: 'estirar el cuerpo',
+        ko: '스트레칭하다'
+      },
+      {
+        es: 'ducharse',
+        ko: '샤워하다'
+      },
+      {
+        es: 'Me gusta entrenar con pesas.',
+        ko: '나는 웨이트 운동을 좋아한다.'
+      }
+    ]
+  },
+  {
+    id: 'day6',
+    day: 6,
+    theme: 'work',
+    emoji: '💻',
+    title: '컴퓨터/사무',
+    subtitle: '¿Qué hago con mi computadora?',
+    cards: [
+      {
+        es: 'la computadora',
+        ko: '컴퓨터'
+      },
+      {
+        es: 'el correo electrónico',
+        ko: '이메일'
+      },
+      {
+        es: 'el documento',
+        ko: '문서'
+      },
+      {
+        es: 'el archivo',
+        ko: '파일'
+      },
+      {
+        es: 'encender / apagar',
+        ko: '켜다 / 끄다'
+      },
+      {
+        es: 'guardar',
+        ko: '저장하다'
+      },
+      {
+        es: 'enviar',
+        ko: '보내다'
+      },
+      {
+        es: 'adjuntar',
+        ko: '첨부하다'
+      },
+      {
+        es: 'descargar',
+        ko: '다운로드하다'
+      },
+      {
+        es: 'responder el correo',
+        ko: '이메일에 답장하다'
+      },
+      {
+        es: 'navegar por internet',
+        ko: '인터넷을 검색하다'
+      }
+    ]
+  },
+  {
+    id: 'day7',
+    day: 7,
+    theme: 'food',
+    emoji: '🥕',
+    title: '채소 손질',
+    subtitle: '¿Qué hago con las verduras? 1',
+    cards: [
+      {
+        es: 'la verdura',
+        ko: '채소'
+      },
+      {
+        es: 'la cebolla',
+        ko: '양파'
+      },
+      {
+        es: 'la zanahoria',
+        ko: '당근'
+      },
+      {
+        es: 'la patata',
+        ko: '감자'
+      },
+      {
+        es: 'la lechuga',
+        ko: '상추'
+      },
+      {
+        es: 'lavar',
+        ko: '씻다'
+      },
+      {
+        es: 'pelar',
+        ko: '껍질을 벗기다'
+      },
+      {
+        es: 'cortar',
+        ko: '자르다'
+      },
+      {
+        es: 'picar',
+        ko: '잘게 다지다'
+      },
+      {
+        es: 'cortar en tiras',
+        ko: '채썰다'
+      },
+      {
+        es: 'guardar en la nevera',
+        ko: '냉장고에 넣다'
+      }
+    ]
+  },
+  {
+    id: 'day8',
+    day: 8,
+    theme: 'food',
+    emoji: '🍳',
+    title: '주방/요리',
+    subtitle: '¿Qué hago con las verduras? 2',
+    cards: [
+      {
+        es: 'la sartén',
+        ko: '후라이팬'
+      },
+      {
+        es: 'la olla',
+        ko: '냄비'
+      },
+      {
+        es: 'el horno',
+        ko: '오븐'
+      },
+      {
+        es: 'la sal',
+        ko: '소금'
+      },
+      {
+        es: 'el aceite',
+        ko: '기름'
+      },
+      {
+        es: 'freír',
+        ko: '튀기다, 볶다'
+      },
+      {
+        es: 'saltear',
+        ko: '살짝 볶다'
+      },
+      {
+        es: 'hervir',
+        ko: '삶다, 끓이다'
+      },
+      {
+        es: 'hornear',
+        ko: '오븐에 굽다'
+      },
+      {
+        es: 'mezclar',
+        ko: '섞다'
+      },
+      {
+        es: 'Empiezo a cocinar.',
+        ko: '나는 요리를 시작한다.'
+      }
+    ]
+  },
+  {
+    id: 'day9',
+    day: 9,
+    theme: 'home',
+    emoji: '🎒',
+    title: '소지품 (일상)',
+    subtitle: '¿Qué tengo en mi bolso?',
+    cards: [
+      {
+        es: 'el bolso',
+        ko: '가방'
+      },
+      {
+        es: 'las llaves',
+        ko: '열쇠'
+      },
+      {
+        es: 'el móvil',
+        ko: '휴대폰'
+      },
+      {
+        es: 'la cartera',
+        ko: '지갑'
+      },
+      {
+        es: 'los auriculares',
+        ko: '이어폰'
+      },
+      {
+        es: 'el paraguas',
+        ko: '우산'
+      },
+      {
+        es: 'el libro',
+        ko: '책'
+      },
+      {
+        es: 'las gafas',
+        ko: '안경'
+      },
+      {
+        es: 'la botella',
+        ko: '물병'
+      },
+      {
+        es: 'el pañuelo',
+        ko: '손수건'
+      },
+      {
+        es: 'el bolígrafo',
+        ko: '볼펜'
+      },
+      {
+        es: 'el espejo',
+        ko: '거울'
+      }
+    ]
+  },
+  {
+    id: 'day10',
+    day: 10,
+    theme: 'travel',
+    emoji: '👜',
+    title: '소지품 (여행)',
+    subtitle: '¿Qué llevo en mi maleta?',
+    cards: [
+      {
+        es: 'el pasaporte',
+        ko: '여권'
+      },
+      {
+        es: 'el DNI',
+        ko: '신분증'
+      },
+      {
+        es: 'el efectivo',
+        ko: '현금'
+      },
+      {
+        es: 'la tarjeta de crédito',
+        ko: '신용카드'
+      },
+      {
+        es: 'la tarjeta de embarque',
+        ko: '탑승권'
+      },
+      {
+        es: 'el mapa',
+        ko: '지도'
+      },
+      {
+        es: 'la guía',
+        ko: '가이드북'
+      },
+      {
+        es: 'el cargador',
+        ko: '충전기'
+      },
+      {
+        es: 'la maleta',
+        ko: '캐리어'
+      },
+      {
+        es: 'el billete',
+        ko: '티켓, 표'
+      },
+      {
+        es: 'la cámara',
+        ko: '카메라'
+      },
+      {
+        es: 'el seguro de viaje',
+        ko: '여행자 보험'
+      }
+    ]
+  },
+  {
+    id: 'day11',
+    day: 11,
+    theme: 'travel',
+    emoji: '✈️',
+    title: '공항',
+    subtitle: '¿Qué hago en el aeropuerto?',
+    cards: [
+      {
+        es: 'el aeropuerto',
+        ko: '공항'
+      },
+      {
+        es: 'el vuelo',
+        ko: '비행'
+      },
+      {
+        es: 'el equipaje',
+        ko: '수하물, 짐'
+      },
+      {
+        es: 'la puerta de embarque',
+        ko: '탑승구'
+      },
+      {
+        es: 'facturar el equipaje',
+        ko: '수하물을 부치다'
+      },
+      {
+        es: 'embarcar',
+        ko: '탑승하다'
+      },
+      {
+        es: 'recoger el equipaje',
+        ko: '수하물을 찾다'
+      },
+      {
+        es: 'hacer cola',
+        ko: '줄을 서다'
+      },
+      {
+        es: 'pasar el control',
+        ko: '보안 검색을 통과하다'
+      },
+      {
+        es: 'aterrizar',
+        ko: '착륙하다'
+      },
+      {
+        es: 'despegar',
+        ko: '이륙하다'
+      }
+    ]
+  },
+  {
+    id: 'day12',
+    day: 12,
+    theme: 'travel',
+    emoji: '🏖️',
+    title: '해변',
+    subtitle: '¿Qué hago en la playa?',
+    cards: [
+      {
+        es: 'la playa',
+        ko: '해변'
+      },
+      {
+        es: 'el mar',
+        ko: '바다'
+      },
+      {
+        es: 'el sol',
+        ko: '태양'
+      },
+      {
+        es: 'la arena',
+        ko: '모래'
+      },
+      {
+        es: 'nadar en la playa',
+        ko: '해변에서 수영하다'
+      },
+      {
+        es: 'tomar el sol',
+        ko: '일광욕하다'
+      },
+      {
+        es: 'tomar fotos',
+        ko: '사진을 찍다'
+      },
+      {
+        es: 'meterse en el agua',
+        ko: '물에 들어가다'
+      },
+      {
+        es: 'protegerse',
+        ko: '자신을 보호하다'
+      },
+      {
+        es: 'secarse',
+        ko: '몸을 말리다'
+      },
+      {
+        es: 'la sombrilla',
+        ko: '파라솔'
+      },
+      {
+        es: 'el protector solar',
+        ko: '선크림'
+      }
+    ]
+  },
+  {
+    id: 'day13',
+    day: 13,
+    theme: 'shopping',
+    emoji: '🛒',
+    title: '마트',
+    subtitle: '¿Qué hago en el supermercado?',
+    cards: [
+      {
+        es: 'el supermercado',
+        ko: '슈퍼마켓'
+      },
+      {
+        es: 'el carrito',
+        ko: '카트'
+      },
+      {
+        es: 'la lista de compras',
+        ko: '쇼핑 리스트'
+      },
+      {
+        es: 'el pasillo',
+        ko: '진열대 통로'
+      },
+      {
+        es: 'la caja',
+        ko: '계산대'
+      },
+      {
+        es: 'comprar',
+        ko: '사다'
+      },
+      {
+        es: 'pagar',
+        ko: '결제하다'
+      },
+      {
+        es: 'devolver',
+        ko: '반품하다'
+      },
+      {
+        es: 'la oferta',
+        ko: '할인, 행사'
+      },
+      {
+        es: 'la bolsa',
+        ko: '봉투'
+      },
+      {
+        es: 'el recibo',
+        ko: '영수증'
+      },
+      {
+        es: 'hacer la compra',
+        ko: '장을 보다'
+      }
+    ]
+  },
+  {
+    id: 'day14',
+    day: 14,
+    theme: 'health',
+    emoji: '🏥',
+    title: '병원',
+    subtitle: '¿Qué hago en el hospital?',
+    cards: [
+      {
+        es: 'el hospital',
+        ko: '병원'
+      },
+      {
+        es: 'el médico',
+        ko: '의사'
+      },
+      {
+        es: 'la enfermera',
+        ko: '간호사'
+      },
+      {
+        es: 'el síntoma',
+        ko: '증상'
+      },
+      {
+        es: 'la receta',
+        ko: '처방전'
+      },
+      {
+        es: 'la cita',
+        ko: '예약, 진료 약속'
+      },
+      {
+        es: 'estar enfermo',
+        ko: '아프다'
+      },
+      {
+        es: 'tomar la temperatura',
+        ko: '체온을 재다'
+      },
+      {
+        es: 'examinar',
+        ko: '진찰하다'
+      },
+      {
+        es: 'recetar',
+        ko: '처방하다'
+      },
+      {
+        es: 'la sala de espera',
+        ko: '대기실'
+      },
+      {
+        es: 'pedir cita',
+        ko: '진료 예약을 하다'
+      }
+    ]
+  },
+  {
+    id: 'day15',
+    day: 15,
+    theme: 'leisure',
+    emoji: '☕',
+    title: '주말',
+    subtitle: '¿Qué hago el fin de semana?',
+    cards: [
+      {
+        es: 'el fin de semana',
+        ko: '주말'
+      },
+      {
+        es: 'la cafetería',
+        ko: '카페'
+      },
+      {
+        es: 'el parque',
+        ko: '공원'
+      },
+      {
+        es: 'descansar',
+        ko: '쉬다'
+      },
+      {
+        es: 'quedar con amigos',
+        ko: '친구와 만나기로 하다'
+      },
+      {
+        es: 'tomar un café',
+        ko: '커피 한 잔 마시다'
+      },
+      {
+        es: 'dar un paseo',
+        ko: '산책하다'
+      },
+      {
+        es: 'ver una película',
+        ko: '영화를 보다'
+      },
+      {
+        es: 'salir a cenar',
+        ko: '저녁 먹으러 나가다'
+      },
+      {
+        es: 'pasar tiempo en casa',
+        ko: '집에서 시간을 보내다'
+      },
+      {
+        es: 'dormir hasta tarde',
+        ko: '늦잠을 자다'
+      },
+      {
+        es: 'hacer las tareas del hogar',
+        ko: '집안일을 하다'
+      }
+    ]
+  },
+  {
+    id: 'day16',
+    day: 16,
+    theme: 'people',
+    emoji: '👨‍👩‍👧',
+    title: '가족',
+    subtitle: '¿Quiénes son mi familia?',
+    cards: [
+      {
+        es: 'el padre',
+        ko: '아버지'
+      },
+      {
+        es: 'la madre',
+        ko: '어머니'
+      },
+      {
+        es: 'el hermano',
+        ko: '남자 형제'
+      },
+      {
+        es: 'la hermana',
+        ko: '여자 형제'
+      },
+      {
+        es: 'el hijo',
+        ko: '아들'
+      },
+      {
+        es: 'la hija',
+        ko: '딸'
+      },
+      {
+        es: 'el novio',
+        ko: '남자친구'
+      },
+      {
+        es: 'la novia',
+        ko: '여자친구'
+      },
+      {
+        es: 'el amigo',
+        ko: '친구 (남)'
+      },
+      {
+        es: 'la pareja',
+        ko: '연인, 파트너'
+      },
+      {
+        es: 'el abuelo',
+        ko: '할아버지'
+      },
+      {
+        es: 'la abuela',
+        ko: '할머니'
+      }
+    ]
+  },
+  {
+    id: 'day17',
+    day: 17,
+    theme: 'people',
+    emoji: '🤗',
+    title: '누구랑?',
+    subtitle: '¿Con quién estoy?',
+    cards: [
+      {
+        es: 'Estoy con mi familia.',
+        ko: '나는 가족과 함께 있다.'
+      },
+      {
+        es: 'Estoy con mis amigos.',
+        ko: '나는 친구들과 함께 있다.'
+      },
+      {
+        es: 'Estoy con mi pareja.',
+        ko: '나는 연인과 함께 있다.'
+      },
+      {
+        es: 'Estoy solo.',
+        ko: '나는 혼자이다. (남)'
+      },
+      {
+        es: 'Estoy sola.',
+        ko: '나는 혼자이다. (여)'
+      },
+      {
+        es: 'Voy con mi hermano.',
+        ko: '나는 형/오빠와 함께 간다.'
+      },
+      {
+        es: 'Hablo con mi madre.',
+        ko: '나는 어머니와 이야기한다.'
+      },
+      {
+        es: 'Vivo con mis padres.',
+        ko: '나는 부모님과 산다.'
+      },
+      {
+        es: 'Trabajo con mi jefe.',
+        ko: '나는 상사와 일한다.'
+      },
+      {
+        es: 'Salgo con mis amigos.',
+        ko: '나는 친구들과 외출한다.'
+      },
+      {
+        es: 'Estudio con mi compañero.',
+        ko: '나는 동료와 공부한다.'
+      },
+      {
+        es: 'Como con mi familia.',
+        ko: '나는 가족과 함께 식사한다.'
+      }
+    ]
+  },
+  {
+    id: 'day18',
+    day: 18,
+    theme: 'travel',
+    emoji: '🌴',
+    title: '휴가',
+    subtitle: '¿Qué hago en las vacaciones?',
+    cards: [
+      {
+        es: 'las vacaciones',
+        ko: '휴가, 방학'
+      },
+      {
+        es: 'el extranjero',
+        ko: '해외'
+      },
+      {
+        es: 'el senderismo',
+        ko: '하이킹, 등산'
+      },
+      {
+        es: 'viajar al extranjero',
+        ko: '해외여행을 가다'
+      },
+      {
+        es: 'visitar una ciudad',
+        ko: '도시를 방문하다'
+      },
+      {
+        es: 'sacar fotos',
+        ko: '사진을 찍다'
+      },
+      {
+        es: 'descansar en la playa',
+        ko: '해변에서 쉬다'
+      },
+      {
+        es: 'hacer senderismo',
+        ko: '하이킹하다'
+      },
+      {
+        es: 'relajarse',
+        ko: '휴식을 취하다'
+      },
+      {
+        es: 'quedarse en casa',
+        ko: '집에 머무르다'
+      },
+      {
+        es: 'reservar un hotel',
+        ko: '호텔을 예약하다'
+      },
+      {
+        es: 'hacer turismo',
+        ko: '관광하다'
+      }
+    ]
+  },
+  {
+    id: 'day19',
+    day: 19,
+    theme: 'home',
+    emoji: '🏦',
+    title: '은행',
+    subtitle: '¿Qué hago en el banco?',
+    cards: [
+      {
+        es: 'el banco',
+        ko: '은행'
+      },
+      {
+        es: 'la cuenta',
+        ko: '계좌'
+      },
+      {
+        es: 'el cajero automático',
+        ko: 'ATM'
+      },
+      {
+        es: 'la tarjeta',
+        ko: '카드'
+      },
+      {
+        es: 'el dinero',
+        ko: '돈'
+      },
+      {
+        es: 'depositar',
+        ko: '입금하다'
+      },
+      {
+        es: 'retirar',
+        ko: '출금하다'
+      },
+      {
+        es: 'cambiar dinero',
+        ko: '환전하다'
+      },
+      {
+        es: 'transferir',
+        ko: '송금하다'
+      },
+      {
+        es: 'abrir una cuenta',
+        ko: '계좌를 개설하다'
+      },
+      {
+        es: 'la comisión',
+        ko: '수수료'
+      },
+      {
+        es: 'consultar el saldo',
+        ko: '잔액을 조회하다'
+      }
+    ]
+  },
+  {
+    id: 'day20',
+    day: 20,
+    theme: 'leisure',
+    emoji: '🎬',
+    title: '영화관',
+    subtitle: '¿Qué hago en el cine?',
+    cards: [
+      {
+        es: 'el cine',
+        ko: '영화관'
+      },
+      {
+        es: 'la entrada',
+        ko: '티켓'
+      },
+      {
+        es: 'la pantalla',
+        ko: '스크린'
+      },
+      {
+        es: 'las palomitas',
+        ko: '팝콘'
+      },
+      {
+        es: 'la bebida',
+        ko: '음료'
+      },
+      {
+        es: 'el asiento',
+        ko: '좌석'
+      },
+      {
+        es: 'comprar una entrada',
+        ko: '티켓을 사다'
+      },
+      {
+        es: 'reservar una entrada',
+        ko: '티켓을 예매하다'
+      },
+      {
+        es: 'ver una película',
+        ko: '영화를 보다'
+      },
+      {
+        es: 'sentarse en el asiento',
+        ko: '좌석에 앉다'
+      },
+      {
+        es: 'salir del cine',
+        ko: '영화관에서 나오다'
+      }
+    ]
+  },
+  {
+    id: 'day21',
+    day: 21,
+    theme: 'shopping',
+    emoji: '👗',
+    title: '옷가게',
+    subtitle: '¿Qué hago en la tienda de ropa?',
+    cards: [
+      {
+        es: 'la ropa',
+        ko: '옷'
+      },
+      {
+        es: 'la talla',
+        ko: '사이즈'
+      },
+      {
+        es: 'el probador',
+        ko: '탈의실'
+      },
+      {
+        es: 'el espejo',
+        ko: '거울'
+      },
+      {
+        es: 'el dependiente',
+        ko: '직원 (남)'
+      },
+      {
+        es: 'probarse la ropa',
+        ko: '옷을 입어보다'
+      },
+      {
+        es: 'pagar con tarjeta',
+        ko: '카드로 결제하다'
+      },
+      {
+        es: 'pagar en efectivo',
+        ko: '현금으로 결제하다'
+      },
+      {
+        es: 'Me queda bien.',
+        ko: '잘 맞아요.'
+      },
+      {
+        es: 'Me queda grande.',
+        ko: '사이즈가 커요.'
+      },
+      {
+        es: '¿Qué talla usas?',
+        ko: '무슨 사이즈 입으세요?'
+      },
+      {
+        es: 'Solo estoy mirando.',
+        ko: '그냥 구경 중이에요.'
+      }
+    ]
+  },
+  {
+    id: 'day22',
+    day: 22,
+    theme: 'health',
+    emoji: '💊',
+    title: '약국',
+    subtitle: '¿Qué hago en la farmacia?',
+    cards: [
+      {
+        es: 'la farmacia',
+        ko: '약국'
+      },
+      {
+        es: 'el medicamento',
+        ko: '약'
+      },
+      {
+        es: 'la pastilla',
+        ko: '알약'
+      },
+      {
+        es: 'el jarabe',
+        ko: '시럽 (물약)'
+      },
+      {
+        es: 'la pomada',
+        ko: '연고'
+      },
+      {
+        es: 'la tirita',
+        ko: '일회용 밴드'
+      },
+      {
+        es: 'el dolor de cabeza',
+        ko: '두통'
+      },
+      {
+        es: 'el dolor de garganta',
+        ko: '인후통'
+      },
+      {
+        es: 'la tos',
+        ko: '기침'
+      },
+      {
+        es: 'la fiebre',
+        ko: '열'
+      },
+      {
+        es: 'Tengo dolor de cabeza.',
+        ko: '나는 머리가 아파요.'
+      },
+      {
+        es: '¿Tiene algo para la tos?',
+        ko: '기침에 듣는 약 있나요?'
+      }
+    ]
+  },
+  {
+    id: 'day23',
+    day: 23,
+    theme: 'travel',
+    emoji: '🏨',
+    title: '호텔',
+    subtitle: '¿Qué hago en el hotel?',
+    cards: [
+      {
+        es: 'el hotel',
+        ko: '호텔'
+      },
+      {
+        es: 'la recepción',
+        ko: '리셉션'
+      },
+      {
+        es: 'la habitación',
+        ko: '객실'
+      },
+      {
+        es: 'la reserva',
+        ko: '예약'
+      },
+      {
+        es: 'la llave',
+        ko: '열쇠, 카드키'
+      },
+      {
+        es: 'el desayuno',
+        ko: '조식'
+      },
+      {
+        es: 'hacer el check-in',
+        ko: '체크인하다'
+      },
+      {
+        es: 'hacer el check-out',
+        ko: '체크아웃하다'
+      },
+      {
+        es: 'dejar el equipaje',
+        ko: '짐을 맡기다'
+      },
+      {
+        es: 'No funciona.',
+        ko: '작동이 안돼요.'
+      },
+      {
+        es: 'Quisiera otra habitación.',
+        ko: '다른 객실을 원합니다.'
+      }
+    ]
+  },
+  {
+    id: 'day24',
+    day: 24,
+    theme: 'shopping',
+    emoji: '🥩',
+    title: '정육점',
+    subtitle: '¿Qué hago en la carnicería?',
+    cards: [
+      {
+        es: 'la carne de res',
+        ko: '소고기'
+      },
+      {
+        es: 'la carne de cerdo',
+        ko: '돼지고기'
+      },
+      {
+        es: 'el pollo',
+        ko: '닭고기'
+      },
+      {
+        es: 'la pechuga',
+        ko: '닭가슴살'
+      },
+      {
+        es: 'el muslo',
+        ko: '닭 허벅지'
+      },
+      {
+        es: 'las costillas',
+        ko: '갈비'
+      },
+      {
+        es: 'la carne picada',
+        ko: '다진 고기'
+      },
+      {
+        es: 'tierna',
+        ko: '연한'
+      },
+      {
+        es: 'dura',
+        ko: '질긴'
+      },
+      {
+        es: 'un kilo de carne',
+        ko: '고기 1kg'
+      },
+      {
+        es: 'medio kilo',
+        ko: '500g, 반 킬로'
+      },
+      {
+        es: 'Deme pechuga de pollo.',
+        ko: '닭가슴살 주세요.'
+      }
+    ]
+  },
+  {
+    id: 'day25',
+    day: 25,
+    theme: 'shopping',
+    emoji: '👠',
+    title: '신발가게',
+    subtitle: '¿Qué hago en la zapatería?',
+    cards: [
+      {
+        es: 'los zapatos',
+        ko: '구두'
+      },
+      {
+        es: 'los tenis',
+        ko: '운동화'
+      },
+      {
+        es: 'las sandalias',
+        ko: '샌들'
+      },
+      {
+        es: 'las botas',
+        ko: '부츠'
+      },
+      {
+        es: 'las bailarinas',
+        ko: '플랫슈즈'
+      },
+      {
+        es: 'el tacón',
+        ko: '굽'
+      },
+      {
+        es: 'el tacón alto',
+        ko: '하이힐, 높은 굽'
+      },
+      {
+        es: 'zapatos planos',
+        ko: '굽이 없는 신발'
+      },
+      {
+        es: 'el número',
+        ko: '사이즈 (신발)'
+      },
+      {
+        es: 'probarse los zapatos',
+        ko: '신발을 신어보다'
+      },
+      {
+        es: 'Me quedan bien.',
+        ko: '잘 맞아요.'
+      },
+      {
+        es: 'Me quedan grandes.',
+        ko: '사이즈가 커요.'
+      },
+      {
+        es: 'Son cómodos.',
+        ko: '편해요.'
+      },
+      {
+        es: '¿Qué número usa?',
+        ko: '사이즈가 어떻게 되세요?'
+      },
+      {
+        es: 'Busco zapatos de tacón medio.',
+        ko: '중간 굽 신발을 찾고 있어요.'
+      }
+    ]
+  },
+  {
+    id: 'day26',
+    day: 26,
+    theme: 'shopping',
+    emoji: '💍',
+    title: '보석점',
+    subtitle: '¿Qué hago en la joyería?',
+    cards: [
+      {
+        es: 'la joya',
+        ko: '보석'
+      },
+      {
+        es: 'el anillo',
+        ko: '반지'
+      },
+      {
+        es: 'el collar',
+        ko: '목걸이'
+      },
+      {
+        es: 'los pendientes',
+        ko: '귀걸이 (항상 복수)'
+      },
+      {
+        es: 'la pulsera',
+        ko: '팔찌'
+      },
+      {
+        es: 'el oro',
+        ko: '금'
+      },
+      {
+        es: 'la plata',
+        ko: '은'
+      },
+      {
+        es: 'el diamante',
+        ko: '다이아몬드'
+      },
+      {
+        es: 'el regalo',
+        ko: '선물'
+      },
+      {
+        es: 'un anillo de oro',
+        ko: '금반지'
+      },
+      {
+        es: 'regalar joyas',
+        ko: '보석을 선물하다'
+      },
+      {
+        es: 'Le voy a regalar joyas.',
+        ko: '그(녀)에게 보석을 선물할 것이다.'
+      },
+      {
+        es: 'Me gustan los pendientes con diamantes.',
+        ko: '다이아 박힌 귀걸이를 좋아한다.'
+      }
+    ]
+  },
+  {
+    id: 'day27',
+    day: 27,
+    theme: 'leisure',
+    emoji: '🎬',
+    title: '영화 장르',
+    subtitle: '¿Qué tipo de película te gusta?',
+    cards: [
+      {
+        es: 'películas de acción',
+        ko: '액션 영화'
+      },
+      {
+        es: 'películas de comedia',
+        ko: '코미디 영화'
+      },
+      {
+        es: 'películas románticas',
+        ko: '로맨스 영화'
+      },
+      {
+        es: 'películas de terror',
+        ko: '공포 영화'
+      },
+      {
+        es: 'películas de ciencia ficción',
+        ko: 'SF 영화'
+      },
+      {
+        es: 'películas de animación',
+        ko: '애니메이션 영화'
+      },
+      {
+        es: 'Me gusta la comedia.',
+        ko: '나는 코미디를 좋아한다. (단수)'
+      },
+      {
+        es: 'Me gustan las películas de acción.',
+        ko: '나는 액션 영화들을 좋아한다. (복수)'
+      },
+      {
+        es: 'porque son emocionantes',
+        ko: '흥미진진해서'
+      },
+      {
+        es: 'porque son divertidas',
+        ko: '재미있어서'
+      },
+      {
+        es: '¿Te gustan las películas de terror?',
+        ko: '공포 영화 좋아해?'
+      },
+      {
+        es: 'No me gustan las películas de terror.',
+        ko: '나는 공포 영화를 좋아하지 않는다.'
+      }
+    ]
+  },
+  {
+    id: 'day28',
+    day: 28,
+    theme: 'leisure',
+    emoji: '🎵',
+    title: '음악 장르',
+    subtitle: '¿Qué tipo de música escuchas?',
+    cards: [
+      {
+        es: 'el pop',
+        ko: '팝'
+      },
+      {
+        es: 'el rock',
+        ko: '락'
+      },
+      {
+        es: 'el hip-hop',
+        ko: '힙합'
+      },
+      {
+        es: 'la música clásica',
+        ko: '클래식 음악'
+      },
+      {
+        es: 'el jazz',
+        ko: '재즈'
+      },
+      {
+        es: 'el reggaetón',
+        ko: '레게톤'
+      },
+      {
+        es: 'la música electrónica',
+        ko: '전자 음악'
+      },
+      {
+        es: 'el K-pop',
+        ko: '케이팝'
+      },
+      {
+        es: 'Escucho música.',
+        ko: '나는 음악을 듣는다.'
+      },
+      {
+        es: 'Me encanta la música clásica.',
+        ko: '나는 클래식 음악을 정말 좋아한다.'
+      },
+      {
+        es: 'Me encantan las comedias.',
+        ko: '나는 코미디를 정말 좋아한다. (복수)'
+      },
+      {
+        es: 'Escucho jazz cuando estudio.',
+        ko: '공부할 때 재즈를 듣는다.'
+      },
+      {
+        es: 'Escucho música cuando trabajo.',
+        ko: '일할 때 음악을 듣는다.'
+      }
+    ]
+  },
+  {
+    id: 'day29',
+    day: 29,
+    theme: 'food',
+    emoji: '😋',
+    title: '맛/풍미',
+    subtitle: '¿Qué sabor tiene?',
+    cards: [
+      {
+        es: 'dulce',
+        ko: '달콤한'
+      },
+      {
+        es: 'salado',
+        ko: '짠'
+      },
+      {
+        es: 'ácido',
+        ko: '신'
+      },
+      {
+        es: 'amargo',
+        ko: '쓴'
+      },
+      {
+        es: 'picante',
+        ko: '매운'
+      },
+      {
+        es: 'fresco',
+        ko: '신선한, 상쾌한'
+      },
+      {
+        es: 'ligero',
+        ko: '가벼운, 부담없는'
+      },
+      {
+        es: 'suave',
+        ko: '부드러운'
+      },
+      {
+        es: 'crujiente',
+        ko: '바삭한'
+      },
+      {
+        es: 'rico',
+        ko: '맛있다'
+      },
+      {
+        es: 'riquísimo',
+        ko: '정말 맛있다 (최상급)'
+      },
+      {
+        es: 'delicioso',
+        ko: '맛있다 (격식)'
+      },
+      {
+        es: 'exquisito',
+        ko: '풍미가 훌륭한'
+      },
+      {
+        es: 'Está delicioso.',
+        ko: '맛있어요. (지금)'
+      },
+      {
+        es: 'El chocolate es muy dulce.',
+        ko: '초콜릿은 매우 달다. (본질)'
+      }
+    ]
+  },
+  {
+    id: 'day30',
+    day: 30,
+    theme: 'health',
+    emoji: '💪',
+    title: '건강 관리',
+    subtitle: '¿Qué hago para mi salud?',
+    cards: [
+      {
+        es: 'la salud',
+        ko: '건강'
+      },
+      {
+        es: 'sano',
+        ko: '건강한 (남)'
+      },
+      {
+        es: 'la comida rápida',
+        ko: '패스트푸드'
+      },
+      {
+        es: 'la rutina',
+        ko: '루틴'
+      },
+      {
+        es: 'hacer ejercicio',
+        ko: '운동하다'
+      },
+      {
+        es: 'ir al gimnasio',
+        ko: '헬스장에 가다'
+      },
+      {
+        es: 'hacer yoga',
+        ko: '요가하다'
+      },
+      {
+        es: 'comer sano',
+        ko: '건강하게 먹다'
+      },
+      {
+        es: 'beber mucha agua',
+        ko: '물을 많이 마시다'
+      },
+      {
+        es: 'evitar comida rápida',
+        ko: '패스트푸드를 피하다'
+      },
+      {
+        es: 'dormir bien',
+        ko: '잘 자다'
+      },
+      {
+        es: 'cuidarse',
+        ko: '자기 건강을 챙기다'
+      },
+      {
+        es: 'para mi salud',
+        ko: '나의 건강을 위해'
+      },
+      {
+        es: 'Me cuido mucho.',
+        ko: '나는 건강을 많이 챙긴다.'
+      }
+    ]
+  },
+  {
+    id: 'day31',
+    day: 31,
+    theme: 'home',
+    emoji: '😴',
+    title: '자기 전 루틴',
+    subtitle: '¿Qué hago antes de dormir?',
+    cards: [
+      {
+        es: 'la cara',
+        ko: '얼굴'
+      },
+      {
+        es: 'los dientes',
+        ko: '치아'
+      },
+      {
+        es: 'el pijama',
+        ko: '잠옷'
+      },
+      {
+        es: 'lavarse la cara',
+        ko: '세수하다'
+      },
+      {
+        es: 'cepillarse los dientes',
+        ko: '양치하다'
+      },
+      {
+        es: 'ducharse',
+        ko: '샤워하다'
+      },
+      {
+        es: 'ponerse el pijama',
+        ko: '잠옷을 입다'
+      },
+      {
+        es: 'acostarse',
+        ko: '잠자리에 들다'
+      },
+      {
+        es: 'dormirse',
+        ko: '잠들어 버리다'
+      },
+      {
+        es: 'usar el móvil',
+        ko: '휴대폰을 사용하다'
+      },
+      {
+        es: 'ver videos',
+        ko: '영상을 보다'
+      },
+      {
+        es: 'antes de dormir',
+        ko: '자기 전에'
+      },
+      {
+        es: 'Me lavo la cara antes de dormir.',
+        ko: '나는 자기 전에 세수한다.'
+      },
+      {
+        es: 'Siempre me ducho antes de dormir.',
+        ko: '나는 항상 자기 전에 샤워한다.'
+      }
+    ]
+  },
+  {
+    id: 'day32',
+    day: 32,
+    theme: 'food',
+    emoji: '🍔',
+    title: '배고플 때',
+    subtitle: '¿Qué compro cuando tengo hambre?',
+    cards: [
+      {
+        es: 'una hamburguesa',
+        ko: '햄버거'
+      },
+      {
+        es: 'las patatas fritas',
+        ko: '감자튀김'
+      },
+      {
+        es: 'el pollo frito',
+        ko: '치킨'
+      },
+      {
+        es: 'una pizza',
+        ko: '피자'
+      },
+      {
+        es: 'un sándwich',
+        ko: '샌드위치'
+      },
+      {
+        es: 'un perrito caliente',
+        ko: '핫도그'
+      },
+      {
+        es: 'una ensalada',
+        ko: '샐러드'
+      },
+      {
+        es: 'un croissant',
+        ko: '크로아상'
+      },
+      {
+        es: 'el pan',
+        ko: '빵'
+      },
+      {
+        es: 'un pastel',
+        ko: '케이크'
+      },
+      {
+        es: 'ramen',
+        ko: '라면'
+      },
+      {
+        es: 'Tengo hambre.',
+        ko: '나는 배고프다.'
+      },
+      {
+        es: 'Tengo sed.',
+        ko: '나는 목마르다.'
+      },
+      {
+        es: 'Tengo sueño.',
+        ko: '나는 졸리다.'
+      },
+      {
+        es: 'saltarse el desayuno',
+        ko: '아침을 거르다'
+      },
+      {
+        es: 'Cuando tengo hambre, compro pizza.',
+        ko: '배고플 때 피자를 산다.'
+      }
+    ]
+  },
+  {
+    id: 'day33',
+    day: 33,
+    theme: 'leisure',
+    emoji: '🎨',
+    title: '취미',
+    subtitle: '¿Cuál es mi pasatiempo favorito?',
+    cards: [
+      {
+        es: 'el pasatiempo',
+        ko: '취미'
+      },
+      {
+        es: 'la música',
+        ko: '음악'
+      },
+      {
+        es: 'los libros',
+        ko: '책 (복수)'
+      },
+      {
+        es: 'los deportes',
+        ko: '운동, 스포츠'
+      },
+      {
+        es: 'los videojuegos',
+        ko: '비디오 게임'
+      },
+      {
+        es: 'escuchar música',
+        ko: '음악을 듣다'
+      },
+      {
+        es: 'ver películas',
+        ko: '영화를 보다'
+      },
+      {
+        es: 'leer libros',
+        ko: '책을 읽다'
+      },
+      {
+        es: 'viajar',
+        ko: '여행하다'
+      },
+      {
+        es: 'cocinar',
+        ko: '요리하다'
+      },
+      {
+        es: 'bailar',
+        ko: '춤추다'
+      },
+      {
+        es: 'hacer ejercicio',
+        ko: '운동하다'
+      },
+      {
+        es: 'jugar videojuegos',
+        ko: '게임을 하다'
+      },
+      {
+        es: 'divertido',
+        ko: '재미있는'
+      },
+      {
+        es: 'relajante',
+        ko: '편안한, 마음이 차분해지는'
+      },
+      {
+        es: 'interesante',
+        ko: '흥미로운'
+      },
+      {
+        es: 'emocionante',
+        ko: '신나는, 흥분되는'
+      },
+      {
+        es: 'Mi pasatiempo favorito es escuchar música.',
+        ko: '내가 가장 좋아하는 취미는 음악 듣기이다.'
+      },
+      {
+        es: 'Mi pasatiempo favorito es viajar.',
+        ko: '내가 가장 좋아하는 취미는 여행이다.'
+      },
+      {
+        es: 'Mi pasatiempo favorito es cocinar.',
+        ko: '내가 가장 좋아하는 취미는 요리이다.'
+      },
+      {
+        es: 'Mi pasatiempo favorito es leer libros.',
+        ko: '내가 가장 좋아하는 취미는 독서이다.'
+      },
+      {
+        es: 'Mi pasatiempo favorito es viajar porque es divertido.',
+        ko: '내가 가장 좋아하는 취미는 여행인데, 재미있기 때문이다.'
+      },
+      {
+        es: 'Mi pasatiempo favorito es cocinar porque es relajante.',
+        ko: '내가 가장 좋아하는 취미는 요리인데, 편안하기 때문이다.'
+      },
+      {
+        es: '¿Cuál es tu pasatiempo favorito?',
+        ko: '너의 취미는 무엇이야?'
+      }
+    ]
+  },
+  {
+    id: 'day34',
+    day: 34,
+    theme: 'leisure',
+    emoji: '📺',
+    title: '유튜브',
+    subtitle: '¿Qué veo en YouTube?',
+    cards: [
+      {
+        es: 'el canal',
+        ko: '채널'
+      },
+      {
+        es: 'el video',
+        ko: '영상'
+      },
+      {
+        es: 'los videos musicales',
+        ko: '뮤직비디오'
+      },
+      {
+        es: 'los videos de conciertos',
+        ko: '콘서트 영상'
+      },
+      {
+        es: 'los videos de cocina',
+        ko: '요리 영상'
+      },
+      {
+        es: 'los videos de recetas',
+        ko: '레시피 영상'
+      },
+      {
+        es: 'los videos de viajes',
+        ko: '여행 영상, 여행 브이로그'
+      },
+      {
+        es: 'los videos en español',
+        ko: '스페인어 영상'
+      },
+      {
+        es: 'los videos educativos',
+        ko: '교육 영상'
+      },
+      {
+        es: 'los videos de maquillaje',
+        ko: '메이크업 영상'
+      },
+      {
+        es: 'los videos de moda',
+        ko: '패션 영상'
+      },
+      {
+        es: 'ver',
+        ko: '보다 (1인칭: veo)'
+      },
+      {
+        es: 'buscar',
+        ko: '찾다, 검색하다'
+      },
+      {
+        es: 'seguir un canal',
+        ko: '채널을 구독하다'
+      },
+      {
+        es: 'suscribirse',
+        ko: '구독하다'
+      },
+      {
+        es: 'aprender',
+        ko: '배우다'
+      },
+      {
+        es: 'Veo videos musicales en YouTube.',
+        ko: '나는 유튜브에서 뮤직비디오를 본다.'
+      },
+      {
+        es: 'Veo videos de moda en YouTube.',
+        ko: '나는 유튜브에서 패션 영상을 본다.'
+      },
+      {
+        es: 'Aprendo español en YouTube.',
+        ko: '나는 유튜브에서 스페인어를 배운다.'
+      },
+      {
+        es: 'Voy a ver videos de maquillaje en YouTube.',
+        ko: '나는 유튜브에서 메이크업 영상을 볼 것이다.'
+      },
+      {
+        es: 'Me gusta ver videos educativos en YouTube.',
+        ko: '나는 유튜브에서 교육 영상 보는 것을 좋아한다.'
+      },
+      {
+        es: 'Quiero ver videos musicales en YouTube.',
+        ko: '나는 유튜브에서 뮤직비디오를 보고 싶다.'
+      },
+      {
+        es: 'Sigo un canal de cocina.',
+        ko: '나는 요리 채널을 구독한다.'
+      },
+      {
+        es: '¿Qué ves en YouTube?',
+        ko: '너는 유튜브에서 뭘 봐?'
+      }
+    ]
+  },
+  {
+    id: 'day35',
+    day: 35,
+    theme: 'travel',
+    emoji: '🛗',
+    title: '층/엘리베이터',
+    subtitle: '¿A qué piso voy?',
+    cards: [
+      {
+        es: 'el piso',
+        ko: '층, 바닥; 아파트'
+      },
+      {
+        es: 'la planta',
+        ko: '층 (스페인에서 자주 씀)'
+      },
+      {
+        es: 'el ascensor',
+        ko: '엘리베이터'
+      },
+      {
+        es: 'las escaleras',
+        ko: '계단'
+      },
+      {
+        es: 'la habitación',
+        ko: '방'
+      },
+      {
+        es: 'subir',
+        ko: '올라가다'
+      },
+      {
+        es: 'bajar',
+        ko: '내려가다'
+      },
+      {
+        es: 'ir',
+        ko: '가다 (1인칭: voy)'
+      },
+      {
+        es: 'trabajar',
+        ko: '일하다'
+      },
+      {
+        es: 'esperar',
+        ko: '기다리다'
+      },
+      {
+        es: 'tomar el ascensor',
+        ko: '엘리베이터를 타다'
+      },
+      {
+        es: 'el primer piso',
+        ko: '1층 (primero→primer)'
+      },
+      {
+        es: 'el segundo piso',
+        ko: '2층'
+      },
+      {
+        es: 'el tercer piso',
+        ko: '3층 (tercero→tercer)'
+      },
+      {
+        es: 'el cuarto piso',
+        ko: '4층'
+      },
+      {
+        es: 'el quinto piso',
+        ko: '5층'
+      },
+      {
+        es: 'el sexto piso',
+        ko: '6층'
+      },
+      {
+        es: 'el séptimo piso',
+        ko: '7층'
+      },
+      {
+        es: 'el octavo piso',
+        ko: '8층'
+      },
+      {
+        es: 'el noveno piso',
+        ko: '9층'
+      },
+      {
+        es: 'el décimo piso',
+        ko: '10층'
+      },
+      {
+        es: 'once',
+        ko: '11'
+      },
+      {
+        es: 'doce',
+        ko: '12'
+      },
+      {
+        es: 'trece',
+        ko: '13'
+      },
+      {
+        es: 'catorce',
+        ko: '14'
+      },
+      {
+        es: 'quince',
+        ko: '15'
+      },
+      {
+        es: 'dieciséis',
+        ko: '16'
+      },
+      {
+        es: 'veinte',
+        ko: '20'
+      },
+      {
+        es: 'treinta',
+        ko: '30'
+      },
+      {
+        es: 'cien',
+        ko: '100'
+      },
+      {
+        es: '¿A qué piso voy?',
+        ko: '나는 몇 층으로 가지?'
+      },
+      {
+        es: 'Voy al tercer piso.',
+        ko: '나는 3층으로 간다.'
+      },
+      {
+        es: 'Trabajo en el séptimo piso.',
+        ko: '나는 7층에서 일한다.'
+      },
+      {
+        es: 'Voy al piso once.',
+        ko: '나는 11층으로 간다. (기수는 piso 뒤)'
+      },
+      {
+        es: 'La cafetería está en el noveno piso.',
+        ko: '카페는 9층에 있다.'
+      },
+      {
+        es: 'Mi habitación está en el piso veinte.',
+        ko: '내 방은 20층에 있다.'
+      }
+    ]
+  },
+  {
+    id: 'day36',
+    day: 36,
+    theme: 'travel',
+    emoji: '🛗',
+    title: '층 이동 표현',
+    subtitle: '¿A qué piso voy? (a vs en)',
+    cards: [
+      {
+        es: 'la planta baja',
+        ko: '1층, 지상층 (스페인)'
+      },
+      {
+        es: 'el sótano',
+        ko: '지하'
+      },
+      {
+        es: 'subir en ascensor',
+        ko: '엘리베이터를 타고 올라가다'
+      },
+      {
+        es: 'usar las escaleras',
+        ko: '계단을 이용하다'
+      },
+      {
+        es: 'esperar el ascensor',
+        ko: '엘리베이터를 기다리다'
+      },
+      {
+        es: 'subo',
+        ko: '나는 올라간다 (subir 1인칭)'
+      },
+      {
+        es: 'bajo',
+        ko: '나는 내려간다 (bajar 1인칭)'
+      },
+      {
+        es: 'a + 층',
+        ko: '~층으로 (목적지)'
+      },
+      {
+        es: 'en + 층',
+        ko: '~층에서 (위치/지점)'
+      },
+      {
+        es: 'Voy al quinto piso.',
+        ko: '나는 5층으로 간다. (a: 목적지)'
+      },
+      {
+        es: 'Subo al sexto piso.',
+        ko: '나는 6층으로 올라간다.'
+      },
+      {
+        es: 'Bajo al tercer piso.',
+        ko: '나는 3층으로 내려간다. (어디로 가는지)'
+      },
+      {
+        es: 'Bajo al primer piso.',
+        ko: '나는 1층으로 내려간다. (primero→primer)'
+      },
+      {
+        es: 'Trabajo en el piso veinte.',
+        ko: '나는 20층에서 일한다. (en: 위치)'
+      },
+      {
+        es: 'Bajo en el tercer piso.',
+        ko: '나는 3층에서 내린다. (내리는 지점)'
+      },
+      {
+        es: 'Estoy en el séptimo piso.',
+        ko: '나는 7층에 있다.'
+      },
+      {
+        es: 'Voy al piso de la cafetería.',
+        ko: '카페가 있는 층으로 간다.'
+      },
+      {
+        es: 'Voy al piso del hotel.',
+        ko: '호텔이 있는 층으로 간다.'
+      },
+      {
+        es: 'Tomo el ascensor.',
+        ko: '나는 엘리베이터를 탄다.'
+      },
+      {
+        es: 'Espero el ascensor.',
+        ko: '나는 엘리베이터를 기다린다.'
+      },
+      {
+        es: 'El ascensor sube.',
+        ko: '엘리베이터가 올라간다.'
+      },
+      {
+        es: 'El ascensor baja.',
+        ko: '엘리베이터가 내려간다.'
+      },
+      {
+        es: 'El ascensor está aquí.',
+        ko: '엘리베이터가 여기 있다.'
+      },
+      {
+        es: 'Subo al sexto piso en ascensor.',
+        ko: '엘리베이터를 타고 6층으로 올라간다. (en: 수단)'
+      },
+      {
+        es: 'Voy a subir al quinto piso en ascensor.',
+        ko: '엘리베이터를 타고 5층으로 올라갈 것이다.'
+      },
+      {
+        es: '¿A qué piso vas?',
+        ko: '너는 몇 층으로 가?'
+      },
+      {
+        es: '¿A qué piso vas a ir?',
+        ko: '너는 몇 층으로 갈 거야?'
+      }
+    ]
+  },
+  {
+    id: 'day37',
+    day: 37,
+    theme: 'work',
+    emoji: '💼',
+    title: '직업',
+    subtitle: '¿A qué me dedico?',
+    cards: [
+      {
+        es: 'el trabajo',
+        ko: '일, 직업'
+      },
+      {
+        es: 'la profesión',
+        ko: '직업, 전문직'
+      },
+      {
+        es: 'el médico / la médica',
+        ko: '의사'
+      },
+      {
+        es: 'el enfermero / la enfermera',
+        ko: '간호사'
+      },
+      {
+        es: 'el abogado / la abogada',
+        ko: '변호사'
+      },
+      {
+        es: 'el profesor / la profesora',
+        ko: '선생님, 교수'
+      },
+      {
+        es: 'el dependiente / la dependienta',
+        ko: '판매원, 매장 직원'
+      },
+      {
+        es: 'el cajero / la cajera',
+        ko: '계산원'
+      },
+      {
+        es: 'el camarero / la camarera',
+        ko: '웨이터, 종업원'
+      },
+      {
+        es: 'el cocinero / la cocinera',
+        ko: '요리사'
+      },
+      {
+        es: 'el chef',
+        ko: '셰프'
+      },
+      {
+        es: 'el barista',
+        ko: '바리스타 (양성 명사)'
+      },
+      {
+        es: 'el conductor / la conductora',
+        ko: '운전기사'
+      },
+      {
+        es: 'el repartidor / la repartidora',
+        ko: '배달 기사'
+      },
+      {
+        es: 'el programador / la programadora',
+        ko: '프로그래머'
+      },
+      {
+        es: 'el diseñador gráfico / la diseñadora gráfica',
+        ko: '그래픽 디자이너'
+      },
+      {
+        es: 'el editor de video / la editora de video',
+        ko: '영상 편집자'
+      },
+      {
+        es: 'el influencer',
+        ko: '인플루언서'
+      },
+      {
+        es: 'el youtuber / la youtuber',
+        ko: '유튜버'
+      },
+      {
+        es: 'el creador de contenido / la creadora de contenido',
+        ko: '콘텐츠 크리에이터'
+      },
+      {
+        es: 'el fotógrafo / la fotógrafa',
+        ko: '사진작가'
+      },
+      {
+        es: 'el artista / la artista',
+        ko: '예술가 (양성 명사)'
+      },
+      {
+        es: 'el dentista / la dentista',
+        ko: '치과 의사 (양성 명사)'
+      },
+      {
+        es: 'el farmacéutico / la farmacéutica',
+        ko: '약사'
+      },
+      {
+        es: 'el veterinario / la veterinaria',
+        ko: '수의사'
+      },
+      {
+        es: 'el psicólogo / la psicóloga',
+        ko: '심리 상담가'
+      },
+      {
+        es: 'el empleado de oficina / la empleada de oficina',
+        ko: '회사원'
+      },
+      {
+        es: 'el guía turístico / la guía turística',
+        ko: '관광 가이드'
+      },
+      {
+        es: 'Soy + 직업',
+        ko: '나는 ~이다 (직업)'
+      },
+      {
+        es: 'Trabajo como + 직업',
+        ko: '나는 ~로(서) 일한다'
+      },
+      {
+        es: 'Trabajo en + 장소',
+        ko: '나는 ~에서 일한다'
+      },
+      {
+        es: 'Me dedico a + 분야',
+        ko: '나는 ~에 종사한다'
+      },
+      {
+        es: 'Soy profesora.',
+        ko: '저는 선생님이에요.'
+      },
+      {
+        es: 'Trabajo como diseñadora.',
+        ko: '저는 디자이너로 일해요.'
+      },
+      {
+        es: 'Soy influencer.',
+        ko: '저는 인플루언서예요.'
+      },
+      {
+        es: 'Trabajo de medio tiempo en la cafetería.',
+        ko: '저는 카페에서 아르바이트를 해요.'
+      },
+      {
+        es: '¿A qué te dedicas?',
+        ko: '너는 무슨 일을 해?'
+      }
+    ]
+  },
+  {
+    id: 'day38',
+    day: 38,
+    theme: 'work',
+    emoji: '🧑‍💼',
+    title: '직업 소개 표현',
+    subtitle: '¿A qué me dedico? (동사 연결)',
+    cards: [
+      {
+        es: 'el trabajo de medio tiempo',
+        ko: '파트타임 일, 아르바이트'
+      },
+      {
+        es: 'el trabajo temporal',
+        ko: '단기 아르바이트'
+      },
+      {
+        es: 'ser',
+        ko: '~이다 (1인칭: soy)'
+      },
+      {
+        es: 'trabajar',
+        ko: '일하다 (1인칭: trabajo)'
+      },
+      {
+        es: 'dedicarse a',
+        ko: '~에 종사하다 (1인칭: me dedico)'
+      },
+      {
+        es: 'como',
+        ko: '~로서 (직업 연결)'
+      },
+      {
+        es: 'hacer un trabajo de medio tiempo',
+        ko: '아르바이트를 하다'
+      },
+      {
+        es: 'Soy + 직업 (관사 없이)',
+        ko: '나는 ~이다 (직업 앞 정관사 생략!)'
+      },
+      {
+        es: 'Soy médico.',
+        ko: '나는 의사이다. (el 안 씀)'
+      },
+      {
+        es: 'Soy enfermera.',
+        ko: '나는 간호사이다.'
+      },
+      {
+        es: 'Trabajo como programador.',
+        ko: '나는 프로그래머로 일한다.'
+      },
+      {
+        es: 'Trabajo como barista.',
+        ko: '나는 바리스타로 일한다.'
+      },
+      {
+        es: 'Trabajo en el hospital.',
+        ko: '나는 병원에서 일한다. (en + 장소)'
+      },
+      {
+        es: 'Trabajo en una oficina.',
+        ko: '나는 사무실에서 일한다.'
+      },
+      {
+        es: 'Me dedico al diseño gráfico.',
+        ko: '나는 그래픽 디자인업에 종사한다.'
+      },
+      {
+        es: 'Me dedico a la educación.',
+        ko: '나는 교육업에 종사한다.'
+      },
+      {
+        es: 'Tengo un trabajo de medio tiempo.',
+        ko: '나는 파트타임 일을 하고 있다.'
+      },
+      {
+        es: 'Busco un trabajo temporal.',
+        ko: '나는 단기 아르바이트를 찾고 있다.'
+      },
+      {
+        es: 'Hago un trabajo de medio tiempo en la cafetería.',
+        ko: '나는 카페에서 아르바이트를 한다.'
+      },
+      {
+        es: 'Soy médico y trabajo en el hospital.',
+        ko: '나는 의사이고 병원에서 일한다.'
+      },
+      {
+        es: 'Trabajo como abogado.',
+        ko: '나는 변호사로 일한다.'
+      },
+      {
+        es: 'Soy editor de video.',
+        ko: '나는 영상 편집자이다.'
+      },
+      {
+        es: 'Soy dependiente en la tienda de ropa.',
+        ko: '나는 옷가게 판매원이다.'
+      },
+      {
+        es: '¿Cuál es tu trabajo?',
+        ko: '너의 직업은 뭐야?'
+      }
+    ]
+  },
+  {
+    id: 'day39',
+    day: 39,
+    theme: 'basics',
+    emoji: '🌤️',
+    title: '날씨',
+    subtitle: '¿Qué tiempo hace hoy?',
+    cards: [
+      {
+        es: 'el tiempo',
+        ko: '날씨'
+      },
+      {
+        es: 'el clima',
+        ko: '기후'
+      },
+      {
+        es: 'la lluvia',
+        ko: '비'
+      },
+      {
+        es: 'la nieve',
+        ko: '눈'
+      },
+      {
+        es: 'el viento',
+        ko: '바람'
+      },
+      {
+        es: 'la nube',
+        ko: '구름'
+      },
+      {
+        es: 'la temperatura',
+        ko: '기온'
+      },
+      {
+        es: 'el grado',
+        ko: '도 (온도 단위)'
+      },
+      {
+        es: 'llover',
+        ko: '비가 오다'
+      },
+      {
+        es: 'nevar',
+        ko: '눈이 오다'
+      },
+      {
+        es: 'Hace + 명사',
+        ko: '날씨가 ~하다 (무인칭 표현)'
+      },
+      {
+        es: 'Está + 형용사/현재분사',
+        ko: '지금 ~한 상태이다'
+      },
+      {
+        es: 'Hace calor.',
+        ko: '덥다.'
+      },
+      {
+        es: 'Hace frío.',
+        ko: '춥다.'
+      },
+      {
+        es: 'Hace sol.',
+        ko: '해가 난다.'
+      },
+      {
+        es: 'Hace viento.',
+        ko: '바람이 분다.'
+      },
+      {
+        es: 'Hace buen tiempo.',
+        ko: '날씨가 좋다.'
+      },
+      {
+        es: 'Hace mal tiempo.',
+        ko: '날씨가 나쁘다.'
+      },
+      {
+        es: 'Está nublado.',
+        ko: '흐리다.'
+      },
+      {
+        es: 'Está lloviendo.',
+        ko: '비가 오고 있다.'
+      },
+      {
+        es: 'Está nevando.',
+        ko: '눈이 오고 있다.'
+      },
+      {
+        es: 'Hoy hace mucho calor.',
+        ko: '오늘은 매우 덥다.'
+      },
+      {
+        es: 'Cuando llueve, no salgo.',
+        ko: '비가 올 때 나는 나가지 않는다.'
+      },
+      {
+        es: '¿Qué tiempo hace hoy?',
+        ko: '오늘 날씨 어때?'
+      }
+    ]
+  },
+  {
+    id: 'day40',
+    day: 40,
+    theme: 'basics',
+    emoji: '🍂',
+    title: '계절과 달',
+    subtitle: '¿Cuál es mi estación favorita?',
+    cards: [
+      {
+        es: 'la estación',
+        ko: '계절'
+      },
+      {
+        es: 'la primavera',
+        ko: '봄'
+      },
+      {
+        es: 'el verano',
+        ko: '여름'
+      },
+      {
+        es: 'el otoño',
+        ko: '가을'
+      },
+      {
+        es: 'el invierno',
+        ko: '겨울'
+      },
+      {
+        es: 'el mes',
+        ko: '달, 월'
+      },
+      {
+        es: 'enero',
+        ko: '1월'
+      },
+      {
+        es: 'febrero',
+        ko: '2월'
+      },
+      {
+        es: 'marzo',
+        ko: '3월'
+      },
+      {
+        es: 'abril',
+        ko: '4월'
+      },
+      {
+        es: 'mayo',
+        ko: '5월'
+      },
+      {
+        es: 'junio',
+        ko: '6월'
+      },
+      {
+        es: 'julio',
+        ko: '7월'
+      },
+      {
+        es: 'agosto',
+        ko: '8월'
+      },
+      {
+        es: 'septiembre',
+        ko: '9월'
+      },
+      {
+        es: 'octubre',
+        ko: '10월'
+      },
+      {
+        es: 'noviembre',
+        ko: '11월'
+      },
+      {
+        es: 'diciembre',
+        ko: '12월'
+      },
+      {
+        es: 'en + 계절/달',
+        ko: '~에 (계절·달 앞 전치사)'
+      },
+      {
+        es: 'en verano',
+        ko: '여름에'
+      },
+      {
+        es: 'en marzo',
+        ko: '3월에'
+      },
+      {
+        es: 'Mi estación favorita es el otoño.',
+        ko: '내가 가장 좋아하는 계절은 가을이다.'
+      },
+      {
+        es: 'En invierno hace mucho frío.',
+        ko: '겨울에는 매우 춥다.'
+      },
+      {
+        es: '¿Cuál es tu estación favorita?',
+        ko: '네가 가장 좋아하는 계절은 뭐야?'
+      }
+    ]
+  },
+  {
+    id: 'day41',
+    day: 41,
+    theme: 'travel',
+    emoji: '🚇',
+    title: '교통수단',
+    subtitle: '¿Cómo voy al trabajo?',
+    cards: [
+      {
+        es: 'el transporte',
+        ko: '교통, 교통수단'
+      },
+      {
+        es: 'el metro',
+        ko: '지하철'
+      },
+      {
+        es: 'el autobús',
+        ko: '버스'
+      },
+      {
+        es: 'el tren',
+        ko: '기차'
+      },
+      {
+        es: 'el taxi',
+        ko: '택시'
+      },
+      {
+        es: 'el coche',
+        ko: '자동차'
+      },
+      {
+        es: 'la bicicleta',
+        ko: '자전거'
+      },
+      {
+        es: 'la parada',
+        ko: '정류장'
+      },
+      {
+        es: 'la estación de metro',
+        ko: '지하철역'
+      },
+      {
+        es: 'la tarjeta de transporte',
+        ko: '교통카드'
+      },
+      {
+        es: 'ir en + 교통수단',
+        ko: '~를 타고 가다'
+      },
+      {
+        es: 'ir a pie',
+        ko: '걸어서 가다'
+      },
+      {
+        es: 'tomar el autobús',
+        ko: '버스를 타다'
+      },
+      {
+        es: 'bajarse',
+        ko: '내리다'
+      },
+      {
+        es: 'hacer transbordo',
+        ko: '환승하다'
+      },
+      {
+        es: 'tardar',
+        ko: '(시간이) 걸리다'
+      },
+      {
+        es: 'Voy al trabajo en metro.',
+        ko: '나는 지하철로 출근한다.'
+      },
+      {
+        es: 'Voy a casa a pie.',
+        ko: '나는 걸어서 집에 간다.'
+      },
+      {
+        es: 'Tardo treinta minutos.',
+        ko: '나는 30분 걸린다.'
+      },
+      {
+        es: 'Hago transbordo en la estación central.',
+        ko: '나는 중앙역에서 환승한다.'
+      },
+      {
+        es: '¿Cómo vas al trabajo?',
+        ko: '너는 어떻게 출근해?'
+      }
+    ]
+  },
+  {
+    id: 'day42',
+    day: 42,
+    theme: 'travel',
+    emoji: '🧭',
+    title: '길 묻기',
+    subtitle: '¿Cómo llego allí?',
+    cards: [
+      {
+        es: 'la calle',
+        ko: '거리, 길'
+      },
+      {
+        es: 'la esquina',
+        ko: '모퉁이'
+      },
+      {
+        es: 'el semáforo',
+        ko: '신호등'
+      },
+      {
+        es: 'la plaza',
+        ko: '광장'
+      },
+      {
+        es: 'el cruce',
+        ko: '교차로'
+      },
+      {
+        es: 'seguir recto',
+        ko: '직진하다'
+      },
+      {
+        es: 'girar a la derecha',
+        ko: '오른쪽으로 돌다'
+      },
+      {
+        es: 'girar a la izquierda',
+        ko: '왼쪽으로 돌다'
+      },
+      {
+        es: 'cruzar la calle',
+        ko: '길을 건너다'
+      },
+      {
+        es: 'estar cerca',
+        ko: '가깝다'
+      },
+      {
+        es: 'estar lejos',
+        ko: '멀다'
+      },
+      {
+        es: 'al lado de',
+        ko: '~옆에'
+      },
+      {
+        es: 'enfrente de',
+        ko: '~맞은편에'
+      },
+      {
+        es: 'entre',
+        ko: '~사이에'
+      },
+      {
+        es: '¿Dónde está...?',
+        ko: '~은 어디에 있어요?'
+      },
+      {
+        es: '¿Cómo llego a...?',
+        ko: '~에 어떻게 가요?'
+      },
+      {
+        es: 'Está muy cerca de aquí.',
+        ko: '여기서 아주 가까워요.'
+      },
+      {
+        es: 'Está a cinco minutos.',
+        ko: '5분 거리예요.'
+      },
+      {
+        es: 'Siga recto y gire a la derecha.',
+        ko: '직진하다가 오른쪽으로 도세요.'
+      },
+      {
+        es: 'Perdone, ¿hay una farmacia por aquí?',
+        ko: '실례합니다, 이 근처에 약국이 있나요?'
+      }
+    ]
+  },
+  {
+    id: 'day43',
+    day: 43,
+    theme: 'food',
+    emoji: '🍽️',
+    title: '식당',
+    subtitle: '¿Qué pido en el restaurante?',
+    cards: [
+      {
+        es: 'el restaurante',
+        ko: '식당'
+      },
+      {
+        es: 'el menú del día',
+        ko: '오늘의 메뉴'
+      },
+      {
+        es: 'el plato',
+        ko: '요리, 접시'
+      },
+      {
+        es: 'el primer plato',
+        ko: '전채 요리'
+      },
+      {
+        es: 'el segundo plato',
+        ko: '메인 요리'
+      },
+      {
+        es: 'el postre',
+        ko: '디저트'
+      },
+      {
+        es: 'la mesa',
+        ko: '테이블'
+      },
+      {
+        es: 'el vino',
+        ko: '와인'
+      },
+      {
+        es: 'la propina',
+        ko: '팁'
+      },
+      {
+        es: 'pedir',
+        ko: '주문하다 (1인칭: pido)'
+      },
+      {
+        es: 'reservar una mesa',
+        ko: '테이블을 예약하다'
+      },
+      {
+        es: 'traer',
+        ko: '가져다주다'
+      },
+      {
+        es: 'recomendar',
+        ko: '추천하다'
+      },
+      {
+        es: 'Para mí, ...',
+        ko: '저는 ~로 할게요'
+      },
+      {
+        es: '¿Qué me recomienda?',
+        ko: '뭘 추천해 주시겠어요?'
+      },
+      {
+        es: 'Quiero pedir el menú del día.',
+        ko: '오늘의 메뉴를 주문하고 싶어요.'
+      },
+      {
+        es: 'La cuenta, por favor.',
+        ko: '계산서 주세요.'
+      },
+      {
+        es: 'Está muy rico.',
+        ko: '아주 맛있어요.'
+      },
+      {
+        es: '¿Qué vas a pedir?',
+        ko: '너는 뭘 주문할 거야?'
+      }
+    ]
+  },
+  {
+    id: 'day44',
+    day: 44,
+    theme: 'people',
+    emoji: '🙂',
+    title: '기분/감정',
+    subtitle: '¿Cómo me siento hoy?',
+    cards: [
+      {
+        es: 'el estado de ánimo',
+        ko: '기분, 심리 상태'
+      },
+      {
+        es: 'sentirse',
+        ko: '(기분을) 느끼다 (1인칭: me siento)'
+      },
+      {
+        es: 'contento',
+        ko: '기쁜, 만족한'
+      },
+      {
+        es: 'triste',
+        ko: '슬픈'
+      },
+      {
+        es: 'cansado',
+        ko: '피곤한'
+      },
+      {
+        es: 'nervioso',
+        ko: '긴장한, 불안한'
+      },
+      {
+        es: 'enfadado',
+        ko: '화난'
+      },
+      {
+        es: 'preocupado',
+        ko: '걱정하는'
+      },
+      {
+        es: 'aburrido',
+        ko: '지루한'
+      },
+      {
+        es: 'emocionado',
+        ko: '설레는, 감격한'
+      },
+      {
+        es: 'tranquilo',
+        ko: '차분한, 평온한'
+      },
+      {
+        es: 'estar + 감정 형용사',
+        ko: '(지금) ~한 상태이다'
+      },
+      {
+        es: 'Estoy contento.',
+        ko: '나는 기쁘다.'
+      },
+      {
+        es: 'Estoy muy cansado hoy.',
+        ko: '나는 오늘 매우 피곤하다.'
+      },
+      {
+        es: 'Me siento bien.',
+        ko: '나는 기분이 좋다.'
+      },
+      {
+        es: 'Me siento mal.',
+        ko: '나는 기분이 안 좋다.'
+      },
+      {
+        es: 'Estoy de buen humor.',
+        ko: '나는 기분이 좋은 상태다.'
+      },
+      {
+        es: 'Estoy de mal humor.',
+        ko: '나는 기분이 안 좋은 상태다.'
+      },
+      {
+        es: '¿Cómo te sientes?',
+        ko: '너는 기분이 어때?'
+      },
+      {
+        es: '¿Por qué estás triste?',
+        ko: '너는 왜 슬퍼?'
+      }
+    ]
+  },
+  {
+    id: 'day45',
+    day: 45,
+    theme: 'home',
+    emoji: '🏠',
+    title: '집/방',
+    subtitle: '¿Qué hay en mi casa?',
+    cards: [
+      {
+        es: 'la casa',
+        ko: '집'
+      },
+      {
+        es: 'el apartamento',
+        ko: '아파트'
+      },
+      {
+        es: 'el salón',
+        ko: '거실'
+      },
+      {
+        es: 'el dormitorio',
+        ko: '침실'
+      },
+      {
+        es: 'la cocina',
+        ko: '부엌'
+      },
+      {
+        es: 'el baño',
+        ko: '욕실, 화장실'
+      },
+      {
+        es: 'el balcón',
+        ko: '발코니'
+      },
+      {
+        es: 'los muebles',
+        ko: '가구'
+      },
+      {
+        es: 'el sofá',
+        ko: '소파'
+      },
+      {
+        es: 'la silla',
+        ko: '의자'
+      },
+      {
+        es: 'la cama',
+        ko: '침대'
+      },
+      {
+        es: 'la nevera',
+        ko: '냉장고'
+      },
+      {
+        es: 'la lavadora',
+        ko: '세탁기'
+      },
+      {
+        es: 'la ventana',
+        ko: '창문'
+      },
+      {
+        es: 'hay',
+        ko: '~이 있다 (단수·복수 모두)'
+      },
+      {
+        es: 'Hay un sofá en el salón.',
+        ko: '거실에 소파가 하나 있다.'
+      },
+      {
+        es: 'Hay dos ventanas en mi dormitorio.',
+        ko: '내 침실에는 창문이 두 개 있다.'
+      },
+      {
+        es: 'No hay lavadora en casa.',
+        ko: '집에 세탁기가 없다.'
+      },
+      {
+        es: 'Vivo en un apartamento pequeño.',
+        ko: '나는 작은 아파트에 산다.'
+      },
+      {
+        es: '¿Qué hay en tu casa?',
+        ko: '너희 집에는 뭐가 있어?'
+      }
+    ]
+  },
+  {
+    id: 'day46',
+    day: 46,
+    theme: 'basics',
+    emoji: '⏰',
+    title: '시간/하루 일과',
+    subtitle: '¿A qué hora hago las cosas?',
+    cards: [
+      {
+        es: 'la hora',
+        ko: '시간, ~시'
+      },
+      {
+        es: 'el minuto',
+        ko: '분'
+      },
+      {
+        es: 'el horario',
+        ko: '시간표, 일정'
+      },
+      {
+        es: 'temprano',
+        ko: '일찍'
+      },
+      {
+        es: 'tarde',
+        ko: '늦게'
+      },
+      {
+        es: 'y media',
+        ko: '30분 (반)'
+      },
+      {
+        es: 'y cuarto',
+        ko: '15분'
+      },
+      {
+        es: 'menos cuarto',
+        ko: '15분 전'
+      },
+      {
+        es: 'de la mañana',
+        ko: '오전의'
+      },
+      {
+        es: 'de la tarde',
+        ko: '오후의'
+      },
+      {
+        es: 'de la noche',
+        ko: '밤의'
+      },
+      {
+        es: 'levantarse',
+        ko: '일어나다 (1인칭: me levanto)'
+      },
+      {
+        es: 'desayunar',
+        ko: '아침을 먹다'
+      },
+      {
+        es: 'almorzar',
+        ko: '점심을 먹다'
+      },
+      {
+        es: 'cenar',
+        ko: '저녁을 먹다'
+      },
+      {
+        es: '¿Qué hora es?',
+        ko: '몇 시예요?'
+      },
+      {
+        es: 'Es la una.',
+        ko: '1시입니다. (1시만 Es)'
+      },
+      {
+        es: 'Son las tres.',
+        ko: '3시입니다. (2시부터 Son)'
+      },
+      {
+        es: 'Son las siete y media.',
+        ko: '7시 30분입니다.'
+      },
+      {
+        es: 'a las + 시간',
+        ko: '~시에'
+      },
+      {
+        es: 'Me levanto a las siete.',
+        ko: '나는 7시에 일어난다.'
+      },
+      {
+        es: 'Trabajo de nueve a seis.',
+        ko: '나는 9시부터 6시까지 일한다.'
+      },
+      {
+        es: '¿A qué hora te levantas?',
+        ko: '너는 몇 시에 일어나?'
+      }
+    ]
+  },
+  {
+    id: 'day47',
+    day: 47,
+    theme: 'shopping',
+    emoji: '🛍️',
+    title: '다이소 쇼핑',
+    subtitle: '¿Qué compro en Daiso?',
+    cards: [
+      {
+        es: 'el cuaderno',
+        ko: '공책'
+      },
+      {
+        es: 'el bolígrafo',
+        ko: '볼펜 (줄여서 el boli)'
+      },
+      {
+        es: 'el lápiz',
+        ko: '연필'
+      },
+      {
+        es: 'la goma de borrar',
+        ko: '지우개'
+      },
+      {
+        es: 'el rotulador',
+        ko: '사인펜, 마커 (= el marcador)'
+      },
+      {
+        es: 'las tijeras',
+        ko: '가위 (항상 복수)'
+      },
+      {
+        es: 'los artículos de papelería',
+        ko: '문구류'
+      },
+      {
+        es: 'la caja de almacenamiento',
+        ko: '수납 상자'
+      },
+      {
+        es: 'las perchas',
+        ko: '옷걸이'
+      },
+      {
+        es: 'el espejo',
+        ko: '거울'
+      },
+      {
+        es: 'las velas',
+        ko: '양초'
+      },
+      {
+        es: 'la bolsa organizadora',
+        ko: '정리 파우치'
+      },
+      {
+        es: 'el candado',
+        ko: '자물쇠'
+      },
+      {
+        es: 'el cable USB',
+        ko: 'USB 케이블'
+      },
+      {
+        es: 'el cable de carga',
+        ko: '충전 케이블'
+      },
+      {
+        es: 'el cable de extensión',
+        ko: '연장 케이블 (= el alargador)'
+      },
+      {
+        es: 'el cargador',
+        ko: '충전기'
+      },
+      {
+        es: 'las pilas',
+        ko: '건전지'
+      },
+      {
+        es: 'la bombilla',
+        ko: '전구'
+      },
+      {
+        es: 'la lámpara LED',
+        ko: 'LED 램프'
+      },
+      {
+        es: 'la linterna',
+        ko: '손전등'
+      },
+      {
+        es: 'los cubiertos',
+        ko: '식기류 (수저·포크 등)'
+      },
+      {
+        es: 'los palillos',
+        ko: '젓가락'
+      },
+      {
+        es: 'la cuchara',
+        ko: '숟가락'
+      },
+      {
+        es: 'la taza',
+        ko: '컵, 머그잔'
+      },
+      {
+        es: 'el recipiente',
+        ko: '밀폐용기, 보관 용기'
+      },
+      {
+        es: 'los utensilios de cocina',
+        ko: '주방용품'
+      },
+      {
+        es: 'la escoba',
+        ko: '빗자루'
+      },
+      {
+        es: 'la esponja',
+        ko: '스펀지, 수세미'
+      },
+      {
+        es: 'los guantes de limpieza',
+        ko: '청소 장갑'
+      },
+      {
+        es: 'el cepillo de dientes',
+        ko: '칫솔'
+      },
+      {
+        es: 'el cepillo de dientes eléctrico',
+        ko: '전동 칫솔'
+      },
+      {
+        es: 'el peine',
+        ko: '빗'
+      },
+      {
+        es: 'la botella de viaje',
+        ko: '여행용 물병'
+      },
+      {
+        es: 'la almohada de viaje',
+        ko: '여행용 목베개'
+      },
+      {
+        es: 'comprar',
+        ko: '사다 (1인칭: compro)'
+      },
+      {
+        es: 'elegir',
+        ko: '고르다 (1인칭: elijo · 불규칙)'
+      },
+      {
+        es: 'organizar',
+        ko: '정리하다 (1인칭: organizo)'
+      },
+      {
+        es: 'guardar',
+        ko: '보관하다 (1인칭: guardo)'
+      },
+      {
+        es: 'usar',
+        ko: '사용하다 (1인칭: uso)'
+      },
+      {
+        es: 'útil',
+        ko: '유용한'
+      },
+      {
+        es: 'barato',
+        ko: '저렴한'
+      },
+      {
+        es: 'los productos de limpieza',
+        ko: '청소용품'
+      },
+      {
+        es: 'el armario',
+        ko: '옷장'
+      },
+      {
+        es: 'para + 명사',
+        ko: '~을 위한'
+      },
+      {
+        es: 'para + 동사원형',
+        ko: '~하기 위해 (동사원형 그대로!)'
+      },
+      {
+        es: 'Compro artículos de papelería.',
+        ko: '나는 문구류를 산다.'
+      },
+      {
+        es: 'Compro recipientes para guardar comida.',
+        ko: '음식을 보관할 용기를 산다.'
+      },
+      {
+        es: 'Compro perchas para organizar mi armario.',
+        ko: '옷장을 정리하기 위해 옷걸이를 산다.'
+      },
+      {
+        es: 'Compro productos de limpieza para la casa.',
+        ko: '집을 위한 청소용품을 산다.'
+      },
+      {
+        es: 'Compro cajas para organizar.',
+        ko: '나는 정리하기 위해 상자를 산다.'
+      },
+      {
+        es: 'También compro cables de carga y pilas.',
+        ko: '나는 충전 케이블과 건전지도 산다.'
+      },
+      {
+        es: 'Me gusta Daiso porque tiene productos útiles y baratos.',
+        ko: '다이소는 유용하고 저렴한 제품이 있어서 좋다.'
+      },
+      {
+        es: 'Cuando voy a Daiso, compro cuadernos y bolígrafos.',
+        ko: '다이소에 가면 공책과 볼펜을 산다.'
+      },
+      {
+        es: '¿Qué compras en Daiso?',
+        ko: '너는 다이소에서 뭘 사?'
+      },
+      {
+        es: '¿Qué compraste en Daiso?',
+        ko: '너는 다이소에서 뭘 샀어? (과거)'
+      },
+      {
+        es: '¿Cuál es el producto más útil?',
+        ko: '가장 유용한 제품은 뭐야?'
+      }
+    ]
+  },
+  {
+    id: 'day48',
+    day: 48,
+    theme: 'home',
+    emoji: '💄',
+    title: '화장품',
+    subtitle: '¿Qué uso para maquillarme?',
+    cards: [
+      {
+        es: 'el maquillaje',
+        ko: '화장, 메이크업'
+      },
+      {
+        es: 'la base de maquillaje',
+        ko: '파운데이션'
+      },
+      {
+        es: 'el corrector',
+        ko: '컨실러'
+      },
+      {
+        es: 'los polvos',
+        ko: '파우더'
+      },
+      {
+        es: 'el protector solar',
+        ko: '선크림'
+      },
+      {
+        es: 'la crema hidratante',
+        ko: '수분크림'
+      },
+      {
+        es: 'la sombra de ojos',
+        ko: '아이섀도'
+      },
+      {
+        es: 'el delineador de ojos',
+        ko: '아이라이너'
+      },
+      {
+        es: 'la máscara de pestañas',
+        ko: '마스카라'
+      },
+      {
+        es: 'las pestañas postizas',
+        ko: '인조 속눈썹'
+      },
+      {
+        es: 'la barra de labios',
+        ko: '립스틱'
+      },
+      {
+        es: 'el lápiz labial',
+        ko: '립스틱, 립펜슬'
+      },
+      {
+        es: 'el brillo de labios',
+        ko: '립글로스'
+      },
+      {
+        es: 'la brocha',
+        ko: '화장 브러시'
+      },
+      {
+        es: 'la esponja de maquillaje',
+        ko: '메이크업 스펀지'
+      },
+      {
+        es: 'maquillarse',
+        ko: '화장하다 (1인칭: me maquillo)'
+      },
+      {
+        es: 'desmaquillarse',
+        ko: '화장을 지우다 (1인칭: me desmaquillo)'
+      },
+      {
+        es: 'ponerse',
+        ko: '바르다, 착용하다 (1인칭: me pongo)'
+      },
+      {
+        es: 'aplicarse',
+        ko: '바르다, 도포하다 (1인칭: me aplico)'
+      },
+      {
+        es: 'mirarse en el espejo',
+        ko: '거울을 보다'
+      },
+      {
+        es: 'me + 동사 (재귀대명사)',
+        ko: '나 스스로에게 하는 행동'
+      },
+      {
+        es: 'para + 재귀동사원형',
+        ko: '~하기 위해 (대명사를 인칭에 맞춰 붙임)'
+      },
+      {
+        es: 'después de + 동사원형',
+        ko: '~한 후에'
+      },
+      {
+        es: 'Me maquillo todos los días.',
+        ko: '나는 매일 화장한다.'
+      },
+      {
+        es: 'Me pongo lápiz labial rojo.',
+        ko: '나는 빨간 립스틱을 바른다.'
+      },
+      {
+        es: 'Uso base de maquillaje.',
+        ko: '나는 파운데이션을 사용한다.'
+      },
+      {
+        es: 'Me aplico crema hidratante.',
+        ko: '나는 수분크림을 바른다.'
+      },
+      {
+        es: 'Para maquillarme uso protector solar.',
+        ko: '화장하기 위해 나는 선크림을 사용한다.'
+      },
+      {
+        es: 'Después de maquillarme, me miro en el espejo.',
+        ko: '화장한 후에 나는 거울을 본다.'
+      },
+      {
+        es: 'Antes de dormir, me desmaquillo y me lavo la cara.',
+        ko: '자기 전에 나는 화장을 지우고 세수한다.'
+      },
+      {
+        es: '¿Qué usas para maquillarte?',
+        ko: '너는 화장할 때 뭘 써?'
+      },
+      {
+        es: '¿Qué usaste para maquillarte?',
+        ko: '너는 화장할 때 뭘 썼어? (과거)'
+      }
+    ]
+  },
+  {
+    id: 'day49',
+    day: 49,
+    theme: 'shopping',
+    emoji: '🛋️',
+    title: '이케아 쇼핑',
+    subtitle: '¿Qué compro en IKEA?',
+    cards: [
+      {
+        es: 'el mueble',
+        ko: '가구 (한 점)'
+      },
+      {
+        es: 'los artículos para el hogar',
+        ko: '생활용품, 홈 인테리어 용품'
+      },
+      {
+        es: 'la lámpara',
+        ko: '조명, 스탠드'
+      },
+      {
+        es: 'los cojines',
+        ko: '쿠션'
+      },
+      {
+        es: 'los almohadones',
+        ko: '큰 쿠션, 방석'
+      },
+      {
+        es: 'la mesita de noche',
+        ko: '협탁, 침대 옆 탁자'
+      },
+      {
+        es: 'la estantería',
+        ko: '책장, 선반장'
+      },
+      {
+        es: 'el escritorio',
+        ko: '책상'
+      },
+      {
+        es: 'el cuadro',
+        ko: '그림 액자, 사진 액자'
+      },
+      {
+        es: 'los platos',
+        ko: '접시'
+      },
+      {
+        es: 'los vasos',
+        ko: '컵, 유리잔'
+      },
+      {
+        es: 'las tazas',
+        ko: '머그잔'
+      },
+      {
+        es: 'la maceta',
+        ko: '화분'
+      },
+      {
+        es: 'montar',
+        ko: '조립하다 (1인칭: monto)'
+      },
+      {
+        es: 'montar los muebles',
+        ko: '가구를 조립하다'
+      },
+      {
+        es: 'decorar',
+        ko: '꾸미다, 장식하다 (1인칭: decoro)'
+      },
+      {
+        es: 'gustar',
+        ko: '좋아하다 (Me gusta ~)'
+      },
+      {
+        es: 'comprar + 물건 + para + 명사',
+        ko: '~을 위한 ~을 사다'
+      },
+      {
+        es: 'comprar + 물건 + para + 동사원형',
+        ko: '~하기 위해 ~을 사다'
+      },
+      {
+        es: 'Compro una estantería para mis libros.',
+        ko: '책을 위해 책장을 산다.'
+      },
+      {
+        es: 'Compro una lámpara para el salón.',
+        ko: '거실용 스탠드를 산다.'
+      },
+      {
+        es: 'Compro platos y vasos para la cocina.',
+        ko: '주방용 접시와 컵을 산다.'
+      },
+      {
+        es: 'Me gusta comprar lámparas y cojines.',
+        ko: '나는 스탠드와 쿠션 사는 걸 좋아한다.'
+      },
+      {
+        es: 'Monto los muebles cuando llego a casa.',
+        ko: '나는 집에 도착하면 가구를 조립한다.'
+      },
+      {
+        es: 'Después decoro mi casa.',
+        ko: '그러고 나서 나는 집을 꾸민다.'
+      },
+      {
+        es: 'Cuando voy a IKEA, compro muebles.',
+        ko: '나는 이케아에 가면 가구를 산다.'
+      },
+      {
+        es: '¿Qué compras en IKEA?',
+        ko: '너는 이케아에서 뭘 사?'
+      },
+      {
+        es: '¿Qué vas a comprar en IKEA?',
+        ko: '너는 이케아에서 뭘 살 거야?'
+      }
+    ]
+  },
+  {
+    id: 'day50',
+    day: 50,
+    theme: 'health',
+    emoji: '🤒',
+    title: '아플 때',
+    subtitle: '¿Qué hago cuando estoy enfermo?',
+    cards: [
+      {
+        es: 'enfermo',
+        ko: '아픈, 병든'
+      },
+      {
+        es: 'el dolor',
+        ko: '통증, 아픔'
+      },
+      {
+        es: 'la garganta',
+        ko: '목, 목구멍'
+      },
+      {
+        es: 'la cabeza',
+        ko: '머리'
+      },
+      {
+        es: 'el estómago',
+        ko: '배, 위'
+      },
+      {
+        es: 'los ojos',
+        ko: '눈'
+      },
+      {
+        es: 'las piernas',
+        ko: '다리'
+      },
+      {
+        es: 'la sopa',
+        ko: '수프, 국'
+      },
+      {
+        es: 'los medicamentos',
+        ko: '약'
+      },
+      {
+        es: 'doler',
+        ko: '아프다 (me duele / me duelen)'
+      },
+      {
+        es: 'estornudar',
+        ko: '재채기하다'
+      },
+      {
+        es: 'vomitar',
+        ko: '토하다'
+      },
+      {
+        es: 'el reposo',
+        ko: '휴식, 안정'
+      },
+      {
+        es: 'recuperarse',
+        ko: '회복하다 (1인칭: me recupero)'
+      },
+      {
+        es: 'ir al médico',
+        ko: '병원에 가다, 의사에게 가다'
+      },
+      {
+        es: 'guardar cama',
+        ko: '몸져눕다, 앓아눕다'
+      },
+      {
+        es: 'tomar medicamentos',
+        ko: '약을 먹다'
+      },
+      {
+        es: 'me duele + 단수 신체부위',
+        ko: '나는 ~이 아프다 (한 곳)'
+      },
+      {
+        es: 'me duelen + 복수 신체부위',
+        ko: '나는 ~이 아프다 (여러 곳)'
+      },
+      {
+        es: 'Me duele la garganta.',
+        ko: '나는 목이 아프다.'
+      },
+      {
+        es: 'Me duele la cabeza.',
+        ko: '나는 머리가 아프다.'
+      },
+      {
+        es: 'Me duele el estómago.',
+        ko: '나는 배가 아프다.'
+      },
+      {
+        es: 'Me duelen los ojos.',
+        ko: '나는 눈이 아프다.'
+      },
+      {
+        es: 'Me duelen las piernas.',
+        ko: '나는 다리가 아프다.'
+      },
+      {
+        es: 'Estoy enfermo.',
+        ko: '나는 아프다.'
+      },
+      {
+        es: 'Descanso mucho y me quedo en casa.',
+        ko: '나는 많이 쉬고 집에 있는다.'
+      },
+      {
+        es: 'Bebo mucha agua y duermo bastante.',
+        ko: '나는 물을 많이 마시고 충분히 잔다.'
+      },
+      {
+        es: 'Si tengo fiebre, voy al médico.',
+        ko: '열이 나면 나는 병원에 간다.'
+      },
+      {
+        es: 'Tomo sopa caliente para recuperarme.',
+        ko: '나는 회복하려고 따뜻한 수프를 먹는다.'
+      },
+      {
+        es: 'Cuando estoy enfermo, descanso mucho.',
+        ko: '나는 아플 때 많이 쉰다.'
+      },
+      {
+        es: '¿Qué haces cuando estás enfermo?',
+        ko: '너는 아플 때 뭘 해?'
+      },
+      {
+        es: '¿Qué hiciste cuando estabas enfermo?',
+        ko: '너는 아팠을 때 뭘 했어? (과거)'
+      }
+    ]
+  },
+  {
+    id: 'day51',
+    day: 51,
+    theme: 'health',
+    emoji: '💊',
+    title: '약국 쇼핑',
+    subtitle: '¿Qué compro en la farmacia?',
+    cards: [
+      {
+        es: 'el medicamento para el resfriado',
+        ko: '감기약'
+      },
+      {
+        es: 'el antipirético',
+        ko: '해열제'
+      },
+      {
+        es: 'el analgésico',
+        ko: '진통제'
+      },
+      {
+        es: 'el antiinflamatorio',
+        ko: '소염제'
+      },
+      {
+        es: 'el jarabe para la tos',
+        ko: '기침 시럽'
+      },
+      {
+        es: 'las pastillas para la garganta',
+        ko: '목 사탕, 인후정'
+      },
+      {
+        es: 'el descongestionante nasal',
+        ko: '코막힘 완화제'
+      },
+      {
+        es: 'el spray nasal',
+        ko: '코 스프레이'
+      },
+      {
+        es: 'el antiácido',
+        ko: '제산제'
+      },
+      {
+        es: 'el medicamento para la diarrea',
+        ko: '지사제'
+      },
+      {
+        es: 'las vitaminas',
+        ko: '비타민'
+      },
+      {
+        es: 'los productos de higiene',
+        ko: '위생용품'
+      },
+      {
+        es: 'la venda',
+        ko: '붕대'
+      },
+      {
+        es: 'el alcohol',
+        ko: '소독용 알코올'
+      },
+      {
+        es: 'el desinfectante',
+        ko: '소독제'
+      },
+      {
+        es: 'el termómetro',
+        ko: '체온계'
+      },
+      {
+        es: 'la mascarilla',
+        ko: '마스크'
+      },
+      {
+        es: 'el repelente de mosquitos',
+        ko: '모기 기피제'
+      },
+      {
+        es: 'la pasta de dientes',
+        ko: '치약'
+      },
+      {
+        es: 'el hilo dental',
+        ko: '치실'
+      },
+      {
+        es: 'el bálsamo labial',
+        ko: '립밤'
+      },
+      {
+        es: 'el botiquín',
+        ko: '구급상자'
+      },
+      {
+        es: 'ponerse una tirita',
+        ko: '반창고를 붙이다 (me pongo)'
+      },
+      {
+        es: 'aplicarse una pomada',
+        ko: '연고를 바르다 (me aplico)'
+      },
+      {
+        es: 'medirse la temperatura',
+        ko: '체온을 재다 (me mido)'
+      },
+      {
+        es: 'desinfectar una herida',
+        ko: '상처를 소독하다'
+      },
+      {
+        es: 'me/te/se + 동사 (재귀)',
+        ko: '자기 자신에게 ~하다'
+      },
+      {
+        es: 'Me pongo una tirita.',
+        ko: '나는 반창고를 붙인다.'
+      },
+      {
+        es: 'Me aplico una pomada.',
+        ko: '나는 연고를 바른다.'
+      },
+      {
+        es: 'Me mido la temperatura.',
+        ko: '나는 체온을 잰다.'
+      },
+      {
+        es: 'Si tengo fiebre, compro un antipirético.',
+        ko: '열이 나면 해열제를 산다.'
+      },
+      {
+        es: 'Si me duele la cabeza, compro un analgésico.',
+        ko: '머리가 아프면 진통제를 산다.'
+      },
+      {
+        es: 'En verano compro repelente de mosquitos.',
+        ko: '여름에는 모기 기피제를 산다.'
+      },
+      {
+        es: 'Para el botiquín de casa, siempre tengo tiritas y vendas.',
+        ko: '집 구급상자용으로 항상 반창고와 붕대를 둔다.'
+      },
+      {
+        es: '¿Qué compras en la farmacia?',
+        ko: '너는 약국에서 뭘 사?'
+      },
+      {
+        es: '¿Qué comprarás en la farmacia?',
+        ko: '너는 약국에서 뭘 살 거야? (미래)'
+      }
+    ]
+  },
+  {
+    id: 'day52',
+    day: 52,
+    theme: 'shopping',
+    emoji: '📚',
+    title: '서점 쇼핑',
+    subtitle: '¿Qué compro en la librería?',
+    cards: [
+      {
+        es: 'la librería',
+        ko: '서점'
+      },
+      {
+        es: 'la novela',
+        ko: '소설'
+      },
+      {
+        es: 'el cómic',
+        ko: '만화책'
+      },
+      {
+        es: 'el diccionario',
+        ko: '사전'
+      },
+      {
+        es: 'el libro de texto',
+        ko: '교재, 교과서'
+      },
+      {
+        es: 'el libro de español',
+        ko: '스페인어 교재'
+      },
+      {
+        es: 'el libro de cocina',
+        ko: '요리책'
+      },
+      {
+        es: 'la revista',
+        ko: '잡지'
+      },
+      {
+        es: 'el periódico',
+        ko: '신문'
+      },
+      {
+        es: 'el marcador',
+        ko: '형광펜, 마커'
+      },
+      {
+        es: 'la carpeta',
+        ko: '파일, 폴더'
+      },
+      {
+        es: 'el estuche',
+        ko: '필통'
+      },
+      {
+        es: 'las pegatinas',
+        ko: '스티커'
+      },
+      {
+        es: 'los post-it',
+        ko: '포스트잇'
+      },
+      {
+        es: 'los apuntes',
+        ko: '노트 필기'
+      },
+      {
+        es: 'el idioma',
+        ko: '언어'
+      },
+      {
+        es: 'la frase',
+        ko: '문장'
+      },
+      {
+        es: 'leer',
+        ko: '읽다, 독서하다 (1인칭: leo)'
+      },
+      {
+        es: 'estudiar idiomas',
+        ko: '언어를 공부하다'
+      },
+      {
+        es: 'escribir',
+        ko: '쓰다 (1인칭: escribo)'
+      },
+      {
+        es: 'subrayar',
+        ko: '밑줄을 긋다 (1인칭: subrayo)'
+      },
+      {
+        es: 'organizar mis apuntes',
+        ko: '내 노트를 정리하다'
+      },
+      {
+        es: 'cuando + 현재형, 현재형',
+        ko: '~할 때 ~한다 (습관 표현)'
+      },
+      {
+        es: 'cuando + 접속법 현재',
+        ko: '~할 때 (미래·불확실)'
+      },
+      {
+        es: 'Cuando voy a la librería, compro libros.',
+        ko: '서점에 가면 나는 책을 산다. (습관)'
+      },
+      {
+        es: 'Cuando estudio, uso marcadores.',
+        ko: '나는 공부할 때 형광펜을 쓴다.'
+      },
+      {
+        es: 'Cuando leo, subrayo las frases importantes.',
+        ko: '나는 읽을 때 중요한 문장에 밑줄을 긋는다.'
+      },
+      {
+        es: 'Cuando tenga tiempo, voy a estudiar.',
+        ko: '시간이 생기면 공부할 거야. (접속법 tenga)'
+      },
+      {
+        es: 'Me gusta comprar novelas y libros de español.',
+        ko: '나는 소설과 스페인어 책 사는 걸 좋아한다.'
+      },
+      {
+        es: 'Me encanta leer y estudiar idiomas.',
+        ko: '나는 독서와 언어 공부를 정말 좋아한다.'
+      },
+      {
+        es: 'Compro post-it para organizar mis apuntes.',
+        ko: '노트를 정리하려고 포스트잇을 산다.'
+      },
+      {
+        es: '¿Qué compras en la librería?',
+        ko: '너는 서점에서 뭘 사?'
+      },
+      {
+        es: '¿Qué has comprado en la librería?',
+        ko: '너는 서점에서 뭘 샀어? (현재완료)'
+      }
+    ]
+  },
+  {
+    id: 'day53',
+    day: 53,
+    theme: 'leisure',
+    emoji: '🎧',
+    title: '음악 감상',
+    subtitle: '¿Qué música escucho?',
+    cards: [
+      {
+        es: 'la música latina',
+        ko: '라틴 음악'
+      },
+      {
+        es: 'la salsa',
+        ko: '살사'
+      },
+      {
+        es: 'la bachata',
+        ko: '바차타'
+      },
+      {
+        es: 'el merengue',
+        ko: '메렝게'
+      },
+      {
+        es: 'el flamenco',
+        ko: '플라멩코'
+      },
+      {
+        es: 'la música romántica',
+        ko: '로맨틱 음악'
+      },
+      {
+        es: 'la música relajante',
+        ko: '힐링 음악, 편안한 음악'
+      },
+      {
+        es: 'el ritmo',
+        ko: '리듬, 박자'
+      },
+      {
+        es: 'la banda',
+        ko: '밴드, 그룹'
+      },
+      {
+        es: 'la canción',
+        ko: '노래, 곡'
+      },
+      {
+        es: 'el álbum',
+        ko: '앨범'
+      },
+      {
+        es: 'la lista de reproducción',
+        ko: '재생목록, 플레이리스트'
+      },
+      {
+        es: 'cantar',
+        ko: '노래하다 (1인칭: canto)'
+      },
+      {
+        es: 'poner música',
+        ko: '음악을 틀다 (1인칭: pongo)'
+      },
+      {
+        es: 'descubrir música nueva',
+        ko: '새로운 음악을 발견하다'
+      },
+      {
+        es: 'mientras + 동사',
+        ko: '~하는 동안, ~하면서'
+      },
+      {
+        es: 'Escucho música todos los días.',
+        ko: '나는 매일 음악을 듣는다.'
+      },
+      {
+        es: 'Escucho K-pop mientras hago ejercicio.',
+        ko: '나는 운동하면서 케이팝을 듣는다.'
+      },
+      {
+        es: 'Escucho música mientras cocino.',
+        ko: '나는 요리하면서 음악을 듣는다.'
+      },
+      {
+        es: 'Canto mientras me ducho.',
+        ko: '나는 샤워하면서 노래한다.'
+      },
+      {
+        es: 'Mientras estudio, pongo música.',
+        ko: '나는 공부하면서 음악을 튼다.'
+      },
+      {
+        es: 'Me gusta el reguetón porque tiene mucho ritmo.',
+        ko: '나는 리듬이 강해서 레게톤을 좋아한다.'
+      },
+      {
+        es: 'Escucho música relajante para relajarme.',
+        ko: '나는 쉬려고 편안한 음악을 듣는다.'
+      },
+      {
+        es: 'Normalmente uso Spotify para escuchar mis canciones favoritas.',
+        ko: '나는 보통 좋아하는 노래를 들으려고 스포티파이를 쓴다.'
+      },
+      {
+        es: '¿Qué música escuchas?',
+        ko: '너는 어떤 음악을 들어?'
+      },
+      {
+        es: '¿Qué música escucharás?',
+        ko: '너는 어떤 음악을 들을 거야? (미래)'
+      }
+    ]
+  },
+  {
+    id: 'day54',
+    day: 54,
+    theme: 'shopping',
+    emoji: '🍎',
+    title: '과일가게',
+    subtitle: '¿Qué compro en la frutería?',
+    cards: [
+      {
+        es: 'la frutería',
+        ko: '과일가게'
+      },
+      {
+        es: 'la fruta',
+        ko: '과일'
+      },
+      {
+        es: 'la manzana',
+        ko: '사과'
+      },
+      {
+        es: 'el plátano',
+        ko: '바나나'
+      },
+      {
+        es: 'la naranja',
+        ko: '오렌지'
+      },
+      {
+        es: 'la mandarina',
+        ko: '귤'
+      },
+      {
+        es: 'la pera',
+        ko: '배'
+      },
+      {
+        es: 'las uvas',
+        ko: '포도'
+      },
+      {
+        es: 'la fresa',
+        ko: '딸기'
+      },
+      {
+        es: 'el arándano',
+        ko: '블루베리'
+      },
+      {
+        es: 'la frambuesa',
+        ko: '라즈베리'
+      },
+      {
+        es: 'la sandía',
+        ko: '수박'
+      },
+      {
+        es: 'el melón',
+        ko: '멜론'
+      },
+      {
+        es: 'el melocotón',
+        ko: '복숭아'
+      },
+      {
+        es: 'la ciruela',
+        ko: '자두'
+      },
+      {
+        es: 'el mango',
+        ko: '망고'
+      },
+      {
+        es: 'la piña',
+        ko: '파인애플 (중남미: el ananá)'
+      },
+      {
+        es: 'el kiwi',
+        ko: '키위'
+      },
+      {
+        es: 'el aguacate',
+        ko: '아보카도 (중남미: la palta)'
+      },
+      {
+        es: 'el coco',
+        ko: '코코넛'
+      },
+      {
+        es: 'el limón',
+        ko: '레몬'
+      },
+      {
+        es: 'la lima',
+        ko: '라임'
+      },
+      {
+        es: 'la cereza',
+        ko: '체리'
+      },
+      {
+        es: 'pesar',
+        ko: '무게를 재다 (1인칭: peso)'
+      },
+      {
+        es: 'jugoso',
+        ko: '과즙이 많은'
+      },
+      {
+        es: 'maduro',
+        ko: '잘 익은'
+      },
+      {
+        es: 'verde',
+        ko: '덜 익은; 초록색의'
+      },
+      {
+        es: 'refrescante',
+        ko: '시원한, 상쾌한'
+      },
+      {
+        es: 'un kilo de manzanas',
+        ko: '사과 1킬로'
+      },
+      {
+        es: 'dos kilos de plátanos',
+        ko: '바나나 2킬로'
+      },
+      {
+        es: 'antes de + 동사원형',
+        ko: '~하기 전에'
+      },
+      {
+        es: 'Lavo la fruta antes de comerla.',
+        ko: '나는 먹기 전에 과일을 씻는다.'
+      },
+      {
+        es: 'Pelo la fruta antes de cortarla.',
+        ko: '나는 자르기 전에 과일 껍질을 벗긴다.'
+      },
+      {
+        es: 'Me lavo los dientes después de comer.',
+        ko: '나는 식사 후에 양치한다.'
+      },
+      {
+        es: 'Deme un kilo de manzanas, por favor.',
+        ko: '사과 1킬로 주세요.'
+      },
+      {
+        es: 'Esta sandía está dulce.',
+        ko: '이 수박은 달아요.'
+      },
+      {
+        es: '¿Cuánto cuesta?',
+        ko: '이거 얼마예요?'
+      },
+      {
+        es: 'Siempre intento elegir fruta fresca y madura.',
+        ko: '나는 항상 신선하고 잘 익은 과일을 고르려고 한다.'
+      },
+      {
+        es: 'En verano compro sandía porque es refrescante.',
+        ko: '여름에는 시원해서 수박을 산다.'
+      },
+      {
+        es: '¿Qué compras en la frutería?',
+        ko: '너는 과일가게에서 뭘 사?'
+      }
+    ]
+  }
+];

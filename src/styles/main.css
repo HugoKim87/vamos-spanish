@@ -1,0 +1,255 @@
+/* =========================================================
+   ¡Vamos! 디자인 시스템
+   - 토큰(색/간격/반경/그림자)을 CSS 변수로 중앙 관리
+   - 컴포넌트 스타일은 각 .vue의 <style scoped>에 둡니다
+   ========================================================= */
+
+:root {
+  /* 브랜드 */
+  --c-primary: #4f46e5;
+  --c-primary-dark: #4338ca;
+  --c-primary-soft: #eef2ff;
+  --c-accent: #fbbf24;
+
+  /* 텍스트 */
+  --c-text: #1e1b39;
+  --c-text-soft: #55527a;
+  --c-text-mute: #8b89a8;
+
+  /* 배경 · 경계 */
+  --c-bg: #f7f7fb;
+  --c-surface: #ffffff;
+  --c-surface-soft: #f2f3f9;
+  --c-border: #e6e6f0;
+
+  /* 상태 */
+  --c-success: #10b981;
+  --c-success-soft: #e7f8f1;
+  --c-success-ink: #047857;
+  --c-danger: #ef4444;
+  --c-danger-soft: #fdeced;
+  --c-danger-ink: #b91c1c;
+  --c-warn: #f59e0b;
+  --c-warn-soft: #fff7e6;
+  --c-warn-ink: #b45309;
+
+  /* 강조 · 하이라이트 */
+  --c-gold-soft: #fff6d9;
+  --c-gold: #ffe9a8;
+  --c-gold-ink: #92600a;
+  --c-highlight: #fde68a;
+
+  /* 카드 뒷면 · 은은한 면 */
+  --c-surface-tint: #eef0ff;
+  --c-surface-cream: #fffdf5;
+
+  /* 반경 */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --r-full: 999px;
+
+  /* 그림자 */
+  --sh-sm: 0 1px 3px rgba(30, 27, 57, .06), 0 1px 2px rgba(30, 27, 57, .04);
+  --sh-md: 0 6px 20px rgba(30, 27, 57, .09);
+  --sh-lg: 0 24px 60px rgba(30, 27, 57, .18);
+
+  /* 간격 스케일 */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  /* 레이아웃 */
+  --max-w: 1120px;
+  --header-h: 62px;
+
+  /* 모션 */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, 'Segoe UI', Roboto, sans-serif;
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+button { cursor: pointer; border: none; background: none; }
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+/* ---------- 공통 레이아웃 ---------- */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--sp-5);
+}
+@media (max-width: 640px) {
+  .container { padding: 0 var(--sp-4); }
+}
+
+.section {
+  padding: var(--sp-6) 0;
+}
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+  flex-wrap: wrap;
+}
+.section-title {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+.section-sub {
+  font-size: 14px;
+  color: var(--c-text-mute);
+  margin-top: 2px;
+}
+
+/* ---------- 공통 버튼 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 11px 20px;
+  border-radius: var(--r-full);
+  font-weight: 700;
+  font-size: 14px;
+  transition: background .16s var(--ease), transform .12s var(--ease),
+    border-color .16s var(--ease), color .16s var(--ease);
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--c-primary);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--c-primary-dark); }
+.btn-ghost {
+  background: var(--c-surface);
+  color: var(--c-text);
+  border: 1.5px solid var(--c-border);
+}
+.btn-ghost:hover { border-color: var(--c-primary); color: var(--c-primary); }
+.btn-soft {
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+}
+.btn-soft:hover { background: #e0e7ff; }
+.btn-lg { padding: 14px 26px; font-size: 15px; }
+.btn-sm { padding: 8px 14px; font-size: 13px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+/* ---------- 공통 카드 ---------- */
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+}
+
+/* ---------- 칩 ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: var(--r-full);
+  background: var(--c-surface-soft);
+  border: 1.5px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-soft);
+  transition: all .15s var(--ease);
+}
+.chip:hover { border-color: var(--c-primary); color: var(--c-primary); }
+.chip.is-active {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #fff;
+}
+.chip-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-full);
+  background: rgba(0, 0, 0, .07);
+  font-size: 11px;
+  font-weight: 800;
+}
+.chip.is-active .chip-count { background: rgba(255, 255, 255, .25); }
+
+/* ---------- 스크롤 영역 ---------- */
+.scroll-x {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  padding-bottom: var(--sp-2);
+  scrollbar-width: thin;
+}
+.scroll-x::-webkit-scrollbar { height: 5px; }
+.scroll-x::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+  border-radius: var(--r-full);
+}
+.scroll-x > * { flex-shrink: 0; }
+
+/* ---------- 학습 모드 공통 ---------- */
+/* 4개 모드가 같은 무대 폭을 쓰므로 전역에서 한 번만 정의 */
+.study-stage { margin: 0 auto; }
+.study-stage.w-card { max-width: 620px; }   /* 낱말카드 · 테스트 */
+.study-stage.w-quiz { max-width: 560px; }   /* 학습하기 */
+.study-stage.w-game { max-width: 720px; }   /* 카드 맞추기 */
+
+/* ---------- 유틸 ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.es-text { word-break: keep-all; }
+
+/* 페이지 전환 */
+.fade-enter-active, .fade-leave-active { transition: opacity .18s var(--ease); }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
