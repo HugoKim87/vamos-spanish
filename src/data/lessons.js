@@ -4694,5 +4694,227 @@ export const lessons = [
         ko: '너는 과일가게에서 뭘 사?'
       }
     ]
+  },
+  {
+    id: 'day55',
+    day: 55,
+    theme: 'shopping',
+    emoji: '💐',
+    title: '꽃집',
+    subtitle: '¿Qué compro en la floristería?',
+    cards: [
+      {
+        es: 'la floristería',
+        ko: '꽃집'
+      },
+      {
+        es: 'la flor',
+        ko: '꽃'
+      },
+      {
+        es: 'la rosa',
+        ko: '장미'
+      },
+      {
+        es: 'el tulipán',
+        ko: '튤립'
+      },
+      {
+        es: 'el girasol',
+        ko: '해바라기'
+      },
+      {
+        es: 'la margarita',
+        ko: '데이지'
+      },
+      {
+        es: 'la orquídea',
+        ko: '난초'
+      },
+      {
+        es: 'el clavel',
+        ko: '카네이션'
+      },
+      {
+        es: 'la hortensia',
+        ko: '수국'
+      },
+      {
+        es: 'la lavanda',
+        ko: '라벤더'
+      },
+      {
+        es: 'un ramo de flores',
+        ko: '꽃다발'
+      },
+      {
+        es: 'un ramo de rosas',
+        ko: '장미 꽃다발'
+      },
+      {
+        es: 'la planta',
+        ko: '식물'
+      },
+      {
+        es: 'la maceta',
+        ko: '화분 (용기)'
+      },
+      {
+        es: 'la planta de interior',
+        ko: '실내 식물'
+      },
+      {
+        es: 'el cactus',
+        ko: '선인장'
+      },
+      {
+        es: 'la suculenta',
+        ko: '다육식물'
+      },
+      {
+        es: 'el jarrón',
+        ko: '꽃병'
+      },
+      {
+        es: 'la tarjeta',
+        ko: '카드'
+      },
+      {
+        es: 'el papel de regalo',
+        ko: '포장지'
+      },
+      {
+        es: 'el lazo',
+        ko: '리본'
+      },
+      {
+        es: 'el regalo',
+        ko: '선물'
+      },
+      {
+        es: 'comprar',
+        ko: '사다 (1인칭: compro)'
+      },
+      {
+        es: 'regalar',
+        ko: '선물하다 (1인칭: regalo)'
+      },
+      {
+        es: 'recibir',
+        ko: '받다 (1인칭: recibo)'
+      },
+      {
+        es: 'decorar',
+        ko: '장식하다, 꾸미다 (1인칭: decoro)'
+      },
+      {
+        es: 'poner',
+        ko: '놓다, 꽂다 (1인칭: pongo)'
+      },
+      {
+        es: 'regar',
+        ko: '물을 주다 (불규칙, 1인칭: riego)'
+      },
+      {
+        es: 'cuidar',
+        ko: '돌보다 (1인칭: cuido)'
+      },
+      {
+        es: 'querer',
+        ko: '원하다, 바라다 (불규칙, 1인칭: quiero)'
+      },
+      {
+        es: 'rosas rojas',
+        ko: '빨간 장미'
+      },
+      {
+        es: 'rosas blancas',
+        ko: '흰 장미'
+      },
+      {
+        es: 'rosas amarillas',
+        ko: '노란 장미'
+      },
+      {
+        es: 'plantas en maceta',
+        ko: '화분에 심은 식물'
+      },
+      {
+        es: 'para + 동사원형',
+        ko: '~하기 위해'
+      },
+      {
+        es: 'para + 명사',
+        ko: '~를 위한, ~를 위해'
+      },
+      {
+        es: 'para vs por',
+        ko: 'para는 목적(~를 위해), por는 이유(~때문에)'
+      },
+      {
+        es: 'Es un regalo para mi familia.',
+        ko: '가족을 위한 선물이에요.'
+      },
+      {
+        es: 'Riego las plantas para cuidarlas bien.',
+        ko: '식물을 잘 돌보기 위해 물을 줘요.'
+      },
+      {
+        es: 'Compro rosas para decorar mi casa.',
+        ko: '집을 꾸미기 위해 장미를 사요.'
+      },
+      {
+        es: 'Quiero un ramo de flores, por favor.',
+        ko: '꽃다발 하나 주세요.'
+      },
+      {
+        es: 'Quiero comprar unas rosas para mi madre.',
+        ko: '어머니께 드릴 장미를 사고 싶어요.'
+      },
+      {
+        es: 'Es un regalo de cumpleaños.',
+        ko: '생일 선물이에요.'
+      },
+      {
+        es: 'Pongo las flores en un jarrón.',
+        ko: '나는 꽃을 꽃병에 꽂는다.'
+      },
+      {
+        es: 'Riego las plantas todos los días.',
+        ko: '나는 매일 식물에 물을 준다.'
+      },
+      {
+        es: 'Cuido las plantas.',
+        ko: '나는 식물을 돌본다.'
+      },
+      {
+        es: 'Me gustan los girasoles porque son muy bonitos.',
+        ko: '해바라기는 아주 예뻐서 좋아해요.'
+      },
+      {
+        es: 'Cuando voy a la floristería, compro flores y plantas.',
+        ko: '꽃집에 가면 나는 꽃과 식물을 산다.'
+      },
+      {
+        es: 'Me gustan las rosas, los tulipanes y los girasoles.',
+        ko: '나는 장미, 튤립, 해바라기를 좋아한다.'
+      },
+      {
+        es: 'A veces compro un ramo de flores para regalar a mi familia.',
+        ko: '가끔 가족에게 선물하려고 꽃다발을 산다.'
+      },
+      {
+        es: 'También compro plantas para decorar mi casa.',
+        ko: '집을 꾸미려고 식물도 산다.'
+      },
+      {
+        es: '¿Qué compras en la floristería?',
+        ko: '너는 꽃집에서 뭘 사?'
+      },
+      {
+        es: '¿Qué compraste en la floristería?',
+        ko: '너는 꽃집에서 뭘 샀어?'
+      }
+    ]
   }
 ];
