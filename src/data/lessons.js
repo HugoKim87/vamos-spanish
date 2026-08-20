@@ -4916,5 +4916,243 @@ export const lessons = [
         ko: '너는 꽃집에서 뭘 샀어?'
       }
     ]
+  },
+  {
+    id: 'day56',
+    day: 56,
+    theme: 'health',
+    emoji: '🥗',
+    title: '다이어트',
+    subtitle: '¿Qué hago para adelgazar?',
+    cards: [
+      {
+        es: 'adelgazar',
+        ko: '살을 빼다 (1인칭: adelgazo)'
+      },
+      {
+        es: 'bajar de peso',
+        ko: '체중을 줄이다 (1인칭: bajo)'
+      },
+      {
+        es: 'perder grasa',
+        ko: '지방을 빼다 (1인칭: pierdo)'
+      },
+      {
+        es: 'ganar músculo',
+        ko: '근육을 늘리다 (1인칭: gano)'
+      },
+      {
+        es: 'mantener un peso saludable',
+        ko: '건강한 체중을 유지하다 (1인칭: mantengo)'
+      },
+      {
+        es: 'el peso',
+        ko: '체중, 무게'
+      },
+      {
+        es: 'la grasa',
+        ko: '지방'
+      },
+      {
+        es: 'el músculo',
+        ko: '근육'
+      },
+      {
+        es: 'un estilo de vida saludable',
+        ko: '건강한 생활 방식'
+      },
+      {
+        es: 'caminar',
+        ko: '걷다 (1인칭: camino)'
+      },
+      {
+        es: 'correr',
+        ko: '달리다 (1인칭: corro)'
+      },
+      {
+        es: 'nadar',
+        ko: '수영하다 (1인칭: nado)'
+      },
+      {
+        es: 'montar en bicicleta',
+        ko: '자전거를 타다 (1인칭: monto)'
+      },
+      {
+        es: 'hacer senderismo',
+        ko: '등산하다, 트레킹하다'
+      },
+      {
+        es: 'comer sano',
+        ko: '건강하게 먹다'
+      },
+      {
+        es: 'las verduras',
+        ko: '채소'
+      },
+      {
+        es: 'las proteínas',
+        ko: '단백질'
+      },
+      {
+        es: 'los carbohidratos',
+        ko: '탄수화물'
+      },
+      {
+        es: 'el azúcar',
+        ko: '설탕'
+      },
+      {
+        es: 'los dulces',
+        ko: '단것, 과자류'
+      },
+      {
+        es: 'los refrescos',
+        ko: '탄산음료'
+      },
+      {
+        es: 'la comida rápida',
+        ko: '패스트푸드'
+      },
+      {
+        es: 'la comida basura',
+        ko: '정크푸드 (basura = 쓰레기)'
+      },
+      {
+        es: 'evitar',
+        ko: '피하다 (1인칭: evito)'
+      },
+      {
+        es: 'reducir',
+        ko: '줄이다 (불규칙, 1인칭: reduzco)'
+      },
+      {
+        es: 'controlar',
+        ko: '조절하다, 관리하다 (1인칭: controlo)'
+      },
+      {
+        es: 'intentar',
+        ko: '시도하다, ~하려고 하다 (1인칭: intento)'
+      },
+      {
+        es: 'picar entre horas',
+        ko: '끼니 사이에 군것질하다 (1인칭: pico)'
+      },
+      {
+        es: 'descansar',
+        ko: '쉬다 (1인칭: descanso)'
+      },
+      {
+        es: 'controlar las porciones',
+        ko: '양(1인분)을 조절하다'
+      },
+      {
+        es: 'reducir el azúcar',
+        ko: '설탕을 줄이다'
+      },
+      {
+        es: 'reducir los carbohidratos',
+        ko: '탄수화물을 줄이다'
+      },
+      {
+        es: 'evitar la comida rápida',
+        ko: '패스트푸드를 피하다'
+      },
+      {
+        es: 'evitar los dulces',
+        ko: '단것을 피하다'
+      },
+      {
+        es: 'comer más verduras',
+        ko: '채소를 더 먹다'
+      },
+      {
+        es: 'beber mucha agua',
+        ko: '물을 많이 마시다'
+      },
+      {
+        es: 'cocinar en casa',
+        ko: '집에서 요리하다'
+      },
+      {
+        es: 'no comer por la noche',
+        ko: '밤에 먹지 않다'
+      },
+      {
+        es: 'dormir bien',
+        ko: '잘 자다 (1인칭: duermo)'
+      },
+      {
+        es: '횟수 vez/veces + a + 기간',
+        ko: '~기간에 몇 번 (빈도 표현)'
+      },
+      {
+        es: 'una vez al día',
+        ko: '하루에 한 번'
+      },
+      {
+        es: 'dos veces al día',
+        ko: '하루에 두 번'
+      },
+      {
+        es: 'tres veces a la semana',
+        ko: '일주일에 세 번'
+      },
+      {
+        es: 'todas las semanas',
+        ko: '매주 (todo + 복수형)'
+      },
+      {
+        es: 'Hago ejercicio cinco veces a la semana.',
+        ko: '나는 일주일에 다섯 번 운동해요.'
+      },
+      {
+        es: 'Como tres veces al día.',
+        ko: '나는 하루에 세 번 식사해요.'
+      },
+      {
+        es: 'Hago yoga una vez al día.',
+        ko: '나는 하루에 한 번 요가해요.'
+      },
+      {
+        es: 'Estoy intentando bajar de peso.',
+        ko: '나는 체중을 줄이려고 하는 중이에요.'
+      },
+      {
+        es: 'Bebo dos litros de agua al día.',
+        ko: '나는 하루에 물 2리터를 마셔요.'
+      },
+      {
+        es: 'Como verduras y fruta.',
+        ko: '나는 채소와 과일을 먹어요.'
+      },
+      {
+        es: 'Evito la comida rápida y los dulces.',
+        ko: '나는 패스트푸드와 단것을 피해요.'
+      },
+      {
+        es: 'Intento dormir bien.',
+        ko: '나는 잘 자려고 노력해요.'
+      },
+      {
+        es: 'Para adelgazar, hago ejercicio y camino todos los días.',
+        ko: '살을 빼기 위해 나는 운동하고 매일 걸어요.'
+      },
+      {
+        es: 'Como más verduras, fruta y proteínas.',
+        ko: '나는 채소, 과일, 단백질을 더 먹어요.'
+      },
+      {
+        es: 'También intento no comer por la noche.',
+        ko: '밤에 먹지 않으려고도 노력해요.'
+      },
+      {
+        es: '¿Qué haces para adelgazar?',
+        ko: '너는 살을 빼려고 뭘 해?'
+      },
+      {
+        es: '¿Qué harás para adelgazar?',
+        ko: '너는 살을 빼려고 뭘 할 거야?'
+      }
+    ]
   }
 ];
