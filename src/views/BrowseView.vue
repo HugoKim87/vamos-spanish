@@ -10,15 +10,22 @@ const PAGE = 150; // 한 번에 그릴 카드 수 — 1,000장을 한꺼번에 �
 const vocab = useVocabularyStore();
 const progress = useProgressStore();
 
-/** 검색·필터 결과 */
+/** 검색·필터 결과 (최신 Day가 먼저 오도록 정렬) */
 const results = computed(() => {
   const base = vocab.buildSet({
     query: vocab.searchQuery,
     theme: vocab.searchTheme || undefined,
     types: vocab.searchTypes.length ? vocab.searchTypes : undefined,
   });
-  if (!vocab.searchHardOnly) return base;
-  return base.filter(c => progress.markOf(c.uid) === 'hard');
+  const filtered = vocab.searchHardOnly
+    ? base.filter(c => progress.markOf(c.uid) === 'hard')
+    : base;
+
+  // ⚠️ 자르기(slice)보다 정렬이 먼저여야 한다.
+  //    원본은 Day 1부터 담겨 있어서, 먼저 자르면 앞쪽 오래된 Day만 남고
+  //    최신 Day는 "더 보기"를 여러 번 눌러야 나온다.
+  //    sort는 안정 정렬이라 같은 Day 안에서는 원래 카드 순서가 유지된다.
+  return [...filtered].sort((a, b) => b.day - a.day);
 });
 
 /** 화면에 실제로 그리는 개수 (더 보기로 늘어남) */
