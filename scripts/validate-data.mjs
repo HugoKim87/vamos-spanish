@@ -7,7 +7,7 @@
 import { lessons } from '../src/data/lessons.js';
 import { THEMES, CARD_TYPES, classifyCard } from '../src/data/taxonomy.js';
 import { conjugatePresent } from '../src/data/conjugation.js';
-import { INFINITIVE_RE } from '../src/data/verbForms.js';
+import { isInfinitive } from '../src/data/verbForms.js';
 
 /** 분류에 쓸 활용형 사전 — 앱(vocabulary 스토어)과 같은 방식으로 만든다 */
 function buildVerbForms(lessons) {
@@ -15,7 +15,7 @@ function buildVerbForms(lessons) {
   for (const l of lessons) {
     for (const c of l.cards) {
       const es = (c.es || '').trim().toLowerCase();
-      if (!INFINITIVE_RE.test(es)) continue;
+      if (!isInfinitive(es)) continue;
       const conj = conjugatePresent(es);
       if (!conj) continue;
       for (const f of Object.values(conj.forms)) f.split(/\s+/).forEach(w => set.add(w));

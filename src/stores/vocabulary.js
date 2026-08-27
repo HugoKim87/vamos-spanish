@@ -6,7 +6,7 @@ import {
   classifyCard, resolveTheme,
 } from '@/data/taxonomy.js';
 import { conjugatePresent, practicePersons } from '@/data/conjugation.js';
-import { INFINITIVE_RE } from '@/data/verbForms.js';
+import { isInfinitive } from '@/data/verbForms.js';
 
 /**
  * 어휘 스토어 — 원본 lessons.js를 읽어 모든 파생 데이터를 계산합니다.
@@ -29,7 +29,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     for (const l of rawLessons) {
       for (const c of l.cards) {
         const es = (c.es || '').trim().toLowerCase();
-        if (!INFINITIVE_RE.test(es)) continue;
+        if (!isInfinitive(es)) continue;
         const conj = conjugatePresent(es);
         if (!conj) continue;
         for (const form of Object.values(conj.forms)) {

@@ -1,4 +1,7 @@
-import { EXTRA_FORMS, NOT_VERBS, AMBIGUOUS, INFINITIVE_RE, normalizeToken } from './verbForms.js';
+import {
+  EXTRA_FORMS, NOT_VERBS, AMBIGUOUS,
+  INFINITIVE_RE, isInfinitive, normalizeToken,
+} from './verbForms.js';
 
 /**
  * 분류 체계 (Taxonomy)
@@ -122,11 +125,33 @@ const PREPOSITIONS = new Set([
 const ARTICLE_RE = /^(el|la|los|las|un|una|unos|unas)\s+/i;
 
 /**
- * 뜻(한국어)으로 형용사·부사를 알아본다.
- * 스페인어만 봐서는 명사와 형용사가 잘 구분되지 않아 뜻 쪽 어미를 본다.
- * 예: '잘 익은', '시원한, 상쾌한', '간단한'
+ * 품사는 뜻(한국어)의 어미로 판별한다.
+ * 스페인어 철자만으로는 명사(ramen)와 형용사(amargo)를 구분할 수 없기 때문이다.
+ *
+ * 괄호 안 설명과 두 번째 뜻은 떼어내고 첫 번째 뜻만 본다.
+ *   '건강한 (남)'          → '건강한'
+ *   '덜 익은; 초록색의'     → '덜 익은'
+ *   '시원한, 상쾌한'        → '시원한'
  */
-const ADJ_KO_RE = /(은|는|한|운|든|린|픈)$|^(아주|매우|너무)\s/;
+function firstGloss(ko) {
+  return (ko || '')
+    .replace(/[(（].*?[)）]/g, '')   // 괄호 설명 제거
+    .split(/[,;/·]/)[0]              // 첫 번째 뜻만
+    .trim();
+}
+
+/**
+ * 관형형 어미 — 명사를 꾸미는 꼴이면 형용사다.
+ * 짠 · 신 · 쓴 · 질긴 · 달콤한 · 매운 · 재미있는 · 기쁜 …
+ * (라면·수건처럼 ㄴ으로 끝나는 명사와 섞이지 않도록 어미를 열거한다)
+ */
+const ADNOMINAL_RE = /(은|는|한|운|린|픈|쁜|든|긴|신|쓴|짠|단|큰|찬|흰|먼|진|난|온)$/;
+
+/** 부사 — 일찍 · 늦게 · 천천히 */
+const ADVERB_RE = /(일찍|빨리|자주|가끔|항상|먼저)$|[게히]$/;
+
+/** 용언(동사·형용사)의 사전형 어미 */
+const PREDICATE_RE = /다$/;
 
 /**
  * 문장 안에 "진짜 동사"가 있는지 판별.
@@ -186,31 +211,51 @@ export function classifyCard(card, verbForms = new Set()) {
 
   const tokens = es.split(/\s+/).filter(Boolean);
 
-  // 2) 동사원형 한 단어
-  if (tokens.length === 1 && INFINITIVE_RE.test(normalizeToken(es))) return 'verb';
+  /* ---------- 한 단어 ---------- */
+  if (tokens.length === 1) {
+    const word = normalizeToken(es);
+    const gloss = firstGloss(ko);
 
-  if (tokens.length >= 2) {
-    // 3-a) 동사가 들어간 조합
-    if (containsVerb(es, verbForms)) return 'phrase';
-    // 3-b) 마침표로 끝나는 완성 문장은 통째로 쓰는 말
-    //      ('El ascensor baja.'처럼 명사·동사 겸용 단어가 서술어인 경우를 잡는다)
-    if (/[.]\s*$/.test(es)) return 'phrase';
-    // 3-c) 인사말 등 관용 표현
-    if (/^(gracias|muchas gracias|muchisimas gracias|hola|adios|buenos|buenas|perdon|lo siento)/i
-      .test(normalizeToken(es))) return 'phrase';
-    // 3-d) 전치사로 시작하는 구
-    if (startsWithPreposition(es)) return 'phrase';
-    // 3-e) 의문·감탄으로 통째로 외우는 말
-    if (/[¿?¡!]/.test(es)) return 'phrase';
+    // 동사원형 (freír, ir 포함)
+    if (isInfinitive(word)) return 'verb';
+    // 활용형·조건법 등 동사 형태 (subo, hay, hablaría)
+    if (verbForms.has(word) || EXTRA_FORMS.has(word)) return 'verb';
+    if (/(1인칭|조건법)/.test(ko)) return 'verb';
+
+    // 전치사·접속사 한 단어 (entre → ~사이에) — 통째로 쓰는 말이라 표현으로 둔다
+    if (PREPOSITIONS.has(word)) return 'phrase';
+
+    // 부사
+    if (ADVERB_RE.test(gloss)) return 'adj';
+    // 관형형이면 형용사 (짠, 쓴, 매운, 달콤한 …)
+    if (ADNOMINAL_RE.test(gloss)) return 'adj';
+    // '맛있다'처럼 사전형으로 적힌 형용사 — 동사원형이 아니면 형용사로 본다
+    if (PREDICATE_RE.test(gloss)) return 'adj';
+
+    return 'noun';
   }
 
-  // 4) 꾸미는 말 한 단어
-  if (tokens.length === 1 && !ARTICLE_RE.test(es) && ADJ_KO_RE.test(ko)) return 'adj';
+  /* ---------- 두 단어 이상 ---------- */
+  // 동사가 들어간 조합
+  if (containsVerb(es, verbForms)) return 'phrase';
+  // 마침표로 끝나는 완성 문장
+  if (/[.]\s*$/.test(es)) return 'phrase';
+  // 인사말 등 관용 표현
+  if (/^(gracias|muchas gracias|muchisimas gracias|hola|adios|buenos|buenas|perdon|lo siento)/i
+    .test(normalizeToken(es))) return 'phrase';
+  // 전치사로 시작하는 구
+  if (startsWithPreposition(es)) return 'phrase';
+  // 의문·감탄으로 통째로 외우는 말
+  if (/[¿?¡!]/.test(es)) return 'phrase';
 
-  // 5) 나머지는 명사 (단일 명사 · 관사+명사 · 명사구)
+  // 여러 단어짜리 형용사구 (잘 익은, 과즙이 많은)
+  // 단, 관사로 시작하면 명사다 — '계단(las escaleras)', '은(la plata)'처럼
+  // 뜻의 끝 글자가 관형형 어미와 겹쳐 형용사로 오인되는 것을 막는다.
+  if (!ARTICLE_RE.test(es) && ADNOMINAL_RE.test(firstGloss(ko))) return 'adj';
+
+  // 나머지는 명사 (la reserva, el papel de regalo, la comida española)
   return 'noun';
 }
-
 
 /** 레슨의 theme 키가 유효한지 확인 (없으면 basics로 폴백) */
 export function resolveTheme(themeKey) {

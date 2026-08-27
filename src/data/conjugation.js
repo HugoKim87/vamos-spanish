@@ -46,6 +46,14 @@ const BOOT = ['yo', 'tu', 'el', 'ellos'];
  */
 export const IRREGULARS = {
   ser: { full: { yo: 'soy', tu: 'eres', el: 'es', nosotros: 'somos', vosotros: 'sois', ellos: 'son' } },
+  ir: { full: { yo: 'voy', tu: 'vas', el: 'va', nosotros: 'vamos', vosotros: 'vais', ellos: 'van' } },
+  // freír: e→i 어간 변화 + í에 강세 (freímos·freís는 어간이 그대로)
+  'freír': {
+    full: {
+      yo: 'frío', tu: 'fríes', el: 'fríe',
+      nosotros: 'freímos', vosotros: 'freís', ellos: 'fríen',
+    },
+  },
 
   // 어간 e→ie
   querer: { stem: 'e>ie' },
@@ -114,7 +122,22 @@ function changeStem(stem, rule) {
  */
 export function conjugatePresent(infinitive) {
   const verb = (infinitive || '').trim().toLowerCase();
-  const m = /^([a-záéíóúñü]+)(ar|er|ir)(se)?$/.exec(verb);
+
+  // 전부 불규칙인 동사는 어미 분해 없이 바로 표에서 꺼낸다.
+  // ('ir'처럼 어간이 없는 두 글자 원형은 아래 정규식으로 잡히지 않는다)
+  const direct = IRREGULARS[verb];
+  if (direct?.full) {
+    return {
+      infinitive: verb,
+      reflexive: false,
+      only: direct.only || null,
+      backwards: !!direct.backwards,
+      note: null,
+      forms: { ...direct.full },
+    };
+  }
+
+  const m = /^([a-záéíóúñü]+)(ar|er|ir|ár|ér|ír)(se)?$/.exec(verb);
   if (!m) return null;
 
   const [, root, ending, se] = m;
@@ -130,7 +153,9 @@ export function conjugatePresent(infinitive) {
       word = info.yo;
     } else {
       const stem = info.stem && BOOT.includes(key) ? changeStem(root, info.stem) : root;
-      word = stem + ENDINGS[ending][key];
+      // 어미에 강세 부호가 있으면 규칙 어미로 되돌려 활용한다 (-ír → -ir)
+      const plain = ending.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      word = stem + ENDINGS[plain][key];
     }
     forms[key] = reflexive ? `${REFLEXIVE[key]} ${word}` : word;
   }

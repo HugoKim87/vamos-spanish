@@ -78,8 +78,21 @@ export const EXTRA_FORMS = new Set([
   'termino', 'terminas', 'termina', 'terminamos', 'terminan',
 ]);
 
-/** 동사원형인지 (원형은 그 자체로 동사) */
-export const INFINITIVE_RE = /^[a-záéíóúñü]+(ar|er|ir)(se)?$/i;
+/**
+ * 동사원형인지.
+ * -ír(freír), -ér처럼 어미에 강세 부호가 붙는 원형도 잡아야 한다.
+ * 'ir'은 두 글자뿐이라 정규식으로는 안 걸려 따로 처리한다.
+ */
+export const INFINITIVE_RE = /^[a-záéíóúñü]+(ar|er|ir|ár|ér|ír)(se)?$/i;
+
+/** 정규식으로 못 잡는 짧은 원형 */
+export const SHORT_INFINITIVES = new Set(['ir', 'irse']);
+
+/** 동사원형 판별 (짧은 원형 포함) */
+export function isInfinitive(word) {
+  const w = (word || '').trim().toLowerCase();
+  return SHORT_INFINITIVES.has(w) || INFINITIVE_RE.test(w);
+}
 
 /** 비교용 정규화 — 대소문자·문장부호 제거 */
 export function normalizeToken(token) {
