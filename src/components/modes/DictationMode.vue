@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
+import { useEnterKey } from '@/composables/useEnterKey.js';
 import { useSpeech } from '@/composables/useSpeech.js';
 
 /**
@@ -30,6 +31,9 @@ const correctCount = ref(0);
 const showHint = ref(false);
 
 const current = computed(() => queue.value[index.value] || null);
+
+/** Enter 하나로 채점 → 다음 문제까지 (마우스 없이 진행) */
+useEnterKey(() => { judged.value ? next() : submit(); });
 
 function play(slow = false) {
   if (current.value) speak(current.value.es, { rate: slow ? 0.6 : 0.95 });
@@ -96,7 +100,6 @@ function next() {
         :disabled="!!judged"
         placeholder="여기에 입력"
         autocomplete="off" autocapitalize="off" spellcheck="false"
-        @keyup.enter="judged ? next() : submit()"
       />
 
       <button v-if="!judged" class="btn btn-primary go" @click="submit">확인</button>

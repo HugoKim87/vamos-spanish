@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
+import { useEnterKey } from '@/composables/useEnterKey.js';
 import { useSpeech } from '@/composables/useSpeech.js';
 import SpeakButton from '@/components/SpeakButton.vue';
 
@@ -83,6 +84,18 @@ function next() {
 }
 
 const remaining = computed(() => queue.value.length);
+
+/**
+ * Enter 하나로 전 과정을 진행한다 (마우스 없이).
+ *  타이핑 모드 : 입력 → Enter(채점) → Enter(다음)
+ *  보고 확인   : Enter(정답 보기) → Enter(맞혔다고 처리) → Enter(다음)
+ */
+useEnterKey(() => {
+  if (judged.value) { next(); return; }
+  if (typing.value) { submit(); return; }
+  if (!revealed.value) reveal();
+  else grade(true);
+});
 </script>
 
 <template>
@@ -119,7 +132,6 @@ const remaining = computed(() => queue.value.length);
           :disabled="!!judged"
           placeholder="활용형을 입력하세요"
           autocomplete="off" autocapitalize="off" spellcheck="false"
-          @keyup.enter="judged ? next() : submit()"
         />
         <button v-if="!judged" class="btn btn-primary go" @click="submit">확인</button>
       </template>

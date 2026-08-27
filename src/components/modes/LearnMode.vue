@@ -1,7 +1,8 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect, makeOptions } from '@/composables/useStudyUtils.js';
+import { useEnterKey } from '@/composables/useEnterKey.js';
 import SpeakButton from '@/components/SpeakButton.vue';
 
 const props = defineProps({ cards: { type: Array, required: true } });
@@ -70,6 +71,26 @@ function submitFill() {
 
 const progressLabel = computed(() => `${completed.value} / ${total}`);
 
+/**
+ * 키보드만으로 진행.
+ *  - 채점 결과가 떠 있으면 Enter → 다음 문제
+ *  - 단답형이면 Enter → 채점
+ *  - 객관식이면 1~4 숫자키로 보기 선택
+ */
+useEnterKey(() => {
+  if (feedback.value) { nextQuestion(); return; }
+  if (current.value?.type === 'fill') submitFill();
+});
+
+function onNumberKey(e) {
+  if (feedback.value || current.value?.type !== 'choice') return;
+  const n = Number(e.key);
+  if (!n || n > options.value.length) return;
+  choose(options.value[n - 1]);
+}
+onMounted(() => window.addEventListener('keydown', onNumberKey));
+onUnmounted(() => window.removeEventListener('keydown', onNumberKey));
+
 nextQuestion();
 </script>
 
@@ -85,7 +106,7 @@ nextQuestion();
         <span class="p-text es-text">{{ current.card.es }}</span>
         <SpeakButton :text="current.card.es" />
       </div>
-      <p class="instr">알맞은 한국어 뜻을 고르세요</p>
+      <p class="instr">알맞은 한국어 뜻을 고르세요 · 숫자키 1~4로도 선택돼요</p>
 
       <div class="options">
         <button
@@ -98,7 +119,7 @@ nextQuestion();
           :disabled="!!feedback"
           @click="choose(opt)"
         >
-          <span class="key">{{ 'ABCD'[i] }}</span>
+          <span class="key">{{ i + 1 }}</span>
           <span>{{ opt }}</span>
         </button>
       </div>
@@ -107,7 +128,7 @@ nextQuestion();
     <!-- 단답형 -->
     <template v-else>
       <div class="prompt"><span class="p-text">{{ current.card.ko }}</span></div>
-      <p class="instr">스페인어로 입력하세요 (대소문자·악센트는 무시됩니다)</p>
+      <p class="instr">스페인어로 입력하세요 · 대소문자·악센트·기호는 무시됩니다 · Enter로 확인</p>
       <input
         v-model="answer"
         class="fill"
@@ -115,7 +136,6 @@ nextQuestion();
         :disabled="!!feedback"
         placeholder="스페인어로 입력…"
         autocomplete="off"
-        @keydown.enter="submitFill"
       />
       <button v-if="!feedback" class="btn btn-soft" :disabled="!answer.trim()" @click="submitFill">
         확인

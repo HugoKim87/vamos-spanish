@@ -10,20 +10,48 @@ export function shuffle(arr) {
   return a;
 }
 
-/** 채점용 정규화: 악센트/대소문자/구두점/공백 무시 */
+/**
+ * 채점용 정규화 — 악센트·대소문자·구두점·특수문자·공백을 모두 무시.
+ *
+ * 학습자가 키보드로 치기 어려운 글자 때문에 오답 처리되면 안 된다.
+ *  - 악센트: sé → se, café → cafe
+ *  - 화살표·기호: 'saber → sé' 를 'saber se' 로 쳐도 정답
+ *  - 물음표·느낌표·따옴표·괄호 등 문장부호 전부
+ */
 export function normalize(s) {
   return (s || '')
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')      // 악센트 제거 (á→a, é→e, ñ→n)
     .toLowerCase()
-    .trim()
-    .replace(/[¿?¡!.,]/g, '')
-    .replace(/\s+/g, ' ');
+    .replace(/[¿?¡!.,;:"'“”‘’()[\]{}]/g, '')   // 문장부호
+    .replace(/[→←+*/\\|~_=<>·•–—-]/g, ' ')      // 기호는 공백으로
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-/** 두 답이 같은지 */
+/**
+ * 실제로 타이핑해야 할 답만 뽑아낸다.
+ *
+ * 데이터에는 'saber → sé', 'dar → doy'처럼 "원형 → 활용형" 꼴의 카드가 있다.
+ * 이런 카드에서 학습자가 확인해야 하는 건 화살표 오른쪽뿐인데,
+ * 그대로 채점하면 화살표와 원형까지 전부 쳐야 해서 사실상 풀 수 없다.
+ * 괄호 안 부연 설명('사다 (1인칭: compro)')도 답이 아니므로 떼어낸다.
+ */
+export function expectedAnswer(text) {
+  let s = (text || '').trim();
+  const arrow = s.lastIndexOf('→');
+  if (arrow >= 0) s = s.slice(arrow + 1);
+  return s.replace(/\s*[(（].*?[)）]\s*/g, ' ').trim();
+}
+
+/**
+ * 두 답이 같은지.
+ * 화살표·괄호가 있는 카드는 핵심 답만 쳐도 정답으로 인정하고,
+ * 전체를 다 친 경우도 함께 인정한다.
+ */
 export function isCorrect(a, b) {
-  return normalize(a) === normalize(b);
+  const mine = normalize(a);
+  return mine === normalize(b) || mine === normalize(expectedAnswer(b));
 }
 
 /**

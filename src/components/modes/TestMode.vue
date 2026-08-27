@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect, makeOptions } from '@/composables/useStudyUtils.js';
+import { useEnterKey } from '@/composables/useEnterKey.js';
 
 const props = defineProps({ cards: { type: Array, required: true } });
 const emit = defineEmits(['progress', 'finish']);
@@ -52,6 +53,12 @@ const canSubmit = computed(() => questions.value.length > 0);
 const answeredCount = computed(() =>
   questions.value.reduce((n, _q, i) => n + (String(answers.value[i] ?? '').trim() ? 1 : 0), 0)
 );
+
+/** 아직 채점 전이면 Enter로 제출, 채점 후면 Enter로 마치기 */
+useEnterKey(() => {
+  if (result.value) emit('finish');
+  else if (canSubmit.value) grade();
+});
 
 watch(answeredCount, n => {
   if (!result.value && questions.value.length) {
