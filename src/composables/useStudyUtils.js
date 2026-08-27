@@ -55,22 +55,56 @@ export function isCorrect(a, b) {
 }
 
 /**
- * 정답 + 무작위 오답들로 보기 만들기.
- * ⚠️ 데이터에 뜻이 같은 카드가 여럿 있어(예: '운동하다' 3개) 그대로 뽑으면
- *    같은 보기가 두 번 나오고, v-for의 key도 중복된다. 텍스트 기준으로 걸러낸다.
+ * 정답 + 오답 보기를 만든다.
+ *
+ * 같은 유형끼리 묶는 이유
+ *   '해바라기'를 묻는데 보기에 "나는 매일 물을 준다" 같은 문장이 섞이면
+ *   뜻을 몰라도 길이만 보고 정답을 골라낼 수 있다.
+ *   그래서 명사 문제는 명사끼리, 동사는 동사끼리 보기를 만든다.
+ *
+ * 같은 유형 카드가 모자라면 (예: 한 레슨에 형용사가 3장뿐)
+ * 학습 세트 전체 → 그래도 모자라면 fallback(전체 단어)에서 채운다.
+ *
+ * @param {{[k:string]:any, type?:string}} card 정답 카드
+ * @param {Array} pool 지금 학습 중인 카드들
+ * @param {'ko'|'es'} key 보기로 쓸 필드
+ * @param {{ fallback?: Array, count?: number }} [opts] fallback: 부족할 때 더 가져올 카드들
  */
-export function makeOptions(correct, pool, key, distractors = 3) {
-  const seen = new Set([correct]);
-  const others = [];
+export function makeOptions(card, pool, key, opts = {}) {
+  const { fallback = [], count = 3 } = opts;
 
-  for (const c of shuffle(pool)) {
-    const text = c[key];
-    if (seen.has(text)) continue;
-    seen.add(text);
-    others.push(text);
-    if (others.length === distractors) break;
+  // 문자열만 넘어온 예전 호출 방식도 그대로 동작하게 한다
+  const correct = typeof card === 'string' ? card : card[key];
+  const type = typeof card === 'string' ? null : card.type;
+
+  const seen = new Set([correct]);
+  const picked = [];
+
+  /**
+   * 후보에서 오답을 채운다.
+   * ⚠️ 뜻이 같은 카드가 여럿 있어(예: '운동하다' 3장) 텍스트 기준으로 걸러야
+   *    같은 보기가 두 번 나오지 않는다.
+   */
+  function fill(candidates) {
+    for (const c of shuffle(candidates)) {
+      if (picked.length >= count) return;
+      const text = c?.[key];
+      if (!text || seen.has(text)) continue;
+      seen.add(text);
+      picked.push(text);
+    }
   }
-  return shuffle([correct, ...others]);
+
+  if (type) {
+    fill(pool.filter(c => c.type === type));      // 1순위: 학습 세트 안 같은 유형
+    if (picked.length < count) {
+      fill(fallback.filter(c => c.type === type)); // 2순위: 전체에서 같은 유형
+    }
+  }
+  if (picked.length < count) fill(pool);           // 3순위: 학습 세트 아무거나
+  if (picked.length < count) fill(fallback);       // 4순위: 전체 아무거나
+
+  return shuffle([correct, ...picked]);
 }
 
 /**

@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
+import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { shuffle, isCorrect, makeOptions } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
 
@@ -8,6 +9,8 @@ const props = defineProps({ cards: { type: Array, required: true } });
 const emit = defineEmits(['progress', 'finish']);
 
 const progress = useProgressStore();
+// 같은 유형 카드가 모자랄 때 보기를 채울 예비 풀
+const vocab = useVocabularyStore();
 
 /** 섹션 구성 — 카드가 적으면 가능한 만큼만 출제 */
 const SECTIONS = { choice: 3, tf: 2, fill: 2, match: 2 };
@@ -19,7 +22,7 @@ function buildQuestions() {
   const qs = [];
 
   take(SECTIONS.choice).forEach(c =>
-    qs.push({ type: 'choice', tag: '선택형', q: c.es, a: c.ko, options: makeOptions(c.ko, pool, 'ko'), card: c })
+    qs.push({ type: 'choice', tag: '선택형', q: c.es, a: c.ko, options: makeOptions(c, pool, 'ko', { fallback: vocab.allCards }), card: c })
   );
   take(SECTIONS.tf).forEach(c => {
     // 다른 뜻을 못 찾으면 가짜 문장을 만들 수 없으므로 '맞다' 문제로 낸다.
@@ -38,7 +41,7 @@ function buildQuestions() {
     qs.push({ type: 'fill', tag: '단답형', q: c.ko, a: c.es, hint: '(스페인어로)', card: c })
   );
   take(SECTIONS.match).forEach(c =>
-    qs.push({ type: 'choice', tag: '매칭형', q: c.ko, a: c.es, options: makeOptions(c.es, pool, 'es'), card: c })
+    qs.push({ type: 'choice', tag: '매칭형', q: c.ko, a: c.es, options: makeOptions(c, pool, 'es', { fallback: vocab.allCards }), card: c })
   );
   return qs;
 }

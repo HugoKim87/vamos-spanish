@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
+import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { shuffle, isCorrect, makeOptions } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
 import { useAutoFocus } from '@/composables/useAutoFocus.js';
@@ -10,6 +11,8 @@ const props = defineProps({ cards: { type: Array, required: true } });
 const emit = defineEmits(['progress', 'finish']);
 
 const progress = useProgressStore();
+// 같은 유형 카드가 모자랄 때 보기를 채울 예비 풀
+const vocab = useVocabularyStore();
 const FILL_RATIO = 0.25; // 단답형 비율
 
 /** 문제 큐 — 오답은 뒤로 다시 보내 반복 출제 */
@@ -46,7 +49,7 @@ function nextQuestion() {
   }
   current.value = queue.value.shift();
   if (current.value.type === 'choice') {
-    options.value = makeOptions(current.value.card.ko, props.cards, 'ko');
+    options.value = makeOptions(current.value.card, props.cards, 'ko', { fallback: vocab.allCards });
   }
   emit('progress', (completed.value / total) * 100);
 }
