@@ -1,0 +1,164 @@
+<script setup>
+import { computed, onMounted, ref } from 'vue';
+import { useProgressStore } from '@/stores/progress.js';
+import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
+import { useSpeech } from '@/composables/useSpeech.js';
+
+/**
+ * 받아쓰기 모드 — Duolingo "Type what you hear" · Quizlet "Spell" 참고
+ *
+ * 다른 모드는 전부 글자를 보고 푸는데, 실제 회화에서 먼저 부딪히는 건 소리다.
+ * 여기서는 스페인어를 화면에 보여주지 않고 소리만 들려준 뒤 받아쓰게 한다.
+ * (뜻은 힌트로 제공 — 완전히 깜깜하면 초보자에겐 좌절만 남는다)
+ */
+const props = defineProps({
+  cards: { type: Array, required: true },
+});
+const emit = defineEmits(['progress', 'finish']);
+
+const progress = useProgressStore();
+const { speak, supported } = useSpeech();
+
+const LIMIT = 12; // 한 세션 문항 수 — 받아쓰기는 부담이 커서 짧게
+
+const queue = ref(shuffle(props.cards).slice(0, Math.min(LIMIT, props.cards.length)));
+const total = ref(queue.value.length);
+const index = ref(0);
+const input = ref('');
+const judged = ref(null);
+const correctCount = ref(0);
+const showHint = ref(false);
+
+const current = computed(() => queue.value[index.value] || null);
+
+function play(slow = false) {
+  if (current.value) speak(current.value.es, { rate: slow ? 0.6 : 0.95 });
+}
+
+function report() {
+  emit('progress', total.value ? (index.value / total.value) * 100 : 0);
+}
+
+onMounted(() => { report(); play(); });
+
+function submit() {
+  if (!current.value || judged.value) return;
+  const ok = isCorrect(input.value, current.value.es);
+  judged.value = ok ? 'right' : 'wrong';
+  if (ok) {
+    correctCount.value += 1;
+    progress.markLearned(current.value.uid);
+  }
+}
+
+function next() {
+  if (index.value + 1 >= total.value) {
+    index.value = total.value;
+    report();
+    emit('finish');
+    return;
+  }
+  index.value += 1;
+  input.value = '';
+  judged.value = null;
+  showHint.value = false;
+  report();
+  play();
+}
+</script>
+
+<template>
+  <div v-if="!supported" class="wrap empty">
+    <p>이 브라우저는 음성 재생을 지원하지 않아 받아쓰기를 할 수 없어요.</p>
+    <p class="sub">크롬이나 사파리 최신 버전에서 사용해 주세요.</p>
+  </div>
+
+  <div v-else-if="current" class="wrap">
+    <p class="count">{{ index + 1 }} / {{ total }} · 맞힌 개수 {{ correctCount }}</p>
+
+    <div class="card">
+      <p class="guide">들리는 스페인어를 그대로 적어보세요</p>
+
+      <div class="players">
+        <button class="play" @click="play(false)">🔊 다시 듣기</button>
+        <button class="play slow" @click="play(true)">🐢 천천히</button>
+      </div>
+
+      <button v-if="!showHint && !judged" class="hint-link" @click="showHint = true">
+        힌트 보기 (뜻)
+      </button>
+      <p v-else-if="!judged" class="hint">{{ current.ko }}</p>
+
+      <input
+        v-model="input"
+        class="input es-text"
+        :class="judged"
+        :disabled="!!judged"
+        placeholder="여기에 입력"
+        autocomplete="off" autocapitalize="off" spellcheck="false"
+        @keyup.enter="judged ? next() : submit()"
+      />
+
+      <button v-if="!judged" class="btn btn-primary go" @click="submit">확인</button>
+
+      <div v-else class="result" :class="judged">
+        <p class="r-msg">{{ judged === 'right' ? '정확해요!' : '이렇게 적어요' }}</p>
+        <p class="r-answer es-text">{{ current.es }}</p>
+        <p class="r-ko">{{ current.ko }}</p>
+        <button class="btn btn-primary go" @click="next">
+          {{ index + 1 >= total ? '마치기' : '다음' }}
+        </button>
+      </div>
+    </div>
+
+    <p class="tip">억양 부호(á, é…)와 대소문자는 채점에 반영하지 않아요.</p>
+  </div>
+</template>
+
+<style scoped>
+.wrap { max-width: 520px; margin: 0 auto; }
+.count { font-size: 12.5px; color: var(--c-text-mute); font-weight: 700; margin-bottom: var(--sp-3); }
+
+.card {
+  padding: var(--sp-5);
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--r-lg); box-shadow: var(--sh-sm);
+  text-align: center;
+}
+.guide { font-size: 13px; color: var(--c-text-mute); }
+
+.players { display: flex; gap: var(--sp-2); justify-content: center; margin: var(--sp-4) 0; }
+.play {
+  padding: 12px 18px; border-radius: var(--r-full);
+  border: 1px solid var(--c-primary); background: var(--c-primary-soft);
+  color: var(--c-primary-dark); font-size: 14px; font-weight: 800;
+}
+.play.slow { border-color: var(--c-border); background: var(--c-surface-soft); color: var(--c-text-soft); }
+
+.hint-link {
+  background: none; border: none; margin-bottom: var(--sp-3);
+  font-size: 12.5px; font-weight: 700; color: var(--c-text-mute); text-decoration: underline;
+}
+.hint { margin-bottom: var(--sp-3); font-size: 14px; font-weight: 700; color: var(--c-text-soft); }
+
+.input {
+  width: 100%; padding: 13px var(--sp-4);
+  border: 2px solid var(--c-border); border-radius: var(--r-md);
+  font-size: 16px; font-weight: 700; text-align: center;
+}
+.input:focus { border-color: var(--c-primary); outline: none; }
+.input.right { border-color: var(--c-success); }
+.input.wrong { border-color: var(--c-danger); }
+.go { width: 100%; margin-top: var(--sp-3); }
+
+.result { margin-top: var(--sp-4); }
+.r-msg { font-size: 14px; font-weight: 800; }
+.result.right .r-msg { color: var(--c-success-ink); }
+.result.wrong .r-msg { color: var(--c-danger-ink); }
+.r-answer { margin-top: 6px; font-size: 19px; font-weight: 800; line-height: 1.4; }
+.r-ko { margin-top: 4px; font-size: 13.5px; color: var(--c-text-mute); }
+
+.tip { margin-top: var(--sp-3); text-align: center; font-size: 12px; color: var(--c-text-mute); }
+.empty { padding: var(--sp-7) 0; text-align: center; color: var(--c-text-mute); }
+.empty .sub { margin-top: 6px; font-size: 13px; }
+</style>

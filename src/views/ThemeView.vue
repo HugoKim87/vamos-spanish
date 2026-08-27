@@ -47,12 +47,19 @@ function toggleType(key) {
   else selectedTypes.value.push(key);
 }
 
+// 벤치마킹(Duolingo·Quizlet·Conjuguemos·ConjuGato·Linguno) 반영 —
+// 보고 익히기 → 듣고 쓰기 → 동사 활용 → 점검 → 게임 순으로 배치
 const MODES = [
   { key: 'flashcards', emoji: '🃏', label: '낱말카드', desc: '뒤집으며 익히기' },
   { key: 'learn', emoji: '🧠', label: '학습하기', desc: '문제 풀며 반복' },
+  { key: 'dictation', emoji: '👂', label: '받아쓰기', desc: '듣고 그대로 적기' },
+  { key: 'conjugation', emoji: '🔀', label: '동사 활용', desc: '인칭별 현재형 연습' },
   { key: 'test', emoji: '📝', label: '테스트', desc: '종합 점검' },
   { key: 'match', emoji: '⚡', label: '카드 맞추기', desc: '짝 맞추기 게임' },
 ];
+
+/** 이 테마에 활용할 동사가 있는지 (없으면 동사 활용 모드 비활성) */
+const verbCount = computed(() => currentCards.value.filter(c => c.type === 'verb').length);
 
 function startStudy(mode) {
   router.push({
@@ -135,12 +142,16 @@ function startStudy(mode) {
       <div class="mode-grid">
         <button
           v-for="m in MODES" :key="m.key"
-          class="mode-btn" :disabled="currentCards.length === 0"
+          class="mode-btn"
+          :disabled="currentCards.length === 0 || (m.key === 'conjugation' && verbCount === 0)"
+          :title="m.key === 'conjugation' && verbCount === 0 ? '이 조건에는 활용할 동사가 없어요' : ''"
           @click="startStudy(m.key)"
         >
           <span class="m-emoji">{{ m.emoji }}</span>
           <span class="m-label">{{ m.label }}</span>
-          <span class="m-desc">{{ m.desc }}</span>
+          <span class="m-desc">
+            {{ m.key === 'conjugation' && verbCount ? `동사 ${verbCount}개` : m.desc }}
+          </span>
         </button>
       </div>
     </section>

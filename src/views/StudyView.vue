@@ -3,11 +3,14 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { useProgressStore } from '@/stores/progress.js';
+import { dedupeByEs } from '@/composables/useStudyUtils.js';
 import ProgressBar from '@/components/ProgressBar.vue';
 import FlashcardMode from '@/components/modes/FlashcardMode.vue';
 import LearnMode from '@/components/modes/LearnMode.vue';
 import TestMode from '@/components/modes/TestMode.vue';
 import MatchMode from '@/components/modes/MatchMode.vue';
+import ConjugationMode from '@/components/modes/ConjugationMode.vue';
+import DictationMode from '@/components/modes/DictationMode.vue';
 
 const props = defineProps({
   mode: { type: String, required: true },
@@ -20,9 +23,12 @@ const router = useRouter();
 const vocab = useVocabularyStore();
 const progress = useProgressStore();
 
+// needsVerbs: 카드가 아니라 동사 활용표를 받는 모드
 const MODE_MAP = {
   flashcards: { comp: FlashcardMode, label: '낱말카드', emoji: '🃏' },
   learn: { comp: LearnMode, label: '학습하기', emoji: '🧠' },
+  dictation: { comp: DictationMode, label: '받아쓰기', emoji: '👂' },
+  conjugation: { comp: ConjugationMode, label: '동사 활용', emoji: '🔀', needsVerbs: true },
   test: { comp: TestMode, label: '테스트', emoji: '📝' },
   match: { comp: MatchMode, label: '카드 맞추기', emoji: '⚡' },
 };
@@ -30,12 +36,15 @@ const MODE_MAP = {
 const modeInfo = computed(() => MODE_MAP[props.mode] || MODE_MAP.flashcards);
 
 /** 학습 세트 — 쿼리 조건으로 구성 */
+// 여러 Day에 걸쳐 같은 단어가 들어오면 문제·보기가 모호해지므로 여기서 한 번 정리한다.
 const cards = computed(() =>
-  vocab.buildSet({
-    theme: props.theme || undefined,
-    lessonId: props.lessonId || undefined,
-    types: props.types.length ? props.types : undefined,
-  })
+  dedupeByEs(
+    vocab.buildSet({
+      theme: props.theme || undefined,
+      lessonId: props.lessonId || undefined,
+      types: props.types.length ? props.types : undefined,
+    })
+  )
 );
 
 /** 세트를 식별하는 키 (최고 기록 저장용) */
@@ -54,6 +63,17 @@ const setLabel = computed(() => {
   }
   return parts.join(' · ');
 });
+
+/** 동사 활용 모드용 — 같은 조건으로 거른 동사들 */
+const verbs = computed(() => {
+  const inSet = new Set(cards.value.map(c => c.es.trim().toLowerCase()));
+  return vocab.verbCards.filter(v => inSet.has(v.conj.infinitive));
+});
+
+/** 화면에 표시할 세트 크기 (모드에 따라 카드 수 / 동사 수) */
+const setSize = computed(() =>
+  modeInfo.value.needsVerbs ? verbs.value.length : cards.value.length
+);
 
 const barValue = ref(0);
 const done = ref(false);
@@ -88,13 +108,17 @@ function restart() {
       </div>
       <div class="tb-info">
         <span class="tb-mode">{{ modeInfo.emoji }} {{ modeInfo.label }}</span>
-        <span class="tb-set">{{ setLabel }} · {{ cards.length }}장</span>
+        <span class="tb-set">{{ setLabel }} · {{ setSize }}{{ modeInfo.needsVerbs ? "개 동사" : "장" }}</span>
       </div>
     </header>
 
     <!-- 카드 부족 -->
-    <div v-if="cards.length === 0" class="empty">
-      <p>선택한 조건에 맞는 카드가 없어요.</p>
+    <div v-if="setSize === 0" class="empty">
+      <p v-if="modeInfo.needsVerbs">
+        선택한 조건에 활용할 동사가 없어요.<br />
+        동사가 포함된 테마나 Day를 골라 보세요.
+      </p>
+      <p v-else>선택한 조건에 맞는 카드가 없어요.</p>
       <button class="btn btn-primary" @click="goBack">돌아가기</button>
     </div>
 
@@ -103,7 +127,7 @@ function restart() {
       <div class="f-emoji">🎉</div>
       <h2 class="f-title">학습 완료!</h2>
       <p class="f-desc">
-        {{ setLabel }} · {{ cards.length }}장을 마쳤어요.<br />
+        {{ setLabel }} · {{ setSize }}{{ modeInfo.needsVerbs ? '개 동사' : '장' }}를 마쳤어요.<br />
         지금까지 총 <b>{{ progress.learnedCount }}장</b>을 학습했습니다.
       </p>
       <div class="f-actions">
@@ -114,7 +138,15 @@ function restart() {
 
     <!-- 학습 모드 -->
     <div v-else class="mode-area">
+      <ConjugationMode
+        v-if="modeInfo.needsVerbs"
+        :key="`${mode}-${runId}`"
+        :verbs="verbs"
+        @progress="onProgress"
+        @finish="onFinish"
+      />
       <component
+        v-else
         :is="modeInfo.comp"
         :key="`${mode}-${runId}`"
         :cards="cards"

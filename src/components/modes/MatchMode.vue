@@ -19,7 +19,21 @@ const ANIM_MS = 380;
 // ⚠️ shuffle이 들어가므로 computed가 아닌 ref로 "한 번만" 확정해야 한다.
 // computed였다면 재평가 시 tiles와 다른 카드 묶음이 나와
 // 완료 판정·학습 기록이 어긋날 수 있다.
-const picked = ref(shuffle(props.cards).slice(0, Math.min(PAIRS, props.cards.length)));
+//
+// 뜻이 같은 카드를 걸러내는 이유: 서로 다른 단어가 같은 뜻을 가질 때
+// (예: la medicina / el medicamento 둘 다 '약') 같은 글자의 타일이 두 개 생겨
+// 맞는 짝을 눌러도 오답 처리되는 상황이 생긴다.
+const picked = ref((() => {
+  const seenKo = new Set();
+  const out = [];
+  for (const c of shuffle(props.cards)) {
+    if (seenKo.has(c.ko)) continue;
+    seenKo.add(c.ko);
+    out.push(c);
+    if (out.length === PAIRS) break;
+  }
+  return out;
+})());
 
 const tiles = ref(
   shuffle(

@@ -1,0 +1,158 @@
+/**
+ * 스페인어 직설법 현재시제 활용
+ * ---------------------------------------------------------------
+ * lessons.js의 동사원형 카드를 6인칭 활용형으로 펼쳐 학습할 수 있게 합니다.
+ *
+ * 설계 원칙
+ *  - 규칙 변화는 어미 규칙으로 계산하고, 불규칙만 아래 표에 적어 둡니다.
+ *  - 새 동사가 lessons.js에 들어와도 규칙 동사면 표를 건드릴 필요가 없습니다.
+ *  - 불규칙인데 표에 없으면 규칙으로 잘못 만들어지므로, 검증 스크립트가
+ *    "표에 없는 -cer/-ucir/-ger/-guir 동사"를 경고합니다.
+ */
+
+/** 인칭 — 화면 표시 순서 */
+export const PERSONS = [
+  { key: 'yo', label: 'yo', ko: '나' },
+  { key: 'tu', label: 'tú', ko: '너' },
+  { key: 'el', label: 'él/ella/usted', ko: '그/그녀/당신' },
+  { key: 'nosotros', label: 'nosotros', ko: '우리' },
+  { key: 'vosotros', label: 'vosotros', ko: '너희' },
+  { key: 'ellos', label: 'ellos/ellas/ustedes', ko: '그들/당신들' },
+];
+
+/** 재귀대명사 */
+const REFLEXIVE = {
+  yo: 'me', tu: 'te', el: 'se',
+  nosotros: 'nos', vosotros: 'os', ellos: 'se',
+};
+
+/** 규칙 어미 */
+const ENDINGS = {
+  ar: { yo: 'o', tu: 'as', el: 'a', nosotros: 'amos', vosotros: 'áis', ellos: 'an' },
+  er: { yo: 'o', tu: 'es', el: 'e', nosotros: 'emos', vosotros: 'éis', ellos: 'en' },
+  ir: { yo: 'o', tu: 'es', el: 'e', nosotros: 'imos', vosotros: 'ís', ellos: 'en' },
+};
+
+/** 어간 모음이 바뀌는 인칭 (nosotros·vosotros는 바뀌지 않음 — "구두 모양") */
+const BOOT = ['yo', 'tu', 'el', 'ellos'];
+
+/**
+ * 불규칙 정보
+ *  stem   : 어간 모음 변화 'e>ie' | 'o>ue' | 'e>i'
+ *  yo     : 1인칭 단수만 다른 경우 그 형태 (재귀대명사 제외한 동사부)
+ *  full   : 6인칭 전부 불규칙인 경우
+ *  only   : 3인칭 단수만 쓰는 동사 (날씨 등)
+ *  backwards: gustar형 — 주어가 사물이라 3인칭 단수/복수만 실제로 쓰임
+ */
+export const IRREGULARS = {
+  ser: { full: { yo: 'soy', tu: 'eres', el: 'es', nosotros: 'somos', vosotros: 'sois', ellos: 'son' } },
+
+  // 어간 e→ie
+  querer: { stem: 'e>ie' },
+  preferir: { stem: 'e>ie' },
+  hervir: { stem: 'e>ie' },
+  recomendar: { stem: 'e>ie' },
+  transferir: { stem: 'e>ie' },
+  sentirse: { stem: 'e>ie' },
+
+  // 어간 o→ue
+  poder: { stem: 'o>ue' },
+  mostrar: { stem: 'o>ue' },
+  devolver: { stem: 'o>ue' },
+  almorzar: { stem: 'o>ue' },
+  acostarse: { stem: 'o>ue' },
+  dormirse: { stem: 'o>ue' },
+
+  // 어간 e→i
+  pedir: { stem: 'e>i' },
+  seguir: { stem: 'e>i', yo: 'sigo' },   // gu→g
+  elegir: { stem: 'e>i', yo: 'elijo' },  // g→j
+
+  // 1인칭 단수만 불규칙
+  poner: { yo: 'pongo' },
+  ponerse: { yo: 'pongo' },
+  traer: { yo: 'traigo' },
+  // ver는 어간이 v- 한 글자뿐이라 vosotros가 véis가 아닌 veis (강세 부호 없음)
+  ver: {
+    full: {
+      yo: 'veo', tu: 'ves', el: 've',
+      nosotros: 'vemos', vosotros: 'veis', ellos: 'ven',
+    },
+  },
+  agradecer: { yo: 'agradezco' },
+  reducir: { yo: 'reduzco' },
+  protegerse: { yo: 'protejo' },
+
+  // 강세가 붙는 -iar 동사
+  enviar: {
+    full: {
+      yo: 'envío', tu: 'envías', el: 'envía',
+      nosotros: 'enviamos', vosotros: 'enviáis', ellos: 'envían',
+    },
+  },
+
+  // 날씨 동사 — 3인칭 단수만 씁니다
+  llover: { stem: 'o>ue', only: 'el' },
+  nevar: { stem: 'e>ie', only: 'el' },
+
+  // gustar형 — "무엇이 나에게 ~하다" 구조라 3인칭만 실제로 쓰입니다
+  gustar: { backwards: true },
+  doler: { stem: 'o>ue', backwards: true },
+};
+
+/** 어간의 마지막 해당 모음을 바꾼다 (뒤에서부터 찾아야 정확) */
+function changeStem(stem, rule) {
+  const [from, to] = rule.split('>');
+  const i = stem.lastIndexOf(from);
+  if (i < 0) return stem;
+  return stem.slice(0, i) + to + stem.slice(i + from.length);
+}
+
+/**
+ * 동사원형을 현재시제 6인칭으로 활용
+ * @returns {null | { infinitive, reflexive, note, forms: { [person]: string } }}
+ */
+export function conjugatePresent(infinitive) {
+  const verb = (infinitive || '').trim().toLowerCase();
+  const m = /^([a-záéíóúñü]+)(ar|er|ir)(se)?$/.exec(verb);
+  if (!m) return null;
+
+  const [, root, ending, se] = m;
+  const reflexive = !!se;
+  const info = IRREGULARS[verb] || {};
+  const forms = {};
+
+  for (const { key } of PERSONS) {
+    let word;
+    if (info.full) {
+      word = info.full[key];
+    } else if (info.yo && key === 'yo') {
+      word = info.yo;
+    } else {
+      const stem = info.stem && BOOT.includes(key) ? changeStem(root, info.stem) : root;
+      word = stem + ENDINGS[ending][key];
+    }
+    forms[key] = reflexive ? `${REFLEXIVE[key]} ${word}` : word;
+  }
+
+  return {
+    infinitive: verb,
+    reflexive,
+    only: info.only || null,
+    backwards: !!info.backwards,
+    note: info.only
+      ? '날씨 표현이라 3인칭 단수만 씁니다'
+      : info.backwards
+        ? 'gustar형 — 주어가 사물이라 3인칭(단수/복수)을 주로 씁니다'
+        : null,
+    forms,
+  };
+}
+
+/** 학습에 실제로 쓸 인칭만 추림 (날씨·gustar형은 일부만) */
+export function practicePersons(conj) {
+  if (!conj) return [];
+  if (conj.only) return PERSONS.filter(p => p.key === conj.only);
+  if (conj.backwards) return PERSONS.filter(p => p.key === 'el' || p.key === 'ellos');
+  return PERSONS;
+}

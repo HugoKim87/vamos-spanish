@@ -5,18 +5,41 @@ import {
   THEMES, THEME_LIST, CARD_TYPES, CARD_TYPE_LIST,
   classifyCard, resolveTheme,
 } from '@/data/taxonomy.js';
+import { conjugatePresent, practicePersons } from '@/data/conjugation.js';
+import { INFINITIVE_RE } from '@/data/verbForms.js';
 
 /**
  * 어휘 스토어 — 원본 lessons.js를 읽어 모든 파생 데이터를 계산합니다.
  *
  * ★ 자동 재구성의 핵심 ★
  * lessons.js에 Day를 추가하기만 하면
- *   - 카드 유형(단어/표현/문장/패턴) 자동 판별
+ *   - 카드 유형(명사/동사/형용사/표현/패턴) 자동 판별
+ *   - 동사원형 카드는 현재형 6인칭 활용까지 자동 생성
  *   - 테마별 집계, 전체 통계, Day 범위 문구
  *   - 검색/필터 대상
  * 이 전부 자동으로 갱신됩니다. 화면 코드는 수정할 필요가 없습니다.
  */
 export const useVocabularyStore = defineStore('vocabulary', () => {
+  /**
+   * 활용형 사전 — "이 문장에 동사가 들어있나?" 판별에 씁니다.
+   * 데이터에 있는 동사원형을 전부 현재형으로 펼쳐 담아 둡니다.
+   */
+  const verbForms = computed(() => {
+    const set = new Set();
+    for (const l of rawLessons) {
+      for (const c of l.cards) {
+        const es = (c.es || '').trim().toLowerCase();
+        if (!INFINITIVE_RE.test(es)) continue;
+        const conj = conjugatePresent(es);
+        if (!conj) continue;
+        for (const form of Object.values(conj.forms)) {
+          form.split(/\s+/).forEach(w => set.add(w));
+        }
+      }
+    }
+    return set;
+  });
+
   /* ---------- 정규화된 레슨 ---------- */
   const lessons = computed(() =>
     rawLessons
@@ -27,7 +50,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
           ...c,
           // 카드 고유 ID: 진도 추적·중복 판별용
           uid: `${l.id}:${i}`,
-          type: classifyCard(c),
+          type: classifyCard(c, verbForms.value),
           lessonId: l.id,
           day: l.day,
           theme: resolveTheme(l.theme),
@@ -40,6 +63,25 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
 
   /** 모든 카드를 평평하게 편 배열 (검색·전체 학습용) */
   const allCards = computed(() => lessons.value.flatMap(l => l.cards));
+
+  /**
+   * 동사 카드 + 활용표 — 동사 활용 학습 모드의 원천.
+   * 같은 동사가 여러 Day에 있으면 하나로 합칩니다.
+   */
+  const verbCards = computed(() => {
+    const byInf = new Map();
+    for (const c of allCards.value) {
+      if (c.type !== 'verb') continue;
+      const conj = conjugatePresent(c.es);
+      if (!conj) continue;
+      byInf.set(conj.infinitive, {
+        ...c,
+        conj,
+        persons: practicePersons(conj),
+      });
+    }
+    return [...byInf.values()];
+  });
 
   /* ---------- 집계 ---------- */
   const totalCards = computed(() => allCards.value.length);
@@ -116,7 +158,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     // 정의
     THEMES, THEME_LIST, CARD_TYPES, CARD_TYPE_LIST,
     // 데이터
-    lessons, allCards,
+    lessons, allCards, verbCards,
     // 집계
     totalCards, totalLessons, dayRange, themeSummaries, typeSummaries,
     // 조회

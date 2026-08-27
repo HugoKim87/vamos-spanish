@@ -17,7 +17,10 @@ defineProps({ type: { type: String, required: true } });
   background: var(--c-surface-soft); color: var(--c-text-mute);
   white-space: nowrap;
 }
-.t-sentence { background: var(--c-primary-soft); color: var(--c-primary); }
+/* 유형별 색 — CARD_TYPES의 키와 반드시 일치해야 한다 */
+.t-noun { background: var(--c-primary-soft); color: var(--c-primary); }
+.t-verb { background: var(--c-success-soft); color: var(--c-success-ink); }
+.t-adj { background: var(--c-gold-soft); color: var(--c-gold-ink); }
+.t-phrase { background: var(--c-surface-soft); color: var(--c-text-soft); }
 .t-pattern { background: var(--c-warn-soft); color: var(--c-warn-ink); }
-.t-phrase { background: var(--c-success-soft); color: var(--c-success-ink); }
 </style>

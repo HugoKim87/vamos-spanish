@@ -1,3 +1,5 @@
+import { EXTRA_FORMS, INFINITIVE_RE, normalizeToken } from './verbForms.js';
+
 /**
  * 분류 체계 (Taxonomy)
  * ---------------------------------------------------------------
@@ -9,6 +11,7 @@
  * 새 Day를 lessons.js에 추가하면 theme만 지정하면 되고,
  * 카드 유형·통계·필터는 전부 여기 로직으로 자동 계산됩니다.
  */
+
 
 /** 생활 테마 — 순서가 화면 노출 순서 */
 export const THEMES = {
@@ -79,53 +82,79 @@ export const THEMES = {
 
 export const THEME_LIST = Object.values(THEMES);
 
+
 /** 카드 유형 정의 */
 export const CARD_TYPES = {
-  word: { key: 'word', label: '단어', emoji: '🔤', hint: '명사 · 동사원형 등 낱말' },
-  phrase: { key: 'phrase', label: '표현', emoji: '🧩', hint: '두 단어 이상의 관용 표현' },
-  sentence: { key: 'sentence', label: '문장', emoji: '💬', hint: '바로 말할 수 있는 완성 문장' },
+  noun: { key: 'noun', label: '명사', emoji: '📦', hint: '사물·사람·장소 이름 (명사구 포함)' },
+  verb: { key: 'verb', label: '동사', emoji: '🏃', hint: '동사원형 — 인칭 변형까지 학습' },
+  adj: { key: 'adj', label: '형용사·부사', emoji: '🎨', hint: '상태·성질을 꾸미는 말' },
+  phrase: { key: 'phrase', label: '표현', emoji: '💬', hint: '동사가 들어간 표현·문장' },
   pattern: { key: 'pattern', label: '문법 패턴', emoji: '📐', hint: '빈칸을 채워 쓰는 틀' },
 };
 
 export const CARD_TYPE_LIST = Object.values(CARD_TYPES);
 
+
 /** 패턴 카드 판별용 신호 (설명형 카드) */
 const PATTERN_SIGNS = [
-  '+', '재귀', '동사원형', '인칭', '신체부위', '접속법', '복수 ', '단수 ',
+  '+', '→', '재귀', '동사원형', '인칭', '신체부위', '접속법', '복수 ', '단수 ', ' vs ',
 ];
 
-/** 스페인어 관사로 시작하는지 (→ 명사 단어일 가능성) */
+
+/** 스페인어 관사 */
 const ARTICLE_RE = /^(el|la|los|las|un|una|unos|unas)\s+/i;
 
-/** 문장부호가 있는지 */
-const SENTENCE_RE = /[.!?¿¡]/;
 
 /**
- * 카드를 4가지 유형 중 하나로 자동 분류.
- * 새 카드가 추가돼도 이 함수만 통과하면 필터·통계에 자동 반영됩니다.
- * @param {{es:string, ko:string}} card
- * @returns {'word'|'phrase'|'sentence'|'pattern'}
+ * 뜻(한국어)으로 형용사·부사를 알아본다.
+ * 스페인어만 봐서는 명사와 형용사가 잘 구분되지 않아 뜻 쪽 어미를 본다.
+ * 예: '잘 익은', '시원한, 상쾌한', '간단한'
  */
-export function classifyCard(card) {
+const ADJ_KO_RE = /(은|는|한|운|든|린|픈|singular)$|^(아주|매우|너무)\s/;
+
+
+/** 동사가 하나라도 들어있는지 */
+export function containsVerb(es, verbForms) {
+  const tokens = es.split(/[\s/]+/).map(normalizeToken).filter(Boolean);
+  return tokens.some(t => INFINITIVE_RE.test(t) || verbForms.has(t) || EXTRA_FORMS.has(t));
+}
+
+
+/**
+ * 카드를 유형별로 자동 분류.
+ *
+ * 분류 기준
+ *   1) 문법 패턴  — '+', '→' 등 설명 기호가 있는 카드
+ *   2) 동사       — 동사원형 한 단어 (활용 학습 대상)
+ *   3) 표현       — 여러 단어 중 동사가 들어간 것 (완성 문장 포함)
+ *   4) 형용사·부사 — 꾸미는 말 한 단어
+ *   5) 명사       — 나머지 (단일 명사, 관사+명사, 명사끼리 연결된 구)
+ *
+ * @param {{es:string, ko:string}} card
+ * @param {Set<string>} [verbForms] 활용형 사전 (없으면 원형·기본형만으로 판별)
+ */
+export function classifyCard(card, verbForms = new Set()) {
   const es = (card.es || '').trim();
   const ko = (card.ko || '').trim();
 
-  // 1) 패턴: "Soy + 직업", "me duele + 단수 신체부위" 같은 설명형
+  // 1) 설명형 패턴 카드
   if (PATTERN_SIGNS.some(sign => es.includes(sign))) return 'pattern';
-  // 뜻 쪽에만 패턴 설명이 있는 경우 (예: 'a + 층')
-  if (/~[을를이가]?\s*(위한|위해|하다|이다)/.test(ko) && es.includes('+')) return 'pattern';
 
-  const words = es.split(/\s+/).length;
+  const tokens = es.split(/\s+/).filter(Boolean);
 
-  // 2) 문장: 문장부호 + 3단어 이상
-  if (SENTENCE_RE.test(es) && words >= 3) return 'sentence';
+  // 2) 동사원형 한 단어 → 활용 학습 대상
+  if (tokens.length === 1 && INFINITIVE_RE.test(normalizeToken(es))) return 'verb';
 
-  // 3) 단어: 한 단어이거나 관사+명사 형태
-  if (words === 1 || (ARTICLE_RE.test(es) && words <= 3)) return 'word';
+  // 3) 여러 단어 + 동사 포함 → 표현
+  if (tokens.length >= 2 && containsVerb(es, verbForms)) return 'phrase';
 
-  // 4) 나머지 여러 단어 조합 = 표현
-  return words >= 2 ? 'phrase' : 'word';
+  // 4) 한 단어인데 관사가 없고 뜻이 꾸밈말 → 형용사·부사
+  if (tokens.length === 1 && !ARTICLE_RE.test(es) && ADJ_KO_RE.test(ko)) return 'adj';
+
+  // 5) 나머지는 명사 (단일 명사 · 관사+명사 · 명사구)
+  return 'noun';
 }
+
 
 /** 레슨의 theme 키가 유효한지 확인 (없으면 basics로 폴백) */
 export function resolveTheme(themeKey) {
