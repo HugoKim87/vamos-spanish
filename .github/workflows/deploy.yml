@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch:   # 수동 실행 버튼
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,13 +19,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run validate      # 데이터 검증 실패 시 배포 중단
-      - run: npm run build
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # 데이터 검증 → 동작 테스트 → 빌드.
+      # 하나라도 실패하면 배포가 중단되므로 깨진 화면이 올라가지 않는다.
+      - name: Verify
+        run: npm run verify
+
       - uses: actions/configure-pages@v5
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
