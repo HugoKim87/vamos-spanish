@@ -5154,5 +5154,349 @@ export const lessons = [
         ko: '너는 살을 빼려고 뭘 할 거야?'
       }
     ]
+  },
+  {
+    id: 'day57',
+    day: 57,
+    theme: 'food',
+    emoji: '📞',
+    title: '식당 예약',
+    subtitle: '¿Cómo se reserva una mesa en un restaurante?',
+    cards: [
+      {
+        es: 'la reserva',
+        ko: '예약'
+      },
+      {
+        es: 'hacer una reserva',
+        ko: '예약하다'
+      },
+      {
+        es: 'reservar una mesa',
+        ko: '테이블을 예약하다'
+      },
+      {
+        es: 'cancelar una reserva',
+        ko: '예약을 취소하다'
+      },
+      {
+        es: 'confirmar una reserva',
+        ko: '예약을 확인하다'
+      },
+      {
+        es: 'cambiar una reserva',
+        ko: '예약을 변경하다'
+      },
+      {
+        es: 'el número de personas',
+        ko: '인원수'
+      },
+      {
+        es: 'el número de teléfono',
+        ko: '전화번호'
+      },
+      {
+        es: 'con antelación',
+        ko: '미리, 사전에'
+      },
+      {
+        es: 'por teléfono',
+        ko: '전화로'
+      },
+      {
+        es: 'por Internet',
+        ko: '인터넷으로'
+      },
+      {
+        es: 'reservar',
+        ko: '예약하다 (1인칭: reservo)'
+      },
+      {
+        es: 'cancelar',
+        ko: '취소하다 (1인칭: cancelo)'
+      },
+      {
+        es: 'confirmar',
+        ko: '확인하다 (1인칭: confirmo)'
+      },
+      {
+        es: 'cambiar',
+        ko: '바꾸다, 변경하다 (1인칭: cambio)'
+      },
+      {
+        es: 'llamar',
+        ko: '전화하다, 부르다 (1인칭: llamo)'
+      },
+      {
+        es: 'esperar',
+        ko: '기다리다 (1인칭: espero)'
+      },
+      {
+        es: 'llegar',
+        ko: '도착하다 (1인칭: llego)'
+      },
+      {
+        es: 'seguir',
+        ko: '계속하다, 따라가다 (불규칙, 1인칭: sigo)'
+      },
+      {
+        es: 'preferir',
+        ko: '선호하다 (불규칙, 1인칭: prefiero)'
+      },
+      {
+        es: 'poder',
+        ko: '~할 수 있다 (불규칙, 1인칭: puedo)'
+      },
+      {
+        es: 'disfrutar de la comida',
+        ko: '식사를 즐기다 (1인칭: disfruto)'
+      },
+      {
+        es: 'sin esperar mucho',
+        ko: '많이 기다리지 않고'
+      },
+      {
+        es: '조건법: 동사원형 + ía/ías/ía/íamos/íais/ían',
+        ko: '정중하게 부탁·조언할 때 쓰는 시제'
+      },
+      {
+        es: 'me gustaría + 동사원형',
+        ko: '나는 ~하고 싶습니다 (정중한 표현)'
+      },
+      {
+        es: 'hablaría',
+        ko: '말하고 싶다/말할 텐데 (hablar 조건법)'
+      },
+      {
+        es: 'comería',
+        ko: '먹고 싶다/먹을 텐데 (comer 조건법)'
+      },
+      {
+        es: 'viviría',
+        ko: '살고 싶다/살 텐데 (vivir 조건법)'
+      },
+      {
+        es: 'Me gustaría hacer una reserva.',
+        ko: '예약하고 싶습니다.'
+      },
+      {
+        es: 'Me gustaría reservar una mesa para hoy a las ocho de la tarde.',
+        ko: '오늘 저녁 8시에 테이블을 예약하고 싶습니다.'
+      },
+      {
+        es: 'Es para dos personas.',
+        ko: '두 명입니다.'
+      },
+      {
+        es: 'Tengo una reserva a nombre de Silvia.',
+        ko: '실비아 이름으로 예약했습니다.'
+      },
+      {
+        es: '¿Tienen una mesa libre?',
+        ko: '빈 자리 있나요?'
+      },
+      {
+        es: 'Quiero cancelar mi reserva.',
+        ko: '예약을 취소하고 싶어요.'
+      },
+      {
+        es: 'Quiero cambiar la hora de mi reserva.',
+        ko: '예약 시간을 변경하고 싶어요.'
+      },
+      {
+        es: 'Buenas noches. Tengo una reserva.',
+        ko: '안녕하세요(저녁 인사). 예약했습니다.'
+      },
+      {
+        es: '¿Podemos pasar?',
+        ko: '들어가도 될까요?'
+      },
+      {
+        es: 'Reservo una mesa antes de ir al restaurante.',
+        ko: '나는 식당에 가기 전에 테이블을 예약한다.'
+      },
+      {
+        es: 'Cuando quiero ir a un restaurante, hago una reserva con antelación.',
+        ko: '식당에 가고 싶을 때 나는 미리 예약을 한다.'
+      },
+      {
+        es: 'Llamo por teléfono o reservo por Internet.',
+        ko: '나는 전화를 하거나 인터넷으로 예약한다.'
+      },
+      {
+        es: 'Digo mi nombre, el número de personas y la hora.',
+        ko: '나는 이름, 인원수, 시간을 말한다.'
+      },
+      {
+        es: 'Así puedo disfrutar de la comida sin esperar mucho.',
+        ko: '그래서 오래 기다리지 않고 식사를 즐길 수 있다.'
+      },
+      {
+        es: '¿Cómo se reserva una mesa en un restaurante?',
+        ko: '식당에서 테이블은 어떻게 예약하나요?'
+      }
+    ]
+  },
+  {
+    id: 'day58',
+    day: 58,
+    theme: 'people',
+    emoji: '🙏',
+    title: '감사 표현',
+    subtitle: '¿Cómo doy las gracias?',
+    cards: [
+      {
+        es: 'dar las gracias',
+        ko: '감사 인사를 하다 (1인칭: doy)'
+      },
+      {
+        es: 'las gracias',
+        ko: '감사, 감사 인사'
+      },
+      {
+        es: 'Muchas gracias.',
+        ko: '정말 감사합니다.'
+      },
+      {
+        es: 'Muchísimas gracias.',
+        ko: '정말 너무 감사합니다.'
+      },
+      {
+        es: 'Te lo agradezco mucho.',
+        ko: '정말 고맙습니다. (반말 상대)'
+      },
+      {
+        es: 'Se lo agradezco mucho.',
+        ko: '정말 감사드립니다. (존댓말 상대)'
+      },
+      {
+        es: 'Gracias por tu ayuda.',
+        ko: '도와줘서 고마워요.'
+      },
+      {
+        es: 'Gracias por tu tiempo.',
+        ko: '시간 내줘서 고마워요.'
+      },
+      {
+        es: 'Gracias por el regalo.',
+        ko: '선물 고마워요.'
+      },
+      {
+        es: 'De nada.',
+        ko: '천만에요.'
+      },
+      {
+        es: 'No hay de qué.',
+        ko: '별말씀을요.'
+      },
+      {
+        es: 'Es un placer.',
+        ko: '기꺼이요, 제 기쁨입니다.'
+      },
+      {
+        es: 'Ha sido un placer.',
+        ko: '정말 기뻤습니다.'
+      },
+      {
+        es: 'agradecer',
+        ko: '감사하다 (1인칭만 불규칙: agradezco)'
+      },
+      {
+        es: 'ayudar',
+        ko: '돕다 (1인칭: ayudo)'
+      },
+      {
+        es: 'invitar',
+        ko: '초대하다, 대접하다 (1인칭: invito)'
+      },
+      {
+        es: 'mostrar',
+        ko: '보여주다 (불규칙, 1인칭: muestro)'
+      },
+      {
+        es: 'creer',
+        ko: '믿다, ~라고 생각하다 (1인칭: creo)'
+      },
+      {
+        es: 'la invitación',
+        ko: '초대'
+      },
+      {
+        es: 'el detalle',
+        ko: '(마음 쓴) 작은 성의, 배려'
+      },
+      {
+        es: 'los pequeños detalles',
+        ko: '작은 배려들'
+      },
+      {
+        es: 'el respeto',
+        ko: '존중'
+      },
+      {
+        es: 'la amabilidad',
+        ko: '친절'
+      },
+      {
+        es: 'sencillo',
+        ko: '간단한, 소박한'
+      },
+      {
+        es: '1인칭 단수(yo)만 불규칙인 동사',
+        ko: 'yo 형태만 모양이 바뀌고 나머지는 규칙'
+      },
+      {
+        es: 'agradecer → agradezco',
+        ko: '감사하다 → 나는 감사한다'
+      },
+      {
+        es: 'dar → doy',
+        ko: '주다 → 나는 준다'
+      },
+      {
+        es: 'hacer → hago',
+        ko: '하다 → 나는 한다'
+      },
+      {
+        es: 'conducir → conduzco',
+        ko: '운전하다 → 나는 운전한다'
+      },
+      {
+        es: 'salir → salgo',
+        ko: '나가다 → 나는 나간다'
+      },
+      {
+        es: 'saber → sé',
+        ko: '알다 → 나는 안다'
+      },
+      {
+        es: 'Siempre doy las gracias cuando alguien me ayuda.',
+        ko: '누군가 나를 도와주면 나는 항상 감사 인사를 한다.'
+      },
+      {
+        es: 'También agradezco los pequeños detalles.',
+        ko: '나는 작은 배려에도 감사한다.'
+      },
+      {
+        es: 'Agradezco un regalo o una invitación.',
+        ko: '나는 선물이나 초대에 감사한다.'
+      },
+      {
+        es: 'Decir "gracias" es una forma sencilla de mostrar respeto.',
+        ko: '"고맙다"고 말하는 것은 존중을 표현하는 간단한 방법이다.'
+      },
+      {
+        es: 'Creo que la amabilidad es importante.',
+        ko: '나는 친절이 중요하다고 생각한다.'
+      },
+      {
+        es: '¿Cómo das las gracias?',
+        ko: '너는 어떻게 감사를 표현해?'
+      },
+      {
+        es: '¿Cómo darás las gracias?',
+        ko: '너는 어떻게 감사를 표현할 거야?'
+      }
+    ]
   }
 ];
