@@ -32,13 +32,45 @@ const currentCards = computed(() =>
 
 const previewCards = computed(() => currentCards.value.slice(0, PREVIEW_LIMIT));
 
-/** 이 테마 안에서 유형별 개수 */
+/**
+ * 칩에 표시할 개수는 "지금 이걸 누르면 실제로 몇 장이 되는지"여야 한다.
+ *
+ * 레슨을 고른 상태에서 유형 칩이 테마 전체 개수를 보여주면
+ * '명사 41'을 눌렀는데 3장만 나오는 일이 생긴다.
+ * 그래서 레슨 칩은 선택된 유형을, 유형 칩은 선택된 레슨을 반영해 센다.
+ */
+function countCards(opts) {
+  return vocab.buildSet({ theme: props.themeKey, ...opts }).length;
+}
+
+/** 레슨 칩 — 지금 선택된 유형 조건에서의 장수 */
+const lessonCounts = computed(() => {
+  const types = selectedTypes.value.length ? selectedTypes.value : undefined;
+  return (theme.value?.lessons || []).map(l => ({
+    id: l.id,
+    day: l.day,
+    title: l.title,
+    emoji: l.emoji,
+    count: countCards({ lessonId: l.id, types }),
+  }));
+});
+
+/** '테마 전체' 칩 — 유형 조건만 적용한 장수 */
+const themeTotal = computed(() =>
+  countCards({ types: selectedTypes.value.length ? selectedTypes.value : undefined })
+);
+
+/** '전체' 유형 칩 — 선택된 레슨의 전체 장수 */
+const currentLessonTotal = computed(() =>
+  countCards({ lessonId: selectedLesson.value || undefined })
+);
+
+/** 유형 칩 — 지금 선택된 레슨 조건에서의 장수 (0장이면 눌러도 소용없으니 표시만 흐리게) */
 const typeCounts = computed(() => {
-  const counts = Object.create(null);
-  for (const c of theme.value?.cards || []) counts[c.type] = (counts[c.type] || 0) + 1;
+  const lessonId = selectedLesson.value || undefined;
   return vocab.CARD_TYPE_LIST
-    .map(t => ({ ...t, count: counts[t.key] || 0 }))
-    .filter(t => t.count > 0);
+    .map(t => ({ ...t, count: countCards({ lessonId, types: [t.key] }) }))
+    .filter(t => t.count > 0 || selectedTypes.value.includes(t.key));
 });
 
 function toggleType(key) {
@@ -105,14 +137,15 @@ function startStudy(mode) {
             class="chip" :class="{ 'is-active': selectedLesson === '' }"
             @click="selectedLesson = ''"
           >
-            테마 전체 <span class="chip-count">{{ theme.cardCount }}</span>
+            테마 전체 <span class="chip-count">{{ themeTotal }}</span>
           </button>
           <button
-            v-for="l in theme.lessons" :key="l.id"
-            class="chip" :class="{ 'is-active': selectedLesson === l.id }"
+            v-for="l in lessonCounts" :key="l.id"
+            class="chip"
+            :class="{ 'is-active': selectedLesson === l.id, 'is-empty': l.count === 0 }"
             @click="selectedLesson = l.id"
           >
-            {{ l.emoji }} {{ l.title }} <span class="chip-count">{{ l.cards.length }}</span>
+            {{ l.emoji }} {{ l.title }} <span class="chip-count">{{ l.count }}</span>
           </button>
         </div>
       </div>
@@ -123,10 +156,11 @@ function startStudy(mode) {
           <button
             class="chip" :class="{ 'is-active': selectedTypes.length === 0 }"
             @click="selectedTypes = []"
-          >전체</button>
+          >전체 <span class="chip-count">{{ currentLessonTotal }}</span></button>
           <button
             v-for="t in typeCounts" :key="t.key"
-            class="chip" :class="{ 'is-active': selectedTypes.includes(t.key) }"
+            class="chip"
+            :class="{ 'is-active': selectedTypes.includes(t.key), 'is-empty': t.count === 0 }"
             @click="toggleType(t.key)"
           >
             {{ t.emoji }} {{ t.label }} <span class="chip-count">{{ t.count }}</span>
@@ -213,6 +247,9 @@ function startStudy(mode) {
   margin-bottom: var(--sp-3);
 }
 .b-label { font-size: 12.5px; font-weight: 800; color: var(--c-text-mute); }
+/* 지금 조건에서 0장인 칩 — 눌러도 소용없다는 걸 보여준다 */
+.chip.is-empty { opacity: .4; }
+
 .b-summary {
   margin: var(--sp-3) 0 var(--sp-4);
   font-size: 13.5px; color: var(--c-text-soft);
