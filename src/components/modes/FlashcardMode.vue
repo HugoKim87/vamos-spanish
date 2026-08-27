@@ -17,6 +17,24 @@ const current = computed(() => deck.value[index.value]);
 const isFirst = computed(() => index.value === 0);
 const isLast = computed(() => index.value === deck.value.length - 1);
 
+/**
+ * 카드를 넘기는 순간에는 뒤집기 애니메이션을 끈다.
+ *
+ * 뒤집힌 상태에서 다음 카드로 넘어가면 카드 내용은 즉시 바뀌는데
+ * 되돌아가는 회전(0.55초)이 재생되면서 그동안 새 카드의 뒷면(뜻)이 보인다.
+ * 정답이 먼저 스쳐 보이면 낱말카드의 의미가 없으므로, 전환할 때만 회전을 생략한다.
+ */
+const skipFlipAnim = ref(false);
+
+function resetFlip() {
+  skipFlipAnim.value = true;
+  flipped.value = false;
+  // 다음 화면 갱신이 끝난 뒤 애니메이션을 되살린다 (사용자가 직접 뒤집을 때는 그대로 동작)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { skipFlipAnim.value = false; });
+  });
+}
+
 function report() {
   emit('progress', ((index.value + 1) / deck.value.length) * 100);
 }
@@ -25,8 +43,8 @@ function go(step) {
   const next = index.value + step;
   if (next < 0 || next >= deck.value.length) return;
   if (step > 0) progress.markLearned(current.value.uid);
+  resetFlip();
   index.value = next;
-  flipped.value = false;
   report();
 }
 
@@ -54,7 +72,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
 <template>
   <div class="study-stage w-card stage">
     <div class="card-area" @click="flipped = !flipped">
-      <div class="flip" :class="{ 'is-flipped': flipped }">
+      <div class="flip" :class="{ 'is-flipped': flipped, 'no-anim': skipFlipAnim }">
         <!-- 앞면 -->
         <div class="face front">
           <div class="f-top">
@@ -108,6 +126,8 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
   transition: transform .55s var(--ease);
 }
 .flip.is-flipped { transform: rotateY(180deg); }
+/* 카드를 넘길 때만 회전을 생략해 뒷면(뜻)이 스쳐 보이지 않게 한다 */
+.flip.no-anim { transition: none; }
 .face {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;

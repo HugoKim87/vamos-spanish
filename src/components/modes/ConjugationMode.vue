@@ -3,6 +3,7 @@ import { computed, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
+import { useAutoFocus } from '@/composables/useAutoFocus.js';
 import { useSpeech } from '@/composables/useSpeech.js';
 import SpeakButton from '@/components/SpeakButton.vue';
 
@@ -42,6 +43,13 @@ const current = computed(() => queue.value[0] || null);
 const input = ref('');
 const revealed = ref(false);
 const judged = ref(null);      // 'right' | 'wrong' | null
+
+// ⚠️ 아래 ref들이 만들어진 뒤에 걸어야 한다 (선언 전 참조 오류 방지)
+// 문제가 바뀌면 입력창에 바로 커서를 놓는다 — 채점 중이거나 '보고 확인' 모드면 제외
+const inputEl = useAutoFocus(
+  () => [current.value, typing.value, judged.value],
+  () => typing.value && !judged.value
+);
 const showTable = ref(false);
 
 function report() {
@@ -126,6 +134,7 @@ useEnterKey(() => {
       <!-- 타이핑 -->
       <template v-if="typing">
         <input
+          ref="inputEl"
           v-model="input"
           class="input es-text"
           :class="judged"

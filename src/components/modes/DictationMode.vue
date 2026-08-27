@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
+import { useAutoFocus } from '@/composables/useAutoFocus.js';
 import { useSpeech } from '@/composables/useSpeech.js';
 
 /**
@@ -31,6 +32,10 @@ const correctCount = ref(0);
 const showHint = ref(false);
 
 const current = computed(() => queue.value[index.value] || null);
+
+// ⚠️ current·judged가 만들어진 뒤에 걸어야 한다 (선언 전 참조 오류 방지)
+// 문제가 바뀌면 입력창에 바로 커서를 놓는다
+const inputEl = useAutoFocus(() => [current.value, judged.value], () => !judged.value);
 
 /** Enter 하나로 채점 → 다음 문제까지 (마우스 없이 진행) */
 useEnterKey(() => { judged.value ? next() : submit(); });
@@ -94,6 +99,7 @@ function next() {
       <p v-else-if="!judged" class="hint">{{ current.ko }}</p>
 
       <input
+        ref="inputEl"
         v-model="input"
         class="input es-text"
         :class="judged"

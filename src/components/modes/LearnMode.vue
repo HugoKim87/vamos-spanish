@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect, makeOptions } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
+import { useAutoFocus } from '@/composables/useAutoFocus.js';
 import SpeakButton from '@/components/SpeakButton.vue';
 
 const props = defineProps({ cards: { type: Array, required: true } });
@@ -25,6 +26,12 @@ const options = ref([]);
 const answer = ref('');
 const picked = ref(null);
 const feedback = ref(null); // { ok, correctText }
+
+// 단답형 문제가 뜨면 입력창에 바로 커서를 놓는다 (객관식·채점 중에는 제외)
+const fillEl = useAutoFocus(
+  () => [current.value, feedback.value],
+  () => current.value?.type === 'fill' && !feedback.value
+);
 
 function nextQuestion() {
   feedback.value = null;
@@ -130,6 +137,7 @@ nextQuestion();
       <div class="prompt"><span class="p-text">{{ current.card.ko }}</span></div>
       <p class="instr">스페인어로 입력하세요 · 대소문자·악센트·기호는 무시됩니다 · Enter로 확인</p>
       <input
+        ref="fillEl"
         v-model="answer"
         class="fill"
         :class="{ correct: feedback?.ok, wrong: feedback && !feedback.ok }"
