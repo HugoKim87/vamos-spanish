@@ -32,6 +32,55 @@ const results = computed(() => {
 const shown = ref(PAGE);
 watch(results, () => { shown.value = PAGE; }); // 조건이 바뀌면 처음부터
 
+/**
+ * 칩 숫자는 "지금 이걸 누르면 실제로 몇 장이 되는지"여야 한다.
+ * 검색어·다른 필터를 무시하고 전체 개수를 보여주면,
+ * '명사 548'을 눌렀는데 2장만 나오는 일이 생긴다.
+ */
+function countWith({ theme, types, hardOnly }) {
+  const base = vocab.buildSet({
+    query: vocab.searchQuery,
+    theme: theme ?? (vocab.searchTheme || undefined),
+    types: types ?? (vocab.searchTypes.length ? vocab.searchTypes : undefined),
+  });
+  const wantHard = hardOnly ?? vocab.searchHardOnly;
+  return wantHard ? base.filter(c => progress.markOf(c.uid) === 'hard').length : base.length;
+}
+
+/** 테마 칩 — 다른 조건을 유지한 채 이 테마만 바꿔 본 장수 (0장이면 숨김) */
+const themeChips = computed(() => [
+  { key: '', label: '전체 테마', emoji: '', count: countWith({ theme: undefined }) },
+  ...vocab.themeSummaries
+    .map(t => ({ key: t.key, label: t.label, emoji: t.emoji, count: countWith({ theme: t.key }) }))
+    .filter(t => t.count > 0),
+]);
+
+/** 유형 칩 — 이 유형만 골랐을 때의 장수 (0장이면 숨김) */
+const typeChips = computed(() => [
+  { key: '', label: '전체 유형', emoji: '', count: countWith({ types: undefined }) },
+  ...vocab.CARD_TYPE_LIST
+    .map(t => ({ key: t.key, label: t.label, emoji: t.emoji, count: countWith({ types: [t.key] }) }))
+    .filter(t => t.count > 0),
+]);
+
+/** 어려움 칩 — 지금 조건에서 어려움 표시된 장수 */
+const hardCount = computed(() => countWith({ hardOnly: true }));
+
+/**
+ * 조건을 바꾸다 보면 이전 선택이 0장이 되는 조합이 생긴다.
+ * 그대로 두면 빈 화면만 남으므로 무효해진 선택은 자동으로 푼다.
+ */
+watch([typeChips, themeChips], () => {
+  const validTypes = new Set(typeChips.value.map(t => t.key));
+  const kept = vocab.searchTypes.filter(k => validTypes.has(k));
+  if (kept.length !== vocab.searchTypes.length) vocab.searchTypes = kept;
+
+  const validThemes = new Set(themeChips.value.map(t => t.key));
+  if (vocab.searchTheme && !validThemes.has(vocab.searchTheme)) vocab.searchTheme = '';
+
+  if (vocab.searchHardOnly && hardCount.value === 0) vocab.searchHardOnly = false;
+});
+
 const visible = computed(() => results.value.slice(0, shown.value));
 const hasMore = computed(() => results.value.length > shown.value);
 
@@ -87,29 +136,27 @@ function clearAll() {
         class="btn btn-ghost btn-sm clear" @click="clearAll">초기화</button>
     </div>
 
-    <!-- 필터 -->
+    <!-- 필터 — 지금 조건에서 1장 이상인 것만 보여준다 -->
     <div class="filters">
       <div class="scroll-x">
-        <button class="chip" :class="{ 'is-active': vocab.searchTheme === '' }"
-          @click="vocab.searchTheme = ''">전체 테마</button>
         <button
-          v-for="t in vocab.themeSummaries" :key="t.key"
+          v-for="t in themeChips" :key="t.key || 'all'"
           class="chip" :class="{ 'is-active': vocab.searchTheme === t.key }"
           @click="vocab.searchTheme = t.key"
-        >{{ t.emoji }} {{ t.label }} <span class="chip-count">{{ t.cardCount }}</span></button>
+        >{{ t.emoji }} {{ t.label }} <span class="chip-count">{{ t.count }}</span></button>
       </div>
       <div class="scroll-x">
-        <button class="chip" :class="{ 'is-active': vocab.searchTypes.length === 0 }"
-          @click="vocab.searchTypes = []">전체 유형</button>
         <button
-          v-for="t in vocab.typeSummaries" :key="t.key"
-          class="chip" :class="{ 'is-active': vocab.searchTypes.includes(t.key) }"
-          @click="toggleType(t.key)"
+          v-for="t in typeChips" :key="t.key || 'all'"
+          class="chip"
+          :class="{ 'is-active': t.key ? vocab.searchTypes.includes(t.key) : vocab.searchTypes.length === 0 }"
+          @click="t.key ? toggleType(t.key) : (vocab.searchTypes = [])"
         >{{ t.emoji }} {{ t.label }} <span class="chip-count">{{ t.count }}</span></button>
         <button
+          v-if="hardCount > 0 || vocab.searchHardOnly"
           class="chip" :class="{ 'is-active': vocab.searchHardOnly }"
           @click="vocab.searchHardOnly = !vocab.searchHardOnly"
-        >😵 어려움만 <span class="chip-count">{{ progress.hardCards.length }}</span></button>
+        >😵 어려움만 <span class="chip-count">{{ hardCount }}</span></button>
       </div>
     </div>
 

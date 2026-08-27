@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
 import { useProgressStore } from '@/stores/progress.js';
@@ -43,16 +43,18 @@ function countCards(opts) {
   return vocab.buildSet({ theme: props.themeKey, ...opts }).length;
 }
 
-/** 레슨 칩 — 지금 선택된 유형 조건에서의 장수 */
+/** 레슨 칩 — 지금 선택된 유형 조건에서 1장 이상인 것만 */
 const lessonCounts = computed(() => {
   const types = selectedTypes.value.length ? selectedTypes.value : undefined;
-  return (theme.value?.lessons || []).map(l => ({
-    id: l.id,
-    day: l.day,
-    title: l.title,
-    emoji: l.emoji,
-    count: countCards({ lessonId: l.id, types }),
-  }));
+  return (theme.value?.lessons || [])
+    .map(l => ({
+      id: l.id,
+      day: l.day,
+      title: l.title,
+      emoji: l.emoji,
+      count: countCards({ lessonId: l.id, types }),
+    }))
+    .filter(l => l.count > 0);
 });
 
 /** '테마 전체' 칩 — 유형 조건만 적용한 장수 */
@@ -65,12 +67,23 @@ const currentLessonTotal = computed(() =>
   countCards({ lessonId: selectedLesson.value || undefined })
 );
 
-/** 유형 칩 — 지금 선택된 레슨 조건에서의 장수 (0장이면 눌러도 소용없으니 표시만 흐리게) */
+/** 유형 칩 — 지금 선택된 레슨에서 1장 이상인 것만 */
 const typeCounts = computed(() => {
   const lessonId = selectedLesson.value || undefined;
   return vocab.CARD_TYPE_LIST
     .map(t => ({ ...t, count: countCards({ lessonId, types: [t.key] }) }))
-    .filter(t => t.count > 0 || selectedTypes.value.includes(t.key));
+    .filter(t => t.count > 0);
+});
+
+/**
+ * 선택을 바꾸다 보면 이전 선택이 0장이 되는 조합이 생긴다.
+ * (명사를 고른 뒤 명사가 없는 레슨을 고르는 경우)
+ * 그대로 두면 "카드가 없어요"만 남으므로, 빈 선택은 자동으로 푼다.
+ */
+watch([selectedLesson, typeCounts], () => {
+  const valid = new Set(typeCounts.value.map(t => t.key));
+  const kept = selectedTypes.value.filter(k => valid.has(k));
+  if (kept.length !== selectedTypes.value.length) selectedTypes.value = kept;
 });
 
 function toggleType(key) {
@@ -142,7 +155,7 @@ function startStudy(mode) {
           <button
             v-for="l in lessonCounts" :key="l.id"
             class="chip"
-            :class="{ 'is-active': selectedLesson === l.id, 'is-empty': l.count === 0 }"
+            :class="{ 'is-active': selectedLesson === l.id }"
             @click="selectedLesson = l.id"
           >
             {{ l.emoji }} {{ l.title }} <span class="chip-count">{{ l.count }}</span>
@@ -160,7 +173,7 @@ function startStudy(mode) {
           <button
             v-for="t in typeCounts" :key="t.key"
             class="chip"
-            :class="{ 'is-active': selectedTypes.includes(t.key), 'is-empty': t.count === 0 }"
+            :class="{ 'is-active': selectedTypes.includes(t.key) }"
             @click="toggleType(t.key)"
           >
             {{ t.emoji }} {{ t.label }} <span class="chip-count">{{ t.count }}</span>
@@ -170,7 +183,6 @@ function startStudy(mode) {
 
       <p class="b-summary">
         선택한 세트: <b>{{ currentCards.length }}장</b>
-        <span v-if="currentCards.length === 0" class="b-warn"> — 조건에 맞는 카드가 없어요</span>
       </p>
 
       <div class="mode-grid">
@@ -247,14 +259,10 @@ function startStudy(mode) {
   margin-bottom: var(--sp-3);
 }
 .b-label { font-size: 12.5px; font-weight: 800; color: var(--c-text-mute); }
-/* 지금 조건에서 0장인 칩 — 눌러도 소용없다는 걸 보여준다 */
-.chip.is-empty { opacity: .4; }
-
 .b-summary {
   margin: var(--sp-3) 0 var(--sp-4);
   font-size: 13.5px; color: var(--c-text-soft);
 }
-.b-warn { color: var(--c-danger); font-weight: 700; }
 
 .mode-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
