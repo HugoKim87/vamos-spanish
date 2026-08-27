@@ -1,4 +1,4 @@
-import { EXTRA_FORMS, INFINITIVE_RE, normalizeToken } from './verbForms.js';
+import { EXTRA_FORMS, NOT_VERBS, AMBIGUOUS, INFINITIVE_RE, normalizeToken } from './verbForms.js';
 
 /**
  * 분류 체계 (Taxonomy)
@@ -101,37 +101,81 @@ const PATTERN_SIGNS = [
 ];
 
 
-/** 스페인어 관사 */
-const ARTICLE_RE = /^(el|la|los|las|un|una|unos|unas)\s+/i;
+/** 스페인어 관사·한정사 — 바로 뒤에 오는 말은 명사 자리다 */
+const DETERMINERS = new Set([
+  'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'lo',
+  'mi', 'mis', 'tu', 'tus', 'su', 'sus', 'nuestro', 'nuestra',
+  'este', 'esta', 'estos', 'estas', 'ese', 'esa', 'esos', 'esas',
+  'otro', 'otra', 'otros', 'otras', 'mucho', 'mucha', 'muchos', 'muchas',
+  'poco', 'poca', 'cada', 'todo', 'toda', 'todos', 'todas', 'primer', 'segundo',
+]);
 
+/** 전치사 — 바로 뒤에 오는 말도 명사 자리다 */
+const PREPOSITIONS = new Set([
+  'a', 'al', 'de', 'del', 'en', 'con', 'sin', 'por', 'para',
+  'sobre', 'hasta', 'desde', 'entre', 'hacia', 'tras', 'segun', 'durante',
+  // 시간·위치를 나타내는 구를 이끄는 말 (antes de ~, después de ~)
+  'antes', 'despues', 'cerca', 'lejos', 'dentro', 'fuera', 'encima', 'debajo',
+]);
+
+/** 스페인어 관사로 시작하는지 */
+const ARTICLE_RE = /^(el|la|los|las|un|una|unos|unas)\s+/i;
 
 /**
  * 뜻(한국어)으로 형용사·부사를 알아본다.
  * 스페인어만 봐서는 명사와 형용사가 잘 구분되지 않아 뜻 쪽 어미를 본다.
  * 예: '잘 익은', '시원한, 상쾌한', '간단한'
  */
-const ADJ_KO_RE = /(은|는|한|운|든|린|픈|singular)$|^(아주|매우|너무)\s/;
-
-
-/** 동사가 하나라도 들어있는지 */
-export function containsVerb(es, verbForms) {
-  const tokens = es.split(/[\s/]+/).map(normalizeToken).filter(Boolean);
-  return tokens.some(t => INFINITIVE_RE.test(t) || verbForms.has(t) || EXTRA_FORMS.has(t));
-}
-
+const ADJ_KO_RE = /(은|는|한|운|든|린|픈)$|^(아주|매우|너무)\s/;
 
 /**
- * 카드를 유형별로 자동 분류.
+ * 문장 안에 "진짜 동사"가 있는지 판별.
  *
- * 분류 기준
- *   1) 문법 패턴  — '+', '→' 등 설명 기호가 있는 카드
- *   2) 동사       — 동사원형 한 단어 (활용 학습 대상)
- *   3) 표현       — 여러 단어 중 동사가 들어간 것 (완성 문장 포함)
+ * ⚠️ 스페인어에는 명사와 동사 활용형의 철자가 같은 단어가 아주 많다.
+ *    la reserva(예약) vs reserva(reservar 3인칭)
+ *    el regalo(선물)  vs regalo(regalar 1인칭)
+ *    la cocina(부엌)  vs cocina(cocinar 3인칭)
+ *  단어만 대조하면 이런 명사구가 전부 '표현'으로 잘못 분류된다.
+ *
+ * 그래서 앞 단어를 함께 본다 — 관사·한정사·전치사 바로 뒤는 명사 자리다.
+ */
+export function containsVerb(es, verbForms) {
+  const tokens = es.split(/[\s/]+/).map(normalizeToken).filter(Boolean);
+  for (let i = 0; i < tokens.length; i++) {
+    const prev = i > 0 ? tokens[i - 1] : null;
+    if (prev && (DETERMINERS.has(prev) || PREPOSITIONS.has(prev))) continue;
+    const t = tokens[i];
+    // 늘 명사·형용사인 단어 (solar, lugar …)
+    if (NOT_VERBS.has(t)) continue;
+    // 명사·동사 양쪽으로 쓰이는 단어는 문장 첫머리에 있을 때만 동사로 본다.
+    // (Trabajo en una oficina = 동사 / el trabajo = 명사)
+    if (AMBIGUOUS.has(t) && i > 0) continue;
+    if (INFINITIVE_RE.test(t) || verbForms.has(t) || EXTRA_FORMS.has(t)) return true;
+  }
+  return false;
+}
+
+/** 쉼표로 끊은 조각 중 전치사로 시작하는 게 있는지 (por la noche / ..., por favor) */
+function startsWithPreposition(es) {
+  return es.split(',').some(seg => {
+    const first = normalizeToken((seg.trim().split(/\s+/)[0] || ''));
+    return PREPOSITIONS.has(first);
+  });
+}
+
+/**
+ * 카드를 유형별로 자동 분류. (앞에서부터 먼저 맞는 것으로 결정)
+ *
+ *   1) 문법 패턴   — '+', '→' 등 설명 기호가 있는 카드
+ *   2) 동사        — 동사원형 한 단어              (ayudar, creer)
+ *   3) 표현        — 동사가 들어간 조합            (ir a conciertos, me gusta mucho)
+ *                    전치사로 시작하는 구          (por la noche, por favor)
+ *                    의문·감탄으로 통째 쓰는 말    (¿Qué tal?)
  *   4) 형용사·부사 — 꾸미는 말 한 단어
- *   5) 명사       — 나머지 (단일 명사, 관사+명사, 명사끼리 연결된 구)
+ *   5) 명사        — 나머지                        (la reserva, el papel de regalo)
  *
  * @param {{es:string, ko:string}} card
- * @param {Set<string>} [verbForms] 활용형 사전 (없으면 원형·기본형만으로 판별)
+ * @param {Set<string>} [verbForms] 활용형 사전
  */
 export function classifyCard(card, verbForms = new Set()) {
   const es = (card.es || '').trim();
@@ -142,13 +186,25 @@ export function classifyCard(card, verbForms = new Set()) {
 
   const tokens = es.split(/\s+/).filter(Boolean);
 
-  // 2) 동사원형 한 단어 → 활용 학습 대상
+  // 2) 동사원형 한 단어
   if (tokens.length === 1 && INFINITIVE_RE.test(normalizeToken(es))) return 'verb';
 
-  // 3) 여러 단어 + 동사 포함 → 표현
-  if (tokens.length >= 2 && containsVerb(es, verbForms)) return 'phrase';
+  if (tokens.length >= 2) {
+    // 3-a) 동사가 들어간 조합
+    if (containsVerb(es, verbForms)) return 'phrase';
+    // 3-b) 마침표로 끝나는 완성 문장은 통째로 쓰는 말
+    //      ('El ascensor baja.'처럼 명사·동사 겸용 단어가 서술어인 경우를 잡는다)
+    if (/[.]\s*$/.test(es)) return 'phrase';
+    // 3-c) 인사말 등 관용 표현
+    if (/^(gracias|muchas gracias|muchisimas gracias|hola|adios|buenos|buenas|perdon|lo siento)/i
+      .test(normalizeToken(es))) return 'phrase';
+    // 3-d) 전치사로 시작하는 구
+    if (startsWithPreposition(es)) return 'phrase';
+    // 3-e) 의문·감탄으로 통째로 외우는 말
+    if (/[¿?¡!]/.test(es)) return 'phrase';
+  }
 
-  // 4) 한 단어인데 관사가 없고 뜻이 꾸밈말 → 형용사·부사
+  // 4) 꾸미는 말 한 단어
   if (tokens.length === 1 && !ARTICLE_RE.test(es) && ADJ_KO_RE.test(ko)) return 'adj';
 
   // 5) 나머지는 명사 (단일 명사 · 관사+명사 · 명사구)

@@ -18,6 +18,8 @@
  * 시제를 가리지 않고 "동사다"라고만 알려주면 되므로 형태만 나열합니다.
  */
 export const EXTRA_FORMS = new Set([
+  // 2글자라 동사원형 정규식([a-z]+ar/er/ir)에 걸리지 않는 원형
+  'ir',
   // ser / estar / haber
   'soy', 'eres', 'es', 'somos', 'sois', 'son', 'era', 'eran', 'fue', 'fueron', 'será',
   'estoy', 'estás', 'está', 'estamos', 'estáis', 'están', 'estaba', 'estuve',
@@ -72,6 +74,8 @@ export const EXTRA_FORMS = new Set([
   'usaste', 'hiciste', 'comprarás', 'escuchaste', 'cuesta', 'cuestan',
   'estabas', 'estaba', 'maquillarte', 'recuperarme', 'relajarme', 'cuidarlas',
   'riego', 'riegas', 'riega', 'regamos', 'riegan',
+  'empiezo', 'empiezas', 'empieza', 'empezamos', 'empiezan',
+  'termino', 'terminas', 'termina', 'terminamos', 'terminan',
 ]);
 
 /** 동사원형인지 (원형은 그 자체로 동사) */
@@ -84,3 +88,29 @@ export function normalizeToken(token) {
     .replace(/[¿?¡!.,;:"'()]/g, '')
     .trim();
 }
+
+/**
+ * 동사처럼 생겼지만 동사가 아닌 단어들 — 항상 명사·형용사로만 쓰인다.
+ *
+ *  solar : -ar로 끝나 동사원형처럼 보이지만 형용사('태양의')
+ *  lugar : 마찬가지로 명사('장소')
+ * 여기 넣은 단어는 어느 위치에 있든 동사로 세지 않는다.
+ */
+export const NOT_VERBS = new Set([
+  'solar', 'lugar', 'militar', 'popular', 'particular', 'familiar', 'escolar',
+  'collar', 'mar', 'bar', 'azucar', 'azúcar', 'hogar',
+]);
+
+/**
+ * 명사로도 동사로도 쓰이는 단어 — 위치로 판단해야 한다.
+ *
+ *  Trabajo en una oficina.(나는 일한다 · 동사)  vs  el trabajo(일 · 명사)
+ *  Bajo al tercer piso.(나는 내려간다 · 동사)   vs  la planta baja(낮은 · 형용사)
+ *
+ * 관사·전치사 뒤에 오면 명사, 그 밖(특히 문장 첫머리)이면 동사로 본다.
+ * 앞 단어 검사는 containsVerb가 이미 하므로 여기서는 목록만 관리한다.
+ */
+export const AMBIGUOUS = new Set([
+  'trabajo', 'bajo', 'baja', 'cocina', 'reserva', 'regalo',
+  'ducha', 'receta', 'recibo', 'archivo', 'desayuno', 'lista', 'llama',
+]);
