@@ -60,6 +60,7 @@ export const IRREGULARS = {
   preferir: { stem: 'e>ie' },
   hervir: { stem: 'e>ie' },
   recomendar: { stem: 'e>ie' },
+  fregar: { stem: 'e>ie' },   // friego, friegas, friega, fregamos, fregáis, friegan
   transferir: { stem: 'e>ie' },
   sentirse: { stem: 'e>ie' },
 

@@ -5498,5 +5498,247 @@ export const lessons = [
         ko: '너는 어떻게 감사를 표현할 거야?'
       }
     ]
+  },
+  {
+    id: 'day59',
+    day: 59,
+    theme: 'home',
+    emoji: '🧹',
+    title: '집 청소',
+    subtitle: '¿Cómo limpio la casa?',
+    cards: [
+      {
+        es: 'la escoba',
+        ko: '빗자루'
+      },
+      {
+        es: 'el recogedor',
+        ko: '쓰레받기'
+      },
+      {
+        es: 'la aspiradora',
+        ko: '진공청소기'
+      },
+      {
+        es: 'la fregona',
+        ko: '대걸레'
+      },
+      {
+        es: 'el cubo',
+        ko: '양동이'
+      },
+      {
+        es: 'el trapo',
+        ko: '걸레'
+      },
+      {
+        es: 'la bayeta',
+        ko: '행주'
+      },
+      {
+        es: 'el plumero',
+        ko: '먼지떨이'
+      },
+      {
+        es: 'el detergente',
+        ko: '세제'
+      },
+      {
+        es: 'el limpiador',
+        ko: '세정제'
+      },
+      {
+        es: 'el desinfectante',
+        ko: '소독제'
+      },
+      {
+        es: 'el polvo',
+        ko: '먼지'
+      },
+      {
+        es: 'los muebles',
+        ko: '가구'
+      },
+      {
+        es: 'el suelo',
+        ko: '바닥'
+      },
+      {
+        es: 'la basura',
+        ko: '쓰레기'
+      },
+      {
+        es: 'el papel',
+        ko: '종이'
+      },
+      {
+        es: 'el plástico',
+        ko: '플라스틱'
+      },
+      {
+        es: 'el vidrio',
+        ko: '유리'
+      },
+      {
+        es: 'el salón',
+        ko: '거실'
+      },
+      {
+        es: 'el dormitorio',
+        ko: '침실'
+      },
+      {
+        es: 'el balcón',
+        ko: '발코니'
+      },
+      {
+        es: 'las ventanas',
+        ko: '창문'
+      },
+      {
+        es: 'barrer',
+        ko: '쓸다 (1인칭: barro)'
+      },
+      {
+        es: 'fregar',
+        ko: '닦다, 문지르다 (불규칙, 1인칭: friego)'
+      },
+      {
+        es: 'aspirar',
+        ko: '진공청소하다 (1인칭: aspiro)'
+      },
+      {
+        es: 'ordenar',
+        ko: '정리하다 (1인칭: ordeno)'
+      },
+      {
+        es: 'desinfectar',
+        ko: '소독하다 (1인칭: desinfecto)'
+      },
+      {
+        es: 'tirar',
+        ko: '버리다 (1인칭: tiro)'
+      },
+      {
+        es: 'reciclar',
+        ko: '분리수거하다 (1인칭: reciclo)'
+      },
+      {
+        es: 'sacar',
+        ko: '꺼내다, 내놓다 (1인칭: saco)'
+      },
+      {
+        es: 'quitar',
+        ko: '없애다, 치우다 (1인칭: quito)'
+      },
+      {
+        es: 'barrer el suelo',
+        ko: '바닥을 쓸다'
+      },
+      {
+        es: 'pasar la aspiradora',
+        ko: '진공청소기를 돌리다'
+      },
+      {
+        es: 'fregar el suelo',
+        ko: '바닥을 닦다'
+      },
+      {
+        es: 'quitar el polvo',
+        ko: '먼지를 털다'
+      },
+      {
+        es: 'limpiar las ventanas',
+        ko: '창문을 닦다'
+      },
+      {
+        es: 'ordenar la habitación',
+        ko: '방을 정리하다'
+      },
+      {
+        es: 'sacar la basura',
+        ko: '쓰레기를 내놓다'
+      },
+      {
+        es: 'reciclar el papel',
+        ko: '종이를 분리수거하다'
+      },
+      {
+        es: 'limpia',
+        ko: '깨끗한'
+      },
+      {
+        es: 'ordenada',
+        ko: '정돈된'
+      },
+      {
+        es: 'primero',
+        ko: '먼저, 첫 번째로'
+      },
+      {
+        es: 'después',
+        ko: '그 다음에'
+      },
+      {
+        es: 'por último',
+        ko: '마지막으로'
+      },
+      {
+        es: 'al final',
+        ko: '끝으로, 마지막에'
+      },
+      {
+        es: 'Primero, barro el suelo.',
+        ko: '먼저 바닥을 쓸어요.'
+      },
+      {
+        es: 'Después, paso la aspiradora.',
+        ko: '그 다음, 진공청소기를 돌려요.'
+      },
+      {
+        es: 'Por último, friego el suelo.',
+        ko: '마지막으로 바닥을 닦아요.'
+      },
+      {
+        es: 'Paso la aspiradora en el salón y en los dormitorios.',
+        ko: '거실과 침실에 진공청소기를 돌려요.'
+      },
+      {
+        es: 'Después de cocinar, limpio la cocina.',
+        ko: '요리한 뒤에 부엌을 청소해요.'
+      },
+      {
+        es: 'Ordeno mi habitación todos los días.',
+        ko: '나는 매일 내 방을 정리해요.'
+      },
+      {
+        es: 'Saco la basura por la noche.',
+        ko: '나는 밤에 쓰레기를 내놓아요.'
+      },
+      {
+        es: 'Quito el polvo de los muebles.',
+        ko: '나는 가구의 먼지를 털어요.'
+      },
+      {
+        es: 'Normalmente limpio la casa los fines de semana.',
+        ko: '나는 보통 주말에 집을 청소해요.'
+      },
+      {
+        es: 'Reciclo el papel, el plástico y el vidrio.',
+        ko: '나는 종이, 플라스틱, 유리를 분리수거해요.'
+      },
+      {
+        es: 'Me gusta tener la casa limpia y ordenada.',
+        ko: '나는 집이 깨끗하고 정돈된 게 좋아요.'
+      },
+      {
+        es: '¿Cómo limpias la casa?',
+        ko: '너는 집을 어떻게 청소해?'
+      },
+      {
+        es: '¿Cómo limpiaste la casa?',
+        ko: '너는 집을 어떻게 청소했어?'
+      }
+    ]
   }
 ];
