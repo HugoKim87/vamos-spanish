@@ -47,6 +47,13 @@ const BOOT = ['yo', 'tu', 'el', 'ellos'];
 export const IRREGULARS = {
   ser: { full: { yo: 'soy', tu: 'eres', el: 'es', nosotros: 'somos', vosotros: 'sois', ellos: 'son' } },
   ir: { full: { yo: 'voy', tu: 'vas', el: 'va', nosotros: 'vamos', vosotros: 'vais', ellos: 'van' } },
+  // tener: 1인칭 tengo + 어간 e→ie 가 같이 일어난다
+  tener: {
+    full: {
+      yo: 'tengo', tu: 'tienes', el: 'tiene',
+      nosotros: 'tenemos', vosotros: 'tenéis', ellos: 'tienen',
+    },
+  },
   // freír: e→i 어간 변화 + í에 강세 (freímos·freís는 어간이 그대로)
   'freír': {
     full: {
@@ -89,6 +96,7 @@ export const IRREGULARS = {
     },
   },
   agradecer: { yo: 'agradezco' },
+  conocer: { yo: 'conozco' },
   reducir: { yo: 'reduzco' },
   protegerse: { yo: 'protejo' },
 

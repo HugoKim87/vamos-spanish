@@ -5740,5 +5740,175 @@ export const lessons = [
         ko: '너는 집을 어떻게 청소했어?'
       }
     ]
+  },
+  {
+    id: 'day60',
+    day: 60,
+    theme: 'people',
+    emoji: '👋',
+    title: '자기소개',
+    subtitle: '¿Cómo me presento?',
+    cards: [
+      {
+        es: 'llamarse',
+        ko: '이름이 ~이다 (재귀동사, 1인칭: me llamo)'
+      },
+      {
+        es: 'presentarse',
+        ko: '자기소개하다 (재귀동사, 1인칭: me presento)'
+      },
+      {
+        es: 'tener',
+        ko: '가지다, 있다 (불규칙, 1인칭: tengo)'
+      },
+      {
+        es: 'vivir',
+        ko: '살다 (1인칭: vivo)'
+      },
+      {
+        es: 'conocer',
+        ko: '알다, 알게 되다 (1인칭만 불규칙: conozco)'
+      },
+      {
+        es: 'aprender',
+        ko: '배우다 (1인칭: aprendo)'
+      },
+      {
+        es: 'enseñar',
+        ko: '가르치다 (1인칭: enseño)'
+      },
+      {
+        es: 'el idioma',
+        ko: '언어'
+      },
+      {
+        es: 'la cultura',
+        ko: '문화'
+      },
+      {
+        es: 'el tiempo libre',
+        ko: '여가 시간'
+      },
+      {
+        es: 'el profesor',
+        ko: '선생님 (남)'
+      },
+      {
+        es: 'la profesora',
+        ko: '선생님 (여)'
+      },
+      {
+        es: 'el estudiante',
+        ko: '학생'
+      },
+      {
+        es: 'llamarse + 재귀대명사 (me/te/se/nos/os/se)',
+        ko: '재귀동사라 재귀대명사와 함께 쓴다'
+      },
+      {
+        es: 'me llamo + 이름',
+        ko: '제 이름은 ~입니다'
+      },
+      {
+        es: 'Me llamo Silvia.',
+        ko: '제 이름은 실비아입니다.'
+      },
+      {
+        es: '¿Cómo te llamas?',
+        ko: '이름이 뭐예요?'
+      },
+      {
+        es: 'Se llama Pedro.',
+        ko: '그의 이름은 페드로예요.'
+      },
+      {
+        es: 'Soy Silvia.',
+        ko: '저는 실비아입니다.'
+      },
+      {
+        es: 'Soy de Corea.',
+        ko: '저는 한국에서 왔습니다.'
+      },
+      {
+        es: 'Vengo de Corea.',
+        ko: '저는 한국에서 왔어요.'
+      },
+      {
+        es: 'Tengo veinte años.',
+        ko: '저는 스무 살입니다.'
+      },
+      {
+        es: 'Vivo en Seúl.',
+        ko: '저는 서울에 살아요.'
+      },
+      {
+        es: 'Soy profesora de español.',
+        ko: '저는 스페인어 선생님입니다.'
+      },
+      {
+        es: 'Soy estudiante.',
+        ko: '저는 학생입니다.'
+      },
+      {
+        es: 'Trabajo en una escuela.',
+        ko: '저는 학교에서 일해요.'
+      },
+      {
+        es: 'Estudio español.',
+        ko: '저는 스페인어를 공부해요.'
+      },
+      {
+        es: 'Me gusta viajar.',
+        ko: '저는 여행을 좋아해요.'
+      },
+      {
+        es: 'Me gusta leer.',
+        ko: '저는 독서를 좋아해요.'
+      },
+      {
+        es: 'Me gusta hacer ejercicio.',
+        ko: '저는 운동하는 걸 좋아해요.'
+      },
+      {
+        es: 'Me gusta enseñar idiomas.',
+        ko: '저는 언어 가르치는 걸 좋아해요.'
+      },
+      {
+        es: 'Me gusta aprender idiomas.',
+        ko: '저는 언어 배우는 걸 좋아해요.'
+      },
+      {
+        es: 'Me gusta conocer nuevas culturas.',
+        ko: '저는 새로운 문화를 아는 걸 좋아해요.'
+      },
+      {
+        es: 'En mi tiempo libre me gusta leer.',
+        ko: '여가 시간에는 독서를 좋아해요.'
+      },
+      {
+        es: 'Mucho gusto.',
+        ko: '만나서 반갑습니다.'
+      },
+      {
+        es: 'Encantado.',
+        ko: '반갑습니다. (남자가 말할 때)'
+      },
+      {
+        es: 'Encantada.',
+        ko: '반갑습니다. (여자가 말할 때)'
+      },
+      {
+        es: 'Espero conocerte mejor.',
+        ko: '더 알아가게 되길 바라요.'
+      },
+      {
+        es: '¿Cómo te presentas?',
+        ko: '너는 자기소개를 어떻게 해?'
+      },
+      {
+        es: '¿Cómo te vas a presentar?',
+        ko: '너는 자기소개를 어떻게 할 거야?'
+      }
+    ]
   }
 ];
