@@ -63,7 +63,6 @@ function startQuick(mode) {
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">실비아 Voca LAB 기반</span>
         <h1>
           오늘은 어떤 <em>스페인어</em>를<br />익혀볼까요?
         </h1>
@@ -243,12 +242,6 @@ function startQuick(mode) {
   grid-template-columns: 1.35fr .9fr;
   gap: var(--sp-6);
   align-items: center;
-}
-.eyebrow {
-  display: inline-block;
-  padding: 5px 12px; border-radius: var(--r-full);
-  background: var(--c-primary-soft); color: var(--c-primary);
-  font-size: 12.5px; font-weight: 800; margin-bottom: var(--sp-3);
 }
 h1 {
   font-size: clamp(30px, 4.4vw, 46px);

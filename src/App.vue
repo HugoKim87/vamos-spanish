@@ -25,7 +25,7 @@ const rangeText = computed(() => {
   <footer class="footer">
     <div class="container">
       ¡Vamos! 스페인어 학습 · {{ rangeText }} 통합 단어장
-      ({{ vocab.totalLessons }}개 레슨 · {{ vocab.totalCards }}장) · 실비아 Voca LAB 기반
+      ({{ vocab.totalLessons }}개 레슨 · {{ vocab.totalCards }}장)
     </div>
   </footer>
 </template>

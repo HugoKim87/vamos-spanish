@@ -5288,8 +5288,8 @@ export const lessons = [
         ko: '두 명입니다.'
       },
       {
-        es: 'Tengo una reserva a nombre de Silvia.',
-        ko: '실비아 이름으로 예약했습니다.'
+        es: 'Tengo una reserva a nombre de Hugo.',
+        ko: '후고 이름으로 예약했습니다.'
       },
       {
         es: '¿Tienen una mesa libre?',
@@ -5810,8 +5810,8 @@ export const lessons = [
         ko: '제 이름은 ~입니다'
       },
       {
-        es: 'Me llamo Silvia.',
-        ko: '제 이름은 실비아입니다.'
+        es: 'Me llamo Hugo.',
+        ko: '제 이름은 후고입니다.'
       },
       {
         es: '¿Cómo te llamas?',
@@ -5822,8 +5822,8 @@ export const lessons = [
         ko: '그의 이름은 페드로예요.'
       },
       {
-        es: 'Soy Silvia.',
-        ko: '저는 실비아입니다.'
+        es: 'Soy Hugo.',
+        ko: '저는 후고입니다.'
       },
       {
         es: 'Soy de Corea.',
@@ -5842,7 +5842,7 @@ export const lessons = [
         ko: '저는 서울에 살아요.'
       },
       {
-        es: 'Soy profesora de español.',
+        es: 'Soy profesor de español.',
         ko: '저는 스페인어 선생님입니다.'
       },
       {

@@ -232,3 +232,33 @@ describe('낱말카드 — 글자 크기와 레이아웃', () => {
     expect(reflexive.length, '재귀동사 표시가 사라짐').toBeGreaterThan(0);
   });
 });
+
+describe('출처 표기가 화면에 남아 있지 않다', () => {
+  it('푸터·홈 화면에 표기가 없다', async () => {
+    const { mount: m } = await import('@vue/test-utils');
+    const { createRouter, createWebHashHistory } = await import('vue-router');
+    const { routes } = await import('@/router.js');
+    const App = (await import('@/App.vue')).default;
+    const HomeView = (await import('@/views/HomeView.vue')).default;
+
+    const router = createRouter({ history: createWebHashHistory(), routes });
+    for (const Comp of [App, HomeView]) {
+      const w = m(Comp, { global: { plugins: [createPinia(), router] } });
+      await w.vm.$nextTick();
+      expect(w.text(), `${Comp.__name}에 출처 표기가 남음`).not.toContain('Voca LAB');
+    }
+  });
+
+  it('예문 속 이름이 Hugo로 통일돼 있다', () => {
+    expect(vocab.allCards.filter(c => /Silvia|실비아/.test(c.es + c.ko)), 'Silvia가 남음').toEqual([]);
+    const hugo = vocab.allCards.filter(c => c.es.includes('Hugo'));
+    expect(hugo.length, '자기소개 예문이 사라짐').toBeGreaterThan(0);
+  });
+
+  it('Hugo(남성)에 맞게 직업이 남성형이다', () => {
+    // Soy profesora(여성형)가 남아 있으면 이름과 성이 어긋난다
+    const intro = vocab.lessons.find(l => l.day === 60).cards;
+    expect(intro.some(c => c.es === 'Soy profesor de español.'), '남성형이 아님').toBe(true);
+    expect(intro.some(c => c.es === 'Soy profesora de español.'), '여성형이 남음').toBe(false);
+  });
+});
