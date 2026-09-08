@@ -310,4 +310,114 @@ export const tutorials = [
       },
     ],
   },
+  {
+    id: 'genero',
+    emoji: '⚖️',
+    title: '남성 명사와 여성 명사',
+    subtitle: '¿El o la?',
+    summary: '관사와 형용사가 명사의 성·수에 따라 어떻게 바뀌는지',
+    sections: [
+      {
+        heading: '스페인어 명사에는 성이 있다',
+        paragraphs: [
+          '스페인어의 모든 명사는 남성이거나 여성입니다. 사람이나 동물처럼 실제 성별이 있는 경우도 있지만, 사물도 예외 없이 둘 중 하나로 정해져 있습니다.',
+          '중요한 건 뜻이 아니라 문법상의 분류라는 점입니다. 책상이 남성적이어서 el escritorio인 게 아니라, 그냥 그렇게 정해져 있는 겁니다. 그래서 단어를 외울 때는 el·la를 붙여서 통째로 외우는 편이 훨씬 낫습니다.',
+        ],
+        examples: [
+          { es: 'el trapo', note: '남성 — 걸레' },
+          { es: 'la escoba', note: '여성 — 빗자루' },
+          { es: 'el menú', note: '남성 — 메뉴' },
+          { es: 'la cuenta', note: '여성 — 계산서' },
+        ],
+      },
+      {
+        heading: '관사 네 가지',
+        paragraphs: [
+          '명사의 성(남성/여성)과 수(단수/복수)에 따라 관사가 네 갈래로 갈립니다.',
+          '정관사는 "그 ~"처럼 이미 아는 대상을, 부정관사는 "어떤 ~ 하나"처럼 처음 언급하는 대상을 가리킬 때 씁니다.',
+        ],
+        table: {
+          headers: ['', '남성 단수', '여성 단수', '남성 복수', '여성 복수'],
+          rows: [
+            ['정관사 (그 ~)', 'el libro', 'la mesa', 'los libros', 'las mesas'],
+            ['부정관사 (어떤 ~)', 'un libro', 'una mesa', 'unos libros', 'unas mesas'],
+          ],
+        },
+      },
+      {
+        heading: '성을 알아보는 힌트',
+        paragraphs: [
+          '어미를 보면 대체로 짐작할 수 있습니다. 다만 힌트일 뿐이라 예외가 꽤 있습니다.',
+        ],
+        list: [
+          '-o로 끝나면 대개 남성: el libro, el trapo, el vidrio',
+          '-a로 끝나면 대개 여성: la mesa, la escoba, la pizza',
+          '-ción, -sión, -dad, -tad로 끝나면 거의 항상 여성: la aplicación, la universidad',
+          '-or, -aje로 끝나면 대개 남성: el repartidor, el garaje',
+        ],
+        examples: [
+          { es: 'el día', note: '-a인데 남성 (자주 쓰는 예외)' },
+          { es: 'la mano', note: '-o인데 여성' },
+          { es: 'el problema', note: '그리스어에서 온 -ma는 남성 (el idioma, el clima도)' },
+          { es: 'el agua', note: '여성 명사인데 관사는 el — 아래 설명 참고' },
+        ],
+      },
+      {
+        heading: 'el agua는 왜 el을 쓸까',
+        paragraphs: [
+          'agua는 분명 여성 명사인데 관사는 el을 씁니다. la agua라고 하면 [라 아구아]처럼 a 소리가 겹쳐 발음이 불편해지기 때문입니다.',
+          '그래서 강세가 a에 오는 여성 단수 명사 앞에서는 관사만 el로 바꿔 씁니다. 명사 자체는 여전히 여성이라 형용사는 여성형을 그대로 씁니다.',
+        ],
+        examples: [
+          { es: 'el agua fría', note: '관사는 el, 형용사는 여성형 fría' },
+          { es: 'las aguas', note: '복수가 되면 다시 las' },
+        ],
+      },
+      {
+        heading: '형용사도 명사를 따라간다',
+        paragraphs: [
+          '형용사는 꾸미는 명사의 성과 수에 맞춰 모양이 바뀝니다. 스페인어에서 형용사는 보통 명사 뒤에 옵니다.',
+          '-o로 끝나는 형용사는 네 가지 형태를 갖지만, -e나 자음으로 끝나면 성에 따라서는 바뀌지 않고 복수형만 만듭니다.',
+        ],
+        table: {
+          headers: ['형용사', '남성 단수', '여성 단수', '남성 복수', '여성 복수'],
+          rows: [
+            ['rojo (빨간)', 'rojo', 'roja', 'rojos', 'rojas'],
+            ['grande (큰)', 'grande', 'grande', 'grandes', 'grandes'],
+            ['fácil (쉬운)', 'fácil', 'fácil', 'fáciles', 'fáciles'],
+          ],
+        },
+        examples: [
+          { es: 'rosas rojas', note: 'rosa가 여성 복수 → roja도 여성 복수' },
+          { es: 'el pollo frito', note: 'pollo가 남성 단수 → frito' },
+          { es: 'la comida rápida', note: 'comida가 여성 단수 → rápida' },
+          { es: 'los tacos picantes', note: '-e로 끝나 성은 그대로, 복수 -s만 붙음' },
+        ],
+      },
+      {
+        heading: '복수형 만들기',
+        paragraphs: [
+          '모음으로 끝나면 -s, 자음으로 끝나면 -es를 붙입니다. 관사와 형용사도 함께 복수로 바꿔야 합니다.',
+        ],
+        examples: [
+          { es: 'la mesa → las mesas', note: '모음으로 끝남 → -s' },
+          { es: 'el profesor → los profesores', note: '자음으로 끝남 → -es' },
+          { es: 'la habitación → las habitaciones', note: '복수가 되면 강세 부호가 사라짐' },
+        ],
+      },
+      {
+        heading: '부사는 바뀌지 않는다',
+        paragraphs: [
+          '성·수에 따라 바뀌는 건 관사와 형용사입니다. 부사는 동사나 형용사를 꾸미는 말이라 모양이 그대로입니다.',
+          '같은 단어가 형용사로도 부사로도 쓰이는 경우가 있어서 헷갈리기 쉬운데, 명사를 꾸미면 형용사(변함), 동사를 꾸미면 부사(안 변함)로 구분하면 됩니다.',
+        ],
+        examples: [
+          { es: 'Ellas hablan mucho.', note: '부사 mucho — 주어가 여성 복수여도 그대로' },
+          { es: 'muchas gracias', note: '여기서는 형용사라 여성 복수 muchas' },
+          { es: 'Ella corre rápido.', note: '부사 rápido — 안 바뀜' },
+          { es: 'la comida rápida', note: '형용사라 여성형 rápida' },
+        ],
+      },
+    ],
+  },
 ];

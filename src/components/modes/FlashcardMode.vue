@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { shuffle } from '@/composables/useStudyUtils.js';
 import SpeakButton from '@/components/SpeakButton.vue';
+import { conjugatePresent, practicePersons } from '@/data/conjugation.js';
 import TypeBadge from '@/components/TypeBadge.vue';
 
 const props = defineProps({ cards: { type: Array, required: true } });
@@ -25,6 +26,18 @@ const isLast = computed(() => index.value === deck.value.length - 1);
  * 정답이 먼저 스쳐 보이면 낱말카드의 의미가 없으므로, 전환할 때만 회전을 생략한다.
  */
 const skipFlipAnim = ref(false);
+
+/**
+ * 동사 카드면 현재형 활용을 함께 보여준다.
+ * 뜻만 확인하고 넘기면 정작 문장에서 쓰는 형태(hablo/hablas…)를 못 익히기 때문이다.
+ * 뒷면에만 넣으므로 앞면에서 뜻을 떠올리는 흐름은 그대로다.
+ */
+const conjugation = computed(() => {
+  if (current.value?.type !== 'verb') return null;
+  const conj = conjugatePresent(current.value.es);
+  if (!conj) return null;
+  return { conj, persons: practicePersons(conj) };
+});
 
 function resetFlip() {
   skipFlipAnim.value = true;
@@ -90,6 +103,19 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
           </div>
           <p class="f-text">{{ current.ko }}</p>
           <span class="f-sub es-text">{{ current.es }}</span>
+
+          <!-- 동사면 현재형 활용도 함께 -->
+          <div v-if="conjugation" class="conj" @click.stop>
+            <p class="c-title">직설법 현재</p>
+            <ul class="c-grid">
+              <li v-for="p in conjugation.persons" :key="p.key" class="c-item">
+                <span class="c-person es-text">{{ p.short }}</span>
+                <span class="c-form es-text">{{ conjugation.conj.forms[p.key] }}</span>
+                <SpeakButton :text="conjugation.conj.forms[p.key]" size="sm" />
+              </li>
+            </ul>
+            <p v-if="conjugation.conj.note" class="c-note">{{ conjugation.conj.note }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -148,6 +174,35 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
 .f-lang { font-size: 11.5px; font-weight: 800; color: var(--c-text-mute); letter-spacing: .06em; }
 .f-text { font-size: clamp(24px, 4.2vw, 38px); font-weight: 800; letter-spacing: -.02em; line-height: 1.25; }
 .f-sub { margin-top: var(--sp-3); font-size: 14px; color: var(--c-text-mute); }
+
+/* 동사 활용표 — 6인칭을 2열로 묶어 카드가 길어지지 않게 한다 */
+.conj {
+  width: 100%; max-width: 460px;
+  margin-top: var(--sp-4); padding-top: var(--sp-3);
+  border-top: 1px solid var(--c-border);
+}
+.c-title { font-size: 11.5px; font-weight: 800; color: var(--c-text-mute); letter-spacing: .02em; }
+.c-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px var(--sp-3); margin-top: 6px;
+}
+.c-item { display: flex; align-items: center; gap: 5px; padding: 3px 0; min-width: 0; }
+.c-person {
+  font-size: 11px; color: var(--c-text-mute); font-weight: 700;
+  min-width: 34px; flex-shrink: 0;
+}
+.c-form {
+  font-size: 13.5px; font-weight: 700;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.c-note {
+  margin-top: 6px; padding: 5px 8px; border-radius: var(--r-sm);
+  background: var(--c-warn-soft); color: var(--c-warn-ink);
+  font-size: 11px; line-height: 1.4;
+}
+@media (max-width: 420px) {
+  .c-grid { grid-template-columns: 1fr; }
+}
 .f-hint { position: absolute; bottom: var(--sp-4); font-size: 12.5px; color: var(--c-text-mute); }
 
 .controls {

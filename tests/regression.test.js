@@ -141,3 +141,56 @@ describe('주관식 — 클릭 없이 바로 입력된다', () => {
     w.unmount();
   });
 });
+
+describe('낱말카드 — 동사는 활용까지 보여준다', () => {
+  it('동사 카드 뒷면에 6인칭 활용이 나온다', async () => {
+    const verb = vocab.allCards.find(c => c.type === 'verb' && c.es === 'barrer');
+    const w = mount(FlashcardMode, { props: { cards: [verb], setKey: 't' } });
+    await w.vm.$nextTick();
+
+    // 앞면에는 활용이 보이면 안 된다 (뜻·활용을 먼저 노출하면 학습이 안 된다)
+    expect(w.find('.front').text()).not.toContain('barremos');
+
+    await w.find('.card-area').trigger('click');
+    await w.vm.$nextTick();
+
+    const back = w.find('.back').text();
+    ['barro', 'barres', 'barre', 'barremos', 'barréis', 'barren']
+      .forEach(f => expect(back, `${f} 누락`).toContain(f));
+    expect(w.findAll('.c-item').length, '인칭이 6개가 아님').toBe(6);
+  });
+
+  it('동사가 아닌 카드에는 활용표가 없다', async () => {
+    const noun = vocab.allCards.find(c => c.type === 'noun');
+    const w = mount(FlashcardMode, { props: { cards: [noun], setKey: 't' } });
+    await w.vm.$nextTick();
+    await w.find('.card-area').trigger('click');
+    await w.vm.$nextTick();
+    expect(w.find('.conj').exists(), '명사 카드에 활용표가 나옴').toBe(false);
+  });
+
+  it('날씨·gustar형 동사는 쓰는 인칭만 보여주고 이유를 안내한다', async () => {
+    const llover = vocab.allCards.find(c => c.es === 'llover');
+    if (llover) {
+      const w = mount(FlashcardMode, { props: { cards: [llover], setKey: 't' } });
+      await w.vm.$nextTick();
+      await w.find('.card-area').trigger('click');
+      await w.vm.$nextTick();
+      expect(w.findAll('.c-item').length).toBe(1);
+      expect(w.find('.c-note').exists(), '안내 문구 없음').toBe(true);
+    }
+  });
+
+  it('활용표를 눌러도 카드가 뒤집히지 않는다', async () => {
+    const verb = vocab.allCards.find(c => c.type === 'verb');
+    const w = mount(FlashcardMode, { props: { cards: [verb], setKey: 't' } });
+    await w.vm.$nextTick();
+    await w.find('.card-area').trigger('click');
+    await w.vm.$nextTick();
+    expect(w.vm.flipped).toBe(true);
+
+    await w.find('.conj').trigger('click');
+    await w.vm.$nextTick();
+    expect(w.vm.flipped, '활용표 클릭에 카드가 다시 뒤집힘').toBe(true);
+  });
+});

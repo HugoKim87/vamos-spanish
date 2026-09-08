@@ -12,12 +12,13 @@
 
 /** 인칭 — 화면 표시 순서 */
 export const PERSONS = [
-  { key: 'yo', label: 'yo', ko: '나' },
-  { key: 'tu', label: 'tú', ko: '너' },
-  { key: 'el', label: 'él/ella/usted', ko: '그/그녀/당신' },
-  { key: 'nosotros', label: 'nosotros', ko: '우리' },
-  { key: 'vosotros', label: 'vosotros', ko: '너희' },
-  { key: 'ellos', label: 'ellos/ellas/ustedes', ko: '그들/당신들' },
+  // short: 좁은 칸(낱말카드 활용표)에 쓰는 짧은 표기
+  { key: 'yo', label: 'yo', short: 'yo', ko: '나' },
+  { key: 'tu', label: 'tú', short: 'tú', ko: '너' },
+  { key: 'el', label: 'él/ella/usted', short: 'él', ko: '그/그녀/당신' },
+  { key: 'nosotros', label: 'nosotros', short: 'nos.', ko: '우리' },
+  { key: 'vosotros', label: 'vosotros', short: 'vos.', ko: '너희' },
+  { key: 'ellos', label: 'ellos/ellas/ustedes', short: 'ellos', ko: '그들/당신들' },
 ];
 
 /** 재귀대명사 */
