@@ -32,6 +32,24 @@ const skipFlipAnim = ref(false);
  * 뜻만 확인하고 넘기면 정작 문장에서 쓰는 형태(hablo/hablas…)를 못 익히기 때문이다.
  * 뒷면에만 넣으므로 앞면에서 뜻을 떠올리는 흐름은 그대로다.
  */
+/**
+ * 글자 길이에 맞춰 크기를 정한다.
+ *
+ * 한 크기로 고정하면 긴 문장이 두 줄로 넘어가면서 카드 높이가 출렁인다.
+ * 그렇다고 가장 긴 카드(32자)에 맞추면 대부분(중앙값 6자)이 쓸데없이 작아진다.
+ * 그래서 길이를 세 구간으로 나눠 크기를 달리하고,
+ * 텍스트 영역 높이는 아래 CSS에서 고정해 카드 모양이 흔들리지 않게 한다.
+ */
+function sizeClass(text) {
+  const n = (text || '').length;
+  if (n <= 12) return 'sz-lg';
+  if (n <= 24) return 'sz-md';
+  return 'sz-sm';
+}
+
+const frontSize = computed(() => sizeClass(current.value?.es));
+const backSize = computed(() => sizeClass(current.value?.ko));
+
 const conjugation = computed(() => {
   if (current.value?.type !== 'verb') return null;
   const conj = conjugatePresent(current.value.es);
@@ -92,7 +110,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
             <span class="f-lang">Español 🇪🇸</span>
             <SpeakButton :text="current.es" />
           </div>
-          <p class="f-text es-text">{{ current.es }}</p>
+          <p class="f-text es-text" :class="frontSize">{{ current.es }}</p>
           <span class="f-hint">클릭 또는 Space로 뒤집기</span>
         </div>
         <!-- 뒷면 -->
@@ -101,7 +119,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
             <span class="f-lang">한국어 🇰🇷</span>
             <TypeBadge :type="current.type" />
           </div>
-          <p class="f-text">{{ current.ko }}</p>
+          <p class="f-text" :class="backSize">{{ current.ko }}</p>
           <span class="f-sub es-text">{{ current.es }}</span>
 
           <!-- 동사면 현재형 활용도 함께 -->
@@ -172,7 +190,16 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
   display: flex; align-items: center; justify-content: space-between;
 }
 .f-lang { font-size: 11.5px; font-weight: 800; color: var(--c-text-mute); letter-spacing: .06em; }
-.f-text { font-size: clamp(24px, 4.2vw, 38px); font-weight: 800; letter-spacing: -.02em; line-height: 1.25; }
+/* 길이에 따라 크기를 달리하되, 영역 높이는 고정해 카드가 출렁이지 않게 한다 */
+.f-text {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 2.5em;
+  font-weight: 800; letter-spacing: -.02em; line-height: 1.25;
+  word-break: keep-all;
+}
+.f-text.sz-lg { font-size: clamp(22px, 3.6vw, 32px); }
+.f-text.sz-md { font-size: clamp(19px, 2.9vw, 25px); }
+.f-text.sz-sm { font-size: clamp(16px, 2.3vw, 20px); }
 .f-sub { margin-top: var(--sp-3); font-size: 14px; color: var(--c-text-mute); }
 
 /* 동사 활용표 — 6인칭을 2열로 묶어 카드가 길어지지 않게 한다 */

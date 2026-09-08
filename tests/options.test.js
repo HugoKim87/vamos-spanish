@@ -14,12 +14,24 @@ beforeEach(() => {
   all = vocab.allCards;
 });
 
-/** 보기 텍스트로 원래 카드의 유형을 되찾는다 */
-function typesOf(options, key) {
+/**
+ * 보기 텍스트로 원래 카드의 유형을 되찾는다.
+ *
+ * ⚠️ 같은 텍스트가 여러 카드에 쓰이는 경우가 있다.
+ *    'hacer una reserva'(표현)와 'reservar'(동사) 둘 다 뜻이 '예약하다'다.
+ *    이럴 땐 어느 카드에서 온 보기인지 텍스트만으로 알 수 없으므로,
+ *    가능한 유형 전부를 후보로 본다.
+ */
+function typeSetsOf(options, key) {
   return options.map(text => {
-    const card = all.find(c => c[key] === text);
-    return card?.type ?? '?';
+    const types = new Set(all.filter(c => c[key] === text).map(c => c.type));
+    return types.size ? types : new Set(['?']);
   });
+}
+
+/** 보기 중 정답 유형이 될 수 없는 것이 있으면 true */
+function hasMixedType(options, key, wantType) {
+  return typeSetsOf(options, key).some(s => !s.has(wantType) && !s.has('?'));
 }
 
 describe('보기 유형 통일', () => {
@@ -29,9 +41,8 @@ describe('보기 유형 통일', () => {
 
     for (const card of pool) {
       const opts = makeOptions(card, pool, 'ko', { fallback: all });
-      const types = typesOf(opts, 'ko');
       checked++;
-      if (types.some(t => t !== card.type && t !== '?')) mixed++;
+      if (hasMixedType(opts, 'ko', card.type)) mixed++;
     }
     expect(checked).toBeGreaterThan(50);
     expect(mixed, `${mixed}개 문제에서 다른 유형이 섞임`).toBe(0);
@@ -60,7 +71,7 @@ describe('보기 유형 통일', () => {
     let mixed = 0;
     for (const card of pool) {
       const opts = makeOptions(card, pool, 'es', { fallback: all });
-      if (typesOf(opts, 'es').some(t => t !== card.type && t !== '?')) mixed++;
+      if (hasMixedType(opts, 'es', card.type)) mixed++;
     }
     expect(mixed).toBe(0);
   });

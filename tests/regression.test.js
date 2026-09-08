@@ -194,3 +194,41 @@ describe('낱말카드 — 동사는 활용까지 보여준다', () => {
     expect(w.vm.flipped, '활용표 클릭에 카드가 다시 뒤집힘').toBe(true);
   });
 });
+
+describe('낱말카드 — 글자 크기와 레이아웃', () => {
+  it('짧은 뜻과 긴 뜻에 다른 크기가 적용된다', async () => {
+    const short = vocab.allCards.find(c => c.ko.length <= 6);
+    const long = vocab.allCards.find(c => c.ko.length >= 26);
+
+    const a = mount(FlashcardMode, { props: { cards: [short], setKey: 't' } });
+    await a.vm.$nextTick();
+    expect(a.vm.backSize).toBe('sz-lg');
+
+    const b = mount(FlashcardMode, { props: { cards: [long], setKey: 't' } });
+    await b.vm.$nextTick();
+    expect(b.vm.backSize).toBe('sz-sm');
+    expect(a.vm.backSize).not.toBe(b.vm.backSize);
+  });
+
+  it('모든 카드가 세 크기 중 하나를 갖는다', () => {
+    const sizes = new Set(['sz-lg', 'sz-md', 'sz-sm']);
+    const bad = vocab.allCards.filter(c => {
+      const n = c.ko.length;
+      const cls = n <= 12 ? 'sz-lg' : n <= 24 ? 'sz-md' : 'sz-sm';
+      return !sizes.has(cls);
+    });
+    expect(bad.length).toBe(0);
+  });
+
+  it('중복된 "(1인칭: …)" 설명이 남아 있지 않다', () => {
+    const left = vocab.allCards.filter(c => /\(1인칭/.test(c.ko));
+    expect(left.length, `아직 ${left.length}장에 남음`).toBe(0);
+  });
+
+  it('불규칙·재귀동사 표시는 유지된다', () => {
+    const irregular = vocab.allCards.filter(c => c.ko.includes('(불규칙)'));
+    const reflexive = vocab.allCards.filter(c => c.ko.includes('(재귀동사)'));
+    expect(irregular.length, '불규칙 표시가 사라짐').toBeGreaterThan(5);
+    expect(reflexive.length, '재귀동사 표시가 사라짐').toBeGreaterThan(0);
+  });
+});

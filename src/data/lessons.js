@@ -2127,7 +2127,7 @@ export const lessons = [
       },
       {
         es: 'ver',
-        ko: '보다 (1인칭: veo)'
+        ko: '보다'
       },
       {
         es: 'buscar',
@@ -2217,7 +2217,7 @@ export const lessons = [
       },
       {
         es: 'ir',
-        ko: '가다 (1인칭: voy)'
+        ko: '가다'
       },
       {
         es: 'trabajar',
@@ -2627,15 +2627,15 @@ export const lessons = [
       },
       {
         es: 'ser',
-        ko: '~이다 (1인칭: soy)'
+        ko: '~이다'
       },
       {
         es: 'trabajar',
-        ko: '일하다 (1인칭: trabajo)'
+        ko: '일하다'
       },
       {
         es: 'dedicarse a',
-        ko: '~에 종사하다 (1인칭: me dedico)'
+        ko: '~에 종사하다'
       },
       {
         es: 'como',
@@ -3157,7 +3157,7 @@ export const lessons = [
       },
       {
         es: 'pedir',
-        ko: '주문하다 (1인칭: pido)'
+        ko: '주문하다'
       },
       {
         es: 'reservar una mesa',
@@ -3211,7 +3211,7 @@ export const lessons = [
       },
       {
         es: 'sentirse',
-        ko: '(기분을) 느끼다 (1인칭: me siento)'
+        ko: '(기분을) 느끼다'
       },
       {
         es: 'contento',
@@ -3431,7 +3431,7 @@ export const lessons = [
       },
       {
         es: 'levantarse',
-        ko: '일어나다 (1인칭: me levanto)'
+        ko: '일어나다'
       },
       {
         es: 'desayunar',
@@ -3629,23 +3629,23 @@ export const lessons = [
       },
       {
         es: 'comprar',
-        ko: '사다 (1인칭: compro)'
+        ko: '사다'
       },
       {
         es: 'elegir',
-        ko: '고르다 (1인칭: elijo · 불규칙)'
+        ko: '고르다'
       },
       {
         es: 'organizar',
-        ko: '정리하다 (1인칭: organizo)'
+        ko: '정리하다'
       },
       {
         es: 'guardar',
-        ko: '보관하다 (1인칭: guardo)'
+        ko: '보관하다'
       },
       {
         es: 'usar',
-        ko: '사용하다 (1인칭: uso)'
+        ko: '사용하다'
       },
       {
         es: 'útil',
@@ -3787,19 +3787,19 @@ export const lessons = [
       },
       {
         es: 'maquillarse',
-        ko: '화장하다 (1인칭: me maquillo)'
+        ko: '화장하다'
       },
       {
         es: 'desmaquillarse',
-        ko: '화장을 지우다 (1인칭: me desmaquillo)'
+        ko: '화장을 지우다'
       },
       {
         es: 'ponerse',
-        ko: '바르다, 착용하다 (1인칭: me pongo)'
+        ko: '바르다, 착용하다'
       },
       {
         es: 'aplicarse',
-        ko: '바르다, 도포하다 (1인칭: me aplico)'
+        ko: '바르다, 도포하다'
       },
       {
         es: 'mirarse en el espejo',
@@ -3917,7 +3917,7 @@ export const lessons = [
       },
       {
         es: 'montar',
-        ko: '조립하다 (1인칭: monto)'
+        ko: '조립하다'
       },
       {
         es: 'montar los muebles',
@@ -3925,7 +3925,7 @@ export const lessons = [
       },
       {
         es: 'decorar',
-        ko: '꾸미다, 장식하다 (1인칭: decoro)'
+        ko: '꾸미다, 장식하다'
       },
       {
         es: 'gustar',
@@ -4039,7 +4039,7 @@ export const lessons = [
       },
       {
         es: 'recuperarse',
-        ko: '회복하다 (1인칭: me recupero)'
+        ko: '회복하다'
       },
       {
         es: 'ir al médico',
@@ -4347,7 +4347,7 @@ export const lessons = [
       },
       {
         es: 'leer',
-        ko: '읽다, 독서하다 (1인칭: leo)'
+        ko: '읽다, 독서하다'
       },
       {
         es: 'estudiar idiomas',
@@ -4355,11 +4355,11 @@ export const lessons = [
       },
       {
         es: 'escribir',
-        ko: '쓰다 (1인칭: escribo)'
+        ko: '쓰다'
       },
       {
         es: 'subrayar',
-        ko: '밑줄을 긋다 (1인칭: subrayo)'
+        ko: '밑줄을 긋다'
       },
       {
         es: 'organizar mis apuntes',
@@ -4469,11 +4469,11 @@ export const lessons = [
       },
       {
         es: 'cantar',
-        ko: '노래하다 (1인칭: canto)'
+        ko: '노래하다'
       },
       {
         es: 'poner música',
-        ko: '음악을 틀다 (1인칭: pongo)'
+        ko: '음악을 틀다'
       },
       {
         es: 'descubrir música nueva',
@@ -4627,7 +4627,7 @@ export const lessons = [
       },
       {
         es: 'pesar',
-        ko: '무게를 재다 (1인칭: peso)'
+        ko: '무게를 재다'
       },
       {
         es: 'jugoso',
@@ -4793,35 +4793,35 @@ export const lessons = [
       },
       {
         es: 'comprar',
-        ko: '사다 (1인칭: compro)'
+        ko: '사다'
       },
       {
         es: 'regalar',
-        ko: '선물하다 (1인칭: regalo)'
+        ko: '선물하다'
       },
       {
         es: 'recibir',
-        ko: '받다 (1인칭: recibo)'
+        ko: '받다'
       },
       {
         es: 'decorar',
-        ko: '장식하다, 꾸미다 (1인칭: decoro)'
+        ko: '장식하다, 꾸미다'
       },
       {
         es: 'poner',
-        ko: '놓다, 꽂다 (1인칭: pongo)'
+        ko: '놓다, 꽂다'
       },
       {
         es: 'regar',
-        ko: '물을 주다 (불규칙, 1인칭: riego)'
+        ko: '물을 주다 (불규칙)'
       },
       {
         es: 'cuidar',
-        ko: '돌보다 (1인칭: cuido)'
+        ko: '돌보다'
       },
       {
         es: 'querer',
-        ko: '원하다, 바라다 (불규칙, 1인칭: quiero)'
+        ko: '원하다, 바라다 (불규칙)'
       },
       {
         es: 'rosas rojas',
@@ -4927,23 +4927,23 @@ export const lessons = [
     cards: [
       {
         es: 'adelgazar',
-        ko: '살을 빼다 (1인칭: adelgazo)'
+        ko: '살을 빼다'
       },
       {
         es: 'bajar de peso',
-        ko: '체중을 줄이다 (1인칭: bajo)'
+        ko: '체중을 줄이다'
       },
       {
         es: 'perder grasa',
-        ko: '지방을 빼다 (1인칭: pierdo)'
+        ko: '지방을 빼다'
       },
       {
         es: 'ganar músculo',
-        ko: '근육을 늘리다 (1인칭: gano)'
+        ko: '근육을 늘리다'
       },
       {
         es: 'mantener un peso saludable',
-        ko: '건강한 체중을 유지하다 (1인칭: mantengo)'
+        ko: '건강한 체중을 유지하다'
       },
       {
         es: 'el peso',
@@ -4963,19 +4963,19 @@ export const lessons = [
       },
       {
         es: 'caminar',
-        ko: '걷다 (1인칭: camino)'
+        ko: '걷다'
       },
       {
         es: 'correr',
-        ko: '달리다 (1인칭: corro)'
+        ko: '달리다'
       },
       {
         es: 'nadar',
-        ko: '수영하다 (1인칭: nado)'
+        ko: '수영하다'
       },
       {
         es: 'montar en bicicleta',
-        ko: '자전거를 타다 (1인칭: monto)'
+        ko: '자전거를 타다'
       },
       {
         es: 'hacer senderismo',
@@ -5019,27 +5019,27 @@ export const lessons = [
       },
       {
         es: 'evitar',
-        ko: '피하다 (1인칭: evito)'
+        ko: '피하다'
       },
       {
         es: 'reducir',
-        ko: '줄이다 (불규칙, 1인칭: reduzco)'
+        ko: '줄이다 (불규칙)'
       },
       {
         es: 'controlar',
-        ko: '조절하다, 관리하다 (1인칭: controlo)'
+        ko: '조절하다, 관리하다'
       },
       {
         es: 'intentar',
-        ko: '시도하다, ~하려고 하다 (1인칭: intento)'
+        ko: '시도하다, ~하려고 하다'
       },
       {
         es: 'picar entre horas',
-        ko: '끼니 사이에 군것질하다 (1인칭: pico)'
+        ko: '끼니 사이에 군것질하다'
       },
       {
         es: 'descansar',
-        ko: '쉬다 (1인칭: descanso)'
+        ko: '쉬다'
       },
       {
         es: 'controlar las porciones',
@@ -5079,7 +5079,7 @@ export const lessons = [
       },
       {
         es: 'dormir bien',
-        ko: '잘 자다 (1인칭: duermo)'
+        ko: '잘 자다'
       },
       {
         es: '횟수 vez/veces + a + 기간',
@@ -5209,47 +5209,47 @@ export const lessons = [
       },
       {
         es: 'reservar',
-        ko: '예약하다 (1인칭: reservo)'
+        ko: '예약하다'
       },
       {
         es: 'cancelar',
-        ko: '취소하다 (1인칭: cancelo)'
+        ko: '취소하다'
       },
       {
         es: 'confirmar',
-        ko: '확인하다 (1인칭: confirmo)'
+        ko: '확인하다'
       },
       {
         es: 'cambiar',
-        ko: '바꾸다, 변경하다 (1인칭: cambio)'
+        ko: '바꾸다, 변경하다'
       },
       {
         es: 'llamar',
-        ko: '전화하다, 부르다 (1인칭: llamo)'
+        ko: '전화하다, 부르다'
       },
       {
         es: 'esperar',
-        ko: '기다리다 (1인칭: espero)'
+        ko: '기다리다'
       },
       {
         es: 'llegar',
-        ko: '도착하다 (1인칭: llego)'
+        ko: '도착하다'
       },
       {
         es: 'seguir',
-        ko: '계속하다, 따라가다 (불규칙, 1인칭: sigo)'
+        ko: '계속하다, 따라가다 (불규칙)'
       },
       {
         es: 'preferir',
-        ko: '선호하다 (불규칙, 1인칭: prefiero)'
+        ko: '선호하다 (불규칙)'
       },
       {
         es: 'poder',
-        ko: '~할 수 있다 (불규칙, 1인칭: puedo)'
+        ko: '~할 수 있다 (불규칙)'
       },
       {
         es: 'disfrutar de la comida',
-        ko: '식사를 즐기다 (1인칭: disfruto)'
+        ko: '식사를 즐기다'
       },
       {
         es: 'sin esperar mucho',
@@ -5347,7 +5347,7 @@ export const lessons = [
     cards: [
       {
         es: 'dar las gracias',
-        ko: '감사 인사를 하다 (1인칭: doy)'
+        ko: '감사 인사를 하다'
       },
       {
         es: 'las gracias',
@@ -5399,23 +5399,23 @@ export const lessons = [
       },
       {
         es: 'agradecer',
-        ko: '감사하다 (1인칭만 불규칙: agradezco)'
+        ko: '감사하다 (불규칙)'
       },
       {
         es: 'ayudar',
-        ko: '돕다 (1인칭: ayudo)'
+        ko: '돕다'
       },
       {
         es: 'invitar',
-        ko: '초대하다, 대접하다 (1인칭: invito)'
+        ko: '초대하다, 대접하다'
       },
       {
         es: 'mostrar',
-        ko: '보여주다 (불규칙, 1인칭: muestro)'
+        ko: '보여주다 (불규칙)'
       },
       {
         es: 'creer',
-        ko: '믿다, ~라고 생각하다 (1인칭: creo)'
+        ko: '믿다, ~라고 생각하다'
       },
       {
         es: 'la invitación',
@@ -5597,39 +5597,39 @@ export const lessons = [
       },
       {
         es: 'barrer',
-        ko: '쓸다 (1인칭: barro)'
+        ko: '쓸다'
       },
       {
         es: 'fregar',
-        ko: '닦다, 문지르다 (불규칙, 1인칭: friego)'
+        ko: '닦다, 문지르다 (불규칙)'
       },
       {
         es: 'aspirar',
-        ko: '진공청소하다 (1인칭: aspiro)'
+        ko: '진공청소하다'
       },
       {
         es: 'ordenar',
-        ko: '정리하다 (1인칭: ordeno)'
+        ko: '정리하다'
       },
       {
         es: 'desinfectar',
-        ko: '소독하다 (1인칭: desinfecto)'
+        ko: '소독하다'
       },
       {
         es: 'tirar',
-        ko: '버리다 (1인칭: tiro)'
+        ko: '버리다'
       },
       {
         es: 'reciclar',
-        ko: '분리수거하다 (1인칭: reciclo)'
+        ko: '분리수거하다'
       },
       {
         es: 'sacar',
-        ko: '꺼내다, 내놓다 (1인칭: saco)'
+        ko: '꺼내다, 내놓다'
       },
       {
         es: 'quitar',
-        ko: '없애다, 치우다 (1인칭: quito)'
+        ko: '없애다, 치우다'
       },
       {
         es: 'barrer el suelo',
@@ -5751,31 +5751,31 @@ export const lessons = [
     cards: [
       {
         es: 'llamarse',
-        ko: '이름이 ~이다 (재귀동사, 1인칭: me llamo)'
+        ko: '이름이 ~이다 (재귀동사)'
       },
       {
         es: 'presentarse',
-        ko: '자기소개하다 (재귀동사, 1인칭: me presento)'
+        ko: '자기소개하다 (재귀동사)'
       },
       {
         es: 'tener',
-        ko: '가지다, 있다 (불규칙, 1인칭: tengo)'
+        ko: '가지다, 있다 (불규칙)'
       },
       {
         es: 'vivir',
-        ko: '살다 (1인칭: vivo)'
+        ko: '살다'
       },
       {
         es: 'conocer',
-        ko: '알다, 알게 되다 (1인칭만 불규칙: conozco)'
+        ko: '알다, 알게 되다 (불규칙)'
       },
       {
         es: 'aprender',
-        ko: '배우다 (1인칭: aprendo)'
+        ko: '배우다'
       },
       {
         es: 'enseñar',
-        ko: '가르치다 (1인칭: enseño)'
+        ko: '가르치다'
       },
       {
         es: 'el idioma',
@@ -5981,43 +5981,43 @@ export const lessons = [
       },
       {
         es: 'pedir',
-        ko: '주문하다 (불규칙, 1인칭: pido)'
+        ko: '주문하다 (불규칙)'
       },
       {
         es: 'añadir',
-        ko: '추가하다, 담다 (1인칭: añado)'
+        ko: '추가하다, 담다'
       },
       {
         es: 'introducir',
-        ko: '입력하다 (1인칭만 불규칙: introduzco)'
+        ko: '입력하다 (불규칙)'
       },
       {
         es: 'seleccionar',
-        ko: '선택하다 (1인칭: selecciono)'
+        ko: '선택하다'
       },
       {
         es: 'entregar',
-        ko: '배달하다, 전달하다 (1인칭: entrego)'
+        ko: '배달하다, 전달하다'
       },
       {
         es: 'comprobar',
-        ko: '확인하다 (불규칙, 1인칭: compruebo)'
+        ko: '확인하다 (불규칙)'
       },
       {
         es: 'abrir',
-        ko: '열다 (1인칭: abro)'
+        ko: '열다'
       },
       {
         es: 'mirar',
-        ko: '보다 (1인칭: miro)'
+        ko: '보다'
       },
       {
         es: 'usar',
-        ko: '사용하다 (1인칭: uso)'
+        ko: '사용하다'
       },
       {
         es: 'tardar',
-        ko: '(시간이) 걸리다 (1인칭: tardo)'
+        ko: '(시간이) 걸리다'
       },
       {
         es: 'hacer un pedido',
