@@ -176,6 +176,7 @@ npm run verify   # validate(데이터) → test(동작) → build(빌드)
 | `regression.test.js` | 정답이 먼저 노출되지 않는지, 주관식 자동 포커스 |
 | `options.test.js` | 객관식 보기가 같은 유형끼리 모이는지 |
 | `tutorials.test.js` | 튜토리얼 데이터 형식·화면 렌더링·진도 무영향 |
+| `speech.test.js` | 읽기 속도 설정이 실제 재생에 반영되는지 |
 
 ### 테스트 작성 시 주의
 - 화면은 지연 로딩(별도 청크)이라 **이동 완료를 기다려야 한다**. 고정 시간(`setTimeout`)으로 판정하면

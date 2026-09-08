@@ -2,9 +2,16 @@
 import { computed } from 'vue';
 import { useProgressStore } from '@/stores/progress.js';
 import { useAuthStore } from '@/stores/auth.js';
+import { SPEECH_RATES, speechRate, cycleSpeechRate, useSpeech } from '@/composables/useSpeech.js';
 
 const progress = useProgressStore();
 const auth = useAuthStore();
+const { supported: speechSupported } = useSpeech();
+
+/** 지금 고른 읽기 속도 (버튼을 누르면 다음 단계로 순환) */
+const rateOption = computed(
+  () => SPEECH_RATES.find(r => r.value === speechRate.value) || SPEECH_RATES[1]
+);
 const streakText = computed(() =>
   progress.streak > 0 ? `${progress.streak}일 연속` : '오늘 시작!'
 );
@@ -27,6 +34,16 @@ const streakText = computed(() =>
         <div class="streak" :title="`오늘 학습한 카드 ${progress.dailyCount}장`">
           🔥 <b>{{ streakText }}</b>
         </div>
+
+        <button
+          v-if="speechSupported"
+          class="auth-btn rate"
+          :title="`읽기 속도: ${rateOption.label} · 눌러서 변경`"
+          @click="cycleSpeechRate()"
+        >
+          <span class="r-icon">{{ rateOption.icon }}</span>
+          <span class="label">{{ rateOption.label }}</span>
+        </button>
 
         <button
           v-if="!auth.isLoggedIn"
@@ -106,6 +123,8 @@ const streakText = computed(() =>
 .auth-btn.login:disabled { opacity: .5; cursor: default; }
 .auth-btn.user:hover { border-color: var(--c-danger); }
 .avatar { width: 20px; height: 20px; border-radius: 50%; }
+.auth-btn.rate:hover { border-color: var(--c-primary); }
+.r-icon { font-size: 14px; }
 .uname { max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 @media (max-width: 560px) {

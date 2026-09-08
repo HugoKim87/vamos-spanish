@@ -3,7 +3,7 @@ const spoken = [];
 globalThis.__spoken = spoken;
 window.speechSynthesis = {
   getVoices: () => [{ lang: 'es-ES', name: 'stub' }],
-  speak: u => spoken.push(u.text),
+  speak: u => { spoken.push(u.text); globalThis.__lastUtterance = u; },
   cancel: () => {},
   set onvoiceschanged(fn) {},
 };

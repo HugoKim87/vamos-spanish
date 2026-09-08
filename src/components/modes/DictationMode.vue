@@ -4,7 +4,7 @@ import { useProgressStore } from '@/stores/progress.js';
 import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
 import { useAutoFocus } from '@/composables/useAutoFocus.js';
-import { useSpeech } from '@/composables/useSpeech.js';
+import { useSpeech, speechRate } from '@/composables/useSpeech.js';
 
 /**
  * 받아쓰기 모드 — Duolingo "Type what you hear" · Quizlet "Spell" 참고
@@ -41,7 +41,9 @@ const inputEl = useAutoFocus(() => [current.value, judged.value], () => !judged.
 useEnterKey(() => { judged.value ? next() : submit(); });
 
 function play(slow = false) {
-  if (current.value) speak(current.value.es, { rate: slow ? 0.6 : 0.95 });
+  if (!current.value) return;
+  // '천천히'는 지금 고른 속도보다 한 단계 더 느리게 (헤더 설정을 존중)
+  speak(current.value.es, slow ? { rate: Math.max(0.4, speechRate.value * 0.7) } : {});
 }
 
 function report() {
