@@ -5910,5 +5910,211 @@ export const lessons = [
         ko: '너는 자기소개를 어떻게 할 거야?'
       }
     ]
+  },
+  {
+    id: 'day61',
+    day: 61,
+    theme: 'food',
+    emoji: '🛵',
+    title: '음식 배달',
+    subtitle: '¿Cómo se pide comida a domicilio?',
+    cards: [
+      {
+        es: 'la comida a domicilio',
+        ko: '배달 음식'
+      },
+      {
+        es: 'una aplicación de reparto',
+        ko: '배달 앱'
+      },
+      {
+        es: 'el pedido',
+        ko: '주문, 주문한 음식'
+      },
+      {
+        es: 'el menú',
+        ko: '메뉴'
+      },
+      {
+        es: 'el carrito',
+        ko: '장바구니'
+      },
+      {
+        es: 'la dirección de entrega',
+        ko: '배송 주소'
+      },
+      {
+        es: 'el repartidor',
+        ko: '배달 기사 (남)'
+      },
+      {
+        es: 'la repartidora',
+        ko: '배달 기사 (여)'
+      },
+      {
+        es: 'los gastos de envío',
+        ko: '배송비'
+      },
+      {
+        es: 'el método de pago',
+        ko: '결제 수단'
+      },
+      {
+        es: 'el código de descuento',
+        ko: '할인 코드'
+      },
+      {
+        es: 'la hamburguesa',
+        ko: '햄버거'
+      },
+      {
+        es: 'el sushi',
+        ko: '초밥'
+      },
+      {
+        es: 'la comida china',
+        ko: '중국 음식'
+      },
+      {
+        es: 'los tacos',
+        ko: '타코'
+      },
+      {
+        es: 'pedir',
+        ko: '주문하다 (불규칙, 1인칭: pido)'
+      },
+      {
+        es: 'añadir',
+        ko: '추가하다, 담다 (1인칭: añado)'
+      },
+      {
+        es: 'introducir',
+        ko: '입력하다 (1인칭만 불규칙: introduzco)'
+      },
+      {
+        es: 'seleccionar',
+        ko: '선택하다 (1인칭: selecciono)'
+      },
+      {
+        es: 'entregar',
+        ko: '배달하다, 전달하다 (1인칭: entrego)'
+      },
+      {
+        es: 'comprobar',
+        ko: '확인하다 (불규칙, 1인칭: compruebo)'
+      },
+      {
+        es: 'abrir',
+        ko: '열다 (1인칭: abro)'
+      },
+      {
+        es: 'mirar',
+        ko: '보다 (1인칭: miro)'
+      },
+      {
+        es: 'usar',
+        ko: '사용하다 (1인칭: uso)'
+      },
+      {
+        es: 'tardar',
+        ko: '(시간이) 걸리다 (1인칭: tardo)'
+      },
+      {
+        es: 'hacer un pedido',
+        ko: '주문을 넣다'
+      },
+      {
+        es: 'añadir al carrito',
+        ko: '장바구니에 담다'
+      },
+      {
+        es: 'introducir la dirección',
+        ko: '주소를 입력하다'
+      },
+      {
+        es: 'seleccionar el método de pago',
+        ko: '결제 수단을 선택하다'
+      },
+      {
+        es: 'confirmar el pedido',
+        ko: '주문을 확정하다'
+      },
+      {
+        es: 'cancelar el pedido',
+        ko: '주문을 취소하다'
+      },
+      {
+        es: 'usar un código de descuento',
+        ko: '할인 코드를 사용하다'
+      },
+      {
+        es: 'pagar con tarjeta',
+        ko: '카드로 결제하다'
+      },
+      {
+        es: 'se + 3인칭 단수 동사',
+        ko: '비인칭 se — (일반적으로) ~한다'
+      },
+      {
+        es: 'Se elige un restaurante.',
+        ko: '음식점을 고른다.'
+      },
+      {
+        es: 'Se mira el menú.',
+        ko: '메뉴를 본다.'
+      },
+      {
+        es: 'Se añade la comida al carrito.',
+        ko: '음식을 장바구니에 담는다.'
+      },
+      {
+        es: 'Hoy no tengo ganas de cocinar.',
+        ko: '오늘은 요리하고 싶지 않아요.'
+      },
+      {
+        es: 'Abro una aplicación de reparto.',
+        ko: '나는 배달 앱을 연다.'
+      },
+      {
+        es: 'Elijo una pizza y una ensalada.',
+        ko: '나는 피자와 샐러드를 고른다.'
+      },
+      {
+        es: 'Introduzco mi dirección y pago con tarjeta.',
+        ko: '나는 주소를 입력하고 카드로 결제한다.'
+      },
+      {
+        es: 'Confirmo el pedido.',
+        ko: '나는 주문을 확정한다.'
+      },
+      {
+        es: 'Tardará unos treinta minutos.',
+        ko: '30분 정도 걸릴 거예요.'
+      },
+      {
+        es: 'Llega el repartidor.',
+        ko: '배달 기사가 도착한다.'
+      },
+      {
+        es: 'Recibo mi pedido y compruebo que está todo.',
+        ko: '나는 주문한 음식을 받고 빠진 게 없는지 확인한다.'
+      },
+      {
+        es: '¿Está incluido el envío?',
+        ko: '배송비가 포함되어 있나요?'
+      },
+      {
+        es: 'Mi pedido todavía no ha llegado.',
+        ko: '제 주문이 아직 도착하지 않았어요.'
+      },
+      {
+        es: '¿Cómo se pide comida a domicilio?',
+        ko: '음식 배달은 어떻게 시키나요?'
+      },
+      {
+        es: '¿Cómo se pedirá comida a domicilio?',
+        ko: '음식 배달은 어떻게 시키게 될까요?'
+      }
+    ]
   }
 ];

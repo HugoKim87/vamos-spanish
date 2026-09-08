@@ -76,6 +76,7 @@ export const IRREGULARS = {
   mostrar: { stem: 'o>ue' },
   devolver: { stem: 'o>ue' },
   almorzar: { stem: 'o>ue' },
+  comprobar: { stem: 'o>ue' },        // compruebo, compruebas …
   acostarse: { stem: 'o>ue' },
   dormirse: { stem: 'o>ue' },
 
@@ -97,6 +98,8 @@ export const IRREGULARS = {
   },
   agradecer: { yo: 'agradezco' },
   conocer: { yo: 'conozco' },
+  hacer: { yo: 'hago' },
+  introducir: { yo: 'introduzco' },   // -ucir → -uzco
   reducir: { yo: 'reduzco' },
   protegerse: { yo: 'protejo' },
 
