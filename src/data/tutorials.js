@@ -573,4 +573,233 @@ export const tutorials = [
       },
     ],
   },
+  {
+    id: 'ser-estar',
+    emoji: '🔷',
+    title: 'ser와 estar',
+    subtitle: '¿Ser o estar?',
+    summary: '"~이다"가 두 개인 이유 — 본질과 상태를 나누는 법',
+    sections: [
+      {
+        heading: '한국어의 "~이다"가 둘로 나뉜다',
+        paragraphs: [
+          '한국어는 "나는 선생님이다"와 "나는 피곤하다"에 같은 틀을 쓰지만, 스페인어는 이 둘을 다른 동사로 구분합니다.',
+          '기준은 간단합니다. 잘 바뀌지 않는 성질이면 ser, 지금 그러한 상태면 estar입니다.',
+        ],
+        examples: [
+          { es: 'Soy profesora.', note: 'ser — 직업은 쉽게 바뀌지 않는다' },
+          { es: 'Estoy cansado.', note: 'estar — 피곤한 건 지금 상태다' },
+        ],
+      },
+      {
+        heading: '두 동사의 활용',
+        paragraphs: [
+          '둘 다 아주 자주 쓰이는 만큼 불규칙합니다. 통째로 익혀두는 편이 빠릅니다.',
+        ],
+        table: {
+          headers: ['주어', 'ser', 'estar'],
+          rows: [
+            ['yo', 'soy', 'estoy'],
+            ['tú', 'eres', 'estás'],
+            ['él/ella/usted', 'es', 'está'],
+            ['nosotros', 'somos', 'estamos'],
+            ['vosotros', 'sois', 'estáis'],
+            ['ellos/ustedes', 'son', 'están'],
+          ],
+        },
+      },
+      {
+        heading: 'ser를 쓰는 자리',
+        paragraphs: [
+          '그 사람이나 사물이 "무엇인가"를 말할 때 씁니다. 시간이 지나도 웬만해선 그대로인 것들입니다.',
+        ],
+        list: [
+          '이름·정체: Soy Silvia',
+          '직업: Soy profesora de español',
+          '출신·국적: Soy de Corea',
+          '성질·특징: El chocolate es muy dulce',
+          '시간·날짜: Son las tres',
+          '무엇으로 만들어졌는지: La mesa es de madera',
+        ],
+        examples: [
+          { es: 'Mi pasatiempo favorito es viajar.', note: '내 취미가 무엇인지 = 정체' },
+          { es: 'Es un regalo de cumpleaños.', note: '이것이 무엇인지' },
+          { es: 'Es para dos personas.', note: '용도·대상' },
+        ],
+      },
+      {
+        heading: 'estar를 쓰는 자리',
+        paragraphs: [
+          '지금 어떤 상태인지, 어디에 있는지를 말할 때 씁니다. 내일이면 달라질 수 있는 것들입니다.',
+        ],
+        list: [
+          '위치: Estoy en el séptimo piso',
+          '기분·컨디션: Estoy contento / Estoy muy cansado hoy',
+          '일시적 상황: Estoy solo / Estoy con mi familia',
+          '진행 중인 동작: Estoy imprimiendo un informe',
+          '완료된 결과 상태: La tienda está cerrada',
+        ],
+        examples: [
+          { es: 'Estoy de buen humor.', note: '오늘 기분이 좋은 상태' },
+          { es: 'Solo estoy mirando.', note: '지금 구경하는 중 (가게에서)' },
+          { es: '¿Está incluido el envío?', note: '지금 포함된 상태인지' },
+        ],
+      },
+      {
+        heading: '같은 형용사인데 뜻이 달라진다',
+        paragraphs: [
+          '어떤 형용사는 ser와 estar 중 무엇을 쓰느냐에 따라 뜻이 바뀝니다. 본질이냐 상태냐의 차이가 그대로 의미 차이가 되는 셈입니다.',
+        ],
+        table: {
+          headers: ['형용사', 'ser + 형용사', 'estar + 형용사'],
+          rows: [
+            ['aburrido', '지루한 사람이다', '(지금) 심심하다'],
+            ['listo', '똑똑하다', '준비됐다'],
+            ['bueno', '좋은 사람이다', '맛있다 · 건강하다'],
+            ['verde', '초록색이다', '덜 익었다'],
+          ],
+        },
+        examples: [
+          { es: 'Él es aburrido.', note: '그는 재미없는 사람이다' },
+          { es: 'Él está aburrido.', note: '그는 지금 심심하다' },
+        ],
+      },
+      {
+        heading: '헷갈릴 때 던져볼 질문',
+        paragraphs: [
+          '규칙을 다 외우기 어렵다면, 이 한 문장만 떠올려 보세요. "내일도 그대로일까?"',
+          '내일도 그대로면 ser, 내일이면 달라질 수 있으면 estar입니다. 완벽하지는 않지만 대부분의 상황을 가려냅니다.',
+        ],
+        examples: [
+          { es: 'Soy coreano.', note: '내일도 한국인이다 → ser' },
+          { es: 'Estoy enfermo.', note: '내일은 나을 수도 있다 → estar' },
+          { es: 'La sopa está caliente.', note: '식으면 달라진다 → estar' },
+          { es: 'La sopa es deliciosa.', note: '이 수프의 성질 → ser' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'preposiciones',
+    emoji: '🧭',
+    title: '전치사 a · en · de · para · por',
+    subtitle: '¿A, en, de, para o por?',
+    summary: '자주 쓰는 전치사 다섯 개를 한자리에 — 특히 para와 por의 차이',
+    sections: [
+      {
+        heading: '전치사는 명사·동사원형 앞에 붙는다',
+        paragraphs: [
+          '전치사는 단어와 단어의 관계를 이어주는 짧은 말입니다. 스페인어에서는 전치사 뒤에 명사나 동사원형이 오는데, 한국어와 달리 동사를 활용하지 않고 원형 그대로 씁니다.',
+          '한국어 조사와 일대일로 대응하지 않아서, 뜻으로 외우기보다 자주 쓰는 짝을 통째로 익히는 편이 빠릅니다.',
+        ],
+        examples: [
+          { es: 'para comer', note: '먹기 위해 — 동사원형 그대로' },
+          { es: 'antes de dormir', note: '자기 전에 — 여기도 원형' },
+        ],
+      },
+      {
+        heading: 'a — 목적지와 시각',
+        paragraphs: [
+          '어디로 가는지, 몇 시에 하는지를 나타냅니다. 뒤에 남성 정관사 el이 오면 반드시 al로 줄여 씁니다.',
+        ],
+        list: [
+          '목적지: Voy al gimnasio (헬스장에 간다)',
+          '시각: a las tres (3시에)',
+          '빈도: tres veces a la semana (일주일에 세 번)',
+          '사람 목적어 앞: pasear al perro (개를 산책시키다)',
+        ],
+        examples: [
+          { es: 'Voy al quinto piso.', note: 'a + el → al (목적지)' },
+          { es: 'viajar al extranjero', note: '해외로 여행 가다' },
+          { es: 'Como tres veces al día.', note: '하루에 세 번' },
+        ],
+      },
+      {
+        heading: 'en — 있는 곳과 수단',
+        paragraphs: [
+          'a가 "~으로(이동)"라면 en은 "~에서(머묾)"입니다. 이 둘을 헷갈리기 쉬우니 짝지어 기억해 두면 좋습니다.',
+        ],
+        list: [
+          '위치: Estoy en el séptimo piso (7층에 있다)',
+          '장소에서의 행동: estudiar en la biblioteca',
+          '교통수단: ir en metro (지하철을 타고 가다)',
+          '계절·달: en verano, en enero',
+        ],
+        examples: [
+          { es: 'Voy al parque.', note: '공원으로 간다 — 이동이라 a' },
+          { es: 'Corro en el parque.', note: '공원에서 달린다 — 장소라 en' },
+          { es: 'montar en bicicleta', note: '자전거를 타다 (수단)' },
+        ],
+      },
+      {
+        heading: 'de — 소속·재료·출발점',
+        paragraphs: [
+          '두 명사를 이어 "~의"를 만드는 데 가장 많이 쓰입니다. 한국어로는 대개 앞뒤를 뒤집어 옮기면 자연스럽습니다.',
+          'a와 마찬가지로 남성 정관사 el을 만나면 del로 줄여 씁니다.',
+        ],
+        list: [
+          '소속·종류: la tarjeta de crédito (신용카드)',
+          '재료: la mesa de madera (나무 탁자)',
+          '출신: Soy de Corea (한국에서 왔다)',
+          '출발점: de nueve a seis (9시부터 6시까지)',
+        ],
+        examples: [
+          { es: 'la sala de lectura', note: '읽기의 방 → 열람실' },
+          { es: 'los gastos de envío', note: '배송의 비용 → 배송비' },
+          { es: 'cerca del parque', note: 'de + el → del' },
+        ],
+      },
+      {
+        heading: 'para와 por — 가장 많이 헷갈리는 짝',
+        paragraphs: [
+          '둘 다 한국어로 "~를 위해"로 옮겨질 때가 있어 특히 어렵습니다. 방향을 생각하면 구분이 쉬워집니다.',
+          'para는 앞을 봅니다 — 목적, 대상, 기한. por는 뒤를 봅니다 — 이유, 원인, 지나온 경로.',
+        ],
+        table: {
+          headers: ['', 'para (→ 앞을 봄)', 'por (← 뒤를 봄)'],
+          rows: [
+            ['핵심', '목적 · 대상', '이유 · 원인'],
+            ['예', 'Compro rosas para decorar.', 'Gracias por tu ayuda.'],
+            ['한국어', '꾸미기 위해 산다', '도와줘서 고맙다'],
+            ['그 밖에', '기한 · 방향 · 수신인', '경로 · 기간 · 교환'],
+          ],
+        },
+        examples: [
+          { es: 'Es un regalo para mi familia.', note: 'para — 누구를 위한 것인지 (대상)' },
+          { es: 'Gracias por el regalo.', note: 'por — 무엇 때문에 고마운지 (이유)' },
+          { es: 'Riego las plantas para cuidarlas.', note: 'para — 물을 주는 목적' },
+          { es: 'caminar por el sendero', note: 'por — 산책로를 따라 (경로)' },
+          { es: 'No como por la noche.', note: 'por — 밤이라는 시간대 동안' },
+        ],
+      },
+      {
+        heading: '통째로 외워두면 좋은 짝',
+        paragraphs: [
+          '규칙으로 설명하기 어렵고 그냥 굳어진 표현들입니다. 자주 쓰이니 문장째 익혀두면 편합니다.',
+        ],
+        examples: [
+          { es: 'por favor', note: '부탁합니다' },
+          { es: 'por aquí', note: '이 근처에' },
+          { es: 'por la mañana', note: '아침에' },
+          { es: 'para mí', note: '나에게는, 내 생각에는' },
+          { es: 'antes de / después de', note: '~하기 전에 / ~한 후에' },
+        ],
+      },
+      {
+        heading: '축약은 두 가지뿐',
+        paragraphs: [
+          '스페인어에서 전치사와 관사가 합쳐지는 경우는 딱 두 가지입니다. 남성 단수 정관사 el을 만날 때만 일어나고, la·los·las 앞에서는 그대로 씁니다.',
+        ],
+        table: {
+          headers: ['원래', '축약', '예'],
+          rows: [
+            ['a + el', 'al', 'Voy al gimnasio'],
+            ['de + el', 'del', 'cerca del parque'],
+            ['a + la', '(그대로)', 'Voy a la playa'],
+            ['de + las', '(그대로)', 'antes de las ocho'],
+          ],
+        },
+      },
+    ],
+  },
 ];

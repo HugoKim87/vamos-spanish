@@ -93,3 +93,57 @@ describe('동사 활용 튜토리얼 정확성', () => {
     if (ar) expect(Number(ar[1]), '-ar 동사 수 불일치').toBe(arCount);
   });
 });
+
+describe('ser·estar 튜토리얼 정확성', () => {
+  const t = tutorials.find(x => x.id === 'ser-estar');
+
+  it('튜토리얼이 존재한다', () => expect(t).toBeTruthy());
+
+  it('활용표가 엔진과 일치한다', () => {
+    const s = t.sections.find(x => x.heading?.includes('활용'));
+    const p = checkTable(s.table, [{ col: 1, verb: 'ser' }, { col: 2, verb: 'estar' }]);
+    expect(p, p.join(' / ')).toEqual([]);
+  });
+
+  it('예문에 쓴 ser·estar 형태가 올바르다', () => {
+    const bad = [];
+    const serForms = new Set(Object.values(conjugatePresent('ser').forms));
+    const estarForms = new Set(Object.values(conjugatePresent('estar').forms));
+    for (const sec of t.sections) {
+      for (const ex of sec.examples || []) {
+        const first = ex.es.replace(/^[¿¡]/, '').split(/\s+/)[0].toLowerCase();
+        // 문장이 ser/estar로 시작하면 실제 활용형이어야 한다
+        if (/^(soy|eres|es|somos|sois|son)$/.test(first) && !serForms.has(first)) bad.push(ex.es);
+        if (/^(estoy|estas|está|estás|estamos|estáis|están)$/.test(first) && !estarForms.has(first)) bad.push(ex.es);
+      }
+    }
+    expect(bad, bad.join(' / ')).toEqual([]);
+  });
+});
+
+describe('전치사 튜토리얼', () => {
+  const t = tutorials.find(x => x.id === 'preposiciones');
+
+  it('튜토리얼이 존재한다', () => expect(t).toBeTruthy());
+
+  it('축약형 설명이 정확하다', () => {
+    const s = t.sections.find(x => x.heading?.includes('축약'));
+    const rows = Object.fromEntries(s.table.rows.map(r => [r[0], r[1]]));
+    expect(rows['a + el']).toBe('al');
+    expect(rows['de + el']).toBe('del');
+    // la/las는 축약하지 않는다
+    expect(rows['a + la']).toBe('(그대로)');
+  });
+
+  it('예문이 앱 데이터의 표현과 어긋나지 않는다', async () => {
+    const { lessons } = await import('@/data/lessons.js');
+    const all = lessons.flatMap(l => l.cards).map(c => c.es.toLowerCase());
+    // 튜토리얼 예문에 쓴 표현이 앱 데이터에도 (문장 일부로라도) 존재해야 한다.
+    // 데이터에 없는 표현을 예로 들면 학습 내용과 이어지지 않는다.
+    const haystack = all.join(' | ');
+    const check = ['por favor', 'caminar por el sendero', 'los gastos de envío',
+                   'la sala de lectura', 'en bicicleta', 'viajar al extranjero'];
+    const missing = check.filter(e => !haystack.includes(e));
+    expect(missing, `데이터에 없는 예문: ${missing.join(', ')}`).toEqual([]);
+  });
+});

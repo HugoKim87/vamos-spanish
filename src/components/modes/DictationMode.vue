@@ -5,6 +5,7 @@ import { shuffle, isCorrect } from '@/composables/useStudyUtils.js';
 import { useEnterKey } from '@/composables/useEnterKey.js';
 import { useAutoFocus } from '@/composables/useAutoFocus.js';
 import { useSpeech, speechRate } from '@/composables/useSpeech.js';
+import SpeakButton from '@/components/SpeakButton.vue';
 
 /**
  * 받아쓰기 모드 — Duolingo "Type what you hear" · Quizlet "Spell" 참고
@@ -27,17 +28,28 @@ const queue = ref(shuffle(props.cards).slice(0, Math.min(LIMIT, props.cards.leng
 const total = ref(queue.value.length);
 const index = ref(0);
 const input = ref('');
-const judged = ref(null);
+const judged = ref(null);      // 'right' | 'wrong' | null (확정된 결과)
 const correctCount = ref(0);
 const showHint = ref(false);
 
+/**
+ * 재시도 상태
+ * 받아쓰기는 "몰라서"보다 "못 들어서" 틀리는 경우가 많다.
+ * 그래서 처음 틀리면 정답을 바로 보여주지 않고 한 번 더 들을 기회를 준다.
+ * 무제한으로 열어두면 정답이 나올 때까지 찍게 되므로 딱 한 번만.
+ */
+const retrying = ref(false);   // 지금이 두 번째 시도인가
+const firstTry = ref('');      // 첫 시도에 쓴 답 (결과 화면에서 보여준다)
+
 const current = computed(() => queue.value[index.value] || null);
 
-// ⚠️ current·judged가 만들어진 뒤에 걸어야 한다 (선언 전 참조 오류 방지)
-// 문제가 바뀌면 입력창에 바로 커서를 놓는다
-const inputEl = useAutoFocus(() => [current.value, judged.value], () => !judged.value);
+/** 답을 고칠 수 있는 동안에만 입력란을 보여준다 */
+const canType = computed(() => !judged.value);
 
-/** Enter 하나로 채점 → 다음 문제까지 (마우스 없이 진행) */
+// ⚠️ current·judged가 만들어진 뒤에 걸어야 한다 (선언 전 참조 오류 방지)
+const inputEl = useAutoFocus(() => [current.value, judged.value, retrying.value], () => canType.value);
+
+/** Enter 하나로 진행 (마우스 없이) */
 useEnterKey(() => { judged.value ? next() : submit(); });
 
 function play(slow = false) {
@@ -55,11 +67,25 @@ onMounted(() => { report(); play(); });
 function submit() {
   if (!current.value || judged.value) return;
   const ok = isCorrect(input.value, current.value.es);
-  judged.value = ok ? 'right' : 'wrong';
+
   if (ok) {
+    judged.value = 'right';
     correctCount.value += 1;
     progress.markLearned(current.value.uid);
+    return;
   }
+
+  // 첫 번째 오답 → 정답을 감춘 채 한 번 더 들을 기회를 준다
+  if (!retrying.value) {
+    retrying.value = true;
+    firstTry.value = input.value;
+    input.value = '';
+    play(true);              // 자동으로 천천히 한 번 더 들려준다
+    return;
+  }
+
+  // 두 번째도 틀림 → 정답 공개
+  judged.value = 'wrong';
 }
 
 function next() {
@@ -72,6 +98,8 @@ function next() {
   index.value += 1;
   input.value = '';
   judged.value = null;
+  retrying.value = false;
+  firstTry.value = '';
   showHint.value = false;
   report();
   play();
@@ -88,34 +116,57 @@ function next() {
     <p class="count">{{ index + 1 }} / {{ total }} · 맞힌 개수 {{ correctCount }}</p>
 
     <div class="card">
-      <p class="guide">들리는 스페인어를 그대로 적어보세요</p>
+      <p class="guide">
+        {{ retrying ? '아까와 다르게 들리는 부분이 있는지 확인해 보세요' : '들리는 스페인어를 그대로 적어보세요' }}
+      </p>
 
-      <div class="players">
-        <button class="play" @click="play(false)">🔊 다시 듣기</button>
-        <button class="play slow" @click="play(true)">🐢 천천히</button>
-      </div>
+      <!-- 답을 고칠 수 있을 때만 듣기·입력을 보여준다.
+           채점이 끝난 뒤에도 막힌 입력란과 다시듣기가 남아 있으면
+           "고칠 수 있나?" 하고 헷갈린다. -->
+      <template v-if="canType">
+        <div class="players">
+          <button class="play" @click="play(false)">🔊 다시 듣기</button>
+          <button class="play slow" @click="play(true)">🐢 천천히</button>
+        </div>
 
-      <button v-if="!showHint && !judged" class="hint-link" @click="showHint = true">
-        힌트 보기 (뜻)
-      </button>
-      <p v-else-if="!judged" class="hint">{{ current.ko }}</p>
+        <p v-if="retrying" class="retry-note">
+          한 번 더 기회가 있어요 · 첫 답: <b class="es-text">{{ firstTry || '(빈칸)' }}</b>
+        </p>
 
-      <input
-        ref="inputEl"
-        v-model="input"
-        class="input es-text"
-        :class="judged"
-        :disabled="!!judged"
-        placeholder="여기에 입력"
-        autocomplete="off" autocapitalize="off" spellcheck="false"
-      />
+        <button v-if="!showHint" class="hint-link" @click="showHint = true">
+          힌트 보기 (뜻)
+        </button>
+        <p v-else class="hint">{{ current.ko }}</p>
 
-      <button v-if="!judged" class="btn btn-primary go" @click="submit">확인</button>
+        <input
+          ref="inputEl"
+          v-model="input"
+          class="input es-text"
+          :class="{ wrong: retrying }"
+          placeholder="여기에 입력"
+          autocomplete="off" autocapitalize="off" spellcheck="false"
+        />
 
+        <button class="btn btn-primary go" @click="submit">
+          {{ retrying ? '다시 확인' : '확인' }}
+        </button>
+      </template>
+
+      <!-- 결과 -->
       <div v-else class="result" :class="judged">
         <p class="r-msg">{{ judged === 'right' ? '정확해요!' : '이렇게 적어요' }}</p>
-        <p class="r-answer es-text">{{ current.es }}</p>
+
+        <p class="r-answer es-text">
+          {{ current.es }}
+          <SpeakButton :text="current.es" />
+        </p>
         <p class="r-ko">{{ current.ko }}</p>
+
+        <!-- 틀렸을 때만: 내가 쓴 답과 정답을 나란히 -->
+        <p v-if="judged === 'wrong' && firstTry" class="r-mine">
+          내가 쓴 답 <span class="es-text">{{ firstTry }}</span>
+        </p>
+
         <button class="btn btn-primary go" @click="next">
           {{ index + 1 >= total ? '마치기' : '다음' }}
         </button>
@@ -168,6 +219,18 @@ function next() {
 .result.wrong .r-msg { color: var(--c-danger-ink); }
 .r-answer { margin-top: 6px; font-size: 19px; font-weight: 800; line-height: 1.4; }
 .r-ko { margin-top: 4px; font-size: 13.5px; color: var(--c-text-mute); }
+.r-answer { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.r-mine {
+  margin-top: var(--sp-3); padding: 6px 10px; border-radius: var(--r-sm);
+  background: var(--c-danger-soft); color: var(--c-danger-ink);
+  font-size: 12.5px;
+}
+.r-mine span { font-weight: 700; text-decoration: line-through; }
+.retry-note {
+  margin-bottom: var(--sp-3); padding: 6px 10px; border-radius: var(--r-sm);
+  background: var(--c-warn-soft); color: var(--c-warn-ink); font-size: 12.5px;
+}
+.retry-note b { text-decoration: line-through; }
 
 .tip { margin-top: var(--sp-3); text-align: center; font-size: 12px; color: var(--c-text-mute); }
 .empty { padding: var(--sp-7) 0; text-align: center; color: var(--c-text-mute); }

@@ -48,6 +48,24 @@ const BOOT = ['yo', 'tu', 'el', 'ellos'];
 export const IRREGULARS = {
   ser: { full: { yo: 'soy', tu: 'eres', el: 'es', nosotros: 'somos', vosotros: 'sois', ellos: 'son' } },
   ir: { full: { yo: 'voy', tu: 'vas', el: 'va', nosotros: 'vamos', vosotros: 'vais', ellos: 'van' } },
+  // dar: yo가 doy, vosotros는 단음절이라 강세 부호가 없다 (dais)
+  dar: {
+    full: {
+      yo: 'doy', tu: 'das', el: 'da',
+      nosotros: 'damos', vosotros: 'dais', ellos: 'dan',
+    },
+  },
+  // saber: yo만 sé
+  saber: { yo: 'sé' },
+  // salir: yo만 salgo
+  salir: { yo: 'salgo' },
+  // estar: yo만 -oy, 나머지는 어미에 강세 부호가 붙는다
+  estar: {
+    full: {
+      yo: 'estoy', tu: 'estás', el: 'está',
+      nosotros: 'estamos', vosotros: 'estáis', ellos: 'están',
+    },
+  },
   // tener: 1인칭 tengo + 어간 e→ie 가 같이 일어난다
   tener: {
     full: {

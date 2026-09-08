@@ -56,6 +56,11 @@ describe('철자 규칙에 따른 yo 형태', () => {
 describe('완전 불규칙·재귀·특수', () => {
   const cases = {
     ser: ['soy', 'eres', 'es', 'somos', 'sois', 'son'],
+    estar: ['estoy', 'estás', 'está', 'estamos', 'estáis', 'están'],
+    dar: ['doy', 'das', 'da', 'damos', 'dais', 'dan'],
+    saber: ['sé', 'sabes', 'sabe', 'sabemos', 'sabéis', 'saben'],
+    salir: ['salgo', 'sales', 'sale', 'salimos', 'salís', 'salen'],
+    hacer: ['hago', 'haces', 'hace', 'hacemos', 'hacéis', 'hacen'],
     ir: ['voy', 'vas', 'va', 'vamos', 'vais', 'van'],
     tener: ['tengo', 'tienes', 'tiene', 'tenemos', 'tenéis', 'tienen'],
     ver: ['veo', 'ves', 've', 'vemos', 'veis', 'ven'],
