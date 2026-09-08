@@ -160,6 +160,7 @@ npm run verify   # validate(데이터) → test(동작) → build(빌드)
 - 테마 페이지가 전부 "존재하지 않는 테마입니다"로 뜸 (`key`가 Vue 예약어)
 - 모든 단어 화면이 Day 12까지만 보임 (정렬보다 자르기가 먼저)
 - 퀴즈 보기에 같은 답이 두 번 나옴
+- proteger의 yo가 protejo가 아닌 protego로 활용됨 (철자 규칙 누락)
 - 낱말카드를 넘길 때 다음 카드의 뜻이 0.55초간 먼저 보임 (회전 애니메이션)
 
 ### 테스트를 추가했으면 "일부러 되돌려" 확인한다
@@ -177,6 +178,8 @@ npm run verify   # validate(데이터) → test(동작) → build(빌드)
 | `options.test.js` | 객관식 보기가 같은 유형끼리 모이는지 |
 | `tutorials.test.js` | 튜토리얼 데이터 형식·화면 렌더링·진도 무영향 |
 | `speech.test.js` | 읽기 속도 설정이 실제 재생에 반영되는지 |
+| `conjugation.test.js` | 동사 활용이 문법서 기준과 맞는지 (전 동사 커버리지 포함) |
+| `tutorial-accuracy.test.js` | 튜토리얼에 적은 활용형이 실제 엔진과 일치하는지 |
 
 ### 테스트 작성 시 주의
 - 화면은 지연 로딩(별도 청크)이라 **이동 완료를 기다려야 한다**. 고정 시간(`setTimeout`)으로 판정하면

@@ -121,6 +121,35 @@ export const IRREGULARS = {
   doler: { stem: 'o>ue', backwards: true },
 };
 
+/**
+ * 철자 규칙에 따른 1인칭 단수 형태.
+ *
+ * 스페인어는 소리를 유지하려고 yo 형태에서 철자를 바꾸는 동사가 많다.
+ * 개별로 등록하면 새 동사가 들어올 때마다 빠뜨리게 되므로 어미 규칙으로 처리한다.
+ *
+ *   -ger / -gir  → g를 j로   proteger → protejo   (그대로 두면 [게] 소리가 된다)
+ *   -guir        → gu를 g로  seguir  → sigo
+ *   -cer / -cir  → c를 zc로  conocer → conozco   (모음 뒤일 때만)
+ *   -cer / -cir  → c를 z로   vencer  → venzo     (자음 뒤일 때)
+ *
+ * @returns {string|null} 규칙에 걸리면 yo 형태, 아니면 null
+ */
+function spellingYo(root, ending) {
+  const stem = root;
+  if (ending === 'er' || ending === 'ir') {
+    if (/g$/.test(stem)) return stem.slice(0, -1) + 'j' + 'o';        // -ger/-gir
+    if (/gu$/.test(stem)) return stem.slice(0, -2) + 'g' + 'o';       // -guir
+    if (/c$/.test(stem)) {
+      const before = stem.slice(-2, -1);
+      // 모음 뒤 -cer/-cir는 -zco, 자음 뒤는 -zo
+      return /[aeiouáéíóú]/.test(before)
+        ? stem.slice(0, -1) + 'zc' + 'o'
+        : stem.slice(0, -1) + 'z' + 'o';
+    }
+  }
+  return null;
+}
+
 /** 어간의 마지막 해당 모음을 바꾼다 (뒤에서부터 찾아야 정확) */
 function changeStem(stem, rule) {
   const [from, to] = rule.split('>');
@@ -164,6 +193,9 @@ export function conjugatePresent(infinitive) {
       word = info.full[key];
     } else if (info.yo && key === 'yo') {
       word = info.yo;
+    } else if (key === 'yo' && !info.stem && spellingYo(root, ending)) {
+      // 표에 없어도 철자 규칙으로 처리되는 동사들 (proteger, conocer …)
+      word = spellingYo(root, ending);
     } else {
       const stem = info.stem && BOOT.includes(key) ? changeStem(root, info.stem) : root;
       // 어미에 강세 부호가 있으면 규칙 어미로 되돌려 활용한다 (-ír → -ir)

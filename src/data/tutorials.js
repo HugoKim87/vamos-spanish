@@ -420,4 +420,157 @@ export const tutorials = [
       },
     ],
   },
+  {
+    id: 'conjugacion',
+    emoji: '🔀',
+    title: '동사 활용 규칙',
+    subtitle: '¿Cómo se conjugan los verbos?',
+    summary: '주어에 따라 동사가 어떻게 바뀌는지 — 규칙부터 불규칙까지',
+    sections: [
+      {
+        heading: '동사는 주어에 따라 모양이 바뀐다',
+        paragraphs: [
+          '한국어는 "나는 먹는다 / 너는 먹는다"처럼 동사가 그대로지만, 스페인어는 주어에 맞춰 동사 어미가 바뀝니다. 그래서 어미만 봐도 누가 하는 행동인지 알 수 있습니다.',
+          '이 덕분에 주어를 생략하는 경우가 많습니다. Yo hablo español보다 그냥 Hablo español이라고 하는 게 더 자연스럽습니다.',
+        ],
+        examples: [
+          { es: 'hablo', note: '어미 -o → 내가 말한다 (yo가 없어도 안다)' },
+          { es: 'hablas', note: '어미 -as → 네가 말한다' },
+          { es: 'habla', note: '어미 -a → 그/그녀/당신이 말한다' },
+        ],
+      },
+      {
+        heading: '동사는 세 가지 어미로 나뉜다',
+        paragraphs: [
+          '모든 동사원형은 -ar, -er, -ir 중 하나로 끝납니다. 어느 쪽인지에 따라 붙는 어미가 달라지므로, 새 동사를 만나면 이것부터 확인하면 됩니다.',
+          '-ar 동사가 압도적으로 많습니다. 이 앱에 담긴 134개 동사 중 95개가 -ar로 끝납니다.',
+        ],
+        examples: [
+          { es: 'hablar', note: '-ar 동사 — 말하다' },
+          { es: 'comer', note: '-er 동사 — 먹다' },
+          { es: 'vivir', note: '-ir 동사 — 살다' },
+        ],
+      },
+      {
+        heading: '규칙 활용 — 어미만 갈아 끼우면 된다',
+        paragraphs: [
+          '동사원형에서 마지막 두 글자를 떼어낸 부분을 어간이라고 합니다. hablar에서 habl-이 어간입니다. 여기에 주어에 맞는 어미를 붙이면 끝입니다.',
+          '-er와 -ir는 nosotros·vosotros만 다르고 나머지는 같습니다. 이 둘만 따로 기억해두면 부담이 줄어듭니다.',
+        ],
+        table: {
+          headers: ['주어', '-ar (hablar)', '-er (comer)', '-ir (vivir)'],
+          rows: [
+            ['yo (나)', 'hablo', 'como', 'vivo'],
+            ['tú (너)', 'hablas', 'comes', 'vives'],
+            ['él/ella/usted', 'habla', 'come', 'vive'],
+            ['nosotros (우리)', 'hablamos', 'comemos', 'vivimos'],
+            ['vosotros (너희)', 'habláis', 'coméis', 'vivís'],
+            ['ellos/ustedes', 'hablan', 'comen', 'viven'],
+          ],
+        },
+      },
+      {
+        heading: '불규칙 ① 어간의 모음이 바뀐다',
+        paragraphs: [
+          '어미는 규칙대로인데 어간의 모음이 바뀌는 동사들이 있습니다. 바뀌는 자리는 yo·tú·él·ellos 네 곳뿐이고, nosotros·vosotros는 원래 모양 그대로입니다.',
+          '표에서 바뀌는 자리만 색칠하면 구두 모양이 되어서, 영어권에서는 이런 동사를 "부츠 동사"라고 부르기도 합니다.',
+        ],
+        list: [
+          'e → ie : querer(quiero), preferir(prefiero), recomendar(recomiendo)',
+          'o → ue : poder(puedo), dormirse(me duermo), mostrar(muestro)',
+          'e → i : pedir(pido), seguir(sigo)',
+        ],
+        table: {
+          headers: ['주어', 'querer (e→ie)', 'poder (o→ue)', 'pedir (e→i)'],
+          rows: [
+            ['yo', 'quiero', 'puedo', 'pido'],
+            ['tú', 'quieres', 'puedes', 'pides'],
+            ['él/ella/usted', 'quiere', 'puede', 'pide'],
+            ['nosotros', 'queremos', 'podemos', 'pedimos'],
+            ['vosotros', 'queréis', 'podéis', 'pedís'],
+            ['ellos/ustedes', 'quieren', 'pueden', 'piden'],
+          ],
+        },
+      },
+      {
+        heading: '불규칙 ② yo 형태만 다르다',
+        paragraphs: [
+          '나머지 다섯 인칭은 규칙대로인데 yo만 모양이 다른 동사들입니다. yo 하나만 따로 외우면 되니 부담이 적습니다.',
+          '-cer, -cir로 끝나면 대개 -zco가 되고, -ger·-gir로 끝나면 발음을 지키려고 g가 j로 바뀝니다.',
+        ],
+        examples: [
+          { es: 'conocer → conozco', note: '알다 — 나머지는 conoces, conoce…' },
+          { es: 'agradecer → agradezco', note: '감사하다' },
+          { es: 'introducir → introduzco', note: '입력하다' },
+          { es: 'poner → pongo', note: '놓다' },
+          { es: 'hacer → hago', note: '하다' },
+          { es: 'proteger → protejo', note: '보호하다 — g가 j로 (발음 유지)' },
+        ],
+      },
+      {
+        heading: '불규칙 ③ 아예 외워야 하는 동사',
+        paragraphs: [
+          '자주 쓰이는 동사일수록 불규칙한 경우가 많습니다. 그만큼 자주 만나게 되니 쓰다 보면 익숙해집니다.',
+        ],
+        table: {
+          headers: ['주어', 'ser (~이다)', 'ir (가다)', 'tener (가지다)'],
+          rows: [
+            ['yo', 'soy', 'voy', 'tengo'],
+            ['tú', 'eres', 'vas', 'tienes'],
+            ['él/ella/usted', 'es', 'va', 'tiene'],
+            ['nosotros', 'somos', 'vamos', 'tenemos'],
+            ['vosotros', 'sois', 'vais', 'tenéis'],
+            ['ellos/ustedes', 'son', 'van', 'tienen'],
+          ],
+        },
+      },
+      {
+        heading: '재귀동사 — 원형이 -se로 끝나는 것들',
+        paragraphs: [
+          '동작이 자기 자신에게 돌아오는 동사입니다. 원형이 -se로 끝나고, 쓸 때는 이 se를 주어에 맞는 재귀대명사로 바꿔 동사 앞에 놓습니다.',
+          '동사 자체는 평소대로 활용하면 되고, 앞에 대명사만 하나 더 붙는다고 생각하면 쉽습니다.',
+        ],
+        table: {
+          headers: ['주어', '재귀대명사', 'ducharse (샤워하다)'],
+          rows: [
+            ['yo', 'me', 'me ducho'],
+            ['tú', 'te', 'te duchas'],
+            ['él/ella/usted', 'se', 'se ducha'],
+            ['nosotros', 'nos', 'nos duchamos'],
+            ['vosotros', 'os', 'os ducháis'],
+            ['ellos/ustedes', 'se', 'se duchan'],
+          ],
+        },
+        examples: [
+          { es: 'Me levanto a las siete.', note: '나는 7시에 일어난다' },
+          { es: 'Se llama Pedro.', note: '그의 이름은 페드로다' },
+        ],
+      },
+      {
+        heading: '모든 인칭을 다 쓰지는 않는 동사',
+        paragraphs: [
+          '뜻 때문에 특정 인칭만 쓰는 동사도 있습니다. 억지로 여섯 개를 다 외울 필요가 없습니다.',
+          'gustar는 특히 주의해야 합니다. "내가 좋아한다"가 아니라 "그것이 나를 기쁘게 한다"는 구조라서, 좋아하는 대상이 주어가 됩니다.',
+        ],
+        examples: [
+          { es: 'llueve', note: '비가 온다 — 날씨라 3인칭 단수만 쓴다' },
+          { es: 'Me gusta el café.', note: '커피가 단수 → gusta' },
+          { es: 'Me gustan los tacos.', note: '타코가 복수 → gustan' },
+          { es: 'Me duele la cabeza.', note: 'doler도 같은 구조 — 머리가 아프게 한다' },
+        ],
+      },
+      {
+        heading: '어떻게 익히면 좋을까',
+        paragraphs: [
+          '한 번에 다 외우려 하면 지칩니다. 앱의 동사 활용 모드에서 한 인칭씩 답을 떠올려 보고, 틀린 것만 반복해서 만나는 방식이 효율적입니다.',
+          '낱말카드에서 동사를 뒤집으면 여섯 인칭이 한눈에 나오니, 새 동사를 만날 때마다 표를 한 번씩 훑어보는 것부터 시작해 보세요.',
+        ],
+        list: [
+          '가장 먼저: yo 형태 — 자기 이야기를 할 때 제일 많이 쓴다',
+          '그다음: tú와 él — 대화 상대와 제삼자',
+          'nosotros·vosotros·ellos는 문장을 읽다가 자연스럽게 익혀도 늦지 않다',
+        ],
+      },
+    ],
+  },
 ];
