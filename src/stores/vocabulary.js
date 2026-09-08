@@ -8,6 +8,41 @@ import {
 import { conjugatePresent, practicePersons } from '@/data/conjugation.js';
 import { isInfinitive } from '@/data/verbForms.js';
 
+/** 검색어·본문을 비교용으로 다듬는다 (대소문자·강세 부호 무시) */
+function normalizeSearch(text) {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')   // á → a
+    .trim();
+}
+
+/** 한글이 섞여 있는지 */
+const HANGUL_RE = /[가-힣ㄱ-ㅎㅏ-ㅣ]/;
+
+/**
+ * 카드가 검색어에 걸리는지 판단.
+ *
+ * ⚠️ 스페인어는 단순 부분 일치를 쓰면 안 된다.
+ *    'antes'로 검색했을 때 guantes·emocionantes·diamantes까지 걸려 버린다.
+ *    그래서 스페인어 쪽은 "단어의 시작"과만 맞춘다.
+ *      antes → 'antes de dormir' ✅ / 'los guantes' ❌
+ *
+ * 한국어는 조사·합성어가 붙어 다녀 단어 경계가 뚜렷하지 않으므로
+ * (예: '먼지'로 '먼지떨이'를 찾고 싶다) 그대로 부분 일치를 쓴다.
+ */
+function cardMatches(card, q) {
+  const ko = normalizeSearch(card.ko);
+  if (ko.includes(q)) return true;
+
+  // 한글로 검색했다면 스페인어 쪽은 볼 필요가 없다
+  if (HANGUL_RE.test(q)) return false;
+
+  const es = normalizeSearch(card.es);
+  // 문장부호·공백으로 단어를 나눈 뒤, 각 단어의 앞부분과 비교
+  return es.split(/[^a-z0-9ñ]+/).some(w => w.startsWith(q));
+}
+
 /**
  * 어휘 스토어 — 원본 lessons.js를 읽어 모든 파생 데이터를 계산합니다.
  *
@@ -138,12 +173,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     }
 
     if (query) {
-      const q = query.trim().toLowerCase();
-      if (q) {
-        cards = cards.filter(
-          c => c.es.toLowerCase().includes(q) || c.ko.toLowerCase().includes(q)
-        );
-      }
+      const q = normalizeSearch(query);
+      if (q) cards = cards.filter(c => cardMatches(c, q));
     }
     return limit ? cards.slice(0, limit) : cards;
   }

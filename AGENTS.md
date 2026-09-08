@@ -161,6 +161,7 @@ npm run verify   # validate(데이터) → test(동작) → build(빌드)
 - 모든 단어 화면이 Day 12까지만 보임 (정렬보다 자르기가 먼저)
 - 퀴즈 보기에 같은 답이 두 번 나옴
 - proteger의 yo가 protejo가 아닌 protego로 활용됨 (철자 규칙 누락)
+- 'antes' 검색에 guantes·diamantes가 걸림 (부분 문자열 일치)
 - 낱말카드를 넘길 때 다음 카드의 뜻이 0.55초간 먼저 보임 (회전 애니메이션)
 
 ### 테스트를 추가했으면 "일부러 되돌려" 확인한다
@@ -180,6 +181,7 @@ npm run verify   # validate(데이터) → test(동작) → build(빌드)
 | `speech.test.js` | 읽기 속도 설정이 실제 재생에 반영되는지 |
 | `conjugation.test.js` | 동사 활용이 문법서 기준과 맞는지 (전 동사 커버리지 포함) |
 | `tutorial-accuracy.test.js` | 튜토리얼에 적은 활용형이 실제 엔진과 일치하는지 |
+| `search.test.js` | 검색이 단어 중간에 걸리지 않는지, 강세 부호 처리 |
 
 ### 테스트 작성 시 주의
 - 화면은 지연 로딩(별도 청크)이라 **이동 완료를 기다려야 한다**. 고정 시간(`setTimeout`)으로 판정하면
