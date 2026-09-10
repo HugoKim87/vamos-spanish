@@ -6116,5 +6116,187 @@ export const lessons = [
         ko: '음식 배달은 어떻게 시키게 될까요?'
       }
     ]
+  },
+  {
+    id: 'day62',
+    day: 62,
+    theme: 'home',
+    emoji: '♻️',
+    title: '분리수거',
+    subtitle: '¿Cómo se recicla la basura?',
+    cards: [
+      {
+        es: 'el residuo',
+        ko: '폐기물'
+      },
+      {
+        es: 'el contenedor',
+        ko: '수거함, 분리수거통'
+      },
+      {
+        es: 'el cartón',
+        ko: '골판지, 종이상자'
+      },
+      {
+        es: 'el envase',
+        ko: '포장 용기'
+      },
+      {
+        es: 'la lata',
+        ko: '캔'
+      },
+      {
+        es: 'la bolsa',
+        ko: '봉투, 비닐봉지'
+      },
+      {
+        es: 'la pila',
+        ko: '건전지'
+      },
+      {
+        es: 'los restos de comida',
+        ko: '음식물 쓰레기'
+      },
+      {
+        es: 'el medioambiente',
+        ko: '환경'
+      },
+      {
+        es: 'el contenedor amarillo',
+        ko: '노란 수거함 (플라스틱·캔·용기)'
+      },
+      {
+        es: 'el contenedor azul',
+        ko: '파란 수거함 (종이·골판지)'
+      },
+      {
+        es: 'el contenedor verde',
+        ko: '초록 수거함 (유리)'
+      },
+      {
+        es: 'el contenedor marrón',
+        ko: '갈색 수거함 (음식물)'
+      },
+      {
+        es: 'reciclar',
+        ko: '재활용하다, 분리수거하다'
+      },
+      {
+        es: 'separar',
+        ko: '분리하다'
+      },
+      {
+        es: 'reutilizar',
+        ko: '재사용하다'
+      },
+      {
+        es: 'reducir',
+        ko: '줄이다 (불규칙)'
+      },
+      {
+        es: 'clasificar',
+        ko: '분류하다'
+      },
+      {
+        es: 'llevar',
+        ko: '가져가다, 나르다'
+      },
+      {
+        es: 'producir',
+        ko: '만들어내다, 배출하다 (불규칙)'
+      },
+      {
+        es: 'cuidar',
+        ko: '돌보다, 아끼다'
+      },
+      {
+        es: 'separar la basura',
+        ko: '쓰레기를 분리하다'
+      },
+      {
+        es: 'tirar el vidrio',
+        ko: '유리를 버리다'
+      },
+      {
+        es: 'usar menos plástico',
+        ko: '플라스틱을 덜 쓰다'
+      },
+      {
+        es: 'producir menos basura',
+        ko: '쓰레기를 덜 배출하다'
+      },
+      {
+        es: 'cuidar el medioambiente',
+        ko: '환경을 아끼다'
+      },
+      {
+        es: 'cada tipo de residuo',
+        ko: '각 폐기물 종류'
+      },
+      {
+        es: 'intentar + 동사원형',
+        ko: '~하려고 노력하다'
+      },
+      {
+        es: 'Intento usar menos plástico.',
+        ko: '플라스틱을 덜 사용하려고 노력해요.'
+      },
+      {
+        es: 'Intento reciclar todos los días.',
+        ko: '매일 재활용하려고 노력해요.'
+      },
+      {
+        es: 'Intento reducir la basura en casa.',
+        ko: '집에서 쓰레기를 줄이려고 노력해요.'
+      },
+      {
+        es: 'Intentamos reutilizar las bolsas.',
+        ko: '우리는 봉투를 재사용하려고 노력해요.'
+      },
+      {
+        es: 'Separo la basura en casa.',
+        ko: '나는 집에서 쓰레기를 분리해요.'
+      },
+      {
+        es: '¿Dónde se tira esta botella?',
+        ko: '이 병은 어디에 버리나요?'
+      },
+      {
+        es: 'El papel se tira al contenedor azul.',
+        ko: '종이는 파란 수거함에 버려요.'
+      },
+      {
+        es: 'El vidrio se tira al contenedor verde.',
+        ko: '유리는 초록 수거함에 버려요.'
+      },
+      {
+        es: 'Ponemos el papel y el cartón juntos.',
+        ko: '우리는 종이와 골판지를 함께 모아요.'
+      },
+      {
+        es: 'Separamos el vidrio y los envases.',
+        ko: '우리는 유리와 포장 용기를 분리해요.'
+      },
+      {
+        es: 'Llevamos cada residuo a su contenedor.',
+        ko: '우리는 각 폐기물을 해당 수거함으로 가져가요.'
+      },
+      {
+        es: 'En casa separamos la basura todos los días.',
+        ko: '집에서 우리는 매일 쓰레기를 분리해요.'
+      },
+      {
+        es: 'Así producimos menos basura.',
+        ko: '그렇게 해서 쓰레기를 덜 배출해요.'
+      },
+      {
+        es: '¿Cómo se recicla la basura?',
+        ko: '쓰레기는 어떻게 분리수거하나요?'
+      },
+      {
+        es: '¿Cómo se reciclará la basura?',
+        ko: '쓰레기는 어떻게 분리수거하게 될까요?'
+      }
+    ]
   }
 ];

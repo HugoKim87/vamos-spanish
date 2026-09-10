@@ -78,19 +78,14 @@ describe('동사 활용 튜토리얼 정확성', () => {
     expect(problems, problems.join(' / ')).toEqual([]);
   });
 
-  it('본문에 적은 동사 개수가 실제 데이터와 맞다', async () => {
-    const { lessons } = await import('@/data/lessons.js');
-    const { isInfinitive } = await import('@/data/verbForms.js');
-    const infs = new Set(
-      lessons.flatMap(l => l.cards).filter(c => isInfinitive(c.es)).map(c => c.es.toLowerCase())
-    );
-    const arCount = [...infs].filter(v => v.replace(/se$/, '').endsWith('ar')).length;
-
-    const text = tutorial.sections.flatMap(s => s.paragraphs || []).join(' ');
-    const total = text.match(/(\d+)개 동사/);
-    const ar = text.match(/(\d+)개가 -ar/);
-    if (total) expect(Number(total[1]), '전체 동사 수 불일치').toBe(infs.size);
-    if (ar) expect(Number(ar[1]), '-ar 동사 수 불일치').toBe(arCount);
+  it('본문에 데이터 개수를 하드코딩하지 않는다', () => {
+    // Day가 추가될 때마다 숫자가 어긋나므로 튜토리얼에는 적지 않는다.
+    // (통계는 화면이 데이터에서 직접 계산한다)
+    const text = tutorials.flatMap(t => t.sections)
+      .flatMap(s => [...(s.paragraphs || []), s.heading || ''])
+      .join(' ');
+    const hardcoded = text.match(/\d+\s*(개 동사|개 레슨|장의 카드|개가 -ar)/g) || [];
+    expect(hardcoded, `하드코딩된 숫자: ${hardcoded.join(', ')}`).toEqual([]);
   });
 });
 
