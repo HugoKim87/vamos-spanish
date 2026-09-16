@@ -86,7 +86,12 @@ export const IRREGULARS = {
   preferir: { stem: 'e>ie' },
   hervir: { stem: 'e>ie' },
   recomendar: { stem: 'e>ie' },
-  fregar: { stem: 'e>ie' },   // friego, friegas, friega, fregamos, fregáis, friegan
+  fregar: { stem: 'e>ie' },
+  cerrar: { stem: 'e>ie' },           // cierro, cierras …
+  empezar: { stem: 'e>ie' },
+  pensar: { stem: 'e>ie' },
+  entender: { stem: 'e>ie' },
+  perder: { stem: 'e>ie' },   // friego, friegas, friega, fregamos, fregáis, friegan
   transferir: { stem: 'e>ie' },
   sentirse: { stem: 'e>ie' },
 
@@ -96,6 +101,13 @@ export const IRREGULARS = {
   devolver: { stem: 'o>ue' },
   almorzar: { stem: 'o>ue' },
   comprobar: { stem: 'o>ue' },        // compruebo, compruebas …
+  // costar는 값을 말하는 동사라 3인칭(cuesta/cuestan)만 실제로 쓰인다
+  costar: { stem: 'o>ue', backwards: true },
+  contar: { stem: 'o>ue' },
+  encontrar: { stem: 'o>ue' },
+  recordar: { stem: 'o>ue' },
+  volver: { stem: 'o>ue' },
+  probar: { stem: 'o>ue' },
   acostarse: { stem: 'o>ue' },
   dormirse: { stem: 'o>ue' },
 

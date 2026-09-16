@@ -6298,5 +6298,167 @@ export const lessons = [
         ko: '쓰레기는 어떻게 분리수거하게 될까요?'
       }
     ]
+  },
+  {
+    id: 'day63',
+    day: 63,
+    theme: 'home',
+    emoji: '📦',
+    title: '택배 보내기',
+    subtitle: '¿Cómo se envía un paquete?',
+    cards: [
+      {
+        es: 'el paquete',
+        ko: '소포, 택배'
+      },
+      {
+        es: 'la caja',
+        ko: '상자'
+      },
+      {
+        es: 'el sobre',
+        ko: '봉투 (서류용)'
+      },
+      {
+        es: 'la dirección',
+        ko: '주소'
+      },
+      {
+        es: 'el remitente',
+        ko: '보내는 사람'
+      },
+      {
+        es: 'el destinatario',
+        ko: '받는 사람'
+      },
+      {
+        es: 'el código postal',
+        ko: '우편번호'
+      },
+      {
+        es: 'la etiqueta',
+        ko: '라벨, 스티커'
+      },
+      {
+        es: 'el comprobante',
+        ko: '영수증, 접수증'
+      },
+      {
+        es: 'el número de seguimiento',
+        ko: '운송장 번호'
+      },
+      {
+        es: 'Correos',
+        ko: '우체국 (스페인 우편공사)'
+      },
+      {
+        es: 'enviar',
+        ko: '보내다 (불규칙)'
+      },
+      {
+        es: 'empaquetar',
+        ko: '포장하다'
+      },
+      {
+        es: 'meter',
+        ko: '넣다'
+      },
+      {
+        es: 'cerrar',
+        ko: '닫다, 봉하다 (불규칙)'
+      },
+      {
+        es: 'pesar',
+        ko: '무게를 재다'
+      },
+      {
+        es: 'costar',
+        ko: '값이 나가다 (불규칙)'
+      },
+      {
+        es: 'comprobar',
+        ko: '확인하다 (불규칙)'
+      },
+      {
+        es: 'enviar un paquete',
+        ko: '택배를 보내다'
+      },
+      {
+        es: 'meter el regalo en una caja',
+        ko: '선물을 상자에 넣다'
+      },
+      {
+        es: 'escribir la dirección',
+        ko: '주소를 쓰다'
+      },
+      {
+        es: 'pagar los gastos de envío',
+        ko: '배송비를 내다'
+      },
+      {
+        es: 'tardar + 시간 + en + 동사원형',
+        ko: '~하는 데 (시간이) 걸리다'
+      },
+      {
+        es: '¿Cuánto tarda en llegar?',
+        ko: '도착하는 데 얼마나 걸리나요?'
+      },
+      {
+        es: 'Tarda tres días en llegar.',
+        ko: '도착하는 데 3일 걸려요.'
+      },
+      {
+        es: '¿Cuánto tardas en llegar?',
+        ko: '너 도착하는 데 얼마나 걸려?'
+      },
+      {
+        es: 'Tardo veinte minutos en llegar.',
+        ko: '나 도착하는 데 20분 걸려.'
+      },
+      {
+        es: 'Quiero enviar esto a Corea.',
+        ko: '이걸 한국으로 보내고 싶어요.'
+      },
+      {
+        es: '¿Cuánto cuestan los gastos de envío?',
+        ko: '배송비가 얼마인가요?'
+      },
+      {
+        es: 'Se mete el regalo en una caja.',
+        ko: '선물을 상자에 넣어요.'
+      },
+      {
+        es: 'Se escribe el nombre del destinatario.',
+        ko: '받는 사람 이름을 써요.'
+      },
+      {
+        es: 'Se lleva el paquete a Correos.',
+        ko: '소포를 우체국으로 가져가요.'
+      },
+      {
+        es: 'Allí se pesa el paquete.',
+        ko: '거기서 소포 무게를 재요.'
+      },
+      {
+        es: 'Se pagan los gastos de envío.',
+        ko: '배송비를 내요.'
+      },
+      {
+        es: 'Se recibe un comprobante.',
+        ko: '접수증을 받아요.'
+      },
+      {
+        es: 'Se puede comprobar por Internet.',
+        ko: '인터넷으로 확인할 수 있어요.'
+      },
+      {
+        es: '¿Cómo se envía un paquete?',
+        ko: '택배는 어떻게 보내나요?'
+      },
+      {
+        es: '¿Cómo se envió un paquete?',
+        ko: '택배는 어떻게 보냈나요?'
+      }
+    ]
   }
 ];
