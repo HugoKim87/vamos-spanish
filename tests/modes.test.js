@@ -21,6 +21,21 @@ beforeEach(() => {
 });
 
 const someCards = () => vocab.buildSet({ theme: 'food' }).slice(0, 20);
+
+/**
+ * 원하는 유형의 문제가 나올 때까지 넘긴다.
+ * 큐가 바닥나면 current가 null이 되므로 그 시점에서 멈춰 false를 돌려준다.
+ * (그냥 횟수만 세면 "왜 undefined지?" 하는 알기 어려운 실패가 된다)
+ */
+async function seekType(w, type) {
+  for (let i = 0; i < 100; i++) {
+    if (w.vm.current?.type === type) return true;
+    if (!w.vm.current) return false;   // 문제를 다 소진함
+    w.vm.nextQuestion();
+    await w.vm.$nextTick();
+  }
+  return false;
+}
 const someVerbs = () => vocab.verbCards.slice(0, 3);
 
 describe('낱말카드', () => {
@@ -54,12 +69,8 @@ describe('학습하기', () => {
     await w.vm.$nextTick();
 
     // 객관식 문제가 나올 때까지 넘긴다 (단답형이 먼저 나올 수 있음)
-    let guard = 0;
-    while (w.vm.current?.type !== 'choice' && guard++ < 30) {
-      w.vm.nextQuestion();
-      await w.vm.$nextTick();
-    }
-    expect(w.vm.current?.type, '객관식 문제가 나오지 않음').toBe('choice');
+    const found = await seekType(w, 'choice');
+    expect(found, '객관식 문제가 한 번도 나오지 않음').toBe(true);
 
     const optBtn = w.findAll('.opt')[0];
     expect(optBtn, '보기 버튼을 찾을 수 없음').toBeTruthy();
@@ -71,12 +82,8 @@ describe('학습하기', () => {
   it('단답형에서 입력하고 확인하면 채점된다', async () => {
     const w = mount(LearnMode, { props: { cards: someCards(), setKey: 't' } });
     await w.vm.$nextTick();
-    let guard = 0;
-    while (w.vm.current?.type !== 'fill' && guard++ < 30) {
-      w.vm.nextQuestion();
-      await w.vm.$nextTick();
-    }
-    expect(w.vm.current?.type, '단답형 문제가 나오지 않음').toBe('fill');
+    const found = await seekType(w, 'fill');
+    expect(found, '단답형 문제가 한 번도 나오지 않음').toBe(true);
 
     await w.find('input.fill').setValue(w.vm.current.card.es);
     const go = w.findAll('button').find(b => /확인/.test(b.text()));

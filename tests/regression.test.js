@@ -107,12 +107,15 @@ describe('주관식 — 클릭 없이 바로 입력된다', () => {
     });
     await w.vm.$nextTick();
 
-    let guard = 0;
-    while (w.vm.current?.type !== 'fill' && guard++ < 30) {
+    // 단답형이 나올 때까지 넘긴다. 큐가 바닥나면 명확히 실패시킨다.
+    let found = false;
+    for (let i = 0; i < 100; i++) {
+      if (w.vm.current?.type === 'fill') { found = true; break; }
+      if (!w.vm.current) break;
       w.vm.nextQuestion();
       await w.vm.$nextTick();
     }
-    expect(w.vm.current?.type).toBe('fill');
+    expect(found, '단답형 문제가 한 번도 나오지 않음').toBe(true);
     await new Promise(r => setTimeout(r, 20));
 
     expect(document.activeElement, '단답형 입력창에 커서가 없음')

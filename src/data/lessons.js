@@ -6460,5 +6460,171 @@ export const lessons = [
         ko: '택배는 어떻게 보냈나요?'
       }
     ]
+  },
+  {
+    id: 'day64',
+    day: 64,
+    theme: 'travel',
+    emoji: '🚇',
+    title: '지하철 이용',
+    subtitle: '¿Cómo se usa el metro?',
+    cards: [
+      {
+        es: 'el metro',
+        ko: '지하철'
+      },
+      {
+        es: 'la estación de metro',
+        ko: '지하철역'
+      },
+      {
+        es: 'el billete',
+        ko: '표, 승차권'
+      },
+      {
+        es: 'la tarjeta de transporte',
+        ko: '교통카드'
+      },
+      {
+        es: 'la máquina expendedora',
+        ko: '자동판매기'
+      },
+      {
+        es: 'el torno',
+        ko: '개찰구'
+      },
+      {
+        es: 'el andén',
+        ko: '승강장'
+      },
+      {
+        es: 'la línea',
+        ko: '노선, 호선'
+      },
+      {
+        es: 'el transbordo',
+        ko: '환승'
+      },
+      {
+        es: 'la salida',
+        ko: '출구'
+      },
+      {
+        es: 'la próxima estación',
+        ko: '다음 역'
+      },
+      {
+        es: 'recargar',
+        ko: '충전하다'
+      },
+      {
+        es: 'pasar',
+        ko: '지나가다, 통과하다'
+      },
+      {
+        es: 'subir',
+        ko: '올라타다'
+      },
+      {
+        es: 'bajarse',
+        ko: '내리다 (재귀동사)'
+      },
+      {
+        es: 'recargar la tarjeta',
+        ko: '카드를 충전하다'
+      },
+      {
+        es: 'pasar el torno',
+        ko: '개찰구를 통과하다'
+      },
+      {
+        es: 'buscar el andén',
+        ko: '승강장을 찾다'
+      },
+      {
+        es: 'subir al metro',
+        ko: '지하철을 타다'
+      },
+      {
+        es: 'bajarse del metro',
+        ko: '지하철에서 내리다'
+      },
+      {
+        es: 'hacer transbordo',
+        ko: '환승하다'
+      },
+      {
+        es: 'buscar la salida',
+        ko: '출구를 찾다'
+      },
+      {
+        es: 'más cercana',
+        ko: '가장 가까운'
+      },
+      {
+        es: 'tener que + 동사원형',
+        ko: '~해야 한다 (의무·필요)'
+      },
+      {
+        es: '¿Qué línea tengo que tomar?',
+        ko: '몇 호선을 타야 하나요?'
+      },
+      {
+        es: '¿Dónde tengo que hacer transbordo?',
+        ko: '어디서 환승해야 하나요?'
+      },
+      {
+        es: 'Tienes que bajar en la próxima estación.',
+        ko: '다음 역에서 내려야 해요.'
+      },
+      {
+        es: 'Tenemos que comprar un billete primero.',
+        ko: '먼저 표를 사야 해요.'
+      },
+      {
+        es: '¿En qué estación me bajo?',
+        ko: '어느 역에서 내리나요?'
+      },
+      {
+        es: '¿Cuál es la salida?',
+        ko: '출구가 어디인가요?'
+      },
+      {
+        es: 'Se busca la estación de metro más cercana.',
+        ko: '가장 가까운 지하철역을 찾아요.'
+      },
+      {
+        es: 'Se compra un billete.',
+        ko: '표를 사요.'
+      },
+      {
+        es: 'Se usa una tarjeta de transporte.',
+        ko: '교통카드를 사용해요.'
+      },
+      {
+        es: 'Después se pasa el torno.',
+        ko: '그다음 개찰구를 통과해요.'
+      },
+      {
+        es: 'Se busca el andén correcto.',
+        ko: '맞는 승강장을 찾아요.'
+      },
+      {
+        es: 'Si es necesario, se hace transbordo.',
+        ko: '필요하면 환승해요.'
+      },
+      {
+        es: 'Al llegar a la estación, se baja del metro.',
+        ko: '역에 도착하면 지하철에서 내려요.'
+      },
+      {
+        es: '¿Cómo se usa el metro?',
+        ko: '지하철은 어떻게 이용하나요?'
+      },
+      {
+        es: '¿Cómo se usaba el metro?',
+        ko: '지하철은 어떻게 이용했나요?'
+      }
+    ]
   }
 ];
