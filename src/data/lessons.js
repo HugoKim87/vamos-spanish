@@ -6626,5 +6626,215 @@ export const lessons = [
         ko: '지하철은 어떻게 이용했나요?'
       }
     ]
+  },
+  {
+    id: 'day65',
+    day: 65,
+    theme: 'travel',
+    emoji: '🚗',
+    title: '렌터카 이용',
+    subtitle: '¿Cómo se alquila un coche?',
+    cards: [
+      {
+        es: 'el coche de alquiler',
+        ko: '렌터카'
+      },
+      {
+        es: 'la empresa de alquiler',
+        ko: '렌터카 회사, 렌트 업체'
+      },
+      {
+        es: 'el carnet de conducir',
+        ko: '운전면허증'
+      },
+      {
+        es: 'el pasaporte',
+        ko: '여권'
+      },
+      {
+        es: 'la tarjeta de crédito',
+        ko: '신용카드'
+      },
+      {
+        es: 'el seguro',
+        ko: '보험'
+      },
+      {
+        es: 'el contrato',
+        ko: '계약서'
+      },
+      {
+        es: 'las llaves',
+        ko: '열쇠 (복수)'
+      },
+      {
+        es: 'el depósito de combustible',
+        ko: '연료 탱크'
+      },
+      {
+        es: 'la gasolina',
+        ko: '휘발유'
+      },
+      {
+        es: 'los documentos',
+        ko: '서류, 증빙 서류'
+      },
+      {
+        es: 'el viaje',
+        ko: '여행, 여정'
+      },
+      {
+        es: 'el total',
+        ko: '총액, 합계'
+      },
+      {
+        es: 'alquilar',
+        ko: '빌리다, 렌트하다'
+      },
+      {
+        es: 'presentar',
+        ko: '제시하다, 제출하다'
+      },
+      {
+        es: 'contratar',
+        ko: '계약하다, 가입하다'
+      },
+      {
+        es: 'recoger',
+        ko: '수령하다, 찾아오다'
+      },
+      {
+        es: 'llenar',
+        ko: '채우다, 가득 채우다'
+      },
+      {
+        es: 'necesitar',
+        ko: '필요하다'
+      },
+      {
+        es: 'salir',
+        ko: '나가다, 출발하다'
+      },
+      {
+        es: 'alquilar un coche',
+        ko: '차를 렌트하다'
+      },
+      {
+        es: 'reservar un coche por Internet',
+        ko: '인터넷으로 차를 예약하다'
+      },
+      {
+        es: 'presentar el carnet de conducir',
+        ko: '운전면허증을 제시하다'
+      },
+      {
+        es: 'firmar el contrato',
+        ko: '계약서에 서명하다'
+      },
+      {
+        es: 'contratar un seguro',
+        ko: '보험에 가입하다'
+      },
+      {
+        es: 'recoger las llaves',
+        ko: '열쇠를 수령하다'
+      },
+      {
+        es: 'recoger el coche',
+        ko: '차를 인수하다'
+      },
+      {
+        es: 'devolver el coche',
+        ko: '차를 반납하다'
+      },
+      {
+        es: 'revisar el coche',
+        ko: '차를 점검하다'
+      },
+      {
+        es: 'llenar el depósito',
+        ko: '연료를 가득 채우다'
+      },
+      {
+        es: 'pagar el total',
+        ko: '총액을 결제하다'
+      },
+      {
+        es: 'se + 3인칭 동사',
+        ko: '무인칭 표현 — 누구나 (보통) ~한다'
+      },
+      {
+        es: 'al + 동사원형',
+        ko: '~할 때, ~하자마자'
+      },
+      {
+        es: 'antes de + 동사원형',
+        ko: '~하기 전에'
+      },
+      {
+        es: 'Primero / Después / Al final',
+        ko: '먼저 / 그다음 / 마지막에'
+      },
+      {
+        es: 'Primero se reserva un coche por Internet.',
+        ko: '먼저 인터넷으로 차를 예약해요.'
+      },
+      {
+        es: 'Al llegar a la oficina, se presenta el carnet de conducir y una tarjeta de crédito.',
+        ko: '사무실에 도착하면 운전면허증과 신용카드를 제시해요.'
+      },
+      {
+        es: 'Después se firma el contrato y se recogen las llaves.',
+        ko: '그다음 계약서에 서명하고 열쇠를 받아요.'
+      },
+      {
+        es: 'Antes de salir, se revisa el coche.',
+        ko: '출발하기 전에 차를 점검해요.'
+      },
+      {
+        es: 'Al final del viaje, se devuelve el coche a la empresa de alquiler.',
+        ko: '여행이 끝나면 렌터카 회사에 차를 반납해요.'
+      },
+      {
+        es: 'Al devolver el coche, se paga el total.',
+        ko: '차를 반납할 때 총금액을 결제해요.'
+      },
+      {
+        es: '¿Qué documentos necesito para alquilar un coche?',
+        ko: '차를 렌트하려면 어떤 서류가 필요한가요?'
+      },
+      {
+        es: '¿Dónde se recoge el coche?',
+        ko: '차는 어디에서 인수하나요?'
+      },
+      {
+        es: '¿Dónde se devuelve el coche?',
+        ko: '차는 어디에 반납하나요?'
+      },
+      {
+        es: 'Quiero alquilar un coche para tres días.',
+        ko: '사흘 동안 차를 렌트하고 싶어요.'
+      },
+      {
+        es: '¿Está incluido el seguro?',
+        ko: '보험이 포함되어 있나요?'
+      },
+      {
+        es: 'El depósito de combustible está lleno.',
+        ko: '연료 탱크가 가득 차 있어요.'
+      },
+      {
+        es: 'En el futuro, se alquilará un coche sin llaves.',
+        ko: '앞으로는 열쇠 없이 차를 렌트하게 될 거예요.'
+      },
+      {
+        es: '¿Cómo se alquila un coche?',
+        ko: '차는 어떻게 렌트하나요?'
+      },
+      {
+        es: '¿Cómo se alquilará un coche?',
+        ko: '차는 어떻게 렌트하게 될까요? (미래)'
+      }
+    ]
   }
 ];
