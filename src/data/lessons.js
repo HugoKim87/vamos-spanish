@@ -6836,5 +6836,183 @@ export const lessons = [
         ko: '차는 어떻게 렌트하게 될까요? (미래)'
       }
     ]
+  },
+  {
+    id: 'day66',
+    day: 66,
+    theme: 'food',
+    emoji: '🧾',
+    title: '계산서 요청',
+    subtitle: '¿Cómo se pide la cuenta?',
+    cards: [
+      {
+        es: 'la cuenta',
+        ko: '계산서'
+      },
+      {
+        es: 'el camarero',
+        ko: '종업원, 웨이터 (남)'
+      },
+      {
+        es: 'la camarera',
+        ko: '종업원, 웨이트리스 (여)'
+      },
+      {
+        es: 'la propina',
+        ko: '팁'
+      },
+      {
+        es: 'el recibo',
+        ko: '영수증'
+      },
+      {
+        es: 'pedir',
+        ko: '요청하다, 주문하다 (불규칙)'
+      },
+      {
+        es: 'cobrar',
+        ko: '계산하다, (돈을) 받다'
+      },
+      {
+        es: 'dejar',
+        ko: '남기다, 두다'
+      },
+      {
+        es: 'dividir',
+        ko: '나누다'
+      },
+      {
+        es: 'invitar',
+        ko: '한턱내다, 초대하다'
+      },
+      {
+        es: 'traer',
+        ko: '가져오다, 가져다주다 (불규칙)'
+      },
+      {
+        es: 'poder',
+        ko: '~할 수 있다 (불규칙)'
+      },
+      {
+        es: 'preguntar',
+        ko: '묻다, 물어보다'
+      },
+      {
+        es: 'pedir la cuenta',
+        ko: '계산서를 요청하다'
+      },
+      {
+        es: 'traer la cuenta a la mesa',
+        ko: '계산서를 테이블로 가져오다'
+      },
+      {
+        es: 'pagar con tarjeta',
+        ko: '카드로 계산하다'
+      },
+      {
+        es: 'pagar en efectivo',
+        ko: '현금으로 계산하다'
+      },
+      {
+        es: 'pagar por separado',
+        ko: '따로 계산하다'
+      },
+      {
+        es: 'dividir la cuenta',
+        ko: '계산서를 나누다, 더치페이하다'
+      },
+      {
+        es: 'dejar propina',
+        ko: '팁을 남기다'
+      },
+      {
+        es: 'pedir el recibo',
+        ko: '영수증을 요청하다'
+      },
+      {
+        es: 'invitar a alguien',
+        ko: '누군가에게 한턱내다'
+      },
+      {
+        es: 'después de cenar',
+        ko: '저녁 식사 후에'
+      },
+      {
+        es: 'salir del restaurante',
+        ko: '식당에서 나가다'
+      },
+      {
+        es: 'con tarjeta / en efectivo',
+        ko: '카드로 / 현금으로 — 전치사가 서로 다르다'
+      },
+      {
+        es: '¿Se puede + 동사원형?',
+        ko: '~할 수 있나요? (무인칭 가능 여부)'
+      },
+      {
+        es: 'Prefiero + 동사원형',
+        ko: '~하는 편이 좋아요 (선호 표현)'
+      },
+      {
+        es: '¿Me trae la cuenta, por favor?',
+        ko: '계산서 좀 가져다주시겠어요?'
+      },
+      {
+        es: '¿Me cobra, por favor?',
+        ko: '계산해 주시겠어요?'
+      },
+      {
+        es: '¿Se puede pagar con tarjeta?',
+        ko: '카드로 결제할 수 있나요?'
+      },
+      {
+        es: 'Pago con tarjeta.',
+        ko: '카드로 계산할게요.'
+      },
+      {
+        es: 'Pago en efectivo.',
+        ko: '현금으로 계산할게요.'
+      },
+      {
+        es: 'Prefiero pagar en efectivo.',
+        ko: '현금으로 계산하는 편이 좋아요.'
+      },
+      {
+        es: 'Podemos pagar por separado.',
+        ko: '따로 계산할 수 있어요.'
+      },
+      {
+        es: 'Hoy invito yo.',
+        ko: '오늘은 제가 낼게요.'
+      },
+      {
+        es: 'Después de cenar, pedimos la cuenta.',
+        ko: '저녁을 먹은 후에 계산서를 요청해요.'
+      },
+      {
+        es: 'El camarero trae la cuenta a la mesa.',
+        ko: '종업원이 계산서를 테이블로 가져와요.'
+      },
+      {
+        es: 'Preguntamos si se puede pagar con tarjeta.',
+        ko: '카드로 결제할 수 있는지 물어봐요.'
+      },
+      {
+        es: 'Pagamos con tarjeta y dejamos una pequeña propina.',
+        ko: '카드로 계산하고 약간의 팁을 남겨요.'
+      },
+      {
+        es: 'Después salimos del restaurante.',
+        ko: '그다음 식당에서 나와요.'
+      },
+      {
+        es: '¿Cómo se pide la cuenta?',
+        ko: '계산서는 어떻게 요청하나요?'
+      },
+      {
+        es: '¿Cómo se pedía la cuenta?',
+        ko: '계산서는 어떻게 요청했나요? (과거)'
+      }
+    ]
   }
 ];
