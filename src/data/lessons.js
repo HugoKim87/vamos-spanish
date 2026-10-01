@@ -7014,5 +7014,219 @@ export const lessons = [
         ko: '계산서는 어떻게 요청했나요? (과거)'
       }
     ]
+  },
+  {
+    id: 'day67',
+    day: 67,
+    theme: 'food',
+    emoji: '🍰',
+    title: '수량 표현',
+    subtitle: '¿Cuánto(s) quiere?',
+    cards: [
+      {
+        es: 'el trozo',
+        ko: '조각, 덩어리'
+      },
+      {
+        es: 'la loncha',
+        ko: '(햄처럼 얇게 썬) 한 장'
+      },
+      {
+        es: 'la rebanada',
+        ko: '(빵처럼 잘라낸) 한 쪽'
+      },
+      {
+        es: 'la porción',
+        ko: '한 조각, 한 몫'
+      },
+      {
+        es: 'la ración',
+        ko: '한 접시 (스페인 식당의 1접시)'
+      },
+      {
+        es: 'la docena',
+        ko: '한 다스, 12개'
+      },
+      {
+        es: 'la tarta',
+        ko: '케이크'
+      },
+      {
+        es: 'el queso',
+        ko: '치즈'
+      },
+      {
+        es: 'el jamón',
+        ko: '하몽, 햄'
+      },
+      {
+        es: 'la pizza',
+        ko: '피자'
+      },
+      {
+        es: 'la paella',
+        ko: '빠에야'
+      },
+      {
+        es: 'las croquetas',
+        ko: '크로켓'
+      },
+      {
+        es: 'los calamares',
+        ko: '오징어 튀김'
+      },
+      {
+        es: 'querer',
+        ko: '원하다, 바라다 (불규칙)'
+      },
+      {
+        es: 'dar',
+        ko: '주다 (불규칙)'
+      },
+      {
+        es: 'poner',
+        ko: '놓다, 담아 주다 (불규칙)'
+      },
+      {
+        es: 'cortar',
+        ko: '자르다, 썰다'
+      },
+      {
+        es: 'un trozo de + 음식',
+        ko: '~ 한 조각'
+      },
+      {
+        es: 'una loncha de + 음식',
+        ko: '(햄처럼 얇게 썬) ~ 한 장'
+      },
+      {
+        es: 'una rebanada de + 음식',
+        ko: '(빵처럼 잘라낸) ~ 한 쪽'
+      },
+      {
+        es: 'una porción de + 음식',
+        ko: '~ 한 조각, 한 몫 — 항상 1인분은 아니다'
+      },
+      {
+        es: 'una ración de + 음식',
+        ko: '~ 한 접시 — 1인분과 다를 수 있다'
+      },
+      {
+        es: 'para + 숫자 + personas',
+        ko: 'N인분'
+      },
+      {
+        es: 'Póngame + 수량',
+        ko: '(존칭) 나에게 ~ 주세요'
+      },
+      {
+        es: 'Ponme + 수량',
+        ko: '(편한 사이) 나한테 ~ 줘'
+      },
+      {
+        es: 'un trozo de tarta',
+        ko: '케이크 한 조각'
+      },
+      {
+        es: 'dos trozos de queso',
+        ko: '치즈 두 조각'
+      },
+      {
+        es: 'un trozo de carne',
+        ko: '고기 한 조각'
+      },
+      {
+        es: 'una loncha de jamón',
+        ko: '하몽 한 장'
+      },
+      {
+        es: 'seis lonchas de jamón',
+        ko: '하몽 여섯 장'
+      },
+      {
+        es: 'cortar en lonchas finas',
+        ko: '얇게 썰다'
+      },
+      {
+        es: 'una rebanada de pan',
+        ko: '빵 한 쪽'
+      },
+      {
+        es: 'una porción de pizza',
+        ko: '피자 한 조각'
+      },
+      {
+        es: 'una ración de calamares',
+        ko: '오징어 튀김 한 접시'
+      },
+      {
+        es: 'una ración de croquetas',
+        ko: '크로켓 한 접시'
+      },
+      {
+        es: 'para una persona',
+        ko: '1인분'
+      },
+      {
+        es: 'para dos personas',
+        ko: '2인분'
+      },
+      {
+        es: '¿Cuántos quiere?',
+        ko: '몇 개 드릴까요?'
+      },
+      {
+        es: 'Quiero tres.',
+        ko: '세 개 주세요.'
+      },
+      {
+        es: 'Quiero un trozo de tarta.',
+        ko: '케이크 한 조각 주세요.'
+      },
+      {
+        es: 'Póngame dos trozos de queso.',
+        ko: '치즈 두 조각 주세요.'
+      },
+      {
+        es: 'Póngame seis lonchas de jamón.',
+        ko: '하몽 여섯 장 주세요.'
+      },
+      {
+        es: 'Quiero dos rebanadas de pan.',
+        ko: '빵 두 쪽 주세요.'
+      },
+      {
+        es: 'Quiero una porción de pizza.',
+        ko: '피자 한 조각 주세요.'
+      },
+      {
+        es: 'Póngame una ración de croquetas.',
+        ko: '크로켓 한 접시 주세요.'
+      },
+      {
+        es: 'Quiero paella para dos personas.',
+        ko: '빠에야 2인분 주세요.'
+      },
+      {
+        es: 'Queremos carne para cuatro personas.',
+        ko: '고기 4인분 주세요.'
+      },
+      {
+        es: '¿Hay paella para una persona?',
+        ko: '빠에야 1인분도 있나요?'
+      },
+      {
+        es: '¿Para cuántas personas es?',
+        ko: '몇 인분인가요?'
+      },
+      {
+        es: '¿Para cuántas personas es una ración?',
+        ko: '한 접시는 몇 명이 먹을 수 있나요?'
+      },
+      {
+        es: '¿Cuántos quiso?',
+        ko: '몇 개 원하셨나요? (과거)'
+      }
+    ]
   }
 ];
