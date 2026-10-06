@@ -7228,5 +7228,247 @@ export const lessons = [
         ko: '몇 개 원하셨나요? (과거)'
       }
     ]
+  },
+  {
+    id: 'day68',
+    day: 68,
+    theme: 'food',
+    emoji: '⚖️',
+    title: '무게와 분수 표현',
+    subtitle: '¿Cuánto quiere?',
+    cards: [
+      {
+        es: 'el gramo',
+        ko: '그램'
+      },
+      {
+        es: 'el kilo',
+        ko: '킬로그램'
+      },
+      {
+        es: 'la mitad',
+        ko: '절반'
+      },
+      {
+        es: 'un cuarto',
+        ko: '4분의 1'
+      },
+      {
+        es: 'tres cuartos',
+        ko: '4분의 3'
+      },
+      {
+        es: 'media ración',
+        ko: '반 접시, 작은 사이즈'
+      },
+      {
+        es: 'el mercado',
+        ko: '시장'
+      },
+      {
+        es: 'la panadería',
+        ko: '빵집'
+      },
+      {
+        es: 'comprar',
+        ko: '사다, 구입하다'
+      },
+      {
+        es: 'ir',
+        ko: '가다 (불규칙)'
+      },
+      {
+        es: 'estar',
+        ko: '~에 있다, ~한 상태이다 (불규칙)'
+      },
+      {
+        es: 'pedir',
+        ko: '요청하다, 부탁하다 (불규칙)'
+      },
+      {
+        es: 'compartir',
+        ko: '나누다, 함께 쓰다'
+      },
+      {
+        es: 'medio / media + 명사',
+        ko: '반 ~ — 뒤에 오는 명사의 성에 맞춘다'
+      },
+      {
+        es: 'un cuarto de + 단위',
+        ko: '4분의 1의 ~'
+      },
+      {
+        es: 'tres cuartos de + 단위',
+        ko: '4분의 3의 ~'
+      },
+      {
+        es: 'media ración de + 음식',
+        ko: '~ 반 접시'
+      },
+      {
+        es: 'una botella de + 음식',
+        ko: '~ 한 병'
+      },
+      {
+        es: 'una lata de + 음식',
+        ko: '~ 한 캔'
+      },
+      {
+        es: 'un paquete de + 음식',
+        ko: '~ 한 팩'
+      },
+      {
+        es: 'una bolsa de + 음식',
+        ko: '~ 한 봉지'
+      },
+      {
+        es: 'una caja de + 음식',
+        ko: '~ 한 상자'
+      },
+      {
+        es: 'cien gramos',
+        ko: '100그램'
+      },
+      {
+        es: 'doscientos gramos',
+        ko: '200그램'
+      },
+      {
+        es: 'un cuarto de kilo',
+        ko: '250그램 (4분의 1킬로)'
+      },
+      {
+        es: 'medio kilo',
+        ko: '500그램 (반 킬로)'
+      },
+      {
+        es: 'tres cuartos de kilo',
+        ko: '750그램 (4분의 3킬로)'
+      },
+      {
+        es: 'un kilo y medio',
+        ko: '1.5킬로'
+      },
+      {
+        es: 'media docena',
+        ko: '반 다스, 6개'
+      },
+      {
+        es: 'media barra',
+        ko: '빵 반 개'
+      },
+      {
+        es: 'media botella',
+        ko: '반 병'
+      },
+      {
+        es: 'una barra de pan',
+        ko: '바게트 빵 한 개'
+      },
+      {
+        es: 'una botella de agua',
+        ko: '물 한 병'
+      },
+      {
+        es: 'una lata de refresco',
+        ko: '탄산음료 한 캔'
+      },
+      {
+        es: 'un paquete de galletas',
+        ko: '과자 한 팩'
+      },
+      {
+        es: 'una caja de chocolates',
+        ko: '초콜릿 한 상자'
+      },
+      {
+        es: 'un cartón de leche',
+        ko: '우유 한 팩'
+      },
+      {
+        es: 'un bote de mermelada',
+        ko: '잼 한 병'
+      },
+      {
+        es: 'un frasco de perfume',
+        ko: '향수 한 병'
+      },
+      {
+        es: 'medio kilo de carne',
+        ko: '고기 반 킬로'
+      },
+      {
+        es: 'media ración de jamón',
+        ko: '하몽 반 접시'
+      },
+      {
+        es: '¿Cuánto quiere?',
+        ko: '얼마나 드릴까요?'
+      },
+      {
+        es: '¿Cuánto le pongo?',
+        ko: '얼마나 담아 드릴까요?'
+      },
+      {
+        es: '¿Cuántas lonchas quiere?',
+        ko: '몇 장 드릴까요?'
+      },
+      {
+        es: '¿Algo más?',
+        ko: '더 필요하신 거 있으세요?'
+      },
+      {
+        es: '¿Así está bien?',
+        ko: '이 정도면 괜찮으세요?'
+      },
+      {
+        es: '¿Se puede pedir media ración?',
+        ko: '반 접시로 주문할 수 있나요?'
+      },
+      {
+        es: 'Solo quiero la mitad.',
+        ko: '절반만 주세요.'
+      },
+      {
+        es: 'Quiero media barra de pan.',
+        ko: '빵 반 개 주세요.'
+      },
+      {
+        es: 'Quiero medio kilo de carne.',
+        ko: '고기 반 킬로 주세요.'
+      },
+      {
+        es: 'Un cuarto de kilo de queso.',
+        ko: '치즈 250그램 주세요.'
+      },
+      {
+        es: 'Un poco más, por favor.',
+        ko: '조금 더 주세요.'
+      },
+      {
+        es: 'Un poco menos, por favor.',
+        ko: '조금 덜 주세요.'
+      },
+      {
+        es: 'Hoy voy al mercado.',
+        ko: '오늘은 시장에 간다.'
+      },
+      {
+        es: 'Primero compro medio kilo de carne y doscientos gramos de jamón.',
+        ko: '먼저 고기 반 킬로와 하몽 200그램을 산다.'
+      },
+      {
+        es: 'Le digo al dependiente: «Póngame seis lonchas de jamón, por favor».',
+        ko: '직원에게 "하몽 여섯 장 주세요"라고 말한다.'
+      },
+      {
+        es: 'En la panadería compro una barra de pan y pido que me la corten en rebanadas.',
+        ko: '빵집에서는 빵 한 개를 사고 얇게 썰어 달라고 한다.'
+      },
+      {
+        es: '¿Cuánto quería?',
+        ko: '얼마나 원하셨나요? (과거)'
+      }
+    ]
   }
 ];
