@@ -7470,5 +7470,279 @@ export const lessons = [
         ko: '얼마나 원하셨나요? (과거)'
       }
     ]
+  },
+  {
+    id: 'day69',
+    day: 69,
+    theme: 'home',
+    emoji: '👕',
+    title: '오늘의 옷차림',
+    subtitle: '¿Qué me pongo hoy?',
+    cards: [
+      {
+        es: 'la camiseta',
+        ko: '티셔츠'
+      },
+      {
+        es: 'la camisa',
+        ko: '셔츠'
+      },
+      {
+        es: 'la blusa',
+        ko: '블라우스'
+      },
+      {
+        es: 'el jersey',
+        ko: '스웨터 (= el suéter)'
+      },
+      {
+        es: 'la sudadera',
+        ko: '맨투맨 티셔츠'
+      },
+      {
+        es: 'el cárdigan',
+        ko: '가디건'
+      },
+      {
+        es: 'el chaleco',
+        ko: '조끼'
+      },
+      {
+        es: 'los pantalones',
+        ko: '바지 (단수 un pantalón도 쓴다)'
+      },
+      {
+        es: 'los vaqueros',
+        ko: '청바지'
+      },
+      {
+        es: 'los pantalones cortos',
+        ko: '반바지'
+      },
+      {
+        es: 'la falda',
+        ko: '치마'
+      },
+      {
+        es: 'la minifalda',
+        ko: '미니스커트'
+      },
+      {
+        es: 'los leggings',
+        ko: '레깅스'
+      },
+      {
+        es: 'el vestido',
+        ko: '원피스, 드레스'
+      },
+      {
+        es: 'el traje',
+        ko: '정장, 슈트'
+      },
+      {
+        es: 'la chaqueta',
+        ko: '재킷'
+      },
+      {
+        es: 'la cazadora',
+        ko: '짧은 재킷, 점퍼'
+      },
+      {
+        es: 'el abrigo',
+        ko: '코트, 외투'
+      },
+      {
+        es: 'la gabardina',
+        ko: '트렌치코트'
+      },
+      {
+        es: 'el plumífero',
+        ko: '패딩'
+      },
+      {
+        es: 'la parka',
+        ko: '파카'
+      },
+      {
+        es: 'las zapatillas',
+        ko: '운동화'
+      },
+      {
+        es: 'los botines',
+        ko: '앵클부츠'
+      },
+      {
+        es: 'los tacones',
+        ko: '하이힐'
+      },
+      {
+        es: 'las chanclas',
+        ko: '플립플롭, 쪼리'
+      },
+      {
+        es: 'el cinturón',
+        ko: '벨트'
+      },
+      {
+        es: 'la bufanda',
+        ko: '목도리, 머플러'
+      },
+      {
+        es: 'la gorra',
+        ko: '캡모자'
+      },
+      {
+        es: 'las gafas de sol',
+        ko: '선글라스'
+      },
+      {
+        es: 'los guantes',
+        ko: '장갑'
+      },
+      {
+        es: 'negro',
+        ko: '검은색'
+      },
+      {
+        es: 'blanco',
+        ko: '흰색'
+      },
+      {
+        es: 'gris',
+        ko: '회색'
+      },
+      {
+        es: 'azul',
+        ko: '파란색'
+      },
+      {
+        es: 'rojo',
+        ko: '빨간색'
+      },
+      {
+        es: 'rosa',
+        ko: '분홍색'
+      },
+      {
+        es: 'ponerse',
+        ko: '입다, 신다 — 입는 동작 (재귀동사)'
+      },
+      {
+        es: 'llevar',
+        ko: '입고 있다 — 착용 상태'
+      },
+      {
+        es: 'quedar',
+        ko: '어울리다, 맞다 — 옷이 나에게 맞는 상태'
+      },
+      {
+        es: 'hacer',
+        ko: '하다, 만들다 (불규칙)'
+      },
+      {
+        es: 'de manga corta',
+        ko: '반팔의'
+      },
+      {
+        es: 'de manga larga',
+        ko: '긴팔의'
+      },
+      {
+        es: 'sin mangas',
+        ko: '민소매의'
+      },
+      {
+        es: 'de rayas',
+        ko: '줄무늬의'
+      },
+      {
+        es: 'de cuadros',
+        ko: '체크무늬의'
+      },
+      {
+        es: 'de lunares',
+        ko: '물방울무늬의'
+      },
+      {
+        es: 'de flores',
+        ko: '꽃무늬의'
+      },
+      {
+        es: 'Me pongo + 옷',
+        ko: '~을 입다 — 입는 동작을 말할 때'
+      },
+      {
+        es: 'Llevo + 옷',
+        ko: '~을 입고 있다 — 착용 상태를 말할 때'
+      },
+      {
+        es: 'Me queda + 형용사',
+        ko: '나에게 ~하게 맞다·어울리다'
+      },
+      {
+        es: 'una camiseta de manga corta',
+        ko: '반팔 티셔츠'
+      },
+      {
+        es: 'una sudadera con capucha',
+        ko: '후드티'
+      },
+      {
+        es: 'una cazadora de cuero',
+        ko: '가죽 재킷'
+      },
+      {
+        es: 'una cazadora vaquera',
+        ko: '청재킷'
+      },
+      {
+        es: 'Me pongo una chaqueta.',
+        ko: '재킷을 입어요.'
+      },
+      {
+        es: 'Me pongo las botas.',
+        ko: '부츠를 신어요.'
+      },
+      {
+        es: 'Hoy me pongo una camiseta de manga corta.',
+        ko: '오늘은 반팔 티셔츠를 입어요.'
+      },
+      {
+        es: 'Hoy me pongo unos vaqueros y una camisa blanca.',
+        ko: '오늘은 청바지와 흰 셔츠를 입어요.'
+      },
+      {
+        es: 'Para la cena me pongo un vestido negro.',
+        ko: '저녁 약속에는 검은색 원피스를 입어요.'
+      },
+      {
+        es: 'Hace frío, así que me pongo un abrigo largo.',
+        ko: '추워서 롱코트를 입어요.'
+      },
+      {
+        es: 'Me pongo unas zapatillas porque voy a caminar mucho.',
+        ko: '많이 걸을 거라 운동화를 신어요.'
+      },
+      {
+        es: 'Llevo una chaqueta negra.',
+        ko: '검은색 재킷을 입고 있어요.'
+      },
+      {
+        es: 'Esta chaqueta me queda bien.',
+        ko: '이 재킷은 저한테 잘 어울려요.'
+      },
+      {
+        es: 'Estos pantalones me quedan grandes.',
+        ko: '이 바지는 저한테 커요.'
+      },
+      {
+        es: '¿Qué me pongo hoy?',
+        ko: '오늘 뭐 입지?'
+      },
+      {
+        es: '¿Qué te pusiste?',
+        ko: '뭐 입었어요? (과거)'
+      }
+    ]
   }
 ];
