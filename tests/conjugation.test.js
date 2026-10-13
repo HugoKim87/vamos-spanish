@@ -28,6 +28,16 @@ describe('어간 변화', () => {
     poder: ['puedo', 'puedes', 'puede', 'podemos', 'podéis', 'pueden'],
     pedir: ['pido', 'pides', 'pide', 'pedimos', 'pedís', 'piden'],
     fregar: ['friego', 'friegas', 'friega', 'fregamos', 'fregáis', 'friegan'],
+    // 재귀 동사는 -se째로 표에 있어야 한다. 과거에 probar만 있고 probarse가 없어
+    // 'me probo'로, vestirse는 아예 없어 'me vesto'로 잘못 활용됐다.
+    vestir: ['visto', 'vistes', 'viste', 'vestimos', 'vestís', 'visten'],
+    vestirse: ['me visto', 'te vistes', 'se viste', 'nos vestimos', 'os vestís', 'se visten'],
+    probarse: ['me pruebo', 'te pruebas', 'se prueba', 'nos probamos', 'os probáis', 'se prueban'],
+    acordarse: ['me acuerdo', 'te acuerdas', 'se acuerda', 'nos acordamos', 'os acordáis', 'se acuerdan'],
+    servir: ['sirvo', 'sirves', 'sirve', 'servimos', 'servís', 'sirven'],
+    medir: ['mido', 'mides', 'mide', 'medimos', 'medís', 'miden'],
+    repetir: ['repito', 'repites', 'repite', 'repetimos', 'repetís', 'repiten'],
+    soñar: ['sueño', 'sueñas', 'sueña', 'soñamos', 'soñáis', 'sueñan'],
   };
   for (const [v, e] of Object.entries(cases)) {
     it(v, () => expect(forms(v)).toEqual(e));

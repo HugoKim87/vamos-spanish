@@ -108,11 +108,21 @@ export const IRREGULARS = {
   recordar: { stem: 'o>ue' },
   volver: { stem: 'o>ue' },
   probar: { stem: 'o>ue' },
+  // 재귀형은 -se째로 등록해야 한다 (probar만 있으면 probarse가 규칙으로 잘못 만들어진다)
+  probarse: { stem: 'o>ue' },      // me pruebo, te pruebas …
+  acordarse: { stem: 'o>ue' },
+  soñar: { stem: 'o>ue' },
   acostarse: { stem: 'o>ue' },
   dormirse: { stem: 'o>ue' },
 
   // 어간 e→i
   pedir: { stem: 'e>i' },
+  vestir: { stem: 'e>i' },          // visto, vistes, viste, vestimos, vestís, visten
+  vestirse: { stem: 'e>i' },        // me visto, te vistes …
+  repetir: { stem: 'e>i' },
+  servir: { stem: 'e>i' },
+  medir: { stem: 'e>i' },
+  despedirse: { stem: 'e>i' },
   seguir: { stem: 'e>i', yo: 'sigo' },   // gu→g
   elegir: { stem: 'e>i', yo: 'elijo' },  // g→j
 

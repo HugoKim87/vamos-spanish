@@ -7744,5 +7744,279 @@ export const lessons = [
         ko: '뭐 입었어요? (과거)'
       }
     ]
+  },
+  {
+    id: 'day70',
+    day: 70,
+    theme: 'home',
+    emoji: '👖',
+    title: '옷 기장과 핏',
+    subtitle: '¿Qué me pongo hoy? (largo y corte)',
+    cards: [
+      {
+        es: 'la ropa',
+        ko: '옷, 의류'
+      },
+      {
+        es: 'la rodilla',
+        ko: '무릎'
+      },
+      {
+        es: 'el tobillo',
+        ko: '발목'
+      },
+      {
+        es: 'el suelo',
+        ko: '바닥'
+      },
+      {
+        es: 'el bajo',
+        ko: '바짓단, 바지 기장'
+      },
+      {
+        es: 'el corte',
+        ko: '재단, 핏'
+      },
+      {
+        es: 'largo',
+        ko: '긴'
+      },
+      {
+        es: 'corto',
+        ko: '짧은'
+      },
+      {
+        es: 'ajustado',
+        ko: '몸에 붙는'
+      },
+      {
+        es: 'holgado',
+        ko: '여유 있는'
+      },
+      {
+        es: 'ancho',
+        ko: '넓은'
+      },
+      {
+        es: 'recto',
+        ko: '일자로 떨어지는'
+      },
+      {
+        es: 'oversize',
+        ko: '품이 아주 큰, 오버사이즈'
+      },
+      {
+        es: 'cómodo',
+        ko: '편한'
+      },
+      {
+        es: 'preferir',
+        ko: '더 좋아하다, 선호하다 (불규칙)'
+      },
+      {
+        es: 'llegar',
+        ko: '도착하다, 닿다 — 옷이 ~까지 오다'
+      },
+      {
+        es: 'gustar',
+        ko: '마음에 들다 — 옷이 주어가 된다'
+      },
+      {
+        es: 'vestirse',
+        ko: '옷을 입다 — 의류만 (재귀동사, 불규칙)'
+      },
+      {
+        es: 'quitarse',
+        ko: '벗다 (재귀동사)'
+      },
+      {
+        es: 'probarse',
+        ko: '입어보다, 착용해 보다 (재귀동사, 불규칙)'
+      },
+      {
+        es: 'combinar',
+        ko: '코디하다, 조합하다, 어울리다'
+      },
+      {
+        es: 'de largo medio',
+        ko: '중간 길이의'
+      },
+      {
+        es: 'hasta la rodilla',
+        ko: '무릎까지 오는'
+      },
+      {
+        es: 'por encima de la rodilla',
+        ko: '무릎 위까지 오는'
+      },
+      {
+        es: 'por debajo de la rodilla',
+        ko: '무릎 아래까지 오는'
+      },
+      {
+        es: 'hasta los tobillos',
+        ko: '발목까지 오는'
+      },
+      {
+        es: 'hasta el suelo',
+        ko: '바닥까지 오는'
+      },
+      {
+        es: 'de tiro alto',
+        ko: '하이웨이스트'
+      },
+      {
+        es: 'de tiro medio',
+        ko: '미드라이즈'
+      },
+      {
+        es: 'de tiro bajo',
+        ko: '로우라이즈'
+      },
+      {
+        es: 'de corte recto',
+        ko: '스트레이트 핏'
+      },
+      {
+        es: 'de pierna ancha',
+        ko: '와이드 핏'
+      },
+      {
+        es: 'una falda midi',
+        ko: '미디스커트'
+      },
+      {
+        es: 'una falda larga',
+        ko: '롱스커트'
+      },
+      {
+        es: 'un vestido corto',
+        ko: '짧은 원피스'
+      },
+      {
+        es: 'un vestido midi',
+        ko: '미디 원피스'
+      },
+      {
+        es: 'un vestido largo',
+        ko: '롱 원피스'
+      },
+      {
+        es: 'pantalones largos',
+        ko: '긴 바지'
+      },
+      {
+        es: 'pantalones capri',
+        ko: '카프리팬츠'
+      },
+      {
+        es: 'una chaqueta corta',
+        ko: '짧은 재킷'
+      },
+      {
+        es: 'un bolso pequeño',
+        ko: '작은 가방'
+      },
+      {
+        es: 'Me llega hasta + 신체부위',
+        ko: '(옷이) 나에게 ~까지 온다'
+      },
+      {
+        es: 'Me queda demasiado + 형용사',
+        ko: '나에게 너무 ~하다'
+      },
+      {
+        es: 'Prefiero + 명사',
+        ko: '~을 더 좋아한다'
+      },
+      {
+        es: 'Me gusta / Me gustan + 명사',
+        ko: '~이 마음에 든다 — 옷이 주어라 수에 맞춘다'
+      },
+      {
+        es: 'queda / quedan',
+        ko: '옷이 주어라 3인칭 단수·복수만 쓴다'
+      },
+      {
+        es: 'ponerse vs vestirse',
+        ko: 'ponerse는 신발·액세서리까지, vestirse는 의류에만'
+      },
+      {
+        es: 'Prefiero las faldas midi.',
+        ko: '미디스커트를 더 좋아해요.'
+      },
+      {
+        es: 'Este vestido me llega hasta los tobillos.',
+        ko: '이 원피스는 발목까지 와요.'
+      },
+      {
+        es: 'Prefiero los pantalones de tiro alto.',
+        ko: '하이웨이스트 바지를 선호해요.'
+      },
+      {
+        es: 'Estos pantalones me quedan demasiado largos.',
+        ko: '이 바지는 저한테 너무 길어요.'
+      },
+      {
+        es: '¿Me pueden hacer el bajo?',
+        ko: '바지 기장을 줄여 주실 수 있나요?'
+      },
+      {
+        es: 'No me gusta la ropa demasiado ajustada.',
+        ko: '너무 몸에 붙는 옷은 좋아하지 않아요.'
+      },
+      {
+        es: 'Prefiero la ropa un poco holgada.',
+        ko: '조금 여유 있는 옷을 선호해요.'
+      },
+      {
+        es: 'Me gustan los pantalones de pierna ancha.',
+        ko: '와이드팬츠를 좋아해요.'
+      },
+      {
+        es: 'Me queda un poco largo.',
+        ko: '저한테 조금 길어요.'
+      },
+      {
+        es: 'Te queda muy bien.',
+        ko: '너한테 정말 잘 어울려.'
+      },
+      {
+        es: 'Esta camisa combina bien con estos pantalones.',
+        ko: '이 셔츠는 이 바지와 잘 어울려요.'
+      },
+      {
+        es: 'No sé qué ponerme.',
+        ko: '뭘 입을지 모르겠어요.'
+      },
+      {
+        es: 'Hoy hace frío, así que me pongo unos vaqueros y un jersey.',
+        ko: '오늘은 추워서 청바지와 스웨터를 입어요.'
+      },
+      {
+        es: 'Encima llevo una chaqueta corta.',
+        ko: '그 위에 짧은 재킷을 입어요.'
+      },
+      {
+        es: 'Los pantalones me llegan hasta los tobillos.',
+        ko: '바지는 발목까지 와요.'
+      },
+      {
+        es: 'Me pongo unas zapatillas porque son cómodas.',
+        ko: '편해서 운동화를 신어요.'
+      },
+      {
+        es: 'También llevo un bolso pequeño.',
+        ko: '작은 가방도 들어요.'
+      },
+      {
+        es: '¡Ya estoy lista para salir!',
+        ko: '이제 외출 준비 끝! (남성은 listo)'
+      },
+      {
+        es: '¿Qué vas a ponerte?',
+        ko: '뭐 입을 거예요? (미래)'
+      }
+    ]
   }
 ];
