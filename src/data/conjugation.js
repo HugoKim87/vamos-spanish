@@ -48,6 +48,8 @@ const BOOT = ['yo', 'tu', 'el', 'ellos'];
 export const IRREGULARS = {
   ser: { full: { yo: 'soy', tu: 'eres', el: 'es', nosotros: 'somos', vosotros: 'sois', ellos: 'son' } },
   ir: { full: { yo: 'voy', tu: 'vas', el: 'va', nosotros: 'vamos', vosotros: 'vais', ellos: 'van' } },
+  // irse는 'ir'와 같은 형태에 재귀대명사만 붙는다 (me voy, te vas …)
+  irse: { full: { yo: 'voy', tu: 'vas', el: 'va', nosotros: 'vamos', vosotros: 'vais', ellos: 'van' } },
   // dar: yo가 doy, vosotros는 단음절이라 강세 부호가 없다 (dais)
   dar: {
     full: {
@@ -110,9 +112,12 @@ export const IRREGULARS = {
   probar: { stem: 'o>ue' },
   // 재귀형은 -se째로 등록해야 한다 (probar만 있으면 probarse가 규칙으로 잘못 만들어진다)
   probarse: { stem: 'o>ue' },      // me pruebo, te pruebas …
+  acordar: { stem: 'o>ue' },
   acordarse: { stem: 'o>ue' },
   soñar: { stem: 'o>ue' },
+  acostar: { stem: 'o>ue' },
   acostarse: { stem: 'o>ue' },
+  dormir: { stem: 'o>ue' },
   dormirse: { stem: 'o>ue' },
 
   // 어간 e→i
@@ -122,6 +127,7 @@ export const IRREGULARS = {
   repetir: { stem: 'e>i' },
   servir: { stem: 'e>i' },
   medir: { stem: 'e>i' },
+  despedir: { stem: 'e>i' },
   despedirse: { stem: 'e>i' },
   seguir: { stem: 'e>i', yo: 'sigo' },   // gu→g
   elegir: { stem: 'e>i', yo: 'elijo' },  // g→j
@@ -206,16 +212,23 @@ export function conjugatePresent(infinitive) {
   const verb = (infinitive || '').trim().toLowerCase();
 
   // 전부 불규칙인 동사는 어미 분해 없이 바로 표에서 꺼낸다.
-  // ('ir'처럼 어간이 없는 두 글자 원형은 아래 정규식으로 잡히지 않는다)
+  // ('ir'·'irse'처럼 어간이 없는 원형은 아래 정규식으로 잡히지 않는다)
   const direct = IRREGULARS[verb];
   if (direct?.full) {
+    const isReflexive = verb.endsWith('se');
+    const forms = {};
+    for (const { key } of PERSONS) {
+      forms[key] = isReflexive
+        ? `${REFLEXIVE[key]} ${direct.full[key]}`
+        : direct.full[key];
+    }
     return {
       infinitive: verb,
-      reflexive: false,
+      reflexive: isReflexive,
       only: direct.only || null,
       backwards: !!direct.backwards,
       note: null,
-      forms: { ...direct.full },
+      forms,
     };
   }
 
@@ -224,7 +237,10 @@ export function conjugatePresent(infinitive) {
 
   const [, root, ending, se] = m;
   const reflexive = !!se;
-  const info = IRREGULARS[verb] || {};
+  // 재귀형이 표에 없으면 원형의 불규칙을 물려받는다.
+  // 현재시제에서는 어간 변화·yo 불규칙이 재귀형에 그대로 이어지므로,
+  // vestirse·probarse·pedirse를 하나씩 등록하지 않아도 올바르게 활용된다.
+  const info = IRREGULARS[verb] || (reflexive ? IRREGULARS[root + ending] : null) || {};
   const forms = {};
 
   for (const { key } of PERSONS) {

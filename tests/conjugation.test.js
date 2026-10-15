@@ -80,6 +80,11 @@ describe('완전 불규칙·재귀·특수', () => {
     protegerse: ['me protejo', 'te proteges', 'se protege', 'nos protegemos', 'os protegéis', 'se protegen'],
     seguir: ['sigo', 'sigues', 'sigue', 'seguimos', 'seguís', 'siguen'],
     elegir: ['elijo', 'eliges', 'elige', 'elegimos', 'elegís', 'eligen'],
+    // irse는 어간이 없어 정규식으로 분해되지 않는다 — 표에서 바로 꺼내 대명사를 붙여야 한다
+    irse: ['me voy', 'te vas', 'se va', 'nos vamos', 'os vais', 'se van'],
+    // 재귀형이 표에 없어도 원형(pedir·volver)의 불규칙을 물려받아야 한다
+    pedirse: ['me pido', 'te pides', 'se pide', 'nos pedimos', 'os pedís', 'se piden'],
+    volverse: ['me vuelvo', 'te vuelves', 'se vuelve', 'nos volvemos', 'os volvéis', 'se vuelven'],
   };
   for (const [v, e] of Object.entries(cases)) {
     it(v, () => expect(forms(v)).toEqual(e));
@@ -100,4 +105,28 @@ describe('데이터 전체 커버리지', () => {
     }
     expect(bad, bad.join(' / ')).toEqual([]);
   });
+});
+
+
+describe('재귀형은 원형의 불규칙을 물려받는다', () => {
+  // 과거에 vestirse·probarse·pedirse가 표에 없어 규칙 동사로 잘못 활용됐다.
+  // 개별 등록에 기대지 않도록, 원형이 불규칙인 모든 재귀형을 한 번에 검사한다.
+  const REFLEXIVES = [
+    'irse', 'pedirse', 'vestirse', 'probarse', 'ponerse',
+    'volverse', 'despedirse', 'acordarse', 'dormirse', 'acostarse',
+  ];
+  for (const refl of REFLEXIVES) {
+    it(refl, () => {
+      const base = refl.slice(0, -2);
+      const b = conjugatePresent(base);
+      const r = conjugatePresent(refl);
+      expect(r, `${refl} 활용 불가`).toBeTruthy();
+      expect(r.reflexive).toBe(true);
+      if (!b) return;   // 원형이 단독으로 쓰이지 않는 동사는 비교 대상이 아니다
+      const PRON = { yo: 'me', tu: 'te', el: 'se', nosotros: 'nos', vosotros: 'os', ellos: 'se' };
+      for (const k of Object.keys(PRON)) {
+        expect(r.forms[k], `${refl} ${k}`).toBe(`${PRON[k]} ${b.forms[k]}`);
+      }
+    });
+  }
 });

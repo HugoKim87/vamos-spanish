@@ -8018,5 +8018,223 @@ export const lessons = [
         ko: '뭐 입을 거예요? (미래)'
       }
     ]
+  },
+  {
+    id: 'day71',
+    day: 71,
+    theme: 'travel',
+    emoji: '🌉',
+    title: '징검다리 연휴',
+    subtitle: '¿Qué hago durante el puente?',
+    cards: [
+      {
+        es: 'el puente',
+        ko: '징검다리 연휴 (원래 뜻은 다리)'
+      },
+      {
+        es: 'el día laborable',
+        ko: '평일, 근무일'
+      },
+      {
+        es: 'el día festivo',
+        ko: '공휴일'
+      },
+      {
+        es: 'el festivo nacional',
+        ko: '국가 공휴일'
+      },
+      {
+        es: 'el festivo local',
+        ko: '지역 공휴일'
+      },
+      {
+        es: 'el día libre',
+        ko: '쉬는 날, 휴가일'
+      },
+      {
+        es: 'el día de descanso',
+        ko: '휴무일'
+      },
+      {
+        es: 'el fin de semana largo',
+        ko: '긴 주말 연휴'
+      },
+      {
+        es: 'la escapada',
+        ko: '짧은 여행, 짧은 휴가'
+      },
+      {
+        es: 'las vacaciones',
+        ko: '휴가, 방학 (항상 복수)'
+      },
+      {
+        es: 'aprovechar',
+        ko: '활용하다, 유익하게 쓰다'
+      },
+      {
+        es: 'tomarse',
+        ko: '(시간을) 내다, 쓰다 (재귀동사)'
+      },
+      {
+        es: 'pedirse',
+        ko: '(자기 몫으로) 신청하다 (재귀동사, 불규칙)'
+      },
+      {
+        es: 'irse',
+        ko: '떠나다, 가 버리다 (재귀동사, 불규칙)'
+      },
+      {
+        es: 'coger',
+        ko: '잡다, (휴가를) 내다 — 스페인에서 많이 쓴다'
+      },
+      {
+        es: 'quedarse',
+        ko: '머무르다, 남다 (재귀동사)'
+      },
+      {
+        es: 'visitar',
+        ko: '방문하다'
+      },
+      {
+        es: 'viajar',
+        ko: '여행하다'
+      },
+      {
+        es: 'días seguidos',
+        ko: '~일 연속으로'
+      },
+      {
+        es: 'visitar a + 사람',
+        ko: '사람을 목적어로 쓸 때는 전치사 a를 붙인다'
+      },
+      {
+        es: 'tomarse / pedirse + 휴가',
+        ko: '재귀형을 쓰면 내가 내 몫으로 낸다는 뉘앙스'
+      },
+      {
+        es: 'aprovechar + 기간 + para + 동사원형',
+        ko: '~를 이용해서 …하다'
+      },
+      {
+        es: 'irse de + 명사',
+        ko: '~하러 떠나다 (irse de viaje, irse de escapada)'
+      },
+      {
+        es: 'hacer puente',
+        ko: '징검다리로 쉬다'
+      },
+      {
+        es: 'cuatro días seguidos',
+        ko: '4일 연속'
+      },
+      {
+        es: 'cinco días libres seguidos',
+        ko: '5일 연속 휴무'
+      },
+      {
+        es: 'tomarse un día libre',
+        ko: '하루 휴가를 내다'
+      },
+      {
+        es: 'tomarse unos días libres',
+        ko: '며칠 휴가를 내다'
+      },
+      {
+        es: 'pedirse el lunes libre',
+        ko: '월요일에 휴가를 신청하다'
+      },
+      {
+        es: 'coger vacaciones',
+        ko: '휴가를 내다'
+      },
+      {
+        es: 'hacer una escapada',
+        ko: '짧은 여행을 다녀오다'
+      },
+      {
+        es: 'irse de viaje',
+        ko: '여행을 떠나다'
+      },
+      {
+        es: 'irse de escapada',
+        ko: '짧게 여행을 떠나다'
+      },
+      {
+        es: 'quedarse en casa',
+        ko: '집에 머무르다'
+      },
+      {
+        es: 'visitar a la familia',
+        ko: '가족을 방문하다'
+      },
+      {
+        es: 'salir con los amigos',
+        ko: '친구들과 놀러 나가다'
+      },
+      {
+        es: 'reservar un hotel',
+        ko: '호텔을 예약하다'
+      },
+      {
+        es: 'aprovechar el puente',
+        ko: '징검다리 연휴를 활용하다'
+      },
+      {
+        es: '¡Hago puente!',
+        ko: '징검다리로 쭉 쉬어요!'
+      },
+      {
+        es: 'Este lunes hago puente.',
+        ko: '이번 월요일은 징검다리로 쉬어요.'
+      },
+      {
+        es: '¿Haces puente este viernes?',
+        ko: '이번 금요일 징검다리로 쉬어요?'
+      },
+      {
+        es: 'Mañana es festivo, así que hacemos puente.',
+        ko: '내일이 공휴일이라서 징검다리로 쉬어요.'
+      },
+      {
+        es: 'Tenemos cuatro días seguidos de descanso.',
+        ko: '나흘 연속으로 쉬어요.'
+      },
+      {
+        es: 'Tengo cinco días libres seguidos.',
+        ko: '5일 연속으로 쉬어요.'
+      },
+      {
+        es: 'Me tomo el viernes libre.',
+        ko: '금요일에 휴가를 낼 거예요.'
+      },
+      {
+        es: 'Me pedí el lunes libre.',
+        ko: '월요일에 휴가를 신청했어요. (과거)'
+      },
+      {
+        es: 'Voy a aprovechar el puente para viajar.',
+        ko: '징검다리 연휴를 이용해서 여행할 거예요.'
+      },
+      {
+        es: 'Vamos a hacer una escapada a Sevilla.',
+        ko: '세비야로 짧은 여행을 다녀올 거예요.'
+      },
+      {
+        es: 'Nos vamos de escapada este puente.',
+        ko: '이번 연휴에 짧게 여행을 떠나요.'
+      },
+      {
+        es: 'Me quedo en casa y descanso.',
+        ko: '집에 머물면서 쉬어요.'
+      },
+      {
+        es: '¿Qué haces durante el puente?',
+        ko: '연휴 동안 뭐 해요?'
+      },
+      {
+        es: '¿Qué harás durante el puente?',
+        ko: '연휴 동안 뭐 할 거예요? (미래)'
+      }
+    ]
   }
 ];
