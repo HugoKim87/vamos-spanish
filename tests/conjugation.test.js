@@ -28,6 +28,7 @@ describe('어간 변화', () => {
     poder: ['puedo', 'puedes', 'puede', 'podemos', 'podéis', 'pueden'],
     pedir: ['pido', 'pides', 'pide', 'pedimos', 'pedís', 'piden'],
     fregar: ['friego', 'friegas', 'friega', 'fregamos', 'fregáis', 'friegan'],
+    soler: ['suelo', 'sueles', 'suele', 'solemos', 'soléis', 'suelen'],
     // 재귀 동사는 -se째로 표에 있어야 한다. 과거에 probar만 있고 probarse가 없어
     // 'me probo'로, vestirse는 아예 없어 'me vesto'로 잘못 활용됐다.
     vestir: ['visto', 'vistes', 'viste', 'vestimos', 'vestís', 'visten'],
@@ -82,6 +83,8 @@ describe('완전 불규칙·재귀·특수', () => {
     elegir: ['elijo', 'eliges', 'elige', 'elegimos', 'elegís', 'eligen'],
     // irse는 어간이 없어 정규식으로 분해되지 않는다 — 표에서 바로 꺼내 대명사를 붙여야 한다
     irse: ['me voy', 'te vas', 'se va', 'nos vamos', 'os vais', 'se van'],
+    // haber는 완료시제 조동사 — 규칙으로 만들면 'habo'가 된다
+    haber: ['he', 'has', 'ha', 'hemos', 'habéis', 'han'],
     // 재귀형이 표에 없어도 원형(pedir·volver)의 불규칙을 물려받아야 한다
     pedirse: ['me pido', 'te pides', 'se pide', 'nos pedimos', 'os pedís', 'se piden'],
     volverse: ['me vuelvo', 'te vuelves', 'se vuelve', 'nos volvemos', 'os volvéis', 'se vuelven'],
@@ -127,6 +130,21 @@ describe('재귀형은 원형의 불규칙을 물려받는다', () => {
       for (const k of Object.keys(PRON)) {
         expect(r.forms[k], `${refl} ${k}`).toBe(`${PRON[k]} ${b.forms[k]}`);
       }
+    });
+  }
+});
+
+
+describe('gustar형 — 주어가 사물이라 3인칭 위주로 쓴다', () => {
+  // encantar가 표에 없어 일반 동사로 취급되던 적이 있다.
+  // "Me encantan los puentes"처럼 역구조로 쓰는 동사는 표시가 있어야
+  // 학습 화면에서 3인칭 위주라는 안내가 나간다.
+  for (const v of ['gustar', 'encantar', 'doler', 'interesar', 'apetecer', 'molestar']) {
+    it(v, () => {
+      const c = conjugatePresent(v);
+      expect(c, `${v} 활용 불가`).toBeTruthy();
+      expect(c.backwards, `${v}는 gustar형으로 표시되어야 한다`).toBe(true);
+      expect(c.note).toMatch(/gustar형/);
     });
   }
 });

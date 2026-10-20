@@ -57,6 +57,13 @@ export const IRREGULARS = {
       nosotros: 'damos', vosotros: 'dais', ellos: 'dan',
     },
   },
+  // haber: 완료시제 조동사. 비인칭 'hay'는 활용표와 별개의 형태라 여기 넣지 않는다
+  haber: {
+    full: {
+      yo: 'he', tu: 'has', el: 'ha',
+      nosotros: 'hemos', vosotros: 'habéis', ellos: 'han',
+    },
+  },
   // saber: yo만 sé
   saber: { yo: 'sé' },
   // salir: yo만 salgo
@@ -110,6 +117,7 @@ export const IRREGULARS = {
   recordar: { stem: 'o>ue' },
   volver: { stem: 'o>ue' },
   probar: { stem: 'o>ue' },
+  soler: { stem: 'o>ue' },           // suelo, sueles, suele …
   // 재귀형은 -se째로 등록해야 한다 (probar만 있으면 probarse가 규칙으로 잘못 만들어진다)
   probarse: { stem: 'o>ue' },      // me pruebo, te pruebas …
   acordar: { stem: 'o>ue' },
@@ -164,6 +172,10 @@ export const IRREGULARS = {
 
   // gustar형 — "무엇이 나에게 ~하다" 구조라 3인칭만 실제로 쓰입니다
   gustar: { backwards: true },
+  encantar: { backwards: true },
+  interesar: { backwards: true },
+  apetecer: { backwards: true, yo: 'apetezco' },
+  molestar: { backwards: true },
   doler: { stem: 'o>ue', backwards: true },
 };
 

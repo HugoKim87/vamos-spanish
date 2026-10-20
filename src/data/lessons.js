@@ -8236,5 +8236,203 @@ export const lessons = [
         ko: '연휴 동안 뭐 할 거예요? (미래)'
       }
     ]
+  },
+  {
+    id: 'day72',
+    day: 72,
+    theme: 'travel',
+    emoji: '🧳',
+    title: '연휴 계획 말하기',
+    subtitle: '¿Qué hago durante el puente? (planes)',
+    cards: [
+      {
+        es: 'el tráfico',
+        ko: '교통, 교통량'
+      },
+      {
+        es: 'el atasco',
+        ko: '교통체증, 정체'
+      },
+      {
+        es: 'la carretera',
+        ko: '도로, 국도'
+      },
+      {
+        es: 'el turista',
+        ko: '관광객'
+      },
+      {
+        es: 'el precio',
+        ko: '가격'
+      },
+      {
+        es: 'alto',
+        ko: '높은'
+      },
+      {
+        es: 'haber',
+        ko: '완료시제 조동사 (불규칙) — 비인칭 hay는 별도'
+      },
+      {
+        es: 'soler',
+        ko: '보통 ~하다, ~하는 편이다 (불규칙)'
+      },
+      {
+        es: 'subir',
+        ko: '오르다, 올라가다 — 가격이 오를 때도 쓴다'
+      },
+      {
+        es: 'pasar',
+        ko: '보내다, 지내다 — 시간을 보낼 때'
+      },
+      {
+        es: 'encantar',
+        ko: '정말 좋아하다 (gustar형 — 좋아하는 대상이 주어)'
+      },
+      {
+        es: 'habrá',
+        ko: 'hay의 미래형 — ~이 있을 것이다 (미래 추측)'
+      },
+      {
+        es: 'soler + 동사원형',
+        ko: '보통 ~한다, ~하는 편이다'
+      },
+      {
+        es: 'Me encanta / Me encantan + 명사',
+        ko: '~이 정말 좋다 — 뒤 명사의 수에 맞춘다'
+      },
+      {
+        es: 'Como + 이유 문장',
+        ko: '~하니까, ~라서 (문장 맨 앞에서 이유를 말할 때)'
+      },
+      {
+        es: 'un puente de + 숫자 + días',
+        ko: 'N일 연휴'
+      },
+      {
+        es: 'festivo · día libre · puente · vacaciones',
+        ko: '공휴일 하루 / 개인적으로 쉬는 날 / 공휴일과 주말을 이은 연휴 / 비교적 긴 휴가'
+      },
+      {
+        es: 'mucho tráfico',
+        ko: '심한 교통량, 차가 많음'
+      },
+      {
+        es: 'los hoteles llenos',
+        ko: '만실인 호텔'
+      },
+      {
+        es: 'los precios más altos',
+        ko: '더 비싼 가격'
+      },
+      {
+        es: 'un puente de tres días',
+        ko: '3일 연휴'
+      },
+      {
+        es: 'pasar una noche en un hotel',
+        ko: '호텔에서 하룻밤을 보내다'
+      },
+      {
+        es: 'viajar con la familia',
+        ko: '가족과 여행하다'
+      },
+      {
+        es: 'salir temprano',
+        ko: '일찍 출발하다'
+      },
+      {
+        es: 'descansar en casa',
+        ko: '집에서 쉬다'
+      },
+      {
+        es: '¿Trabajas este viernes?',
+        ko: '이번 금요일에 일해요?'
+      },
+      {
+        es: 'No, hago puente.',
+        ko: '아니요, 징검다리로 쉬어요.'
+      },
+      {
+        es: '¡Qué bien!',
+        ko: '좋겠네요!'
+      },
+      {
+        es: '¿Cuántos días tienes libres?',
+        ko: '며칠 쉬어요?'
+      },
+      {
+        es: '¿Vas a viajar?',
+        ko: '여행 가요?'
+      },
+      {
+        es: '¿A dónde vas este puente?',
+        ko: '이번 연휴에 어디 가요?'
+      },
+      {
+        es: '¿Te quedas en casa o te vas de viaje?',
+        ko: '집에 있어요, 아니면 여행 가요?'
+      },
+      {
+        es: 'Vamos a aprovechar el puente para hacer una escapada.',
+        ko: '연휴를 이용해서 짧은 여행을 다녀올 거예요.'
+      },
+      {
+        es: 'Hay mucho tráfico porque es puente.',
+        ko: '연휴라서 차가 많아요.'
+      },
+      {
+        es: 'Los hoteles están llenos.',
+        ko: '호텔이 꽉 찼어요.'
+      },
+      {
+        es: 'Los precios suelen subir durante el puente.',
+        ko: '연휴 기간에는 가격이 오르는 편이에요.'
+      },
+      {
+        es: 'Hay muchos turistas.',
+        ko: '관광객이 많아요.'
+      },
+      {
+        es: 'Este viernes es festivo.',
+        ko: '이번 금요일은 공휴일이에요.'
+      },
+      {
+        es: 'Me he pedido el lunes libre.',
+        ko: '월요일에 휴가를 신청했어요. (현재완료)'
+      },
+      {
+        es: 'Este fin de semana es largo.',
+        ko: '이번 주말은 연휴예요.'
+      },
+      {
+        es: 'Este viernes es festivo, así que tenemos un puente de tres días.',
+        ko: '이번 금요일은 공휴일이라 3일 연휴예요.'
+      },
+      {
+        es: 'Voy a aprovechar el puente para descansar y hacer una escapada.',
+        ko: '연휴를 이용해서 쉬고 짧은 여행을 다녀올 거예요.'
+      },
+      {
+        es: 'Voy a viajar con mi familia y pasar una noche en un hotel.',
+        ko: '가족과 여행을 가서 호텔에서 하룻밤을 보낼 거예요.'
+      },
+      {
+        es: 'Como habrá mucho tráfico, vamos a salir temprano.',
+        ko: '교통체증이 심할 테니 일찍 출발할 거예요.'
+      },
+      {
+        es: 'El último día quiero quedarme en casa y descansar.',
+        ko: '마지막 날에는 집에서 쉬고 싶어요.'
+      },
+      {
+        es: '¡Me encantan los puentes!',
+        ko: '저는 이런 연휴가 정말 좋아요!'
+      },
+      {
+        es: '¿Qué hiciste durante el puente?',
+        ko: '연휴 동안 뭐 했어요? (과거)'
+      }
+    ]
   }
 ];
