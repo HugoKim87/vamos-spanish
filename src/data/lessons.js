@@ -8434,5 +8434,215 @@ export const lessons = [
         ko: '연휴 동안 뭐 했어요? (과거)'
       }
     ]
+  },
+  {
+    id: 'day73',
+    day: 73,
+    theme: 'people',
+    emoji: '😟',
+    title: '신경 쓰이는 것',
+    subtitle: '¿Qué me preocupa?',
+    cards: [
+      {
+        es: 'el examen',
+        ko: '시험'
+      },
+      {
+        es: 'el futuro',
+        ko: '미래'
+      },
+      {
+        es: 'el ruido',
+        ko: '소음'
+      },
+      {
+        es: 'el olor',
+        ko: '냄새'
+      },
+      {
+        es: 'la gente',
+        ko: '사람들 (단수 취급)'
+      },
+      {
+        es: 'los demás',
+        ko: '다른 사람들, 남들'
+      },
+      {
+        es: 'los hijos',
+        ko: '자녀, 아이들'
+      },
+      {
+        es: 'el correo',
+        ko: '이메일, 우편'
+      },
+      {
+        es: 'preocupar',
+        ko: '신경 쓰이게 하다, 걱정시키다 (gustar형)'
+      },
+      {
+        es: 'molestar',
+        ko: '거슬리다, 귀찮게 하다 (gustar형)'
+      },
+      {
+        es: 'importar',
+        ko: '중요하다, 신경 쓰이다 (gustar형)'
+      },
+      {
+        es: 'pensar',
+        ko: '생각하다 (불규칙)'
+      },
+      {
+        es: 'decir',
+        ko: '말하다 (불규칙)'
+      },
+      {
+        es: 'intentar',
+        ko: '시도하다, ~하려고 하다'
+      },
+      {
+        es: '간접목적대명사 + 3인칭 동사',
+        ko: '역구조 — 신경 쓰게 만드는 것이 주어라 동사는 3인칭'
+      },
+      {
+        es: 'Me preocupa + 단수명사 / 동사원형',
+        ko: '~이 신경 쓰인다, ~할까 봐 걱정된다'
+      },
+      {
+        es: 'Me preocupan + 복수명사',
+        ko: '~들이 신경 쓰인다 — 주어의 수에 맞춘다'
+      },
+      {
+        es: 'preocupar · molestar · importar',
+        ko: '걱정돼서 / 거슬려서 / 중요해서 신경 쓰인다'
+      },
+      {
+        es: 'lo que + 동사',
+        ko: '~하는 것'
+      },
+      {
+        es: 'Me molesta que + 접속법',
+        ko: '다른 사람이 ~하는 게 거슬린다'
+      },
+      {
+        es: 'No me importa lo que + 접속법',
+        ko: '남들이 ~하든 신경 쓰지 않는다'
+      },
+      {
+        es: 'estar pendiente de + 명사',
+        ko: '~을 계속 신경 쓰고 챙기다'
+      },
+      {
+        es: 'intentar + 동사원형',
+        ko: '~하려고 하다'
+      },
+      {
+        es: 'últimamente',
+        ko: '요즘, 최근에'
+      },
+      {
+        es: 'llegar tarde',
+        ko: '늦다, 지각하다'
+      },
+      {
+        es: 'darle vueltas',
+        ko: '계속 곱씹다, 자꾸 생각하다'
+      },
+      {
+        es: 'no darle tantas vueltas',
+        ko: '너무 곱씹지 않다'
+      },
+      {
+        es: 'hacer caso',
+        ko: '신경 쓰다, 상대해 주다'
+      },
+      {
+        es: 'estar pendiente del móvil',
+        ko: '휴대폰을 계속 신경 쓰고 있다'
+      },
+      {
+        es: 'lo que piensan los demás',
+        ko: '다른 사람들이 생각하는 것'
+      },
+      {
+        es: 'Me preocupa el examen.',
+        ko: '시험이 신경 쓰여요.'
+      },
+      {
+        es: 'Me preocupa mi futuro.',
+        ko: '내 미래가 걱정돼요.'
+      },
+      {
+        es: 'Me preocupa llegar tarde.',
+        ko: '늦을까 봐 신경 쓰여요.'
+      },
+      {
+        es: 'Me preocupa lo que piensa la gente.',
+        ko: '사람들이 어떻게 생각하는지 신경 쓰여요.'
+      },
+      {
+        es: 'Me preocupan mis hijos.',
+        ko: '아이들이 걱정돼요.'
+      },
+      {
+        es: 'Me molesta mucho el olor.',
+        ko: '그 냄새가 너무 거슬려요.'
+      },
+      {
+        es: 'Me molesta que la gente hable tan alto.',
+        ko: '사람들이 너무 크게 말하는 게 신경 쓰여요. (접속법)'
+      },
+      {
+        es: 'No me importa lo que digan los demás.',
+        ko: '사람들이 뭐라고 하든 신경 안 써요. (접속법)'
+      },
+      {
+        es: 'No me importa.',
+        ko: '상관없어요. 신경 안 써요.'
+      },
+      {
+        es: 'No le hagas caso.',
+        ko: '신경 쓰지 마. 상대하지 마.'
+      },
+      {
+        es: 'Estoy pendiente de los niños.',
+        ko: '아이들을 계속 신경 쓰며 보고 있어요.'
+      },
+      {
+        es: 'Tengo que estar pendiente del correo.',
+        ko: '이메일을 계속 확인하고 있어야 해요.'
+      },
+      {
+        es: 'Últimamente hay varias cosas que me preocupan.',
+        ko: '요즘 신경 쓰이는 게 몇 가지 있어요.'
+      },
+      {
+        es: 'Me preocupa llegar tarde al trabajo.',
+        ko: '회사에 늦을까 봐 신경 쓰여요.'
+      },
+      {
+        es: 'También me molesta mucho el ruido cuando trabajo.',
+        ko: '일할 때 소음도 많이 신경 쓰여요.'
+      },
+      {
+        es: 'A veces me importa demasiado lo que piensan los demás.',
+        ko: '가끔 다른 사람들이 어떻게 생각하는지 너무 신경 써요.'
+      },
+      {
+        es: 'Pero intento no darle tantas vueltas.',
+        ko: '하지만 너무 곱씹지 않으려고 해요.'
+      },
+      {
+        es: 'Últimamente estoy un poco preocupada.',
+        ko: '요즘 조금 신경 쓰이는 게 있어요. (남성은 preocupado)'
+      },
+      {
+        es: '¿Qué te preocupa?',
+        ko: '뭐가 신경 쓰여요?'
+      },
+      {
+        es: '¿Qué te preocupó?',
+        ko: '뭐가 신경 쓰였어요? (과거)'
+      }
+    ]
   }
 ];

@@ -137,6 +137,8 @@ export const IRREGULARS = {
   medir: { stem: 'e>i' },
   despedir: { stem: 'e>i' },
   despedirse: { stem: 'e>i' },
+  // decir: 어간 e→i + yo는 digo. 표에 없으면 -cir 철자 규칙이 걸려 'dezco'가 된다
+  decir: { stem: 'e>i', yo: 'digo' },
   seguir: { stem: 'e>i', yo: 'sigo' },   // gu→g
   elegir: { stem: 'e>i', yo: 'elijo' },  // g→j
 
@@ -173,6 +175,9 @@ export const IRREGULARS = {
   // gustar형 — "무엇이 나에게 ~하다" 구조라 3인칭만 실제로 쓰입니다
   gustar: { backwards: true },
   encantar: { backwards: true },
+  preocupar: { backwards: true },
+  importar: { backwards: true },
+  faltar: { backwards: true },
   interesar: { backwards: true },
   apetecer: { backwards: true, yo: 'apetezco' },
   molestar: { backwards: true },
@@ -249,10 +254,15 @@ export function conjugatePresent(infinitive) {
 
   const [, root, ending, se] = m;
   const reflexive = !!se;
-  // 재귀형이 표에 없으면 원형의 불규칙을 물려받는다.
+  // 재귀형이 표에 없으면 원형의 '형태' 불규칙만 물려받는다.
   // 현재시제에서는 어간 변화·yo 불규칙이 재귀형에 그대로 이어지므로,
   // vestirse·probarse·pedirse를 하나씩 등록하지 않아도 올바르게 활용된다.
-  const info = IRREGULARS[verb] || (reflexive ? IRREGULARS[root + ending] : null) || {};
+  // 다만 backwards(gustar형)·only는 쓰임에 대한 표시라 물려받지 않는다.
+  // preocupar는 gustar형이지만 preocuparse(걱정하다)는 1인칭으로 자연스럽게 쓴다.
+  const base = reflexive ? IRREGULARS[root + ending] : null;
+  const info = IRREGULARS[verb]
+    || (base ? { stem: base.stem, yo: base.yo, full: base.full } : null)
+    || {};
   const forms = {};
 
   for (const { key } of PERSONS) {

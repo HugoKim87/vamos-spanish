@@ -81,6 +81,8 @@ describe('완전 불규칙·재귀·특수', () => {
     protegerse: ['me protejo', 'te proteges', 'se protege', 'nos protegemos', 'os protegéis', 'se protegen'],
     seguir: ['sigo', 'sigues', 'sigue', 'seguimos', 'seguís', 'siguen'],
     elegir: ['elijo', 'eliges', 'elige', 'elegimos', 'elegís', 'eligen'],
+    // decir는 -cir 철자 규칙(c→zc)에 잘못 걸려 'dezco'가 되던 적이 있다
+    decir: ['digo', 'dices', 'dice', 'decimos', 'decís', 'dicen'],
     // irse는 어간이 없어 정규식으로 분해되지 않는다 — 표에서 바로 꺼내 대명사를 붙여야 한다
     irse: ['me voy', 'te vas', 'se va', 'nos vamos', 'os vais', 'se van'],
     // haber는 완료시제 조동사 — 규칙으로 만들면 'habo'가 된다
@@ -139,7 +141,8 @@ describe('gustar형 — 주어가 사물이라 3인칭 위주로 쓴다', () => 
   // encantar가 표에 없어 일반 동사로 취급되던 적이 있다.
   // "Me encantan los puentes"처럼 역구조로 쓰는 동사는 표시가 있어야
   // 학습 화면에서 3인칭 위주라는 안내가 나간다.
-  for (const v of ['gustar', 'encantar', 'doler', 'interesar', 'apetecer', 'molestar']) {
+  for (const v of ['gustar', 'encantar', 'doler', 'interesar', 'apetecer', 'molestar',
+                   'preocupar', 'importar', 'faltar']) {
     it(v, () => {
       const c = conjugatePresent(v);
       expect(c, `${v} 활용 불가`).toBeTruthy();
@@ -147,4 +150,23 @@ describe('gustar형 — 주어가 사물이라 3인칭 위주로 쓴다', () => 
       expect(c.note).toMatch(/gustar형/);
     });
   }
+});
+
+
+describe('재귀형은 gustar형 표시를 물려받지 않는다', () => {
+  // 형태 불규칙은 재귀형에 이어지지만, backwards는 쓰임에 대한 표시라 다르다.
+  // preocupar는 gustar형이어도 preocuparse(걱정하다)는 1인칭으로 자연스럽게 쓴다.
+  for (const v of ['preocuparse', 'molestarse']) {
+    it(v, () => {
+      const c = conjugatePresent(v);
+      expect(c, `${v} 활용 불가`).toBeTruthy();
+      expect(c.backwards, `${v}는 gustar형이 아니다`).toBe(false);
+      expect(c.forms.yo).toBe(`me ${v.slice(0, -2).replace(/ar$/, 'o')}`);
+    });
+  }
+
+  it('형태 불규칙은 그대로 물려받는다', () => {
+    expect(conjugatePresent('vestirse').forms.yo).toBe('me visto');
+    expect(conjugatePresent('probarse').forms.yo).toBe('me pruebo');
+  });
 });
