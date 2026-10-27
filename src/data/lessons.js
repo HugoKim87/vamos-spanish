@@ -7778,27 +7778,27 @@ export const lessons = [
         ko: '재단, 핏'
       },
       {
-        es: 'largo',
+        es: 'largo/a',
         ko: '긴'
       },
       {
-        es: 'corto',
+        es: 'corto/a',
         ko: '짧은'
       },
       {
-        es: 'ajustado',
+        es: 'ajustado/a',
         ko: '몸에 붙는'
       },
       {
-        es: 'holgado',
+        es: 'holgado/a',
         ko: '여유 있는'
       },
       {
-        es: 'ancho',
+        es: 'ancho/a',
         ko: '넓은'
       },
       {
-        es: 'recto',
+        es: 'recto/a',
         ko: '일자로 떨어지는'
       },
       {
@@ -8290,8 +8290,8 @@ export const lessons = [
         ko: '정말 좋아하다 (gustar형 — 좋아하는 대상이 주어)'
       },
       {
-        es: 'habrá',
-        ko: 'hay의 미래형 — ~이 있을 것이다 (미래 추측)'
+        es: 'habrá + 명사',
+        ko: '~이 있을 것이다 — hay의 미래형, 미래 추측'
       },
       {
         es: 'soler + 동사원형',
@@ -8642,6 +8642,184 @@ export const lessons = [
       {
         es: '¿Qué te preocupó?',
         ko: '뭐가 신경 쓰였어요? (과거)'
+      }
+    ]
+  },
+  {
+    id: 'day74',
+    day: 74,
+    theme: 'people',
+    emoji: '👀',
+    title: '~해 보여',
+    subtitle: '¿Cómo se ve?',
+    cards: [
+      {
+        es: 'la pinta',
+        ko: '겉모습, 보기'
+      },
+      {
+        es: 'el plan',
+        ko: '계획, 약속'
+      },
+      {
+        es: 'la película',
+        ko: '영화'
+      },
+      {
+        es: 'la comida',
+        ko: '음식, 식사'
+      },
+      {
+        es: 'feliz',
+        ko: '행복한'
+      },
+      {
+        es: 'joven',
+        ko: '젊은, 어린'
+      },
+      {
+        es: 'cansado/a',
+        ko: '피곤한'
+      },
+      {
+        es: 'preocupado/a',
+        ko: '걱정하는'
+      },
+      {
+        es: 'nervioso/a',
+        ko: '긴장한'
+      },
+      {
+        es: 'ocupado/a',
+        ko: '바쁜'
+      },
+      {
+        es: 'enfermo/a',
+        ko: '아픈'
+      },
+      {
+        es: 'parecer',
+        ko: '~해 보이다, ~인 것 같다 (불규칙)'
+      },
+      {
+        es: 'ver',
+        ko: '보다 (불규칙)'
+      },
+      {
+        es: 'parecer + 형용사',
+        ko: '~해 보이다 — 보이는 대상의 인칭에 맞춰 활용한다'
+      },
+      {
+        es: 'Parece nervioso / nerviosa',
+        ko: '형용사는 대상의 성·수에 맞춘다'
+      },
+      {
+        es: 'te queda + 형용사 / 부사',
+        ko: '너한테 ~하게 어울린다'
+      },
+      {
+        es: 'más + 형용사 + de lo que + 동사',
+        ko: '실제보다 더 ~한'
+      },
+      {
+        es: 'tener buena pinta',
+        ko: '좋아 보이다, 맛있어 보이다 — 사물·음식·장소·계획에 두루 쓴다'
+      },
+      {
+        es: 'tener mala cara',
+        ko: '안색이 안 좋다'
+      },
+      {
+        es: 'quedar genial',
+        ko: '아주 잘 어울리다'
+      },
+      {
+        es: 'quedar mejor',
+        ko: '더 잘 어울리다'
+      },
+      {
+        es: 'parecer más joven',
+        ko: '더 어려 보이다'
+      },
+      {
+        es: 'Este restaurante tiene buena pinta.',
+        ko: '이 식당 괜찮아 보여요.'
+      },
+      {
+        es: 'Ese plan tiene buena pinta.',
+        ko: '그 계획 괜찮아 보여요.'
+      },
+      {
+        es: 'La película tiene buena pinta.',
+        ko: '그 영화 재미있어 보여요.'
+      },
+      {
+        es: 'Esta comida tiene muy buena pinta.',
+        ko: '이 음식 정말 맛있어 보여요.'
+      },
+      {
+        es: 'Ese vestido te queda genial.',
+        ko: '그 원피스 너한테 정말 잘 어울려.'
+      },
+      {
+        es: 'Te queda mejor el negro.',
+        ko: '검은색이 너한테 더 잘 어울려.'
+      },
+      {
+        es: 'Pareces feliz.',
+        ko: '행복해 보여.'
+      },
+      {
+        es: 'Pareces cansado. / Pareces cansada.',
+        ko: '피곤해 보여. (남 / 여)'
+      },
+      {
+        es: 'Pareces preocupado. / Pareces preocupada.',
+        ko: '걱정 있어 보여. (남 / 여)'
+      },
+      {
+        es: 'Pareces nervioso. / Pareces nerviosa.',
+        ko: '긴장해 보여. (남 / 여)'
+      },
+      {
+        es: 'Pareces ocupado. / Pareces ocupada.',
+        ko: '바빠 보여. (남 / 여)'
+      },
+      {
+        es: 'Pareces enfermo. / Pareces enferma.',
+        ko: '아파 보여. (남 / 여)'
+      },
+      {
+        es: 'Pareces triste.',
+        ko: '슬퍼 보여.'
+      },
+      {
+        es: 'Tienes mala cara.',
+        ko: '안색이 안 좋아 보여.'
+      },
+      {
+        es: 'Pareces más joven.',
+        ko: '더 어려 보여.'
+      },
+      {
+        es: 'Pareces más joven de lo que eres.',
+        ko: '실제 나이보다 어려 보여.'
+      },
+      {
+        es: 'Hoy pareces cansada.',
+        ko: '오늘 피곤해 보여.'
+      },
+      {
+        es: '¿Estás bien? Pareces preocupada.',
+        ko: '괜찮아? 걱정이 있어 보여.'
+      },
+      {
+        es: '¿Cómo se ve?',
+        ko: '어때 보여요?'
+      },
+      {
+        es: '¿Cómo se veía?',
+        ko: '어때 보였어요? (과거)'
       }
     ]
   }
