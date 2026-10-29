@@ -8822,5 +8822,207 @@ export const lessons = [
         ko: '어때 보였어요? (과거)'
       }
     ]
+  },
+  {
+    id: 'day75',
+    day: 75,
+    theme: 'people',
+    emoji: '🪞',
+    title: '인상 말하기',
+    subtitle: '¿Cómo se ve? (verse)',
+    cards: [
+      {
+        es: 'el lugar',
+        ko: '장소, 곳'
+      },
+      {
+        es: 'la fiesta',
+        ko: '파티'
+      },
+      {
+        es: 'la persona',
+        ko: '사람'
+      },
+      {
+        es: 'caro/a',
+        ko: '비싼'
+      },
+      {
+        es: 'difícil',
+        ko: '어려운'
+      },
+      {
+        es: 'fácil',
+        ko: '쉬운'
+      },
+      {
+        es: 'divertido/a',
+        ko: '재미있는'
+      },
+      {
+        es: 'simpático/a',
+        ko: '친절한, 상냥한'
+      },
+      {
+        es: 'guapo/a',
+        ko: '잘생긴, 예쁜'
+      },
+      {
+        es: 'elegante',
+        ko: '우아한, 세련된'
+      },
+      {
+        es: 'natural',
+        ko: '자연스러운'
+      },
+      {
+        es: 'nuevo/a',
+        ko: '새로운'
+      },
+      {
+        es: 'delicioso/a',
+        ko: '맛있는'
+      },
+      {
+        es: 'verse',
+        ko: '~해 보이다 (재귀동사)'
+      },
+      {
+        es: 'probar',
+        ko: '맛보다, 시험해 보다 (불규칙)'
+      },
+      {
+        es: 'verse + 형용사',
+        ko: '~해 보이다 — 인칭에 따라 재귀대명사가 바뀐다'
+      },
+      {
+        es: 'Te ves / Se ve + 형용사',
+        ko: '너는 / 그는 ~해 보여'
+      },
+      {
+        es: 'Se ve guapo / guapa',
+        ko: '형용사는 주어의 성·수에 맞춘다'
+      },
+      {
+        es: 'parecer vs verse',
+        ko: '스페인은 parecer·estar·quedar, 중남미는 verse를 많이 쓴다'
+      },
+      {
+        es: 'parecer + 명사',
+        ko: '~인 것 같다 — 명사가 올 때도 쓴다'
+      },
+      {
+        es: 'quedar muy bien',
+        ko: '아주 잘 어울리다'
+      },
+      {
+        es: 'no quedar bien',
+        ko: '잘 어울리지 않다'
+      },
+      {
+        es: 'buena persona',
+        ko: '좋은 사람'
+      },
+      {
+        es: 'una tarta de chocolate',
+        ko: '초콜릿 케이크'
+      },
+      {
+        es: 'Te ves muy bien.',
+        ko: '아주 좋아 보여.'
+      },
+      {
+        es: 'Te ves muy guapa.',
+        ko: '너 정말 예뻐 보여.'
+      },
+      {
+        es: 'Hoy te ves genial.',
+        ko: '오늘 정말 멋져 보여.'
+      },
+      {
+        es: 'Te ves muy elegante.',
+        ko: '아주 우아해 보여.'
+      },
+      {
+        es: 'Se ve feliz.',
+        ko: '그는 행복해 보여.'
+      },
+      {
+        es: 'Se ve muy natural.',
+        ko: '아주 자연스러워 보여.'
+      },
+      {
+        es: 'Parece muy caro.',
+        ko: '아주 비싸 보여.'
+      },
+      {
+        es: 'Parece más caro de lo que es.',
+        ko: '실제 가격보다 비싸 보여.'
+      },
+      {
+        es: 'Parece difícil.',
+        ko: '어려워 보여.'
+      },
+      {
+        es: 'Parece fácil.',
+        ko: '쉬워 보여.'
+      },
+      {
+        es: 'El examen parece difícil.',
+        ko: '그 시험 어려워 보여.'
+      },
+      {
+        es: 'Parece más fácil de lo que pensaba.',
+        ko: '생각했던 것보다 쉬워 보여.'
+      },
+      {
+        es: 'Parece divertido.',
+        ko: '재미있어 보여.'
+      },
+      {
+        es: 'La fiesta parece divertida.',
+        ko: '파티가 재미있어 보여.'
+      },
+      {
+        es: '¡Qué divertido parece!',
+        ko: '정말 재미있어 보인다!'
+      },
+      {
+        es: 'Parece simpático.',
+        ko: '친절해 보여.'
+      },
+      {
+        es: 'Parece buena persona.',
+        ko: '좋은 사람 같아.'
+      },
+      {
+        es: 'Hoy voy a una cafetería nueva.',
+        ko: '오늘 새로운 카페에 가요.'
+      },
+      {
+        es: 'El lugar tiene muy buena pinta.',
+        ko: '카페가 정말 좋아 보여요.'
+      },
+      {
+        es: 'Pido una tarta de chocolate que parece deliciosa.',
+        ko: '맛있어 보이는 초콜릿 케이크를 주문해요.'
+      },
+      {
+        es: 'Mi amiga lleva un vestido nuevo y le queda muy bien.',
+        ko: '친구는 새 원피스를 입었는데 아주 잘 어울려요.'
+      },
+      {
+        es: 'Pero parece un poco cansada.',
+        ko: '그런데 조금 피곤해 보여요.'
+      },
+      {
+        es: '¡La tarta tiene muy buena pinta! Vamos a probarla.',
+        ko: '케이크 정말 맛있어 보여! 먹어 보자.'
+      },
+      {
+        es: '¿Cómo se verá?',
+        ko: '어때 보일까요? (미래)'
+      }
+    ]
   }
 ];

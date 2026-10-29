@@ -12,6 +12,7 @@ import LearnMode from '@/components/modes/LearnMode.vue';
 import ConjugationMode from '@/components/modes/ConjugationMode.vue';
 import DictationMode from '@/components/modes/DictationMode.vue';
 import { useVocabularyStore } from '@/stores/vocabulary.js';
+import { classifyCard } from '../src/data/taxonomy.js';
 
 let vocab;
 beforeEach(() => {
@@ -263,5 +264,25 @@ describe('출처 표기가 화면에 남아 있지 않다', () => {
     const intro = vocab.lessons.find(l => l.day === 60).cards;
     expect(intro.some(c => c.es === 'Soy profesor de español.'), '남성형이 아님').toBe(true);
     expect(intro.some(c => c.es === 'Soy profesora de español.'), '여성형이 남음').toBe(false);
+  });
+});
+
+
+describe('카드 유형 — 관형형 어미 인식', () => {
+  // '비싼·빠른'의 어미(싼·른)가 목록에 없어 형용사가 명사로 분류되던 적이 있다.
+  const cases = [
+    [{ es: 'caro/a', ko: '비싼' }, 'adj'],
+    [{ es: 'barato/a', ko: '싼' }, 'adj'],
+    [{ es: 'rápido/a', ko: '빠른' }, 'adj'],
+    [{ es: 'diferente', ko: '다른' }, 'adj'],
+  ];
+  for (const [card, want] of cases) {
+    it(`${card.es} (${card.ko})`, () => expect(classifyCard(card, new Set())).toBe(want));
+  }
+
+  // '간'은 어미 목록에 넣으면 안 된다 — 명사 끝과 겹친다
+  it("'시간'으로 끝나는 명사는 그대로 명사다", () => {
+    expect(classifyCard({ es: 'la hora', ko: '시간' }, new Set())).toBe('noun');
+    expect(classifyCard({ es: 'el tiempo libre', ko: '여가 시간' }, new Set())).toBe('noun');
   });
 });
