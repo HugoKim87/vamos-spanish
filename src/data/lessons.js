@@ -9024,5 +9024,179 @@ export const lessons = [
         ko: '어때 보일까요? (미래)'
       }
     ]
+  },
+  {
+    id: 'day76',
+    day: 76,
+    theme: 'people',
+    emoji: '🤷',
+    title: '어쩔 수 없어',
+    subtitle: '¿Qué hago si no tengo otra opción?',
+    cards: [
+      {
+        es: 'el remedio',
+        ko: '방법, 해결책 (원래 뜻은 약)'
+      },
+      {
+        es: 'la opción',
+        ko: '선택지, 선택'
+      },
+      {
+        es: 'la reunión',
+        ko: '회의, 모임'
+      },
+      {
+        es: 'perder',
+        ko: '잃다, 놓치다 (불규칙)'
+      },
+      {
+        es: 'disfrutar',
+        ko: '즐기다'
+      },
+      {
+        es: 'No tengo más remedio que + 동사원형',
+        ko: '~할 수밖에 없어'
+      },
+      {
+        es: 'No me queda otra que + 동사원형',
+        ko: '~하는 수밖에 없어'
+      },
+      {
+        es: 'No tenemos otra opción que + 동사원형',
+        ko: '~하는 것 말고는 방법이 없어'
+      },
+      {
+        es: 'disfrutar de + 명사',
+        ko: '~을 즐기다 — 전치사 de를 꼭 붙인다'
+      },
+      {
+        es: 'haber + 과거분사',
+        ko: '현재완료 — ~했다 (he perdido, se ha cancelado)'
+      },
+      {
+        es: 'remedio · otra · opción · nada',
+        ko: '어쩔 수 없어 / 다른 방법 없어 / 선택지 없어 / 할 수 있는 게 없어'
+      },
+      {
+        es: 'de todas formas',
+        ko: '어쨌든, 그래도'
+      },
+      {
+        es: 'hasta tarde',
+        ko: '늦게까지'
+      },
+      {
+        es: 'perder el autobús',
+        ko: '버스를 놓치다'
+      },
+      {
+        es: 'coger un taxi',
+        ko: '택시를 타다'
+      },
+      {
+        es: 'muchísimo trabajo',
+        ko: '엄청나게 많은 일'
+      },
+      {
+        es: 'No hay más remedio.',
+        ko: '어쩔 수 없어.'
+      },
+      {
+        es: '¡Qué le vamos a hacer!',
+        ko: '뭐 어쩌겠어!'
+      },
+      {
+        es: 'No me queda otra.',
+        ko: '나도 다른 방법이 없어.'
+      },
+      {
+        es: 'No tengo otra opción.',
+        ko: '다른 선택지가 없어.'
+      },
+      {
+        es: 'No puedo hacer nada.',
+        ko: '내가 할 수 있는 게 없어.'
+      },
+      {
+        es: 'No podemos hacer nada.',
+        ko: '우리가 할 수 있는 게 없어.'
+      },
+      {
+        es: 'No tengo más remedio que hacerlo.',
+        ko: '할 수밖에 없어.'
+      },
+      {
+        es: 'Está lloviendo, pero tenemos que salir. No hay más remedio.',
+        ko: '비가 오지만 나가야 해. 어쩔 수 없어.'
+      },
+      {
+        es: 'No tengo más remedio que trabajar.',
+        ko: '일할 수밖에 없어.'
+      },
+      {
+        es: 'No tengo más remedio que esperar.',
+        ko: '기다릴 수밖에 없어.'
+      },
+      {
+        es: 'No tengo más remedio que cancelar el viaje.',
+        ko: '여행을 취소할 수밖에 없어.'
+      },
+      {
+        es: 'El vuelo se ha cancelado. ¡Qué le vamos a hacer!',
+        ko: '항공편이 취소됐어. 뭐 어쩌겠어!'
+      },
+      {
+        es: 'Hoy tengo que trabajar hasta tarde. ¡Qué le vamos a hacer!',
+        ko: '오늘 늦게까지 일해야 해. 뭐 어쩌겠어!'
+      },
+      {
+        es: 'Tengo que ir en taxi, no me queda otra.',
+        ko: '택시를 타야 해, 다른 방법이 없어.'
+      },
+      {
+        es: 'No me queda otra que esperar.',
+        ko: '기다리는 수밖에 없어.'
+      },
+      {
+        es: 'No tenemos otra opción que cancelar la reserva.',
+        ko: '예약을 취소하는 것 말고는 방법이 없어.'
+      },
+      {
+        es: 'Ya es demasiado tarde. No puedo hacer nada.',
+        ko: '이미 너무 늦었어. 내가 할 수 있는 게 없어.'
+      },
+      {
+        es: 'Tengo muchísimo trabajo. No tengo más remedio que trabajar este fin de semana.',
+        ko: '일이 엄청 많아. 이번 주말에 일할 수밖에 없어.'
+      },
+      {
+        es: 'Está lloviendo. ¡Qué le vamos a hacer! Vamos a disfrutar del viaje de todas formas.',
+        ko: '비가 와. 뭐 어쩌겠어! 그래도 여행을 즐기자.'
+      },
+      {
+        es: 'Hoy he perdido el autobús.',
+        ko: '오늘 버스를 놓쳤어요.'
+      },
+      {
+        es: 'Tengo una reunión importante y no puedo llegar tarde.',
+        ko: '중요한 회의가 있어서 늦을 수 없어요.'
+      },
+      {
+        es: 'No me queda otra que coger un taxi.',
+        ko: '택시를 탈 수밖에 없어요.'
+      },
+      {
+        es: 'Es más caro, pero no hay más remedio.',
+        ko: '더 비싸지만 어쩔 수 없어요.'
+      },
+      {
+        es: '¿Qué haces si no tienes otra opción?',
+        ko: '다른 선택지가 없으면 어떻게 해요?'
+      },
+      {
+        es: '¿Qué hiciste si no tuviste otra opción?',
+        ko: '다른 선택지가 없었을 때 어떻게 했어요? (과거)'
+      }
+    ]
   }
 ];
