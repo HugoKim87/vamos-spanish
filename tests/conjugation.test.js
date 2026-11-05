@@ -29,6 +29,11 @@ describe('어간 변화', () => {
     pedir: ['pido', 'pides', 'pide', 'pedimos', 'pedís', 'piden'],
     fregar: ['friego', 'friegas', 'friega', 'fregamos', 'fregáis', 'friegan'],
     soler: ['suelo', 'sueles', 'suele', 'solemos', 'soléis', 'suelen'],
+    // jugar는 u→ie가 아닌 u→ue — 스페인어에서 이 변화는 jugar 하나뿐이다
+    jugar: ['juego', 'juegas', 'juega', 'jugamos', 'jugáis', 'juegan'],
+    calentar: ['caliento', 'calientas', 'calienta', 'calentamos', 'calentáis', 'calientan'],
+    encender: ['enciendo', 'enciendes', 'enciende', 'encendemos', 'encendéis', 'encienden'],
+    sentarse: ['me siento', 'te sientas', 'se sienta', 'nos sentamos', 'os sentáis', 'se sientan'],
     // 재귀 동사는 -se째로 표에 있어야 한다. 과거에 probar만 있고 probarse가 없어
     // 'me probo'로, vestirse는 아예 없어 'me vesto'로 잘못 활용됐다.
     vestir: ['visto', 'vistes', 'viste', 'vestimos', 'vestís', 'visten'],

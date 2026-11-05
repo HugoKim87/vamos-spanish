@@ -97,12 +97,19 @@ export const IRREGULARS = {
   recomendar: { stem: 'e>ie' },
   fregar: { stem: 'e>ie' },
   cerrar: { stem: 'e>ie' },           // cierro, cierras …
+  sentar: { stem: 'e>ie' },          // sentarse(me siento)도 여기서 물려받는다
+  calentar: { stem: 'e>ie' },
+  encender: { stem: 'e>ie' },        // enciendo, enciendes …
+  despertar: { stem: 'e>ie' },
   empezar: { stem: 'e>ie' },
   pensar: { stem: 'e>ie' },
   entender: { stem: 'e>ie' },
   perder: { stem: 'e>ie' },   // friego, friegas, friega, fregamos, fregáis, friegan
   transferir: { stem: 'e>ie' },
   sentirse: { stem: 'e>ie' },
+
+  // 어간 u→ue — 스페인어에서 jugar 하나뿐이다
+  jugar: { stem: 'u>ue' },
 
   // 어간 o→ue
   poder: { stem: 'o>ue' },

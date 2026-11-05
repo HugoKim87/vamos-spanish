@@ -82,80 +82,212 @@ export const lessons = [
       {
         es: 'Puedo rellenar el formulario.',
         ko: '나는 양식을 작성할 수 있다.'
+      },
+      {
+        es: 'estar + 현재분사',
+        ko: '지금 ~하는 중이다 — -ar는 -ando, -er/-ir는 -iendo'
+      },
+      {
+        es: 'preparar el documento',
+        ko: '서류를 준비하다'
+      },
+      {
+        es: 'imprimir un informe',
+        ko: '보고서를 인쇄하다'
+      },
+      {
+        es: 'firmar la solicitud',
+        ko: '신청서에 서명하다'
+      },
+      {
+        es: 'revisar el formulario',
+        ko: '양식을 검토하다'
+      },
+      {
+        es: 'enviar el documento',
+        ko: '서류를 보내다'
+      },
+      {
+        es: 'archivar la solicitud',
+        ko: '신청서를 철해 보관하다'
+      },
+      {
+        es: 'rellenar el formulario',
+        ko: '양식을 작성하다'
+      },
+      {
+        es: 'No puedo firmar la solicitud.',
+        ko: '나는 신청서에 서명할 수 없다.'
+      },
+      {
+        es: 'Tengo que revisar el formulario.',
+        ko: '나는 양식을 검토해야 한다.'
+      },
+      {
+        es: 'No puedo archivar la solicitud.',
+        ko: '나는 신청서를 보관할 수 없다.'
       }
     ]
   },
   {
     id: 'day2',
     day: 2,
-    theme: 'food',
-    emoji: '☕',
-    title: '카페',
-    subtitle: '¿Qué hago en la cafetería?',
+    theme: 'home',
+    emoji: '🛏️',
+    title: '내 방',
+    subtitle: '¿Qué hago en mi cuarto?',
     cards: [
       {
-        es: 'la cafetería',
-        ko: '카페'
+        es: 'la cama',
+        ko: '침대'
       },
       {
-        es: 'el café con leche',
-        ko: '카페라떼'
+        es: 'el escritorio',
+        ko: '책상'
       },
       {
-        es: 'el té',
-        ko: '차'
+        es: 'la cómoda',
+        ko: '서랍장'
       },
       {
-        es: 'el zumo',
-        ko: '주스'
+        es: 'el cajón',
+        ko: '서랍'
       },
       {
-        es: 'la tarta',
-        ko: '케이크, 타르트'
+        es: 'el armario',
+        ko: '옷장'
       },
       {
-        es: 'la carta',
-        ko: '메뉴판'
+        es: 'la estantería',
+        ko: '책장, 선반'
       },
       {
-        es: 'la cuenta',
-        ko: '계산서'
+        es: 'el estante',
+        ko: '선반'
       },
       {
-        es: 'la terraza',
-        ko: '테라스'
+        es: 'el sofá',
+        ko: '소파'
       },
       {
-        es: 'pedir un café',
-        ko: '커피를 주문하다'
+        es: 'la puerta',
+        ko: '문'
       },
       {
-        es: 'elegir de la carta',
-        ko: '메뉴판에서 고르다'
+        es: 'la ventana',
+        ko: '창문'
       },
       {
-        es: 'tomar algo',
-        ko: '뭔가를 마시다'
+        es: 'el libro',
+        ko: '책'
       },
       {
-        es: 'sentarse en la terraza',
-        ko: '테라스에 앉다'
+        es: 'dormir',
+        ko: '자다 (불규칙)'
       },
       {
-        es: 'pagar la cuenta',
-        ko: '계산하다'
+        es: 'estudiar',
+        ko: '공부하다'
       },
       {
-        es: 'Voy a pedir un café con leche.',
-        ko: '나는 카페라떼를 주문할 것이다.'
+        es: 'trabajar',
+        ko: '일하다'
       },
       {
-        es: 'Quiero sentarme cerca de la ventana.',
-        ko: '나는 창가에 앉고 싶다.'
+        es: 'ordenar',
+        ko: '정리하다'
       },
       {
-        es: '¿Me trae la carta, por favor?',
-        ko: '메뉴판 좀 가져다주시겠어요?'
+        es: 'guardar',
+        ko: '넣다, 보관하다'
+      },
+      {
+        es: 'poner',
+        ko: '놓다, 두다 (불규칙)'
+      },
+      {
+        es: 'abrir',
+        ko: '열다'
+      },
+      {
+        es: 'cerrar',
+        ko: '닫다 (불규칙)'
+      },
+      {
+        es: 'sacar',
+        ko: '꺼내다'
+      },
+      {
+        es: 'cuarto vs habitación vs dormitorio',
+        ko: '방: 일상적인 말 / 스페인·호텔 객실 / 침실(격식)'
+      },
+      {
+        es: 'dormir en la cama',
+        ko: '침대에서 자다'
+      },
+      {
+        es: 'estudiar en el escritorio',
+        ko: '책상에서 공부하다'
+      },
+      {
+        es: 'trabajar en el escritorio',
+        ko: '책상에서 일하다'
+      },
+      {
+        es: 'ordenar el escritorio',
+        ko: '책상을 정리하다'
+      },
+      {
+        es: 'guardar la ropa en el armario',
+        ko: '옷을 옷장에 넣다'
+      },
+      {
+        es: 'sacar un libro del cajón',
+        ko: '서랍에서 책을 꺼내다'
+      },
+      {
+        es: 'poner los libros en la estantería',
+        ko: '책을 책장에 꽂다'
+      },
+      {
+        es: 'abrir la ventana',
+        ko: '창문을 열다'
+      },
+      {
+        es: 'cerrar la ventana',
+        ko: '창문을 닫다'
+      },
+      {
+        es: 'hacer la cama',
+        ko: '침대를 정리하다'
+      },
+      {
+        es: 'Voy a dormir en la cama.',
+        ko: '나는 침대에서 잘 것이다.'
+      },
+      {
+        es: 'Tengo que ordenar el escritorio.',
+        ko: '나는 책상을 정리해야 한다.'
+      },
+      {
+        es: 'Quiero estudiar en el escritorio.',
+        ko: '나는 책상에서 공부하고 싶다.'
+      },
+      {
+        es: 'Tengo que poner los libros en la estantería.',
+        ko: '나는 책들을 책장에 꽂아야 한다.'
+      },
+      {
+        es: 'Voy a hacer la cama.',
+        ko: '나는 침대를 정리할 것이다.'
+      },
+      {
+        es: 'Quiero abrir la ventana.',
+        ko: '나는 창문을 열고 싶다.'
+      },
+      {
+        es: 'Pienso dormir en el sofá.',
+        ko: '나는 소파에서 잘 생각이다.'
       }
     ]
   },
@@ -230,80 +362,248 @@ export const lessons = [
       {
         es: 'Quiero hacer un picnic en el parque.',
         ko: '나는 공원에서 피크닉을 하고 싶다.'
+      },
+      {
+        es: 'el banco',
+        ko: '벤치'
+      },
+      {
+        es: 'la sombra',
+        ko: '그늘'
+      },
+      {
+        es: 'la bicicleta',
+        ko: '자전거'
+      },
+      {
+        es: 'la música',
+        ko: '음악'
+      },
+      {
+        es: 'la foto',
+        ko: '사진'
+      },
+      {
+        es: 'la gente',
+        ko: '사람들 (단수 취급)'
+      },
+      {
+        es: 'el ejercicio',
+        ko: '운동'
+      },
+      {
+        es: 'caminar por vs descansar en',
+        ko: 'por는 누비며 움직일 때, en은 한자리에 머물 때'
+      },
+      {
+        es: 'pasear a + 사람·동물',
+        ko: '사람이나 반려동물이 목적어면 a를 붙인다 (a + el = al)'
+      },
+      {
+        es: 'estirar el cuerpo',
+        ko: '스트레칭하다'
+      },
+      {
+        es: 'montar en bicicleta',
+        ko: '자전거를 타다'
+      },
+      {
+        es: 'pasear por el parque',
+        ko: '공원을 산책하다'
+      },
+      {
+        es: 'correr por el sendero',
+        ko: '산책로를 달리다'
+      },
+      {
+        es: 'mirar las flores',
+        ko: '꽃을 보다'
+      },
+      {
+        es: 'descansar en el banco',
+        ko: '벤치에서 쉬다'
+      },
+      {
+        es: 'sacar fotos',
+        ko: '사진을 찍다'
+      },
+      {
+        es: 'Pienso escuchar música en el parque.',
+        ko: '나는 공원에서 음악을 들을 생각이다.'
+      },
+      {
+        es: 'Voy a hacer ejercicio en el parque.',
+        ko: '나는 공원에서 운동을 할 것이다.'
+      },
+      {
+        es: 'Quiero comer al aire libre.',
+        ko: '나는 야외에서 식사하고 싶다.'
+      },
+      {
+        es: 'Voy a tomar una selfie en el parque.',
+        ko: '나는 공원에서 셀카를 찍을 것이다.'
       }
     ]
   },
   {
     id: 'day4',
     day: 4,
-    theme: 'work',
-    emoji: '📚',
-    title: '도서관',
-    subtitle: '¿Qué hago en la biblioteca?',
+    theme: 'travel',
+    emoji: '🚉',
+    title: '지하철',
+    subtitle: '¿Qué hago en el metro?',
     cards: [
       {
-        es: 'la biblioteca',
-        ko: '도서관'
+        es: 'el metro',
+        ko: '지하철'
       },
       {
-        es: 'el libro',
-        ko: '책'
+        es: 'el vagón',
+        ko: '객차, 칸'
       },
       {
-        es: 'el estante',
-        ko: '책장, 서가'
+        es: 'el andén',
+        ko: '플랫폼, 승강장'
       },
       {
-        es: 'el carné',
-        ko: '회원증, 카드'
+        es: 'el asiento',
+        ko: '좌석'
       },
       {
-        es: 'la sala de lectura',
-        ko: '열람실'
+        es: 'el pasamanos',
+        ko: '손잡이'
       },
       {
-        es: 'el silencio',
-        ko: '정숙, 조용함'
+        es: 'el billete',
+        ko: '승차권, 표'
       },
       {
-        es: 'buscar un libro',
-        ko: '책을 찾다'
+        es: 'la tarjeta',
+        ko: '교통카드'
       },
       {
-        es: 'pedir prestado un libro',
-        ko: '책을 대출하다'
+        es: 'el torno',
+        ko: '개찰구'
       },
       {
-        es: 'devolver el libro',
-        ko: '책을 반납하다'
+        es: 'el móvil',
+        ko: '휴대폰'
       },
       {
-        es: 'leer en silencio',
-        ko: '조용히 읽다'
+        es: 'la línea',
+        ko: '노선'
       },
       {
-        es: 'estudiar',
-        ko: '공부하다'
+        es: 'el aviso',
+        ko: '안내 방송'
       },
       {
-        es: 'tomar apuntes',
-        ko: '필기하다'
+        es: 'tomar',
+        ko: '타다, 잡다'
       },
       {
-        es: 'guardar silencio',
-        ko: '정숙을 지키다'
+        es: 'subir',
+        ko: '올라타다'
       },
       {
-        es: 'Tengo que devolver el libro hoy.',
-        ko: '나는 오늘 책을 반납해야 한다.'
+        es: 'bajarse',
+        ko: '내리다 (재귀동사)'
       },
       {
-        es: 'Voy a estudiar en la sala de lectura.',
-        ko: '나는 열람실에서 공부할 것이다.'
+        es: 'esperar',
+        ko: '기다리다'
       },
       {
-        es: 'Hay que guardar silencio en la biblioteca.',
-        ko: '도서관에서는 정숙해야 한다.'
+        es: 'sentarse',
+        ko: '앉다 (재귀동사, 불규칙)'
+      },
+      {
+        es: 'ceder',
+        ko: '양보하다'
+      },
+      {
+        es: '재귀동사 sentarse · bajarse',
+        ko: '-se가 붙으면 me/te/se를 함께 쓴다 — Me siento, Me bajo'
+      },
+      {
+        es: 'billete vs boleto · móvil vs celular',
+        ko: '앞은 스페인, 뒤는 중남미에서 쓰는 말'
+      },
+      {
+        es: 'tomar el metro',
+        ko: '지하철을 타다'
+      },
+      {
+        es: 'comprar un billete',
+        ko: '표를 사다'
+      },
+      {
+        es: 'pasar la tarjeta',
+        ko: '카드를 찍다'
+      },
+      {
+        es: 'pasar por el torno',
+        ko: '개찰구를 통과하다'
+      },
+      {
+        es: 'esperar en el andén',
+        ko: '플랫폼에서 기다리다'
+      },
+      {
+        es: 'subir al vagón',
+        ko: '객차에 타다'
+      },
+      {
+        es: 'sentarse en el asiento',
+        ko: '좌석에 앉다'
+      },
+      {
+        es: 'ceder el asiento',
+        ko: '자리를 양보하다'
+      },
+      {
+        es: 'ir de pie',
+        ko: '서서 가다'
+      },
+      {
+        es: 'mirar el móvil',
+        ko: '휴대폰을 보다'
+      },
+      {
+        es: 'escuchar el aviso',
+        ko: '안내 방송을 듣다'
+      },
+      {
+        es: 'cambiar de línea',
+        ko: '노선을 갈아타다'
+      },
+      {
+        es: 'bajarse del vagón',
+        ko: '객차에서 내리다'
+      },
+      {
+        es: 'Tengo que tomar el metro.',
+        ko: '나는 지하철을 타야 한다.'
+      },
+      {
+        es: 'Tengo que estar de pie en el metro.',
+        ko: '나는 지하철에서 서 있어야 한다.'
+      },
+      {
+        es: 'Voy a mirar el móvil en el metro.',
+        ko: '나는 지하철에서 휴대폰을 볼 것이다.'
+      },
+      {
+        es: 'Tengo que comprar un billete.',
+        ko: '나는 표를 사야 한다.'
+      },
+      {
+        es: 'Voy a cambiar de línea.',
+        ko: '나는 노선을 갈아탈 것이다.'
+      },
+      {
+        es: 'Tengo que esperar el metro en el andén.',
+        ko: '나는 플랫폼에서 지하철을 기다려야 한다.'
       }
     ]
   },
@@ -358,6 +658,94 @@ export const lessons = [
       {
         es: 'Me gusta entrenar con pesas.',
         ko: '나는 웨이트 운동을 좋아한다.'
+      },
+      {
+        es: 'la entrada',
+        ko: '입구'
+      },
+      {
+        es: 'el cuerpo',
+        ko: '몸'
+      },
+      {
+        es: 'el suelo',
+        ko: '바닥'
+      },
+      {
+        es: 'entrar en vs entrar a',
+        ko: '스페인은 en, 중남미는 a — 둘 다 맞다'
+      },
+      {
+        es: 'llevar la mochila',
+        ko: '가방을 메다'
+      },
+      {
+        es: 'guardar la mochila',
+        ko: '가방을 보관하다'
+      },
+      {
+        es: 'entrar al gimnasio',
+        ko: '헬스장에 들어가다'
+      },
+      {
+        es: 'salir del gimnasio',
+        ko: '헬스장에서 나오다'
+      },
+      {
+        es: 'calentar el cuerpo',
+        ko: '몸을 풀다'
+      },
+      {
+        es: 'entrenar con pesas',
+        ko: '웨이트로 운동하다'
+      },
+      {
+        es: 'montar en la bicicleta estática',
+        ko: '실내 자전거를 타다'
+      },
+      {
+        es: 'caminar en la cinta',
+        ko: '러닝머신에서 걷다'
+      },
+      {
+        es: 'repetir un ejercicio',
+        ko: '동작을 반복하다'
+      },
+      {
+        es: 'hacer estiramientos en el suelo',
+        ko: '바닥에서 스트레칭하다'
+      },
+      {
+        es: 'ponerse la ropa deportiva',
+        ko: '운동복을 입다'
+      },
+      {
+        es: 'cambiarse de ropa',
+        ko: '옷을 갈아입다'
+      },
+      {
+        es: 'tomar una ducha',
+        ko: '샤워하다'
+      },
+      {
+        es: 'Quiero correr en la cinta.',
+        ko: '나는 러닝머신에서 달리고 싶다.'
+      },
+      {
+        es: 'Voy a montar en la bicicleta estática.',
+        ko: '나는 실내 자전거를 탈 것이다.'
+      },
+      {
+        es: 'Tengo que estirar el cuerpo.',
+        ko: '나는 몸을 스트레칭해야 한다.'
+      },
+      {
+        es: 'Primero voy a calentar.',
+        ko: '나는 우선 몸을 풀 것이다.'
+      },
+      {
+        es: 'Ahora pienso salir del gimnasio.',
+        ko: '나는 이제 헬스장에서 나갈 생각이다.'
       }
     ]
   },
@@ -406,12 +794,96 @@ export const lessons = [
         ko: '다운로드하다'
       },
       {
-        es: 'responder el correo',
+        es: 'responder al correo',
         ko: '이메일에 답장하다'
       },
       {
         es: 'navegar por internet',
         ko: '인터넷을 검색하다'
+      },
+      {
+        es: 'el video',
+        ko: '영상'
+      },
+      {
+        es: 'la película',
+        ko: '영화'
+      },
+      {
+        es: 'el juego',
+        ko: '게임'
+      },
+      {
+        es: 'el internet',
+        ko: '인터넷'
+      },
+      {
+        es: 'responder a + 명사',
+        ko: '~에 답장하다 — a를 빼먹지 않는다 (a + el = al)'
+      },
+      {
+        es: 'computadora vs ordenador',
+        ko: '앞은 중남미, 뒤는 스페인에서 쓰는 말'
+      },
+      {
+        es: 'reiniciar la computadora',
+        ko: '컴퓨터를 재시작하다'
+      },
+      {
+        es: 'usar la computadora',
+        ko: '컴퓨터를 사용하다'
+      },
+      {
+        es: 'crear un documento',
+        ko: '문서를 만들다'
+      },
+      {
+        es: 'editar un documento',
+        ko: '문서를 편집하다'
+      },
+      {
+        es: 'abrir un archivo',
+        ko: '파일을 열다'
+      },
+      {
+        es: 'eliminar un archivo',
+        ko: '파일을 삭제하다'
+      },
+      {
+        es: 'recibir un correo',
+        ko: '이메일을 받다'
+      },
+      {
+        es: 'ver una película',
+        ko: '영화를 보다'
+      },
+      {
+        es: 'jugar en la computadora',
+        ko: '컴퓨터로 게임하다'
+      },
+      {
+        es: 'buscar información',
+        ko: '정보를 찾다'
+      },
+      {
+        es: 'abrir una página web',
+        ko: '웹페이지를 열다'
+      },
+      {
+        es: 'Tengo que responder al correo electrónico.',
+        ko: '나는 이메일에 답장해야 한다.'
+      },
+      {
+        es: 'Pienso jugar en la computadora.',
+        ko: '나는 컴퓨터로 게임을 할 생각이다.'
+      },
+      {
+        es: 'Puedo crear y editar documentos.',
+        ko: '나는 문서를 만들고 편집할 수 있다.'
+      },
+      {
+        es: 'Tengo que descargar y guardar el documento.',
+        ko: '나는 문서를 다운로드하고 저장해야 한다.'
       }
     ]
   },
@@ -424,8 +896,8 @@ export const lessons = [
     subtitle: '¿Qué hago con las verduras? 1',
     cards: [
       {
-        es: 'la verdura',
-        ko: '채소'
+        es: 'las verduras',
+        ko: '채소 (보통 복수로 쓴다)'
       },
       {
         es: 'la cebolla',
@@ -466,6 +938,82 @@ export const lessons = [
       {
         es: 'guardar en la nevera',
         ko: '냉장고에 넣다'
+      },
+      {
+        es: 'el tomate',
+        ko: '토마토'
+      },
+      {
+        es: 'el pepino',
+        ko: '오이'
+      },
+      {
+        es: 'el pimiento',
+        ko: '파프리카, 피망'
+      },
+      {
+        es: 'cortar en + 모양',
+        ko: '썰기: en rodajas(동그랗게), en tiras(채), en cubos(깍둑)'
+      },
+      {
+        es: 'patata vs papa · nevera vs refrigerador',
+        ko: '앞은 스페인, 뒤는 중남미에서 쓰는 말'
+      },
+      {
+        es: 'lavar las verduras',
+        ko: '채소를 씻다'
+      },
+      {
+        es: 'limpiar las verduras',
+        ko: '채소를 손질하다'
+      },
+      {
+        es: 'pelar las verduras',
+        ko: '채소 껍질을 벗기다'
+      },
+      {
+        es: 'cortar las verduras',
+        ko: '채소를 자르다'
+      },
+      {
+        es: 'picar las verduras',
+        ko: '채소를 잘게 썰다'
+      },
+      {
+        es: 'cortar en rodajas',
+        ko: '동그랗게 썰다'
+      },
+      {
+        es: 'cortar en cubos',
+        ko: '깍둑썰기하다'
+      },
+      {
+        es: 'picar finamente',
+        ko: '잘게 다지다'
+      },
+      {
+        es: 'partir por la mitad',
+        ko: '반으로 자르다'
+      },
+      {
+        es: 'guardar las verduras en la nevera',
+        ko: '채소를 냉장고에 넣다'
+      },
+      {
+        es: 'sacar las verduras',
+        ko: '채소를 꺼내다'
+      },
+      {
+        es: 'Tengo que limpiar la lechuga.',
+        ko: '나는 상추를 손질해야 한다.'
+      },
+      {
+        es: 'Tengo que cortar la zanahoria en tiras.',
+        ko: '나는 당근을 채 썰어야 한다.'
+      },
+      {
+        es: 'Voy a picar finamente la cebolla.',
+        ko: '나는 양파를 잘게 다질 것이다.'
       }
     ]
   },
@@ -9196,6 +9744,154 @@ export const lessons = [
       {
         es: '¿Qué hiciste si no tuviste otra opción?',
         ko: '다른 선택지가 없었을 때 어떻게 했어요? (과거)'
+      }
+    ]
+  },
+  {
+    id: 'day77',
+    day: 77,
+    theme: 'food',
+    emoji: '☕',
+    title: '카페',
+    subtitle: '¿Qué hago en la cafetería?',
+    cards: [
+      {
+        es: 'la cafetería',
+        ko: '카페'
+      },
+      {
+        es: 'el café con leche',
+        ko: '카페라떼'
+      },
+      {
+        es: 'el té',
+        ko: '차'
+      },
+      {
+        es: 'el zumo',
+        ko: '주스'
+      },
+      {
+        es: 'la tarta',
+        ko: '케이크, 타르트'
+      },
+      {
+        es: 'la carta',
+        ko: '메뉴판'
+      },
+      {
+        es: 'la cuenta',
+        ko: '계산서'
+      },
+      {
+        es: 'la terraza',
+        ko: '테라스'
+      },
+      {
+        es: 'pedir un café',
+        ko: '커피를 주문하다'
+      },
+      {
+        es: 'elegir de la carta',
+        ko: '메뉴판에서 고르다'
+      },
+      {
+        es: 'tomar algo',
+        ko: '뭔가를 마시다'
+      },
+      {
+        es: 'sentarse en la terraza',
+        ko: '테라스에 앉다'
+      },
+      {
+        es: 'pagar la cuenta',
+        ko: '계산하다'
+      },
+      {
+        es: 'Voy a pedir un café con leche.',
+        ko: '나는 카페라떼를 주문할 것이다.'
+      },
+      {
+        es: 'Quiero sentarme cerca de la ventana.',
+        ko: '나는 창가에 앉고 싶다.'
+      },
+      {
+        es: '¿Me trae la carta, por favor?',
+        ko: '메뉴판 좀 가져다주시겠어요?'
+      }
+    ]
+  },
+  {
+    id: 'day78',
+    day: 78,
+    theme: 'work',
+    emoji: '📚',
+    title: '도서관',
+    subtitle: '¿Qué hago en la biblioteca?',
+    cards: [
+      {
+        es: 'la biblioteca',
+        ko: '도서관'
+      },
+      {
+        es: 'el libro',
+        ko: '책'
+      },
+      {
+        es: 'el estante',
+        ko: '책장, 서가'
+      },
+      {
+        es: 'el carné',
+        ko: '회원증, 카드'
+      },
+      {
+        es: 'la sala de lectura',
+        ko: '열람실'
+      },
+      {
+        es: 'el silencio',
+        ko: '정숙, 조용함'
+      },
+      {
+        es: 'buscar un libro',
+        ko: '책을 찾다'
+      },
+      {
+        es: 'pedir prestado un libro',
+        ko: '책을 대출하다'
+      },
+      {
+        es: 'devolver el libro',
+        ko: '책을 반납하다'
+      },
+      {
+        es: 'leer en silencio',
+        ko: '조용히 읽다'
+      },
+      {
+        es: 'estudiar',
+        ko: '공부하다'
+      },
+      {
+        es: 'tomar apuntes',
+        ko: '필기하다'
+      },
+      {
+        es: 'guardar silencio',
+        ko: '정숙을 지키다'
+      },
+      {
+        es: 'Tengo que devolver el libro hoy.',
+        ko: '나는 오늘 책을 반납해야 한다.'
+      },
+      {
+        es: 'Voy a estudiar en la sala de lectura.',
+        ko: '나는 열람실에서 공부할 것이다.'
+      },
+      {
+        es: 'Hay que guardar silencio en la biblioteca.',
+        ko: '도서관에서는 정숙해야 한다.'
       }
     ]
   }
